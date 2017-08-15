@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>工作台</title>
+	
+</head>
+<body>
+	<ul id="list"></ul>
+	<br><br><br><br><br><br><br><br>
+
+	<a href="workbench1.html">跳转到工作台1</a>
+	<script type="text/javascript" src="jquery.min.js"></script>
+	 <script type="text/javascript" src="jquery.cookie.js"></script>
+	 <script type="text/javascript">
+	 $(function(){ 
+	 if($.cookie("history")){
+	 var json = eval("("+$.cookie("history")+")"); 
+	 var list =""; 
+	 $(json).each(function(){
+	  list = list + "<li><a href='"+this.url+"' target='_blank'>"+this.title+"</a></li>";
+	  alert(this.url);
+	 })
+	 $("#list").html(list);;
+	 } 
+	 }); 
+	 </script>
+ </head>
+	
+</body>
+</html>
+
+  

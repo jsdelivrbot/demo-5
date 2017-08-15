@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>图片加载</title>
+<style type="text/css" media="screen">
+	#container { height: 600px;overflow: scroll;}
+</style>
+<SCRIPT src="jquery.js" type=text/javascript></SCRIPT>
+<SCRIPT src="jquery.lazyload.min.js" type=text/javascript></SCRIPT>
+<script type="text/javascript" charset="utf-8">
+      $(function() {
+          $("img").lazyload({ 
+          	container: $("#container"),   
+		  	placeholder : "images/loading.gif",
+            effect: "fadeIn",
+           	skip_invisible : false
+           });  
+      });
+</script>
+<style>
+img a,img{border:0px;}
+div{ margin-bottom:10px;}
+</style>
+</head>
+<body>
+<div id="container">
+	<img src="images/0.jpg" /><br />
+	<div><a href="#"><img src="images/loading.gif" data-original="images/1.jpg"></a></div>
+	<div><a href="#"><img src="images/loading.gif" data-original="images/2.jpg"></a></div>
+	<div><a href="#"><img src="images/loading.gif" data-original="images/3.jpg"></a></div>
+	<div><a href="#"><img src="images/loading.gif" data-original="images/4.jpg"></a></div>
+	<div><a href="#"><img src="images/loading.gif" data-original="images/5.jpg"></a></div>
+	<div><a href="#"><img src="images/loading.gif" data-original="images/6.jpg"></a></div>
+	
+</div>
+
+</body>
+</html>

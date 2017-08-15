@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			table{
+				border-collapse: collapse;
+			}
+			th{
+				width: 80px;
+				height: 30px;
+			}
+			td{
+				text-align: center;
+				line-height: 30px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<table border="" cellspacing="" cellpadding="">
+				<thead>
+					<th ><input type="checkbox" id="checkedAll"/>选择</th>
+					<th>商品</th>
+					<th>价格</th>
+					<th>数量</th>
+					<th>总价</th>
+					<th>操作</th>
+				</thead>
+				<tbody id="tb">
+					<tr>
+						<td><input type="checkbox" /></td>
+						<td>黄焖鸡米饭1</td>
+						<td>10</td>
+						<td>
+							<span class="jian">-</span>
+							<input type="text" style="width: 30px;text-align: center;" value="1" readonly="readonly"/>
+							<span class="jia">+</span>
+						</td>
+						<td>
+							<span style="color: red;">10</span>
+						</td>
+						<td>
+							<a style="cursor: pointer;">删除</a>
+						</td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" /></td>
+						<td>黄焖鸡米饭2</td>
+						<td>20</td>
+						<td>
+							<span class="jian">-</span>
+							<input type="text" style="width: 30px;text-align: center;"value="1" readonly="readonly"/>
+							<span class="jia">+</span>
+						</td>
+						<td>
+							<span style="color: red;">20</span>
+						</td>
+						<td>
+							<a style="cursor: pointer;">删除</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</body>
+	<script>
+		window.onload=function(){
+			var checkedAll=document.getElementById("checkedAll")
+			var tb=document.getElementById("tb")
+			var oinput=tb.getElementsByTagName('input')
+			var jian=document.getElementsByClassName('jian')
+			var jia=document.getElementsByClassName('jia')
+			var shanchu=tb.getElementsByTagName('a')
+			console.log(shanchu)
+			
+			//全选
+			checkedAll.onclick=function(){
+				for(var i=0;i<oinput.length;i++){
+					oinput[i].checked=this.checked
+				}
+			}
+			//当下级有一个没有选中时那么全选按钮则为false状态
+			for(var i=0;i<oinput.length;i++){
+				oinput[i].onclick=function(){
+					var qx=true
+					for(var i=0;i<oinput.length;i++){
+						if(oinput[i].checked==false){
+							qx=false
+						}
+					}
+					checkedAll.checked=qx
+					
+				}
+			}
+			checkedAll.onclick=function(){
+				for(var i=0;i<oinput.length;i++){
+					oinput[i].checked=this.checked
+				}
+		}
+
+		for(var i=0;i<oinput.length;i++){
+			oinput[i].onclick=function(){
+				var qx = true;
+				for(i=0;i<oinput.length;i++){
+						if(oinput[i].checked==false){
+							qx=false
+						}
+					}
+					checkedAll.checked=qx
+				
+			}
+		}
+	
+			//加
+			for(var i=0;i<jia.length;i++){
+				jia[i].onclick=function(){
+					//previousSibling上一个兄弟节点 
+					var val = parseInt(this.previousSibling.previousSibling.value);
+					this.previousSibling.previousSibling.value = val + 1;
+					jisuan(this)
+				}
+				
+			}
+			//减
+			for(var i=0;i<jian.length;i++){
+				jian[i].onclick=function(){
+					//nextSibling下一个兄弟节点
+					var val = parseInt(this.nextSibling.nextSibling.value);
+					if(val > 1) {
+						this.nextSibling.nextSibling.value = val - 1;
+					}
+					jisuan(this)
+				}
+			}
+			//操作删除
+			
+			for(var i=0;i<shanchu.length;i++){
+				shanchu[i].onclick=function(){
+					var conf = confirm('确定删除这件商品吗？');
+					//parentNode父节点
+					console.log(this.parentNode.parentNode)
+					if(conf) {
+					//removeChild 删除节点 
+						tb.removeChild(this.parentNode.parentNode); 
+					}
+				}
+			}
+			
+			//总价
+			function jisuan(t){
+				var tr=t.parentNode.parentNode	
+				var result=document.getElementById("result")
+					var td=tr.getElementsByTagName('td')
+					td[4].getElementsByTagName('span')[0].innerHTML = parseInt(td[2].innerHTML)*parseInt(t.parentNode.getElementsByTagName('input')[0].value)
+			}
+		}
+	</script>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>canvas碰壁反弹</title>
+    <style>
+        #canvas{
+            border: 1px solid black;
+            display:block;
+            margin: 50px auto;
+        }
+    </style>
+</head>
+<body>
+<canvas id="canvas" width="800" height="500"></canvas>
+<script>
+    var ctx = canvas.getContext("2d");
+    var posX = 0,posY = 0,moveX = true,moveY = true;
+    ctx.fillStyle = "yellow";
+    ctx.fillRect(0,0,50,50);
+    setInterval(move,10);
+    function move() {
+        //清除画布
+        ctx.clearRect(0,0,canvas.width,canvas.height);
+        if (moveX){
+            posX++;
+            if (posX>=canvas.width-50){
+                moveX = false;
+            }
+        }else {
+            posX--;
+            if (posX<=0){
+                moveX = true;
+            }
+        }
+        if (moveY){
+            posY++;
+            if (posY>=canvas.height-50){
+                moveY = false;
+            }
+        }else {
+            posY--;
+            if (posY<=0){
+                moveY = true;
+            }
+        }
+        ctx.fillRect(posX,posY,50,50);
+    }
+</script>
+</body>
+</html>

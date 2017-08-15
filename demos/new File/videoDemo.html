@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<meta http-equiv="Content-Type" content="text/html;charset=utf8">
+<head>
+<title>html5 video播放/暂停开关</title>
+</head>
+<body>
+<div style="text-align:center">
+<button onclick="playPause()">播放/暂停</button>
+<button id="btn">js控制页面的全屏展示和退出全屏显示</button> 
+<br />
+<video id="video1" width="420">
+<source src="http://testvideo.juyun.tv/dynamic/2017/7/24/631_1500877483_t.mp4" type="video/mp4">
+</video>
+
+</div>
+
+<script type="text/javascript">
+var myVideo = document.getElementById("video1");
+function playPause(){
+	if(myVideo.paused)
+	myVideo.play();
+	else
+	myVideo.pause();
+}
+myVideo.volume = 0.0;//静音
+//全屏
+document.getElementById("btn").onclick=function(){     
+    var elem = document.getElementById("content");      
+    requestFullScreen(myVideo);     
+};     
+function requestFullScreen(element) {    
+    var requestMethod = element.requestFullScreen || element.webkitRequestFullScreen || element.mozRequestFullScreen || element.msRequestFullScreen;    
+    if (requestMethod) {      
+        requestMethod.call(element);    
+    } else if (typeof window.ActiveXObject !== "undefined") {      
+        var wscript = new ActiveXObject("WScript.Shell");    
+        if (wscript !== null) {    
+            wscript.SendKeys("{F11}");    
+        }    
+    }    
+}  
+
+</script>
+</body>
+</html>

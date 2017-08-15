@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<style>
+    body {
+        background: #f2f2f2;
+        margin: 40px;
+    }
+    
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    
+    .calendar {
+        width: 450px;
+        height: 350px;
+        background: #fff;
+        box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
+        margin: 0 auto;
+    }
+    
+    .title {
+        height: 70px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        text-align: center;
+        position: relative;
+    }
+    
+    #calendar-title {
+        font-size: 25px;
+        font-family: arial;
+        font-weight: bold;
+        text-transform: uppercase;
+        padding: 14px 0 0 0;
+    }
+    
+    #calendar-year {
+        font-size: 15px;
+        font-family: arial;
+    }
+    
+    .body {
+        padding: 10px 20px;
+    }
+    
+    .body-list ul {
+        width: 100%;
+        font-family: arial;
+        font-weight: bold;
+        font-size: 14px;
+    }
+    
+    .body-list ul li {
+        width: 14.28%;
+        height: 36px;
+        line-height: 36px;
+        list-style-type: none;
+        display: block;
+        box-sizing: border-box;
+        float: left;
+        text-align: center;
+    }
+    
+    .lightgrey {
+        color: #a8a8a8;
+    }
+    
+    .darkgrey {
+        color: #565656;
+    }
+    
+    .green {
+        color: #6ac13c;
+    }
+    
+    .greenbox {
+        border: 1px solid #6ac13c;
+        background: #e9f8df;
+    }
+    
+    .right {
+        width: 20px;
+        height: 20px;
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+    
+    .right-arrow1,
+    .right-arrow2 {
+        width: 0;
+        height: 0;
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        border-top: 10px transparent dashed;
+        border-right: 10px transparent dashed;
+        border-bottom: 10px transparent dashed;
+        border-left: 10px white solid;
+        overflow: hidden;
+    }
+    
+    .right-arrow1 {
+        left: 1px;
+        /*重要*/
+        border-left: 10px #666 solid;
+    }
+    
+    .right-arrow2 {
+        border-left: 10px white solid;
+    }
+    /*左箭头*/
+    
+    .left {
+        width: 20px;
+        height: 20px;
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 2;
+        /*兼容ie8-*/
+    }
+    
+    .left-arrow1,
+    .left-arrow2 {
+        width: 0;
+        height: 0;
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 5;
+        /*兼容ie8-*/
+        border-top: 10px transparent dashed;
+        border-left: 10px transparent dashed;
+        border-bottom: 10px transparent dashed;
+        border-right: 10px white solid;
+        overflow: hidden;
+    }
+    
+    .left-arrow1 {
+        border-right: 10px #666 solid;
+    }
+    
+    .left-arrow2 {
+        left: 1px;
+        /*重要*/
+        border-right: 10px white solid;
+    }
+    
+    #prev {
+        position: absolute;
+        left: 10px;
+        top: 30px;
+    }
+    
+    #next {
+        position: absolute;
+        right: 30px;
+        top: 30px;
+    }
+</style>
+
+<body>
+    <div class="calendar">
+        <div class="title">
+            <h1 class="green" id="calendar-title">Month</h1>
+            <h2 class="green small" id="calendar-year">Year</h2>
+            <a href="javascript:;" id="prev">
+                <div class="arrow-left arrow-box">
+                    <b class="left"><i class="left-arrow1"></i><i class="left-arrow2"></i></b>
+                </div>
+            </a>
+            <a href="javascript:;" id="next">
+                <div class="arrow-right arrow-box">
+                    <b class="right"><i class="right-arrow1"></i><i class="right-arrow2"></i></b>
+                </div>
+            </a>
+        </div>
+        <div class="body">
+            <div class="lightgrey body-list">
+                <ul>
+                    <li>MON</li>
+                    <li>TUE</li>
+                    <li>WED</li>
+                    <li>THU</li>
+                    <li>FRI</li>
+                    <li>SAT</li>
+                    <li>SUN</li>
+                </ul>
+            </div>
+            <div class="darkgrey body-list">
+                <ul id="days"></ul>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    var calendar = {
+        init: function() {
+            this.initData();
+            this.refreshDate();
+            this.event();
+        },
+
+        initData: function() {
+
+            this.month_olympi = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+            this.month_normal = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+            this.month_name = ["January", "Febrary", "March", "April", "May", "June", "July", "Auguest", "September", "October", "November", "December"];
+
+            this.my_date = new Date();
+            this.my_year = this.my_date.getFullYear(); //获取年份
+            this.my_month = this.my_date.getMonth();
+            this.my_day = this.my_date.getDate();
+
+            this.holder = document.getElementById("days");
+            this.prev = document.getElementById("prev");
+            this.next = document.getElementById("next");
+            this.ctitle = document.getElementById("calendar-title");
+            this.cyear = document.getElementById("calendar-year");
+        },
+
+        // 获取每个月第一天星期几
+        dateStart: function(month, year) {
+            var tempDate = new Date(year, month, 1);
+            return tempDate.getDay();
+        },
+
+        //获取每个月的天数
+        dateMonth: function(month, year) {
+            var temp = year % 4;
+            return temp == 0 ? this.month_olympi[month] : this.month_normal[month]
+        },
+
+        refreshDate: function() {
+            var str = "";
+            //获取当前月份天数
+            var totalDay = this.dateMonth(this.my_month, this.my_year);
+            //获取当前月份1号星期几;
+            var firstDay = this.dateStart(this.my_month, this.my_year);
+            var myclass;
+            //生成dom
+            for (var i = 1; i < firstDay; i++) {
+                str += '<li></li>';
+            }
+
+            for (var i = 1; i <= totalDay; i++) {
+                if (i < this.my_day && this.my_year == this.my_date.getFullYear() || this.my_year < this.my_date.getFullYear() || (this.my_year == this.my_date.getFullYear() && this.my_month < this.my_date.getMonth())) {
+                    myclass = ' class="lightgrey"'; //今天之前
+                } else if (i == this.my_day && this.my_year == this.my_date.getFullYear() && this.my_month == this.my_date.getMonth()) {
+                    myclass = ' class="green greenbox"'; //今天
+                } else {
+                    myclass = " class='darkgrey'"; //当该日期在今天之后时
+                }
+
+                str += "<li" + myclass + ">" + i + "</li>"; //创建日期节点
+            }
+
+            this.holder.innerHTML = str; //设置日期显示
+            this.ctitle.innerHTML = this.month_name[this.my_month]; //设置英文月份显示
+            this.cyear.innerHTML = this.my_year; //设置年份显示
+        },
+
+        event: function() {
+            var that = this;
+            this.prev.onclick = function(e) {
+                that.my_month--;
+                if (that.my_month <= 0) {
+                    that.my_year--;
+                    that.my_month = 11;
+                }
+                that.refreshDate();
+            };
+
+            this.next.onclick = function(e) {
+                that.my_month++;
+                if (that.my_month >= 11) {
+                    that.my_year++;
+                    that.my_month = 0;
+                }
+                that.refreshDate();
+            }
+        },
+    }
+
+    //执行
+    calendar.init();
+</script>
+
+</html>

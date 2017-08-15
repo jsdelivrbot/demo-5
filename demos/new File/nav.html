@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>jquery简洁的企业网站响应式导航菜单</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="utf-8" />
+    <link rel="stylesheet" href="https://cdn.staticfile.org/minireset.css/0.0.2/minireset.min.css"/>
+    <!--Modernizr检测浏览器功能支持情况的 JavaScript 库 -->
+    <script src="https://cdn.staticfile.org/modernizr/2010.07.06dev/modernizr.min.js"></script>
+    <style>
+        *, *::after, *::before {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+        html {
+            font-size: 62.5%;
+        }
+        body {
+            background-color: #ffffff;
+            color: #2e3233;
+            font-size: 1.6rem;
+            font-family: sans-serif;  
+        }
+        li {
+            display: list-item;
+            text-align: -webkit-match-parent;
+        }
+        a {
+            text-decoration: none;
+        }
+        img {
+            max-width:100%;
+        }
+        h3 {
+            display: block;
+            font-size: 1.17em;
+            font-weight: bold;
+            -webkit-margin-before: 1em;
+            -webkit-margin-after: 1em;
+            -webkit-margin-start: 0px;
+            -webkit-margin-end: 0px;
+        }
+        .nav-header{
+            position: relative;
+            -webkit-transition: -webkit-transform 0.3s;
+            -moz-transition: -moz-transform 0.3s;
+            transition: transform 0.3s;
+            webkit-transform: translateZ(0);
+            -moz-transform: translateZ(0);
+            -ms-transform: translateZ(0);
+            -o-transform: translateZ(0);
+            transform: translateZ(0);
+            will-change: transform;
+        }
+        .nav-header{
+            background: #ffffff;
+            height: 50px;
+            z-index: 3;
+        }   
+        .nav-is-fixed .nav-header {
+        /* add .nav-is-fixed class to body if you want a fixed navigation on > 1170px */
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        } 
+        .logo {
+            position: absolute;
+            top: 12px;
+            left: 5%;
+        }
+        .primary-nav,.primary-nav ul{
+            position: fixed;
+            top: 0;
+            right: 0;
+            height: 100%;
+            width: 260px;
+            background: #2e3233;
+            overflow: auto;
+            -webkit-overflow-scrolling: touch;
+            z-index: 1;
+            -webkit-transform: translateZ(0);
+            -moz-transform: translateZ(0);
+            -ms-transform: translateZ(0);
+            -o-transform: translateZ(0);
+            transform: translateZ(0);
+            -webkit-transform: translateX(0);
+            -moz-transform: translateX(0);
+            -ms-transform: translateX(0);
+            -o-transform: translateX(0);
+            transform: translateX(0);
+            -webkit-transition: -webkit-transform 0.3s;
+            -moz-transition: -moz-transform 0.3s;
+            transition: transform 0.3s;
+        }
+        .has-children > a {
+            padding-right: 40px;
+        }
+        .has-children > a {
+            position: relative;
+        }
+        .primary-nav a,.primary-nav ul a {
+            display: block;
+            height: 50px;
+            line-height: 50px;
+            padding: 0 20px;
+            color: #ffffff;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            border-bottom: 1px solid #3a3f40;
+            -webkit-transform: translateZ(0);
+            -moz-transform: translateZ(0);
+            -ms-transform: translateZ(0);
+            -o-transform: translateZ(0);
+            transform: translateZ(0);
+            will-change: transform, opacity;
+            -webkit-transition: -webkit-transform 0.3s, opacity 0.3s;
+            -moz-transition: -moz-transform 0.3s, opacity 0.3s;
+            transition: transform 0.3s, opacity 0.3s;
+        }
+        .primary-nav .nav-gallery .nav-item img {
+            position: absolute;
+            display: block;
+            height: 40px;
+            width: auto;
+            left: 20px;
+            top: 50%;
+            margin-top: -20px;
+        }
+        .primary-nav .nav-gallery .nav-item h3, .primary-nav .nav-icons .nav-item h3 {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        }
+        .primary-nav .nav-gallery .nav-item {
+            padding-left: 90px;
+        }
+        .primary-nav .nav-gallery .nav-item, .primary-nav .nav-icons .nav-item {
+            height: 80px;
+            line-height: 80px;
+        }
+        /*箭头*/
+        .has-children > a::before, .has-children > a::after {/*箭头旋转*/
+        right: 20px;
+        -webkit-transform-origin: 9px 50%; 
+        -moz-transform-origin: 9px 50%;
+        -ms-transform-origin: 9px 50%;
+        -o-transform-origin: 9px 50%;
+        transform-origin: 9px 50%;/*transform-origin(X,Y,Z) 属性改变被转换元素的位置。*/
+        }
+        .has-children > a::before, .go-back a::before {
+        -webkit-transform: rotate(45deg);
+        -moz-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        -o-transform: rotate(45deg);
+        transform: rotate(45deg);
+        }
+        .has-children > a::before, .go-back a::before {
+        -webkit-transform: rotate(45deg);
+        -moz-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        -o-transform: rotate(45deg);
+        transform: rotate(45deg);
+        }
+        .has-children > a::after, .go-back a::after {
+        -webkit-transform: rotate(-45deg);
+        -moz-transform: rotate(-45deg);
+        -ms-transform: rotate(-45deg);
+        -o-transform: rotate(-45deg);
+        transform: rotate(-45deg);
+        }
+        .has-children > a::before, .has-children > a::after, .go-back a::before, .go-back a::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        margin-top: -1px;
+        display: inline-block;
+        height: 2px;
+        width: 10px;
+        background: #464c4e;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        }
+        .nav-buttons {
+        position: absolute;
+        display: inline-block;
+        top: 3px;
+        right: 5%;
+        }
+        .nav-buttons li{
+            display:inline-block;
+        }
+        .primary-nav .go-back a::before, .primary-nav .go-back a::after {
+            left: 20px;
+            -webkit-transform-origin: 1px 50%;
+            -moz-transform-origin: 1px 50%;
+            -ms-transform-origin: 1px 50%;
+            -o-transform-origin: 1px 50%;
+            transform-origin: 1px 50%;
+        }
+        /*交叉*/
+        .nav-trigger {
+        position: relative;
+        display: block;
+        width: 44px;
+        height: 44px;
+        overflow: hidden;
+        white-space: nowrap;
+        color: transparent;
+        z-index: 3;
+        }
+        .nav-trigger.nav-is-visible span {
+        background: rgba(46, 50, 51, 0);
+        }
+        .nav-trigger span {
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        margin-top: -2px;
+        -webkit-transition: background 0.3s 0.3s;
+        -moz-transition: background 0.3s 0.3s;
+        transition: background 0.3s 0.3s;
+        }
+        .nav-trigger span, .nav-trigger span::before, .nav-trigger span::after {
+        position: absolute;
+        display: inline-block;
+        height: 3px;
+        width: 24px;
+        background: #2e3233;
+        }
+        .nav-trigger.nav-is-visible span::before {
+        -webkit-transform: translateX(4px) translateY(-3px) rotate(45deg);
+        -moz-transform: translateX(4px) translateY(-3px) rotate(45deg);
+        -ms-transform: translateX(4px) translateY(-3px) rotate(45deg);
+        -o-transform: translateX(4px) translateY(-3px) rotate(45deg);
+        transform: translateX(4px) translateY(-3px) rotate(45deg);
+        }
+        .nav-trigger.nav-is-visible span::after {
+        -webkit-transform: translateX(4px) translateY(2px) rotate(-45deg);
+        -moz-transform: translateX(4px) translateY(2px) rotate(-45deg);
+        -ms-transform: translateX(4px) translateY(2px) rotate(-45deg);
+        -o-transform: translateX(4px) translateY(2px) rotate(-45deg);
+        transform: translateX(4px) translateY(2px) rotate(-45deg);
+        }
+        .nav-trigger.nav-is-visible span::before, .nav-trigger.nav-is-visible span::after{
+        background: #2e3233;
+        }
+        .nav-trigger span::before {
+        top: -6px;
+        }
+        .nav-trigger span::after {
+        top: 6px;
+        }
+        .nav-trigger span::before, .nav-trigger span::after {
+        content: '';
+        right: 0;
+        -webkit-transform: translateZ(0);
+        -moz-transform: translateZ(0);
+        -ms-transform: translateZ(0);
+        -o-transform: translateZ(0);
+        transform: translateZ(0);
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        -webkit-transform-origin: 0% 50%;
+        -moz-transform-origin: 0% 50%;
+        -ms-transform-origin: 0% 50%;
+        -o-transform-origin: 0% 50%;
+        transform-origin: 0% 50%;
+        -webkit-transition: -webkit-transform 0.3s 0.3s;
+        -moz-transition: -moz-transform 0.3s 0.3s;
+        transition: transform 0.3s 0.3s;
+        }
+        /***/
+        .primary-nav.is-hidden, .primary-nav ul.is-hidden {
+            -webkit-transform: translateX(100%);
+            -moz-transform: translateX(100%);
+            -ms-transform: translateX(100%);
+            -o-transform: translateX(100%);
+            transform: translateX(100%);
+            display:none;
+        }
+        .primary-nav .go-back a {
+            padding-left: 40px;
+        }
+        .has-children > a, .go-back a {
+            position: relative;
+        }
+        .primary-nav.moves-out > li > a, .primary-nav ul.moves-out > li > a {
+            -webkit-transform: translateX(-100%);
+            -moz-transform: translateX(-100%);
+            -ms-transform: translateX(-100%);
+            -o-transform: translateX(-100%);
+            transform: translateX(-100%);
+            opacity: 0;
+        }
+        @media only screen and (min-width: 1170px){
+            .nav-header {
+                height: 80px;
+            }
+            .nav-header:after {
+                content: "";
+                display: table;
+                clear: both;
+            }
+            .logo {
+                top: 26px;
+                left: 4em;
+            }
+            .primary-nav{
+                position: static;
+                padding: 0 150px 0 0;
+                height: auto;
+                width: auto;
+                float: right;
+                overflow: visible;
+                background: transparent;
+            }
+            .primary-nav > li {
+                float: left;
+                margin-left: 3em;
+            }
+            .primary-nav > .has-children > a {
+                padding-right: 30px !important;
+            }
+            .primary-nav > li > a {
+                position: relative;
+                display: inline-block;
+                height: 80px;
+                line-height: 80px;
+                padding: 0 10px;
+                color: #2e3233;
+                overflow: visible;
+                border-bottom: none;
+                -webkit-transition: color 0.3s, box-shadow 0.3s;
+                -moz-transition: color 0.3s, box-shadow 0.3s;
+                transition: color 0.3s, box-shadow 0.3s;
+            }
+            /*箭头*/
+            .primary-nav > .has-children > a::before {
+                right: 12px;
+            }
+            .primary-nav > .has-children > a::after {
+            right: 7px;
+            }
+            .primary-nav > .has-children > a::before, .primary-nav > .has-children > a::after {
+            width: 9px;
+            -webkit-transform-origin: 50% 50%;
+            -moz-transform-origin: 50% 50%;
+            -ms-transform-origin: 50% 50%;
+            -o-transform-origin: 50% 50%;
+            transform-origin: 50% 50%;
+            background: #c9cbc4;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            -webkit-transition: width 0.3s, -webkit-transform 0.3s;
+            -moz-transition: width 0.3s, -moz-transform 0.3s;
+            transition: width 0.3s, transform 0.3s;
+            }
+            .has-children > a::before, .has-children > a::after {
+                right: 15%;
+            }
+            .has-children > a::before, .has-children > a::after, .go-back a::before, .go-back a::after {
+            background: #c9cbc4;
+            }
+           /*交叉*/
+           .primary-nav > .has-children > a.selected::before {
+                -webkit-transform: translateX(5px) rotate(-45deg);
+                -moz-transform: translateX(5px) rotate(-45deg);
+                -ms-transform: translateX(5px) rotate(-45deg);
+                -o-transform: translateX(5px) rotate(-45deg);
+                transform: translateX(5px) rotate(-45deg);
+            }
+           .primary-nav > .has-children > a.selected::after {
+                -webkit-transform: rotate(45deg);
+                -moz-transform: rotate(45deg);
+                -ms-transform: rotate(45deg);
+                -o-transform: rotate(45deg);
+                transform: rotate(45deg);
+            }
+           .primary-nav > .has-children > a.selected::before, .primary-nav > .has-children > a.selected::after {
+                width: 14px;
+            }
+           .primary-nav > .has-children > a.selected::before, .primary-nav > .has-children > a.selected::after {
+            width: 14px;
+            }
+           /***/
+            .primary-nav ul {
+            position: static;
+            height: auto;
+            width: auto;
+            background: transparent;
+            overflow: visible;
+            z-index: 3;
+            }
+            .primary-nav .nav-gallery{
+                position: absolute;
+                top: 80px;
+                width: 100vw;/*css3相对于视口的宽度,视口被均分为100单位的vw*/
+                background: #ffffff;
+                padding: 48px 64px 30px;/*内边距*/
+                box-shadow: inset 0 1px 0 #e2e3df, 0 3px 6px rgba(0, 0, 0, 0.05);
+                -webkit-transform: translateX(0);
+                -moz-transform: translateX(0);
+                -ms-transform: translateX(0);
+                -o-transform: translateX(0);
+                transform: translateX(0);
+                -webkit-transition: opacity .3s 0s, visibility 0s 0s;
+                -moz-transition: opacity .3s 0s, visibility 0s 0s;
+                transition: opacity .3s 0s, visibility 0s 0s;
+            }
+            .primary-nav .nav-gallery li {
+                width: 12%;/*宽度*/
+                float: left;
+                margin: 0 4% 40px 0;
+            }
+            .primary-nav .go-back{
+            display: none;
+            }
+            .primary-nav .go-back a {
+                padding-left: 20px;
+            }
+            .primary-nav .nav-gallery .nav-item {
+                border-bottom: none;
+                padding: 0;
+                height: auto;
+                line-height: 1.2;
+            }
+            .primary-nav .nav-gallery .nav-item img {
+                position: static;
+                margin-top: 0;
+                height: auto;
+                width: 100%;
+                margin-bottom: .6em;
+                border:1px solid #ccc;
+            }
+            .primary-nav .nav-gallery .nav-item h3{
+                color: #69aa6f;
+                font-weight: bold;
+                /*padding: 0 .4em;*/
+                text-align:center;
+            }
+            .primary-nav .nav-gallery.is-hidden{
+                opacity: 0;
+                visibility: hidden;
+                -webkit-transition: opacity .3s 0s, visibility 0s .3s;
+                -moz-transition: opacity .3s 0s, visibility 0s .3s;
+                transition: opacity .3s 0s, visibility 0s .3s;
+            }
+             .primary-nav ul.is-hidden {
+                /* reset mobile style */
+                -webkit-transform: translateX(0);
+                -moz-transform: translateX(0);
+                -ms-transform: translateX(0);
+                -o-transform: translateX(0);
+                transform: translateX(0);
+            }
+            .primary-nav > li > a.selected {
+            color: #69aa6f;
+            box-shadow: inset 0 -2px 0 #69aa6f;
+            }
+            .nav-trigger {
+                display: none;
+            }
+            .primary-nav.moves-out > li > a {
+            /* reset mobile style */
+            -webkit-transform: translateX(0);
+            -moz-transform: translateX(0);
+            -ms-transform: translateX(0);
+            -o-transform: translateX(0);
+            transform: translateX(0);
+            opacity: 1;
+            }
+            .primary-nav ul.moves-out > li > a {
+            /* reset mobile style */
+            -webkit-transform: translateX(0);
+            -moz-transform: translateX(0);
+            -ms-transform: translateX(0);
+            -o-transform: translateX(0);
+            transform: translateX(0);
+            opacity: 1;
+            }
+        }
+        @media only screen and (max-width: 1169px){
+          .nav-header.nav-is-visible {
+            -webkit-transform: translateX(-260px);
+            -moz-transform: translateX(-260px);
+            -ms-transform: translateX(-260px);
+            -o-transform: translateX(-260px);
+            transform: translateX(-260px);
+            }
+            .primary-nav.nav-is-visible {
+                visibility: visible;
+                -webkit-transition: visibility 0s 0s;
+                -moz-transition: visibility 0s 0s;
+                transition: visibility 0s 0s;
+            }
+            .primary-nav {
+                visibility: hidden;
+                -webkit-transition: visibility 0s 0.3s;
+                -moz-transition: visibility 0s 0.3s;
+                transition: visibility 0s 0.3s;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="nav-header">
+        <a href="#" class="logo"><img src="images/logo1.png" alt="logo"/></a>
+        <ul class="nav-buttons">
+            <li><a href="#primary-nav" class="nav-trigger">MENU<span></span></a></li>
+        </ul>
+    </header>
+    <nav class="navs">
+        <ul id="primary-nav" class="primary-nav is-fixed">
+            <li><a href="#">关于我们</a></li>
+            <li class="has-children">
+                <a href="#" class="">手机U盘</a>
+                <ul class="nav-gallery is-hidden">
+                    <li class="go-back"><a href="#0">返回上一级</a></li>
+                    <li><a href="#" class="nav-item"><img src="http://fpoimg.com/245x185?text=ProductList" alt="" /><h3>普通U盘</h3></a></li>
+                    <li><a href="#" class="nav-item"><img src="http://fpoimg.com/245x185?text=ProductList" alt="" /><h3>金属安卓U盘</h3></a></li>
+                    <li><a href="#" class="nav-item"><img src="http://fpoimg.com/245x185?text=ProductList" alt="" /><h3>迷你旋转U盘</h3></a></li>
+                    <li><a href="#" class="nav-item"><img src="http://fpoimg.com/245x185?text=ProductList" alt="" /><h3>Mini2 U盘</h3></a></li>
+                    <li><a href="#" class="nav-item"><img src="http://fpoimg.com/245x185?text=ProductList" alt="" /><h3>四口金属U盘</h3></a></li>
+                </ul>
+            </li>
+            <li class="has-children">
+                <a href="#">读卡器</a>
+                <ul class="nav-gallery is-hidden">
+                    <li class="go-back"><a href="#0">返回上一级</a></li>
+                    <li><a href="#" class="nav-item"><img src="http://fpoimg.com/245x185?text=ProductList" alt=""/><h3>安卓二合一读卡器A1</h3></a></li>
+                    <li><a href="#" class="nav-item"><img src="http://fpoimg.com/245x185?text=ProductList" alt=""/><h3>铝合金安卓读卡器</h3></a></li>
+                    <li><a href="#" class="nav-item"><img src="http://fpoimg.com/245x185?text=ProductList" alt="" /><h3>旋转迷你读卡器</h3></a></li>
+                    <li><a href="#" class="nav-item"><img src="http://fpoimg.com/245x185?text=ProductList" alt="" /><h3>四口读卡器</h3></a></li>
+                    <li><a href="#" class="nav-item"><img src="http://fpoimg.com/245x185?text=ProductList" alt="" /><h3>安卓二合一读卡器A2</h3></a></li>
+                    <li><a href="#" class="nav-item"><img src="http://fpoimg.com/245x185?text=ProductList" alt="" /><h3>精灵读卡器</h3></a></li>
+                </ul>
+            </li>
+            <li class="has-children">
+                <a href="#">读卡线</a>
+                <ul class="nav-gallery is-hidden">
+                    <li class="go-back"><a href="#0">返回上一级</a></li>
+                    <li><a href="#" class="nav-item"><img src="http://fpoimg.com/245x185?text=ProductList" alt=""/><h3>读卡线</h3></a></li>
+                    <li><a href="#" class="nav-item"><img src="http://fpoimg.com/245x185?text=ProductList" alt=""/><h3>二合一读卡线</h3></a></li>
+                </ul>
+            </li>
+            <li><a href="#">支持与下载</a></li>
+            <li><a href="#">新闻资讯</a></li>
+        </ul>
+    </nav>
+    <main class="main-content">
+        <div class="cd-overlay"></div>
+    </main>
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+        jQuery(document).ready(function ($) {
+            var MqL = 1170;//窗口大小
+            //根据窗口的宽度改变菜单元素的位置
+            moveNavigation();
+            $(window).on('resize', function () {
+                //window.requestAnimationFrame 告诉浏览器您要执行的动画并且请求浏览器的在下一个动画帧重绘窗口
+                //在浏览器没有requestAnimationFrame方法时将其指向setTimeout方法
+                (!window.requestAnimationFrame) ? setTimeout(moveNavigation, 300) : window.requestAnimationFrame(moveNavigation);
+            });
+            //prevent default clicking on direct children of .primary-nav 
+            $('.primary-nav').children('.has-children').children('a').on('click', function (event) {
+                event.preventDefault();//preventDefault() 方法阻止元素发生默认的行为（例如，当点击提交按钮时阻止对表单的提交）。
+            });
+            //open submenu
+            $('.has-children').children('a').on('click', function (event) {
+                if (!checkWindowWidth()) event.preventDefault();
+                var selected = $(this);
+                if (selected.next('ul').hasClass('is-hidden')) {
+                    //desktop version only end() 方法结束当前链条中的最近的筛选操作，并将匹配元素集还原为之前的状态。
+                    selected.addClass('selected').next('ul').removeClass('is-hidden').end().parent('.has-children').parent('ul').addClass('moves-out');
+                    selected.parent('.has-children').siblings('.has-children').children('ul').addClass('is-hidden').end().children('a').removeClass('selected');
+                    $('.cd-overlay').addClass('is-visible');
+                } else {
+                    selected.removeClass('selected').next('ul').addClass('is-hidden').end().parent('.has-children').parent('ul').removeClass('moves-out');
+                    $('.cd-overlay').removeClass('is-visible');//内容页
+                }
+            });
+           
+            function checkWindowWidth() {
+                //check window width (scrollbar included)
+                var e = window,
+                    a = 'inner';
+                if (!('innerWidth' in window)) {//innerWidth声明了窗口的文档显示区的宽度，以像素计。
+                    a = 'client';
+                    e = document.documentElement || document.body;
+                }//document.body.clientWidth ==> BODY对象宽度
+                if (e[a + 'Width'] >= MqL) {//document.documentElement.clientWidth ==> 可见区域宽度
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+            //mobile - open lateral menu clicking on the menu icon
+            $('.nav-trigger').on('click', function (event) {
+                event.preventDefault();
+                if ($('.main-content').hasClass('nav-is-visible')) {
+                    closeNav();
+                    $('.cd-overlay').removeClass('is-visible');
+                } else {
+                    $(this).addClass('nav-is-visible');
+                    $('.primary-nav').addClass('nav-is-visible');
+                    $('.nav-header').addClass('nav-is-visible');
+                    //one() 方法为被选元素附加一个或多个事件处理程序，并规定当事件发生时运行的函数。
+                    $('.main-content').addClass('nav-is-visible').one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function () {
+                        $('body').addClass('overflow-hidden');
+                    });
+                    
+                    $('.cd-overlay').addClass('is-visible');//内容页
+                }
+            });
+            //移动菜单位置
+            function moveNavigation() {
+                var navigation = $('.navs');
+                var desktop = checkWindowWidth();
+                if (desktop) {
+                    navigation.detach();//detach() 方法移除被选元素，包括所有文本和子节点,保留所有绑定的事件、附加的数据
+                    navigation.insertBefore('.nav-buttons');
+                } else {
+                    navigation.detach();
+                    navigation.insertAfter('.main-content');
+                }
+            }
+            //关闭菜单的方法
+            $('.go-back').on('click', function () {
+                $(this).parent('ul').addClass('is-hidden').parent('.has-children').parent('ul').removeClass('moves-out');
+            });
+            function closeNav() {
+                $('.nav-trigger').removeClass('nav-is-visible');
+                $('.nav-header').removeClass('nav-is-visible');
+                $('.primary-nav').removeClass('nav-is-visible');
+                $('.has-children ul').addClass('is-hidden');
+                $('.has-children a').removeClass('selected');
+                $('.moves-out').removeClass('moves-out');
+                $('.main-content').removeClass('nav-is-visible').one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function () {
+                    $('body').removeClass('overflow-hidden');
+                });
+            }
+        });
+       
+    </script>
+</body>
+</html>

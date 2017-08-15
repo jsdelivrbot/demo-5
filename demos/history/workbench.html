@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>工作台</title>
+	
+</head>
+<body>
+	<ul id="info"></ul>
+	<br><br><br><br><br><br><br><br>
+	<ul id="history"></ul>
+	<a href="workbench1.html">跳转到工作台1</a>
+	<script src="jquery.min.js"></script>
+	<script src="json.js"></script>
+	<script src="history.js"></script>
+	<script src="his.js"></script>
+		
+	<script>
+		
+	
+		var userHistory=jQuery.parseJSON(localStorage.getItem('key')).reverse();
+		var lis="";
+		for(var i=0;i<userHistory.length;i++){
+		
+ 			lis+='<li><a href="'+userHistory[i].url+'">'+userHistory[i].name+'</a></li>';
+		}
+		$('#info').append(lis);
+		
+		//cookies
+		DisplayHistory();
+	
+
+	</script>
+	
+</body>
+</html>
+
+  

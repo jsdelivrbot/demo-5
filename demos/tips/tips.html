@@ -1,0 +1,52 @@
+<!DOCTYPE html>  
+<html>  
+<head>  
+<title>custom tip</title>  
+<link href="bootstrap.min.css" rel="stylesheet"/>  
+<script src="jquery-3.1.1.min.js"></script>  
+<script src="bootstrap.min.js"></script>  
+<style type="text/css">  
+    .popover{  
+        max-width: 400px;  
+    }  
+	.popover-title{
+		display:none;
+	}
+	#timeTips{
+		display:inline-block;
+		margin:30px;
+	}
+</style>  
+<script type="text/javascript">  
+    $(function(){  
+        $("#timeTips").popover({  
+            trigger:'manual',  
+            placement : 'right',  
+            title : '<div style="font-size:14px;">title</div>',  
+            html: 'true',  
+            content: function() {  
+                return $(this).attr('data-contentStr');  
+            },  
+            animation: false  
+        }).on("mouseenter", function () {  
+            var _this = this;  
+            $(this).popover("show");  
+            $(this).siblings(".popover").on("mouseleave", function () {  
+                $(_this).popover('hide');  
+            });  
+        }).on("mouseleave", function () {  
+            var _this = this;  
+            setTimeout(function () {  
+                if (!$(".popover:hover").length) {  
+                    $(_this).popover("hide")  
+                }  
+            }, 100);  
+        });  
+    });  
+</script>  
+</head>  
+<body>  
+	
+	<span data-contentStr="工作时间" id='timeTips'>测试</span>              
+</body>  
+</html>  

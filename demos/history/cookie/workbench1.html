@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>工作台1</title>
+	
+</head>
+<body>
+	<p id="info"></p>
+	<a href="workbench2.html">跳转到工作台2</a>
+	<a href="workbench.html">跳转回工作台</a>
+	
+	<script src="jquery.min.js"></script>
+	<script src="cookie.js"></script>
+	<script>
+	//存写cookie
+
+	 //取当前页面名称(带后缀名)
+     var strUrl=location.href;
+     var arrUrl=strUrl.split("/");
+     var strPage=arrUrl[arrUrl.length-1];
+	 var title=document.title;
+	 addCookie('history',strPage,3600);//key value time
+	 console.log(getCookie('history'));
+	</script>
+	<script>
+</script>
+	
+</body>
+</html>
+
+  
