@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Icon Symbolizer</title>
+    <link rel="stylesheet" href="https://openlayers.org/en/v4.2.0/css/ol.css" type="text/css">
+    <!-- The line below is only needed for old environments like Internet Explorer and Android 4.x -->
+    <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=requestAnimationFrame,Element.prototype.classList,URL"></script>
+    <script src="https://openlayers.org/en/v4.2.0/build/ol.js"></script>
+    <script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <style>
+     	#popover{
+     		position: absolute;
+     	}
+      .popover{
+ 			white-space:nowrap
+      }
+     
+    </style>
+  </head>
+  <body>
+    <div id="map" class="map"><div id="popup"></div></div>
+    <div id="POS"></div>
+     <div id="mouse-position">鼠标所在经纬度为:</div>
+    <script>
+    var pointPos=ol.proj.fromLonLat([116.3,39.9]);
+    // console.log(pointPos);
+      var iconFeature = new ol.Feature({
+        geometry: new ol.geom.Point(pointPos),
+        name: '雨情12312312雨量',
+        population: 4000,
+        rainfall: 500
+      });
+
+      var iconStyle = new ol.style.Style({
+        image: new ol.style.Icon(/** @type {olx.style.IconOptions} */ ({
+          color: 'pink',
+          crossOrigin: 'anonymous',
+          src: 'https://openlayers.org/en/v4.2.0/examples/data/dot.png'
+        }))
+      });
+
+      iconFeature.setStyle(iconStyle);
+
+      var vectorSource = new ol.source.Vector({
+        features: [iconFeature]
+      });
+
+      var vectorLayer = new ol.layer.Vector({
+        source: vectorSource
+      });
+
+      var rasterLayer = new ol.layer.Tile({
+         source: new ol.source.OSM()
+      });
+      var mousePositionControl = new ol.control.MousePosition({
+        coordinateFormat: ol.coordinate.createStringXY(2),
+        projection: 'EPSG:4326',
+        // comment the following two lines to have the mouse position
+        // be placed within the map.
+        className: 'custom-mouse-position',
+        target: document.getElementById('mouse-position'),
+        undefinedHTML: '&nbsp;'
+      });      
+
+      var map = new ol.Map({
+        layers: [rasterLayer, vectorLayer],
+        target: document.getElementById('map'),
+        view: new ol.View({
+         center: [0,0],
+          zoom: 2
+        }),
+        controls: ol.control.defaults().extend([
+          new ol.control.FullScreen()
+        ]).extend([mousePositionControl]),
+      });
+
+
+      var element = document.getElementById('popup');
+
+      var popup = new ol.Overlay({
+        element: element,
+        position:pointPos,
+        positioning: 'bottom-center',
+        stopEvent: false,
+        // offset: [-30, -30],
+        autoPans: true
+      });
+      popup.setPosition(pointPos);
+      map.addOverlay(popup);
+       $(element).popover({
+            'placement': 'top',
+            'html': true,
+            'content': '189646546546'
+          });
+       $(element).popover('show');
+       // console.log($(".popover-content").html());
+
+       $("#popup").on("shown.bs.popover",function(){
+       		console.log("啦啦啦")
+		  var x =-30 - ($(".ol-overlay-container").outerWidth())/2;
+          popup.setPosition([x ,30]);          		
+       });
+       
+       
+      // display popup on click
+      // map.on('click', function(evt) {
+      //   var feature = map.forEachFeatureAtPixel(evt.pixel,
+      //       function(feature) {
+      //         return feature;
+      //       });
+      //   if (feature) {
+      //     var coordinates = feature.getGeometry().getCoordinates();
+
+      //     popup.setPosition(coordinates);
+      //     $(element).popover({
+      //       'placement': 'top',
+      //       'html': true,
+      //       'content': feature.get('name')
+      //     });
+      //     $(element).popover('show');
+      //   } else {
+      //     $(element).popover('destroy');
+      //   }
+      // });
+      // map.on('singleclick', function(evt) {
+      //   var coordinate = evt.coordinate;
+      //   var hdms = ol.coordinate.toStringHDMS(ol.proj.transform(
+      //       coordinate, 'EPSG:3857', 'EPSG:4326'));
+
+      //   document.getElementById('POS').innerHTML = '<p>你现在点击的位置是：' + hdms +
+      //       '</p>';
+       
+      // });      
+
+      // change mouse cursor when over marker
+      // map.on('pointermove', function(e) {
+      //   if (e.dragging) {
+      //     $(element).popover('destroy');
+      //     return;
+      //   }
+      //   var pixel = map.getEventPixel(e.originalEvent);
+      //   var hit = map.hasFeatureAtPixel(pixel);
+      //   map.getTarget().style.cursor = hit ? 'pointer' : '';
+      // });
+    </script>
+  </body>
+</html>
