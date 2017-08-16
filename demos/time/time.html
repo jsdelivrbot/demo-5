@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>倒计时</title>
+    <style>
+        *{margin: 0;padding: 0;}
+        .box{width: 500px;height: 200px;border: 3px solid red;}
+        .box>h1{font-size: 36px;color: #00a0df}
+        .daojishi{width: 100%;height: 50px;background: #f4c63f;opacity: 0.8;line-height: 50px}
+        .daojishi>span{padding:5px;background: #0000aa;color: #fff;display: inline-block;vertical-align: middle;
+            margin:0 10px;text-align: center;line-height:23px;font-size: 30px;
+        }
+        .daojishi>b{font-size: 20px;}
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h1>还剩时间为：</h1>
+        <div class="daojishi">
+           <span class="day"></span><b>天</b>
+            <span class="hour"></span><b>小时</b>
+            <span class="minute"></span><b>分钟</b>
+            <span class="second"></span><b>秒</b>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script>
+        $(function(){
+            //检查时间的标准
+            function checkT(i){
+                if(i<10){
+                    i="0"+i;
+                }return i;
+            }
+            //倒计时重点代码
+            function showTime(){
+                var endtime=new Date('2017/8/20,24:00:00');//倒计时结束时间
+                var nowtime=new Date();//获取当前时间
+                var time=parseInt((endtime-nowtime)/1000);//所得时差秒钟
+                var day=parseInt(time/(24*60*60));//得到天数
+                var hour=parseInt(time/(60*60)%24);//得到小时数
+                var minute=parseInt(time/60%60);//得到分钟数
+                var secound=parseInt(time%60);//得到秒数
+                hour=checkT(hour);
+                minute=checkT(minute);
+                secound=checkT(secound);
+                $(".day").html(day);
+                $(".hour").html(hour);
+                $(".minute").html(minute);
+                $(".second").html(secound);
+            }
+            var timer=setInterval(showTime,1000);
+           showTime();
+        });
+    </script>
+</body>
+</html>

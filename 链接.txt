@@ -1,0 +1,4 @@
+nodejs 下载 v6.9.5 LTS 的版本，https://nodejs.org/en/ 
+
+
+Windows端git版本:https://downloads.atlassian.com/software/sourcetree/windows/ga/SourceTreeSetup-2.0.20.1.exe

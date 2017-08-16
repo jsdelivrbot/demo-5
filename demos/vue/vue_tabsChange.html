@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>1</title>
+		<style>
+			*{
+	margin:0;
+	padding:0;
+}
+#main{
+    width:432px;
+    margin:0 auto;
+    text-align:center;
+}
+nav{
+	display:inline-block;
+	margin:60px auto 45px;
+	background-color:#C8CED0;
+	box-shadow:0 1px 1px #ccc;
+	border-radius:2px;
+}
+nav a{
+	display:inline-block;
+	padding: 18px 30px;
+	color:#fff !important;
+	font-weight:bold;
+	font-size:16px;
+	text-decoration:none !important;
+	line-height:1;
+	background-color:transparent;
+	-webkit-transition:background-color 0.25s;
+	-moz-transition:background-color 0.25s;
+	transition:background-color 0.25s;
+    cursor:pointer;
+}
+b{
+    display:inline-block;
+	padding:5px 10px;
+	background-color:#c4d7e0;
+	border-radius:2px;
+	font-size:18px;
+}
+.show{
+    background-color:#413C3E;
+}
+
+		</style>
+	</head>
+	<body>
+		<div id="main">
+            <nav @click.prevent>
+	        <a v-for="item in items" :class="{'show': item.active}" @click="makeActive(item, $index)">{{item.name}}</a>
+	    </nav>
+	    <p>您选择了<b>{{active}}</b></p>
+	</div>
+	</body>
+	<script src="https://cdn.bootcss.com/vue/2.3.3/vue.js"></script>
+	<script>
+		var vm = new Vue({
+			el:'#main',
+		    data:{
+		    	active:'页面',
+		    	items:[
+		        	{name:'页面', active:false},
+		            {name:'样式', active:true},
+		            {name:'脚本', active:false},
+		            {name:'Vue', active:false}
+		        ]
+		    },
+		    methods: {
+				makeActive: function(item, index){
+					this.active = item.name;
+		            for(var i=0; i<this.items.length;i++){
+		            	this.items[i].active = false;
+		            }
+		            this.items[index].active = true;
+		
+			}
+		}
+		});
+	</script>
+</html>

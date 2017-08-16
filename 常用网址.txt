@@ -1,0 +1,267 @@
+https://segmentfault.com/a/1190000004978770
+http://www.qdfuns.com/notes/41412/a2cce7fb6045a100d0a173bad90b361e.html 浏览器兼容性汇总
+
+http://www.qdfuns.com/notes/20813/b7fc1c28fedce4eeeb2a90ecf38a4c0a.html 总结
+http://www.qdfuns.com/notes/30895/8e792742617a999c6275b13dfbfe0bd7.html ES6
+http://www.qdfuns.com/notes/20132/896bb8a6b331a190926c25d523c26c8c.html 前端API
+http://www.qdfuns.com/notes/23906/63ad371ab84d4714ea2669e20366dfb0.html flex布局
+http://www.qdfuns.com/notes/17398/142325bb05237cb5b9459e557557ee8e.html flex布局
+http://www.qdfuns.com/notes/41608/cd2fe4aa8d2364daf2b4e10ec8193c47.html DOM合集
+http://www.qdfuns.com/notes/18271/449eb083eb9792947d53a2d0e794b5d3.html 前端面试题
+http://www.cnblogs.com/wxydigua/p/3314274.html js实用代码段
+
+需要向这些人学习：
+Adobe出的，Adobe其实是html5非常忠实的拥抱者。官方社区有非常多的html5资源 http://beta.theexpressiveweb.com/
+can i use，非常好，谁用谁知道 http://caniuse.com/
+前端观察站，腾讯的前端技术，挺有含金量 http://www.qianduan.net/
+html5和css3开发，还是Adobe http://www.adobe.com/cn/devnet/html5.html
+MDN，mozilla官方出品的HTML5资料库，我认为是地球上最好的前端资料库 https://developer.mozilla.org/zh-CN/
+css3参考手册在线版，很全 http://css.doyoe.com/
+前端网（W3Cfuns） - 前端开发工程师互动平台 http://www.w3cfuns.com/
+站酷 (ZCOOL) - 设计师互动平 http://www.zcool.com.cn/
+优设-UISDC: 优秀网页设计联盟-SDC-网页设计师交流平台-听讲座，聊设计，找素材，尽在优设网 http://www.uisdc.com/
+html5 中国    http://www.html5cn.org/
+web前端开发   http://www.css88.com/
+前端乱炖         http://www.html-js.com/
+博客园里面牛人不少。   http://www.cnblogs.com/
+csdn  .net 程序员   http://www.csdn.net/
+
+CSS3媒体查询（Media Query）
+css3媒体查询官方文档 http://www.w3.org/TR/css3-mediaqueries/
+css3媒体查询官方中文文档 http://www.w3.org/html/ig/zh/wiki/CSS3%E5%AA%92%E4%BD%93%E6%9F%A5%E8%AF%A2
+前端观察站的文章 http://www.qianduan.net/media-type-and-media-query.html
+
+
+CSS3弹性盒模型（伸缩盒）
+使用CSS弹性盒MDN https://developer.mozilla.org/zh-CN/docs/CSS/Tutorials/Using_CSS_flexible_boxes
+官方的CSS弹性盒模型 http://www.w3.org/html/ig/zh/wiki/Css3-flexbox/zh-hans
+
+
+viewport与设备自适应
+CSS Device Adaptation官方文档 http://dev.w3.org/csswg/css-device-adapt/#the-atviewport-rule
+ATA技术社区，viewport笔记 http://www.atatech.org/article/detail/12233/786
+
+
+CSS3动画
+CSS3 Animation http://www.w3cplus.com/content/css3-animation
+CSS3动画在线测试工具（腾讯团队弄的）http://ecd.tencent.com/css3/tools.html
+CSS3 Transitions, Transforms和Animation使用简介与应用展示 http://www.zhangxinxu.com/wordpress/2010/11/css3-transitions-transforms%E5%92%8Canimation%E4%BD%BF%E7%94%A8%E7%AE%80%E4%BB%8B%E4%B8%8E%E5%BA%94%E7%94%A8%E5%B1%95%E7%A4%BA/
+
+
+JavaScript性能优化
+Javascript高性能动画与页面渲染 http://www.infoq.com/cn/articles/javascript-high-performance-animation-and-page-rendering
+前端工程打开速度优化的循序渐进总结 http://www.cnblogs.com/zhengyun_ustc/archive/2013/05/09/frontendoptimize.html
+
+
+用户体验
+
+DIVCSS5 - DIV+CSS布局教程学习与CSS资源分享平台 http://www.divcss5.com/
+FEX 做最专业的前端 http://fex.baidu.com/
+GMU - mobile UI http://gmu.baidu.com/
+IXDC－国际体验设计协会 | 引领中国交互设计行业发展 http://ixdc.org/
+UEhtml设计师交流平台 网页设计 界面设计 http://www.uehtml.com/
+UI设计_UI_UI设计师-Uimaker-专注UI设计 http://www.uimaker.com/
+UI中国-专业界面设计平台 www.ui.cn/
+畅游视觉设计中心 http://vc.changyou.com/
+
+
+工具类
+
+在线工具 —— 开源中国社区 view-source:http://tool.oschina.net/
+Placehold.it-图片占位符 http://placehold.it/
+CSS 图片拼合生成器-css_sprite http://cn.spritegen.website-performance.org/
+　　
+
+阿里
+Iconfont-阿里巴巴矢量图标库 http://iconfont.cn/
+阿里巴巴（中国站）用户体验设计部博客 http://www.aliued.cn/
+TaoBaoUED | 做地球上最好的 UED http://ued.taobao.org/blog/
+一淘-UX-用户体验中心 http://ued.alimama.com/
+　　
+
+百度
+百度MUX http://mux.baidu.com/
+百度搜索用户体验中心 | 创建搜索引擎的极致用户体验 http://vc.changyou.com/index.shtml
+　　
+
+腾讯
+
+TGideas-腾讯游戏官方设计团队 http://tgideas.qq.com/
+腾讯CDC http://cdc.tencent.com/
+腾讯ecd – 电商用户体验设计部 E-Commerce User Experience http://ecd.tencent.com/
+腾讯ISUX – 社交用户体验设计 – Better Experience Through Design http://isux.tencent.com/
+腾讯MXD移动互联网设计中心 http://mxd.tencent.com/
+腾讯alloyteam http://www.alloyteam.com/
+
+
+网易
+
+网易用户体验设计中心 http://uedc.163.com/
+网易nec-更好的CSS样式解决方案 http://nec.netease.com/
+　　
+
+新浪
+
+新浪UED | 一个关注用户体验、关注工作流、关注作品质量的有爱团队 http://ued.sina.com/
+微博UDC | 让设计无“微”不至 http://udc.weibo.com/
+　　
+强烈推荐的博客！
+
+张鑫旭的个人博客_web前端技术文章 http://www.zhangxinxu.com/wordpress/ （让我学到了很多很多）
+海玉 http://www.hicss.net/
+http://www.nowamagic.net/librarys/veda/cate/JavaScript/   唯有积累，没有奇迹
+
+http://www.zhangxinxu.com/wordpress/ 张鑫旭
+
+http://www.14px.com/ 14px
+
+http://hax.iteye.com/category/20374 hax
+
+http://w3help.org/zh-cn/
+
+http://www.36ria.com/ 淘宝明河共影
+
+http://jayli.github.com/blog/ 淘宝拔赤
+
+http://hikejun.com/ 豆瓣克军
+
+http://www.planabc.net/ 淘宝怿飞
+
+http://www.cnberg.com/ 百度雷志兴
+
+http://dancewithnet.com/ 秦歌
+
+http://www.aoao.org.cn/ aoao
+
+http://limu.iteye.com/ 淘宝李牧
+
+http://www.fool2fish.cn/ 淘宝沉鱼
+
+http://josephj.com/ 蒋定宇
+
+http://sofish.de/ 淘宝小鱼
+
+http://www.html-js.com/ 淘宝天祁
+
+http://www.f2e-arsenal.com/ 淘宝**
+
+http://www.wxwdesign.com/archives/javascript_drag_drop design
+
+http://www.silverna.org/blog/ 百度月影
+
+http://www.cn-cuckoo.com/ 李松峰
+
+http://www.welefen.com/  百度李成银，英文名是welefen
+
+http://julying.com/ 王子墨
+
+http://home.cnblogs.com/u/hongru/ 阿里岑安
+
+http://www.otakustay.com/ 百度张立理
+
+http://panweizeng.com/ 美团潘魏增
+
+http://hi.baidu.com/new/cly84920 阿当
+
+http://www.laruence.com/ 风雪之隅
+
+http://www.limboy.com 混沌海狂想
+
+http://hi.baidu.com/new/haomao sheak
+
+http://home.cnblogs.com/u/binyong/ 冰极峰
+
+http://luolonghao.iteye.com/ 土豆罗龙浩
+
+http://www.iamued.com/ 刘钢
+
+http://www.moondyzone.com/class/js moondy
+
+http://www.caihong.cc/ 彩虹
+
+http://www.quchao.com/ 淘宝空帏
+
+http://www.osmn00.com/ 堂主
+
+http://blog.bingo929.com/ 彬go
+
+http://hi.baidu.com/sky000/home 天涯
+
+http://www.ruanyifeng.com/blog/ 阮一峰
+
+http://www.cnblogs.com/Random/ random
+
+http://goddyzhao.tumblr.com/JavaScript-Internal 淘宝goddyzhao
+
+http://www.hicss.net/ 海玉
+
+http://www.cnblogs.com/hooray/ 胡睿
+
+http://www.7yue.com/ 7yue
+
+http://blog.zhaojie.me/ 老赵
+
+http://www.718e.com/ 雪乌鸦
+
+http://blog.doyoe.com/ 飘零雾雨
+
+http://stylechen.com/ 雨夜带刀
+
+http://www.xunzou.com/blog/post/620.html 冰剑
+
+http://yuntian.cnblogs.com/
+
+http://blog.csdn.net/zhangkunls
+
+http://www.pjhome.net/default.asp?cateID=1
+
+http://www.scriptlover.com/keyword/Javascript/1/ 脚本爱好者
+
+
+
+http://mingelz.com/ 前端也是淘宝店主
+
+
+
+http://www.cn-cuckoo.com/deconstructed/jquery.html jquery解构
+
+http://www.enjoyhtml5.com/ html5
+
+http://www.xiuyetang.com/ 秀野堂html5
+
+http://www.nodebeginner.org/index-zh-cn.html nodejs
+
+http://www.donglongfei.com/ 董龙飞 移动应用
+
+
+
+http://www.itfeed.com/blog/list.f?id=6
+
+http://www.75team.com/ 奇舞团
+
+http://www.xiejiancong.com/page/3 前端那些事
+
+http://forcefront.com/category/technology/ 前端分享
+
+http://ued.taobao.com 淘宝UED
+
+http://ued.sina.com.cn/?cat=4 新浪UED
+
+http://cdc.tencent.com/?p=5723 腾讯CDC
+
+http://mux.baidu.com/ 百度MUX
+
+http://tangram.baidu.com/ 百度前端七巧板
+
+http://uedc.163.com/ 163UEDC
+
+http://site.douban.com/106371/ 豆瓣前端
+
+http://ued.5173.com/?cat=6 5173UED
+
+http://www.alloyteam.com/ 腾讯
+
+http://www.ibm.com/developerworks/cn/views/web/libraryview.jsp?sort_by=&show_abstract=true&show_all=&search_flag=&contentarea_by=Web+development&search_by=javascript&topic_by=-1&type_by=%E6%89%80%E6%9C%89%E7%B1%BB%E5%88%AB&ibm-search=%E6%90%9C%E7%B4%A2 IBM开发者文档集合
+http://pvz.lonelystar.org/ js版植物大战僵尸
+
+http://tgideas.qq.com/ 腾讯游戏设计
