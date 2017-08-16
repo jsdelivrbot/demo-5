@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>动画</title>
+	<style type="text/css">
+		.big{position: relative;
+			width: 600px;
+			height: 600px;
+			margin: 0 auto;
+			border: 1px solid #1f1f1f;
+		}.small{
+			position: absolute;
+			top: 0;
+			width: 30px;
+			height: 30px;
+			border-radius: 50%;
+			background: pink;
+		}
+	</style>
+</head>
+<body>
+	<div class="big">
+		<div class="small"></div>
+	</div>
+</body>
+<script type="text/javascript">
+	var big=document.getElementsByClassName("big");
+	var small=document.getElementsByClassName("small");
+	var h=big[0].offsetHeight;//元素内可见区域的高度 + 元素边框高度（如果有滚动条还要包括滚动条的高度）
+	var w=big[0].offsetWidth;//元素内可见区域的宽度 + 元素边框宽度（如果有滚动条还要包括滚动条的宽度）
+	var y=0;//初始高度
+	var speed=Math.floor(Math.random()*11)+10;//speed:竖直速度，Math.floor(Math.random()*11)+10;---随机产生10-20的数
+	var speedx=Math.floor(Math.random()*11)+20;
+	var x=0;//初始水平位置
+	function go(){
+		y+=speed;
+		x+=speedx;
+		if(y>(h-small[0].offsetHeight)){                 //到达下边框时向相反的方向运动
+			speed=-speed;
+		}
+		if(y<0){
+			speed=-speed;                              //到达上边框时向相反的方向运动
+		}
+		if(x>(w-small[0].offsetWidth)){
+			speedx=-speedx;                            //到达左边框时向相反的方向运动
+		}
+		if(x<0){
+			speedx=-speedx;                              //到达右边框时向相反的方向运动
+		}
+		small[0].style.top=y+"px";
+		small[0].style.left=x+"px";
+	}
+	var set=setInterval(go,50);
+</script>
+</html>

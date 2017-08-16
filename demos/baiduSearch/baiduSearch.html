@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		*{margin: 0;padding: 0;list-style:none;}
+		.demo{width: 400px;min-height: 300px;background:skyblue;margin:50px auto 0;text-align:center;padding:10px;}
+		.form{width:364px;margin:0 auto;height:52px;}
+		input{width:300px;height:50px;border:solid 1px #ccc;float:left;font-size:26px;text-indent:5px;}
+		button{width:60px;height:52px;border:solid 1px #ccc;float:left;}
+		li{text-align:left;line-height:30px;text-indent:10px;}
+		li:hover{background:rgba(0,0,0,0.7);color:#fff;}
+		#info{width:364px;margin:0 auto;}
+		#info ul{border:solid 1px #ccc;}
+	</style>
+</head>
+<body>
+	<div class="demo">
+		<div class="form">
+			<input type="text" id="txt"><button>搜索一下</button>
+		</div>
+		<div id="info"></div>
+	</div>
+</body>
+<script type="text/javascript">
+	function ajax(obj){
+		// 设置默认参数
+		var defauls = {
+			type:"get",
+			url:"#",
+			asynce:true,
+			data:{},
+			dataType:"json",
+			jsonp:"cb",
+			success:function(data){console.log(data);}
+		};
+		// 根据传入的参数修改默认参数
+		for( k in obj ){
+			defauls[k] = obj[k];
+		};
+		// 参数处理
+		var param = "";
+		for( attr in defauls.data ){
+			param += attr + "=" + defauls.data[attr] + "&";
+		};
+		param = encodeURI( param.substring(0,param.length - 1) );
+		if( param ){
+			param = "?" + param;
+		};
+		// 判断是jsonp跨域还是ajax异步请求
+		if( defauls.dataType == "jsonp" ){
+			// 设置自定义函数
+			var cd = "common" + ( "1.11.1" + Math.random() ).replace(/\D/g,"") + "_" + ( new Date().getTime() );
+			if( defauls.jsonpCallback ){
+				cd = defauls.jsonpCallback;
+			};
+			window[cd] = function(data){
+				defauls.success(data);
+			}
+			var script = document.createElement("script");
+			script.src = defauls.url + param + "&" + defauls.jsonp + "=" + cd;
+			var head = document.getElementsByTagName("head")[0];
+			head.appendChild( script );
+		}else{
+			// ajax异步请求
+			var xhr = null;
+			if( window.XMLHttpRequest ){
+				xhr = new XMLHttpRequest();
+			}else{
+				xhr = new ActiveXObject("Msxml2.XMLHTTP");
+			};
+			// 准备发送
+			if( defauls.type == "get" ){
+				defauls.url += param;
+			};
+			xhr.open(defauls.type,defauls.url,defauls.asynce);
+			// 发送请求
+			var data = null;
+			if( defauls.type == "post" ){
+				data = param.substring(1,param.length);
+				xhr.setRequestHeader("Content-Type","Application/x-www-form-urlencoded");
+			};
+			xhr.send( data );
+			// 处理同步请求
+			if( !defauls.asynce ){
+				if( defauls.dataType == "json" ){
+					return JSON.parse( xhr.responseText );
+				};
+				return xhr.responseText;
+			};
+			// 异步请求处理服务器数据
+			xhr.onreadystatechange = function(){
+				if( xhr.readyState == 4 && xhr.status == 200 ){
+					var data = xhr.responseText;
+					if( defauls.dataType == "json" ){
+						data = JSON.parse( data );
+					};
+					defauls.success(data);
+				};
+			};
+		};
+	};
+	var txt = document.getElementById("txt");
+	txt.onkeyup = function(){
+		var kw = this.value;
+		document.getElementById("info").innerHTML = "";
+		ajax({
+			url:"https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su",
+			jsonp:"cb",
+			data:{wd:kw},
+			dataType:"jsonp",
+			success:function(data){
+				if( data.s.length !== 0 ){
+					var tag = document.createElement("ul");
+					for( i = 0; i < data.s.length; i++ ){
+						var els = document.createElement("li");
+						els.innerHTML = data.s[i];
+						tag.appendChild(els);
+					};
+					document.getElementById("info").appendChild(tag) ;
+				};
+				var lis = document.getElementsByTagName("li");
+				for( i = 0; i <lis.length; i++ ){
+					lis[i].onclick = function(){
+						var count = this.innerHTML;
+						txt.value = count;
+						document.getElementById("info").innerHTML = "";
+					}
+				};
+			}
+		});
+	};
+</script>
+</html>
