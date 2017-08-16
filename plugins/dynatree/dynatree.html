@@ -1,0 +1,89 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+  <title>Dynatree - Example</title>
+
+  <script src="jquery/jquery.js" type="text/javascript"></script>
+  <script src="jquery/jquery-ui.custom.js" type="text/javascript"></script>
+  <script src="jquery/jquery.cookie.js" type="text/javascript"></script>
+
+  <link href="dist/skin/ui.dynatree.css" rel="stylesheet" type="text/css">
+  <script src="src/jquery.dynatree.js" type="text/javascript"></script>
+
+  <!-- (Irrelevant source removed.) -->
+
+  <!-- Add code to initialize the tree when the document is loaded: -->
+  <script type="text/javascript">
+  $(function(){
+    // Attach the dynatree widget to an existing <div id="tree"> element
+    // and pass the tree options as an argument to the dynatree() function:
+    $("#tree").dynatree({
+		
+      onActivate: function(node) {
+        // A DynaTreeNode object is passed to the activation handler
+        // Note: we also get this event, if persistence is on, and the page is reloaded.
+        alert("You activated " + node.data.title);
+      },
+	  onRender: function(node, nodeSpan) {
+			console.log(node);
+			$(nodeSpan).find("a.dynatree-title").css("border", "1px solid");
+		},
+
+      children: [
+        {title: "Item 1"},
+        {title: "Folder 2", isFolder: true, key: "folder2",
+          children: [
+            {title: "Sub-item 2.1"},
+            {title: "Sub-item 2.2"}
+          ]
+        },
+        {title: "Item 3"}
+      ],
+	   imagePath:  'User/Administrator/Desktop/dynatree/dist/skin/',
+	     classNames: {
+		  container: "dynatree-container",
+		 
+        node: "dynatree-node",
+        folder: "dynatree-folder",
+
+        empty: "dynatree-empty",
+        vline: "dynatree-vline",
+        expander: "dynatree-expander",
+        connector: "dynatree-connector",
+        checkbox: "dynatree-checkbox",
+        nodeIcon: "dynatree-icon",
+        title: "dynatree-title",
+        noConnector: "dynatree-no-connector",
+
+        nodeError: "dynatree-statusnode-error",
+        nodeWait: "dynatree-statusnode-wait",
+        hidden: "dynatree-hidden",
+        combinedExpanderPrefix: "dynatree-exp-",
+        combinedIconPrefix: "dynatree-ico-",
+        hasChildren: "dynatree-has-children",
+        active: "dynatree-active",
+        selected: "dynatree-selected",
+        expanded: "dynatree-expanded",
+        lazy: "dynatree-lazy",
+        focused: "dynatree-focused",
+        partsel: "dynatree-partsel",
+        lastsib: "dynatree-lastsib"
+		 }
+    });
+  });
+  </script>
+</head>
+<body class="example">
+  <h1>Example: Quick start</h1>
+  <p class="description">
+    This sample initializes the tree from a JavaScript object.<br>
+    An <i>onActivate</i> handler brings up an alert box when a node is selected.
+  </p>
+
+  <!-- Add a <div> element where the tree should appear: -->
+  <div id="tree"> </div>
+
+  <!-- (Irrelevant source removed.) -->
+</body>
+</html>

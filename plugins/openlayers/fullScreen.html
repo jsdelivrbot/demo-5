@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Full Screen Control</title>
+    <link rel="stylesheet" href="https://openlayers.org/en/v4.2.0/css/ol.css" type="text/css">
+    <!-- The line below is only needed for old environments like Internet Explorer and Android 4.x -->
+    <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=requestAnimationFrame,Element.prototype.classList,URL"></script>
+    <script src="https://openlayers.org/en/v4.2.0/build/ol.js"></script>
+    <style>
+      .map:-moz-full-screen {
+        height: 100%;
+      }
+      .map:-webkit-full-screen {
+        height: 100%;
+      }
+      .map:-ms-fullscreen {
+        height: 100%;
+      }
+      .map:fullscreen {
+        height: 100%;
+      }
+      .ol-rotate {
+        top: 3em;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map" class="map"></div>
+    <script>
+      var view = new ol.View({
+        center: [-9101767, 2822912],
+        zoom: 14
+      });
+
+      var map = new ol.Map({
+        controls: ol.control.defaults().extend([
+          new ol.control.FullScreen()
+        ]),
+        layers: [
+          new ol.layer.Tile({
+            source: new ol.source.BingMaps({
+              key: 'Your Bing Maps Key from http://www.bingmapsportal.com/ here',
+              imagerySet: 'Aerial'
+            })
+          })
+        ],
+        target: 'map',
+        view: view
+      });
+    </script>
+  </body>
+</html>
