@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>实现打字机效果</title>
+	<style>
+		td {
+			border: 1px solid #ccc;
+			height: 50px;
+			text-align: center;
+			font-size: 10px;
+			padding: 2px;
+		}
+		#typewriterEffect2 {
+			text-indent: 2rem;
+			text-shodow: 0 0 2px gray;
+			padding: 5px;
+			transition: all 0.3s linear;
+			font-weight: bold;
+			font-size: 25px;
+			width: 500px;
+		}
+	</style>
+</head>
+<body>
+	<h2>实现打字机效果</h2>
+	<p id="typewriterEffect"></p>
+	<p id="typewriterEffect2"></p>
+	<script>
+		window.onload = function(){
+			var typewriterArr = [],//打字的数据库队列
+				typewritering = false,//打字机的线程是否开启
+				typewriterID = -1,//打字机的线程ID
+				typewriterTime = 200,//定时调用的时间
+
+				typewriterEffect = function(e,str,color){//增加显示的元素
+					typewriterArr.push({
+						"context":e,//目标元素上下文
+						"str":str,//显示的元素
+						"lening":0,//截取的进度
+						"maxLength":str.length//最大进度
+					});
+					e.style.color = color||"#000000";//设置元素颜色
+				},
+				closeTypewriter = function(){//关闭定时调用
+					clearTimeout(typewriterID);//清除线程
+					typewritering = false;//改变状态
+				},
+				typewriterUi = function(){//定时调用显示UI
+					var i = 0,
+						l = typewriterArr.length,
+						eing = null;
+					for(;i<1;i++){
+						eing = typewriterArr[i];
+						/*判断中英文进行+2或+1操作
+						递增，获取最新截取的长度*/
+						eing.lening++;
+						//如果截取的长度超过最大长度，泽截取的长度设置为1
+						if(eing.lening>eing.maxLength)eing.lening = 0;
+						//显示截取的字符
+						eing.context.innerHTML = eing.str.substring(0,eing.lening)+"_";
+					}
+					typewriterID = setTimeout(typewriterUi,typewriterTime);
+				};
+				//隔时间调用一次定时器，生成一个随机颜色
+
+    			function time(){
+    				console.log(1);
+    				setInterval(ran,1000);  
+
+    				function ran() {
+      					var x = Math.floor(Math.random() * (255 - 0 + 1) + 0);
+      					var y = Math.floor(Math.random() * (255 - 0 + 1) + 0);
+      					var z = Math.floor(Math.random() * (255 - 0 + 1) + 0);
+      					var color = "rgb(" + x + "," + y + "," + z + ")";     			
+      					typewriterEffect2.style.color=color;			   				
+    				}
+    			};
+				//开启定时调用，参数为设置定时器调用的时间
+				startTypewriter = function(){
+
+					if (!typewritering) {//如果没有开启，则开启
+						typewriterTime = typewriterTime||typewriterTime;
+						typewriterUi();//开始定时调用
+					}
+				};
+				typewriterEffect(
+					document.getElementById("typewriterEffect2"),"我不喜欢吵架，我生气不想说话。或者是不出声，或者是玩消失。或者是有一句没一句回答，或者是干脆不上线不开机不回短信不接电话。我不喜欢主动联系别人，但绝不是不在乎。可是，如果你真的不来找我，我只会确定，你果然不喜欢我。。。。。。。。。",time()
+				);
+				startTypewriter(100);
+		}
+	</script>
+</body>
+</html>
