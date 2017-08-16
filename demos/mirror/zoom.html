@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin:0;
+				padding:0;
+				border: none;
+			}
+			#smallImg{
+				height:200px;
+				width:200px;
+				background: url(http://e.hiphotos.baidu.com/baike/pic/item/f2deb48f8c5494ee541bd5d92cf5e0fe99257e31.jpg);
+				background-size: cover;
+				position: absolute;
+				left:100px;
+				top:100px;
+			}
+			#small{
+				height:50px;
+				width:50px;
+				background:rgba(237,237,234,0.3);
+				position: absolute;
+				display: none;
+			}
+			#bigImg{
+				height:300px;
+				width:300px;
+				position: absolute;
+				left:350px;
+				top:100px;
+				overflow: hidden;
+				display:none;
+			}
+			#img{
+				position: absolute;
+				height:800px;
+				width:800px;
+			}
+			
+		</style>
+		
+		<script type="text/javascript">
+			onload = function(){
+				
+				var smallImg = document.getElementById('smallImg');
+				var small = document.getElementById('small');
+				var bigImg = document.getElementById('bigImg');
+				var img = document.getElementById('img');
+				
+				
+				//获取对应元素的样式属性值
+				//当对应元素被影藏的时候只能用下面的函数来取得相对应的属性值；
+				//getStyleAttr(oBox,"width")
+				function getStyleAttr(obj, attr){
+					if (window.getComputedStyle){
+						return parseInt( getComputedStyle(obj, null)[attr] ); 
+					}
+					return parseInt( obj.currentStyle[attr] );  
+				}
+				
+				//确定宽度比例
+				//小区域宽/大区域宽 == 小图宽/大图宽
+				
+				//console.log( smallArea.style.width );
+				//console.log( smallArea.offsetWidth );
+				
+				//计算小区域的宽高
+				small.style.width =  getStyleAttr(bigImg, 'width') * getStyleAttr(smallImg, 'width') / getStyleAttr(img, 'width') + 'px';
+				small.style.height =  getStyleAttr(bigImg, 'height') * getStyleAttr(smallImg, 'height') / getStyleAttr(img, 'height') + 'px';
+				
+				
+				//比例
+				var i = getStyleAttr(img, 'width') / smallImg.offsetWidth;
+				//img默认被影藏的时候只能用getStyleAttr(img, 'width')函数来取得相对应的width属性值；
+				
+				
+				//鼠标在小图smallImg里面移动的时候
+				smallImg.onmousemove = function(e){
+					var evt = e ||　event;
+					
+					//鼠标移入smallImg时候显示大图bigImg和小图上面的“放大镜”small
+					small.style.display = 'block';
+					bigImg.style.display = 'block';
+					
+					
+					var x = evt.pageX - smallImg.offsetLeft -small.offsetWidth/2;
+					var y = evt.pageY - smallImg.offsetTop - small.offsetHeight/2;
+					
+					if(x < 0){
+						x = 0;
+					}else if(x > smallImg.offsetWidth - small.offsetWidth){
+						x = smallImg.offsetWidth - small.offsetWidth;
+					}
+					if(y < 0){
+						y = 0;
+					}else if(y > smallImg.offsetHeight - small.offsetHeight){
+						y = smallImg.offsetHeight - small.offsetHeight;
+					}
+					
+					small.style.left = x + 'px';
+					small.style.top = y + 'px';
+					
+					img.style.top = -y * i + 'px';
+					img.style.left = -x * i + 'px';
+					
+				}
+				
+				smallImg.onmouseout = function(){
+					small.style.display = 'none';
+					bigImg.style.display = 'none';
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<div id="smallImg">
+			<div id="small">
+				
+			</div>
+		</div>
+		<div id="bigImg">
+			<img id="img" src="http://e.hiphotos.baidu.com/baike/pic/item/f2deb48f8c5494ee541bd5d92cf5e0fe99257e31.jpg"/>
+		</div>
+	</body>
+</html>

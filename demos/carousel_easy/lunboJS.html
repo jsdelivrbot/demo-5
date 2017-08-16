@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style type="text/css">
+			*{padding: 0;margin: 0;}
+			li{list-style: none;}
+			
+			.show a{display: none;}
+			.show a:first-child{display: block;}
+			
+			.box{position: relative;float: left;}
+			.show{float: left;}
+			.show a{float: left;}
+			.show img{float: left;width: 500px;height: 300px;}
+			.sel{position: absolute;bottom: 3%; left: 0;width: 100%;text-align: center;}
+			.sel li{display: inline-block;width: 15px;height: 15px;border-radius: 50%;border: 2px solid ;margin: 5px;cursor: pointer;}
+			
+			span{position: absolute;top: 40%;font-size: 60px;font-weight: bold;  width: 48px;height: 75px;line-height:69px;border-radius: 20px;background: rgba(255,255,255,.7);cursor: pointer;-webkit-user-select: none;text-align: center;display: none;}
+			.box:hover span{display: block;}
+			span.btn-l{left: 0;}
+			span.btn-r{right: 0;}
+			
+			.sel .act{background:deepskyblue;}
+		</style>
+	</head>
+	<body>
+		
+		<div class="box">
+			<div class="show">
+				<a href=""><img src="img/banner (1).jpg" alt="1"/></a>
+				<a href=""><img src="img/banner (2).jpg" alt="2"/></a>
+				<a href=""><img src="img/banner (3).jpg" alt="3"/></a>
+				<a href=""><img src="img/banner (4).jpg" alt="4"/></a>
+			</div>
+			<ul class="sel">
+				<li class="act"></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+			<span class="btn-l">&lt;</span>
+			<span class="btn-r">&gt;</span>
+		</div>
+		<script type="text/javascript">
+			var box=document.getElementsByClassName('box')[0];
+			var btn=box.getElementsByTagName('span');
+			
+			//tab切换  下面这段代码可用tab切换  只需更改类名或者选择器即可
+			var show=document.getElementsByClassName('show')[0].getElementsByTagName('a');
+			var sel=document.getElementsByClassName('sel')[0].getElementsByTagName('li');
+			
+			for (var i=0;i<sel.length;i++) {
+	 			sel[i].index=i;					//为每个li添加索引     index可以改成其他字母
+				sel[i].onmouseover=function () {
+					for (var j=0;j<show.length;j++) {
+						show[j].style.display='none';
+						sel[j].className="";
+					}
+					this.className='act';
+					i=this.index;		//取得当前li的索引赋给i
+					show[i].style.display='block';
+				}
+			}
+			//tab切换结束
+			
+			
+			//move移动函数
+			var i=0;
+			function move () {
+				if (i==show.length) {
+					i=0;
+				}
+				if (i==-1) {
+					i=show.length-1;
+				}
+				for (var j=0;j<show.length;j++) {
+					show[j].style.display='none';
+					sel[j].className='';
+				}
+				show[i].style.display='block';				
+				sel[i].className='act';
+			}
+			
+			btn[0].onclick=function () {
+				i--;
+				move();
+			}
+			
+			btn[1].onclick=function () {
+				i++;
+				move();
+			}
+			
+			aut=setInterval(function () {
+				i++;
+				move();
+			},2000)
+			
+			box.onmouseover=function () {
+				clearInterval(aut);
+			}
+			box.onmouseout=function () {
+				aut=setInterval(function () {
+					i++;
+					move();
+				},2000)
+			}
+			
+			
+			
+			
+		</script>
+		
+	</body>
+</html>
