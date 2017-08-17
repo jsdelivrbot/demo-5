@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin:0;
+				padding:0;
+				border:none;
+			}
+			#box{
+				width:520px;
+				height:280px;
+				position: relative;
+				margin:100px auto;
+				overflow: hidden;
+			}
+			#list{
+				width:2080px;
+				height:280px;
+				position:absolute;
+				left:0;
+				top:0;
+			}
+			#list li{
+				width:520px;
+				height:280px;
+				float: left;
+				list-style: none;
+				font-size: 50px;
+				line-height: 280px;
+				text-align: center;
+				
+			}
+			#shang{
+				height:25px;
+				width:50px;
+				font-size: 14px;
+				font-weight: bold;
+				color: white;
+				line-height: 25px;
+				background: #555555;
+				opacity: 0.8;
+				filter:alpha(opacity=80);
+				position: absolute;
+				left:0;
+				top:48%;
+				cursor: pointer;
+			}
+			#xia{
+				height:25px;
+				width:50px;
+				font-size: 14px;
+				font-weight: bold;
+				color: white;
+				line-height: 25px;
+				background: #555555;
+				opacity: 0.8;
+				filter:alpha(opacity=80);
+				position: absolute;
+				right:0;
+				top:48%;
+				cursor: pointer;
+			}
+			#dian{
+				height:20px;
+				width:100px;
+				position: absolute;
+				left:210px;
+				bottom:5px;
+			}
+			#dian li{
+				list-style: none;
+				height:20px;
+				width:20px;
+				border-radius: 50%;
+				background: white;
+				float: left;
+				margin-right: 6px;
+				opacity: 0.9;
+				filter:alpha(opacity=90);
+				cursor: pointer;
+				
+			}
+			#dian li.active{
+				background: black;
+			}
+		</style>
+		<script type="text/javascript">
+			onload = function(){
+				var oBox = document.getElementById('box');
+				var oList = document.getElementById('list');
+				var aLi1 = oList.getElementsByTagName('li');
+				var oShang = document.getElementById('shang');
+				var oXia = document.getElementById('xia');
+				var aDian = document.getElementById('dian');
+				var aLi2 = aDian.getElementsByTagName('li');
+				
+				oList.appendChild(aLi1[0].cloneNode(true));
+				oList.style.width = oList.offsetWidth * aLi1.length + 'px';
+				
+				var size = aLi1.length;
+				var i = 0;
+				var timer = setInterval(function(){
+					i ++;
+					move();
+				},2000)
+				
+				function move(){
+					//判断右边界（自动移动的时候判定的）
+					if(i >= size){
+						i = 1;
+						oList.style.left = 0 ;
+					}
+					//判断左边界（手动上一页的时候需要的）
+					if(i < 0){
+						oList.style.left = -520 * (size -1) + 'px';
+						i = size - 2;
+					}
+					animate(oList,{left:-520 * i});
+				
+				//底部小按钮状态
+					for(var j = 0; j < aLi2.length; j ++){
+						
+						if(j == i){
+							aLi2[j].className = "active";
+						}else{
+							aLi2[j].className = "";
+						}
+						if (j == size-1){
+							aLi2[0].className = "active";
+						}
+					}					
+				}
+				/************华丽的分割线************/
+				
+				//上一页
+				oShang.onclick = function(){
+					i --;
+					move();
+				}
+				//下一页
+				oXia.onclick = function(){
+					i ++;
+					move();
+				}
+				//移入小圆点
+				for(var k = 0; k < aLi2.length; k ++){
+					aLi2[k].index = k;
+					aLi2[k].onmouseenter = function(){
+						i = this.index;
+						move();
+					}
+				}
+				//移入box自动切换停止。即清除定时器
+				oBox.onmouseenter = function(){
+					clearInterval(timer);
+				}
+				//移出box自动切换
+				oBox.onmouseleave = function(){
+					timer = setInterval(function(){
+						i ++;
+						move();
+					},2000)
+				}
+				/*************************缓冲运动*************************/
+				
+				function getStyleAttr(obj, attr){
+					if (window.getComputedStyle){
+						return getComputedStyle(obj, null)[attr]; 
+					}
+					else {
+						return obj.currentStyle[attr];  
+					}
+				}
+				function animate(obj, json, fn){
+					clearInterval(obj.timer); 
+					obj.timer = setInterval(function(){
+						var bStop = true; 
+						for (var attr in json){
+							var iTarget = json[attr]; 
+							var current;
+							if (attr == "opacity"){ 
+								current = parseFloat(getStyleAttr(obj, attr))*100;
+								current = Math.round(current);
+							}
+							else { 
+								current = parseFloat(getStyleAttr(obj, attr));
+								current = Math.round(current);
+							}
+							var speed = (iTarget-current)/8;    (400-393)/8
+							speed = speed>0 ? Math.ceil(speed) : Math.floor(speed);
+							if (current != iTarget){
+								bStop = false; 
+							}
+							if (attr == "opacity"){ 
+								obj.style[attr] = (current+speed)/100;
+								obj.style.filter = "alpha(opacity=" + (current+speed) + ")";
+							}
+							else { 
+								obj.style[attr] = current+speed + "px";
+							}
+						}
+						if (bStop){
+							console.log("停止运动");
+							clearInterval(obj.timer); 
+							if (fn) {
+								fn(); 
+							}
+						}
+					}, 30);
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<div id="box">
+			<ul id="list">
+				<li style="background: red;">第一张</li>
+				<li style="background: green;">第二张</li>
+				<li style="background: yellow;">第三张</li>
+				<li style="background: blue;">第四张</li>
+			</ul>
+			<div id="shang">
+				上一页
+			</div>
+			<div id="xia">
+				下一页
+			</div>
+			<ul id="dian">
+				<li class="active"></li>
+				<li></li>
+				<li></li>
+				<li style="margin-right: 0;"></li>
+			</ul>
+		</div>
+	</body>
+</html>

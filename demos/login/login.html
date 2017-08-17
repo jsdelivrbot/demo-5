@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>登录</title>
+<script src="JS/[qjquery.js"></script>
+<style>
+body{margin:0;padding:0;font-family:"楷体"}
+.loginbox{
+	position:relative;
+	width:300px;
+	height:300px;
+	margin:auto;
+	margin-top:10%;
+	padding:30px 50px;
+	
+	-webkit-border-radius:10px;  
+	-moz-border-radius:10px;
+
+	-webkit-box-shadow: 0 0 2px #aaa;
+	-moz-box-shadow: 0 0 2px #aaa;}
+.loginbox .pic{margin-left:auto;margin-right:auto;margin-bottom:20px;width:80px;height:80px;border:1px solid #93F;border-radius:50px;background-image:url(img/efab69fb04467ad193fff58fbc6ebc45.jpg); background-position:center;background-size:cover;overflow:hidden;}
+#loginform label{line-height: 45px;}	
+#loginform input[type="text"],#loginform input[type="password"]
+{margin-top:15px;padding: 3px;height:30px;width:100%;border:1px solid #CCC;border-radius:5px;text-align:center;}
+#loginform #login{width:150px;	height:30px;}
+#loginform a{text-decoration:none;}
+#message{width:100%;text-align:center;}
+.error{color:red;}
+.success{color:green;}
+</style>
+<script>
+
+
+$(document).ready(function() {
+	
+    $("#login").click(function(){
+		var name = document.getElementById("name").value;
+        var pwd = document.getElementById("pwd").value; 
+		var pwdlength=pwd.length;
+		var my = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/;	    
+        if(name==""||pwd==""){
+           $("#message").html('<p class="error">ERROR: Invalid username and/or password.</p>');
+           return false;
+        }
+		else if(!my.test(name)){$("#message").html('<p class="error">ERROR: Invalid username</p>'); return false;}
+		else if(pwdlength<6){ $("#message").html('<p class="error">ERROR:密码长度最少为6位</p>');          return false;}		
+        else if(name==13067896666&&pwd==3333333) {
+			$("#loginform").slideUp('slow', function(){
+						$("#message").html('<p class="success">登录成功</p>');
+					});
+			return true;
+			}
+	
+		
+		})
+		
+});
+</script>
+</head>
+
+<body>
+<div class="loginbox">
+<div class="pic"></div>
+<div id="message"></div>
+<form id="loginform" method="post" onsubmit="checkForm();">
+	<label>
+    	<input type="text" id="name" placeholder="phonenumber" name="name"/><br/>
+    </label>
+    
+	<label>
+    	<input type="password" id="pwd" placeholder="password" name="pwd"/><br/>
+    </label>
+    
+    <label>
+    	<input type="checkbox"/>记住密码
+        <a href="login2.html" style="float:right;">新用户注册</a><br/>
+    </label>
+    <label>
+    	<input id="login" type="button" value="登录" name="submit"/>
+     </label>
+</form>
+</div>
+</body>
+</html>
