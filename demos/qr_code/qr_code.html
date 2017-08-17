@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+    *{
+        margin:0;
+        padding:0;
+        font-family: microsoft yahei;
+    }
+    body,html{
+        width:100%;
+        height:100%;
+    }
+    .codepay{display:block;width:286px;height:295px;border:3px solid rgba(255,255,255,0.5); position: absolute;top:30%;left:50%;margin-left:-158px;z-index:200;}
+    .codepay-header{width:310px;height:54px;line-height:54px;padding:0 20px;color:#fff;}
+    .corderpay-weixin{background: #03bc01;}
+    .corderpay-zfb{background: #00a3e6 ;}
+    .codepay-btm{padding:26px 45px 35px;text-align: center;position:relative;background:rgba(0,0,0,.5)}
+    .codepay-btm p{margin-bottom:20px;font-size: 16px;color:#fff;}
+    .codepay-header span{font-size: 18px;}
+    .codepay-btm .pay-corder{width:217px;height:209px;margin:0 auto;background: #00a0e7;}
+    .codepay-btm .qrcode-detail-intro {
+    position: absolute;
+    left: 350px;
+    top: -18px;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    width: 246px;
+    height: 325px;
+    margin: 0 auto;
+    overflow: hidden;
+    background: url(http://7xnlea.com2.z0.glb.qiniucdn.com/weixin_swipe.png) no-repeat ;
+    -webkit-transform: translateX(0%);
+    -moz-transform: translateX(0%);
+    -ms-transform: translateX(0%);
+    transform: translateX(0%);
+    -webkit-transition: all .2s cubic-bezier(0.25,.5,.5,.9);
+    -moz-transition: all .2s cubic-bezier(0.25,.5,.5,.9);
+    transition: all .2s cubic-bezier(0.25,.5,.5,.9);
+    z-index: 90;
+    }
+    .codepay-btm .qrcode-detail-intro-show{
+        -webkit-transform: translateX(-20%);
+        -moz-transform: translateX(-20%);
+        -ms-transform: translateX(-20%);
+        transform: translateX(-20%);
+        opacity: 100;
+        filter: alpha(opacity=100);
+    }
+    .fullpage:before{
+        content:'';
+        width:100%;
+        height:100%;
+        background: rgba(0,0,0,0.5);
+        display: block;
+    }
+    .fullpage{
+        width:100%;
+        height:100%;
+        background: url("https://t.alipayobjects.com/images/T1y3dfXfFlXXXXXXXX.jpg") no-repeat center center;
+        background-size: cover;
+    }
+    </style>
+</head>
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<body>
+    <div class="fullpage">
+        <div class="codepay" id="code_wei">			
+			<div class="codepay-btm">
+				<p>扫码支付</p>
+				<span id="img_url"><img style='width:190px;height:190px;margin:0 auto;' src='http://7xnlea.com2.z0.glb.qiniucdn.com/lihui_shouqian.png' /></span>
+				<div class="qrcode-detail-intro"></div>
+			</div>
+		</div>
+    </div>
+</body>
+<script>
+    $("#code_wei").mouseover(function(){
+		$(".qrcode-detail-intro").addClass('qrcode-detail-intro-show');
+	}).mouseout(function(){
+		$(".qrcode-detail-intro").removeClass('qrcode-detail-intro-show');
+	})
+</script>
+</html>

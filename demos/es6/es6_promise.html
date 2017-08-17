@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<style type="text/css">
+		div{width: 50px;height: 50px}
+		div:first-child{
+			background: green
+		}
+		div:nth-child(2){
+			background: #fafa88
+		}
+		div:nth-child(3){
+			background: #333
+		}
+		div:nth-child(4){
+			background: #ff5555
+		}
+		div:nth-child(5){
+			background: #65fa44
+		}
+		div:nth-child(6){
+			background: #8f4ad6
+		}
+		div:nth-child(7){
+			background: #f6f555
+		}
+	</style>
+</head>
+<body>
+<div class="div"></div>
+<div class="div"></div>
+<div class="div"></div>
+<div class="div"></div>
+<div class="div"></div>
+<div class="div"></div>
+<div class="div"></div>
+<div class="div"></div>
+<script type="text/javascript">
+  window.onload=function(){
+  	var div = document.getElementsByTagName("div");
+  	var speed = 50;
+  	var w=50;
+  	var fn = function(i,left){
+  		return new Promise((resolve,reject)=>{
+  			let distance=speed;
+  			function init(){  				
+  				setTimeout(()=>{
+  					if(left>distance){
+  						div[i].style.marginLeft=`${distance}px`;
+  						distance+=speed;
+  						init();
+  					}
+  					else{
+  						resolve();
+  					}
+  				},30)
+  			}
+  			init()
+  		})
+  	}
+  	fn(0,5*w)
+  	.then(()=>fn(1,6*w))
+  	.then(()=>fn(2,7*w))
+  	.then(()=>fn(3,8*w))
+  	.then(()=>{return fn(4,7*w)})
+  	.then(()=>{return fn(5,6*w)})
+  	.then(()=>{fn(6,5*w)})  	
+  }
+ 
+</script>
+</body>
+</html>
