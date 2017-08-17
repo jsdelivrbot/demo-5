@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="http://apps.bdimg.com/libs/bootstrap/3.3.4/css/bootstrap.min.css"/>
+		<title></title>
+		<style>
+			html,body{margin: 0;padding: 0;background: #eee;}
+			html * {
+				outline: none;
+				-webkit-text-size-adjust: none;
+				-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+			}
+			.block-list,.block-center {
+				position: relative;
+			    color: #6C6C6C;
+			    background-color: #fff;
+			    text-align: left;
+			    margin-bottom: 10px;
+			}
+			.bl-box {
+				position: relative;
+				padding: 5px 10px;
+			}
+			.block-list:before,
+			.block-center:before{
+			    content: '';
+			    position: absolute;
+			    left: 0;
+			    top: 0;
+			    bottom: auto;
+			    right: auto;
+			    height: 1px;
+			    width: 100%;
+			    background-color: #e7e7e7;
+			    display: block;
+			    z-index: 15;
+			    -webkit-transform-origin: 50% 0%;
+			    transform-origin: 50% 0%;				
+			}
+			.block-list:after,
+			.block-center:after{
+				content: '';
+			    position: absolute;
+			    left: 0;
+			    bottom: 0;
+			    right: auto;
+			    top: auto;
+			    height: 1px;
+			    width: 100%;
+			    background-color: #e7e7e7;
+			    display: block;
+			    z-index: 15;
+			    -webkit-transform-origin: 50% 100%;
+			    transform-origin: 50% 100%;
+			}
+			.block-list .bl-box:after {
+			    content: '';
+			    position: absolute;
+			    left: 0;
+			    bottom: 0;
+			    right: auto;
+			    top: auto;
+			    height: 1px;
+			    width: 100%;
+			    background-color: #e7e7e7;
+			    display: block;
+			    z-index: 15;
+			    -webkit-transform-origin: 50% 100%;
+			    transform-origin: 50% 100%;				
+			}
+			.flex-box {
+   				display: -webkit-flex;
+   				display: flex;
+	   			/*-webkit-box-align: center;
+    			-webkit-align-items: center;
+    			align-items: center;*/
+			}
+			.flex-box .labeltitle,
+			.flex-box .labeltitle-right{
+				width: 7rem;
+				padding: 7px 10px;
+			}
+			.flex-box.bl-radio .flex-control{
+				padding: 0px 10px;
+			}			
+			.flex-box .flex-control {
+				position: relative;
+				flex: 1;
+				/*align-self:center*/
+			}
+			.flex-box .flex-control .vc {
+                             padding-left: 10px;   
+                             padding-top: 9px;}
+			.flex-control input
+			{
+			    width: 100%;
+			    padding: 0;
+			    border: 0;
+			    background-color: transparent;
+			}
+			.flex-box.bl-radio{
+			    background-color: #FFF;
+			    border: 1px solid #E7E7E7;
+			    border-radius: 3px;
+			    margin: 5px 0;
+			}
+			.flex-box.bl-radio .labeltitle {
+				border-right: 1px solid #E7E7E7;
+			}
+			.flex-box.bl-radio .labeltitle-right {
+				border-left: 1px solid #E7E7E7;
+			}
+			.flex-box.bl-radio input{
+				-webkit-box-shadow:none;
+				box-shadow:none
+			}
+			.iconinput {
+				border: 1px solid #bdbdbd;
+				height: 38px;
+				margin: 3px 0;
+			}
+			
+			.iconinput .icon {
+				position: relative;
+				background: #f3f3f3;
+				width: 36px;
+				height: 36px;
+				border-right: 1px solid #bdbdbd;
+			}
+			.iconinput .icon,
+			.iconinput .icon-right {
+				position: relative;
+				background: #f3f3f3;
+				height: 36px;
+				padding: 9px 12px;
+			}
+			.iconinput .icon {
+				border-right: 1px solid #bdbdbd;
+			}			
+			.iconinput .icon-right {
+				border-left: 1px solid #bdbdbd;
+			}
+			.iconinput .icon .fa {
+			}
+			.vc {
+				display: table;
+				width: 100%;
+				height: 100%;
+				overflow: hidden;
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+			}
+			.vc-child {
+				vertical-align: middle;
+				display: table-cell;
+				_position: absolute;
+				_top: 50%;
+				_left: 50%;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="block-list">
+			<div class="bl-box flex-box">
+				<div class="labeltitle">
+					账号
+				</div>
+				<div class="flex-control">
+					<div class="vc">
+						<div class="vc-child">
+							<input type="text" placeholder="请输入用户名"/>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="bl-box flex-box">
+				<div class="labeltitle">
+					登录密码
+				</div>
+				<div class="flex-control">
+					<div class="vc">
+						<div class="vc-child">
+							<input type="text" placeholder="请输入用户名"/>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="bl-box flex-box">
+				<div class="labeltitle">
+					label内容过账，左右对齐垂直
+				</div>
+				<div class="flex-control">
+					<div class="vc">
+						<div class="vc-child">
+							<input type="text" placeholder="请输入用户名"/>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="block-list">
+			<div class="bl-box">
+				<div class="flex-box bl-radio">
+					<div class="labeltitle">
+						项目名称
+					</div>
+					<div class="flex-control">
+						<div class="vc">
+							<div class="vc-child">
+								<div class="vc-content">
+									<input type="text" placeholder="请输入用户名"/>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="bl-box">
+				<div class="flex-box bl-radio">
+					<div class="flex-control">
+						<div class="vc">
+							<div class="vc-child">
+								<div class="vc-content">
+									<input type="text" placeholder="请输入用户名"/>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="labeltitle-right">
+						项目名称
+					</div>					
+				</div>
+			</div>
+			<div class="bl-box">
+				<div class="flex-box bl-radio">
+					<div class="labeltitle">
+						项目名称
+					</div>					
+					<div class="flex-control">
+						<div class="vc">
+							<div class="vc-child">
+								<div class="vc-content">
+									<input type="text" placeholder="请输入用户名"/>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="labeltitle-right">
+						项目名称
+					</div>
+				</div>
+			</div>	
+		</div>
+		<div class="block-center">
+			<div class="bl-box">
+				<div class="flex-box iconinput">
+					<div class="icon">
+						<i class="fa fa-user-o"></i>
+					</div>
+					<div class="flex-control">
+						<div class="vc">
+							<div class="vc-child">
+								<div class="vc-content">
+									<input type="text" placeholder="请输入用户名"/>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="icon-right">
+						send
+					</div>			
+				</div>
+			</div>
+			<div class="bl-box">
+				<div class="flex-box iconinput">
+					<div class="icon">
+						<i class="fa fa-user-o"></i>
+					</div>
+					<div class="flex-control">
+						<div class="vc">
+							<div class="vc-child">
+								<div class="vc-content">
+									<input type="text" placeholder="请输入用户名"/>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="bl-box">
+				<div class="flex-box iconinput">
+					<div class="flex-control">
+						<div class="vc">
+							<div class="vc-child">
+								<div class="vc-content">
+									<input type="text" placeholder="请输入用户名"/>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="icon-right">
+						send
+					</div>						
+				</div>
+			</div>			
+		</div>
+	</body>
+</html>

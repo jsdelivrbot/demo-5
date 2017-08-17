@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<title>文件上传</title>	
+	</head>
+	<body>
+	  
+	      <input type="file" id="file_input" multiple/>  
+          <div id="test"></div>
+          <script>
+                 window.onload = function(){   
+					var input = document.getElementById("file_input");   
+					var result,div;   
+
+					if(typeof FileReader === 'undefined'){   
+						result.innerHTML = "抱歉，你的浏览器不支持 FileReader";   
+						input.setAttribute('disabled','disabled');   
+					}else{   
+						input.addEventListener('change',readFile,false);   
+					} 
+					function readFile(){ 
+					
+						for(var i=0;i<this.files.length;i++){   
+							if (!input['value'].match(/.jpg|.gif|.png|.bmp/i)){　　//判断上传文件格式   
+								return alert("上传的图片格式不正确，请重新选择")
+							}
+							var reader = new FileReader();
+							reader.readAsDataURL(this.files[i]);
+							reader.onload = function(e) {
+								result ='<img src="'+this.result+'"/>';   
+								div = document.createElement('div');   
+								div.innerHTML = result;   
+								document.getElementById('test').innerHTML = result;
+							}   
+						}   
+					} 
+				}
+          </script>
+	   
+	    
+	</body>
+</html>

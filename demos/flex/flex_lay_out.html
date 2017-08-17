@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>flex布局</title>
+	<style>
+		*{margin: 0;padding: 0;}
+		html,body{height: 100%;position: relative;}
+		.wrapper{height: 100px;line-height: 100px;text-align: center;width: 30%;margin: 0 auto;}
+		.box-flex{background: #f4f4f4;padding: 10px;border: 1px dashed steelblue;}
+		.box-flex span{display: block;border: 1px solid red;}
+		.box-wp h2{text-align: left;}
+		.box-wp h2 span{font-weight: normal;font-size: 18px;}
+		.box-flex{display:-ms-flex;display:-moz-flex;display:-webkit-flex;display:flex;}
+		.item{margin-bottom: 10px;}
+		footer{position: fixed;right: 10px;bottom: 10px;color: #ddd;text-align: right;}
+
+		/* 小屏下变成纵向排列元素 */
+		@media (max-width: 768px) {
+			.box-flex{flex-direction: column;}
+		}
+
+		/* flex两列布局 */
+		.box-flex1{}
+		.box-flex1 .item:nth-child(1){flex-grow: 2;}
+		.box-flex1 .item:nth-child(2){flex-grow: 1;}
+		/* flex两列布局（一列定宽，另一列随屏幕宽度自适应） */
+		.box-flex2{}
+		.box-flex2 .item{}
+		.box-flex2 .item:nth-child(1){flex: 1 0 100px;}/* 元素不收缩 */
+		.box-flex2 .item:nth-child(2){flex-grow: 1;overflow: hidden;}/* 防止元素内容过长超出父元素 */
+		/* flex三列布局 */
+		.box-flex3{}
+		.box-flex3 .item:nth-child(1){flex-grow: 2;order: 1;}
+		.box-flex3 .item:nth-child(2){flex-grow: 1;order: 0;}
+		.box-flex3 .item:nth-child(3){flex-grow: 1;order: 2;}
+		/* flex n列等比布局 */
+		.box-flex4{}
+		.box-flex4 .item{width: 100%;flex-grow: 1;word-break: break-all;}/* 设置width可避免item里内容过多时。该元素相对其他兄弟元素变宽 */
+		/* flex流式布局 */
+		.box-flex5{flex-wrap: wrap;justify-content: flex-start;}
+		.box-flex5 .item{flex-basis: 32%;}
+		/* flex水平垂直居中 */
+		.box-flex6{width:300px;height:300px;justify-content: center;align-items: center;}
+		.box-flex6 .item{flex-basis: 33%;}
+		/* flex对折线 */
+		.box-flex7{flex-direction: column;width: 300px;}
+		.box-flex7 .item-wp{display: flex;}
+		.box-flex7 .item-wp:nth-child(1){}
+		.box-flex7 .item-wp:nth-child(2){justify-content: center;align-items: center;}
+		.box-flex7 .item-wp:nth-child(3){justify-content: flex-end;align-items: flex-end;}
+		.box-flex7 .item{flex-basis: 33%;}
+		/* flex各种对齐方式 */
+		.box-flex8{flex-direction: column;}
+		.box-flex8 .item-wp{display: flex;}
+		.box-flex8 .item-wp:nth-child(1){justify-content: space-around;}
+		.box-flex8 .item-wp:nth-child(2){justify-content: space-between;}
+		.box-flex8 .item-wp:nth-child(3){justify-content: flex-start;}
+		.box-flex8 .item-wp:nth-child(4){justify-content: center;}
+		.box-flex8 .item-wp:nth-child(5){justify-content: flex-end;}
+		.box-flex8 .item{flex-basis: 25%;}
+	</style>
+</head>
+<body>
+	<div class="wrapper">
+		<h1>flex布局</h1>
+		<div class="box-wp">
+			<h2>flex两列布局</h2>
+			<div class="box-flex box-flex1">
+				<span class="item item1">1</span>
+				<span class="item item2">2</span>
+			</div>
+			<h2>flex两列布局<span>（一列定宽，另一列随屏幕宽度自适应）</span></h2>
+			<div class="box-flex box-flex2">
+				<span class="item item1">1</span>
+				<span class="item item2">222222222222222222222222222222222222222222222222222222222</span>
+			</div>
+			<h2>flex三列布局</h2>
+			<div class="box-flex box-flex3">
+				<span class="item item1">1</span>
+				<span class="item item2">2</span>
+				<span class="item item3">3</span>
+			</div>
+			<h2>flex&nbsp;n列等比布局</h2>
+			<div class="box-flex box-flex4">
+				<span class="item item1">1</span>
+				<span class="item item2">2</span>
+				<span class="item item3">3</span>
+				<span class="item item4">4</span>
+				<span class="item item5">5</span>
+				<span class="item item6">66666666666666</span>
+			</div>
+			<h2>flex流式布局</h2>
+			<div class="box-flex box-flex5">
+				<span class="item item1">1</span>
+				<span class="item item2">2</span>
+				<span class="item item3">3</span>
+				<span class="item item4">4</span>
+				<span class="item item5">5</span>
+				<span class="item item6">6</span>
+				<span class="item item7">7</span>
+			</div>
+			<h2>flex水平垂直居中</h2>
+			<div class="box-flex box-flex6">
+				<span class="item item1">1</span>
+			</div>
+			<h2>flex&nbsp;对折线</h2>
+			<div class="box-flex box-flex7">
+				<div class="item-wp"><span class="item item1">1</span></div>
+				<div class="item-wp"><span class="item item2">2</span></div>
+				<div class="item-wp"><span class="item item3">3</span></div>
+			</div>
+			<h2>flex各种对齐方式</h2>
+			<div class="box-flex box-flex8">
+				<div class="item-wp"><span class="item item1">1</span><span class="item item2">2</span><span class="item item3">3</span></div>
+				<div class="item-wp"><span class="item item4">4</span><span class="item item5">5</span><span class="item item6">6</span></div>
+				<div class="item-wp"><span class="item item7">7</span><span class="item item8">8</span></div>
+				<div class="item-wp"><span class="item item9">9</span><span class="item item10">10</span></div>
+				<div class="item-wp"><span class="item item11">11</span><span class="item item5">12</span></div>
+			</div>
+		</div>
+	</div>
+
+	<footer>
+		<p>Written by Hershin</p>
+	</footer>
+</body>
+</html>

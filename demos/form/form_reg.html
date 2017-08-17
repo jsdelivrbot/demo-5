@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>完整验证表单</title>
+	<style type="text/css">
+		*{margin: 0;padding: 0;list-style:none;}
+		body{background:#ccc;}
+		.demo{width:400px;padding:40px;background:#efefef;border:solid 1px #666;margin:100px auto 0;line-height:40px;}
+		label{display:inline-block;width:20%;}
+		input{width:60%;}
+	</style>
+</head>
+<body>
+<div class="demo">
+	<ul>
+		<li>
+			<label for="iptqq">Q Q：</label>
+			<input type="text" id="iptqq">
+			<span></span>
+		</li>
+		<li>
+			<label for="iptPhone">手机：</label>
+			<input type="text" id="iptPhone">
+			<span></span>
+		</li>
+		<li>
+			<label for="iptEmil">邮箱：</label>
+			<input type="text" id="iptEmil">
+			<span></span>
+		</li>
+		<li>
+			<label for="iptNum">座机：</label>
+			<input type="text" id="iptNum">
+			<span></span>
+		</li>
+		<li>
+			<label for="iptName">姓名：</label>
+			<input type="text" id="iptName">
+			<span></span>
+		</li>
+	</ul>
+</div>
+</body>
+<script type="text/javascript">
+	(function(window){
+		function $(id){
+			return document.getElementById(id);
+		};
+		// 获取对象
+		var iptqq = $("iptqq"),iptPhone = $("iptPhone"),iptEmil = $("iptEmil"),iptNum = $("iptNum"),iptName = $("iptName");
+		// 正则验证表达式
+		// 验证座机
+		var rxNum = /^0[0-9]{2,3}-[0-9]{7,8}$/;
+		// 验证QQ
+		var rxqq = /^[1-9][0-9]{4,10}$/;
+		// 验证手机
+		var rxPhone = /^(13[0-9]|15[012356789]|18[0-9]|17[678]|14[57])[0-9]{8}$/;
+		// 验证邮箱
+		var rxEmil = /^\w+@\w+\.\w+$/;
+		// 验证姓名
+		var rxName = /^[\u4E00-\u9FA5]{2,}$/
+		// 验证座机
+		cation(iptNum,rxNum);
+		// 验证QQ
+		cation(iptqq,rxqq);
+		// 验证手机号
+		cation(iptPhone,rxPhone);
+		// 验证邮箱
+		cation(iptEmil,rxEmil);
+		// 验证姓名
+		cation(iptName,rxName);
+		// 封装验证函数
+		function cation(element,regExp){
+			element.onblur = function(){
+				var txt = this.value;
+				if( regExp.test( txt ) ){
+					this.nextElementSibling.innerHTML = "正确"
+					this.nextElementSibling.style.color = "green";
+				}else{
+					this.nextElementSibling.innerHTML = "错误"
+					this.nextElementSibling.style.color = "red";
+				}
+			}
+		}
+	})(window)
+</script>
+</html>

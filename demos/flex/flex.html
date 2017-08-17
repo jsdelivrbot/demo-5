@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			html,body {margin: 0;padding: 0;}
+			.container {width: 1200px;margin: 0 auto;}
+			.flex-box {
+				width: 400px;
+				height: 300px;
+				border:1px solid black;
+				display: -webkit-flex;
+				display: flex;
+			}
+			.flex-demo1 div{
+				flex: 1;
+			}
+			.flex-demo2 {
+				flex-direction: column-reverse;
+				/*flex-direction: row | row-reverse | column | column-reverse;*/
+			}
+			.flex-demo2 div{
+				flex: 1;
+			}
+			.flex-demo3 {
+				flex-wrap: wrap-reverse;
+				/*flex-wrap: nowrap | wrap | wrap-reverse;*/
+			}
+			.flex-demo3 div{
+				width: 200px;
+			}
+			.flex-demo4 {
+				justify-content: space-around;
+				/*justify-content: flex-start | flex-end | center | space-between | space-around;*/
+			}
+			.flex-demo5 {
+				align-items: center;
+				/*align-items: flex-start | flex-end | center | baseline | stretch;*/
+			}
+			.flex-demo6 {
+				flex-wrap: wrap;
+				align-content: space-between;
+				/*align-content: flex-start | flex-end | center | space-between | space-around | stretch;*/
+			}
+			.flex-demo6 div{
+				width: 200px;
+				
+			}
+			.flex-demo7 div{
+				flex: 1;
+			}	
+			.flex-demo8 div{
+				flex: 1;
+			}
+			.flex-demo9 div{
+				flex: 1;
+			}
+			.flex-demo10 div{
+				flex: 1;
+			}
+			.flex-demo11 div{
+				flex: 1;
+			}						
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<h1>一、flex默认布局</h1>
+			<p>div父元素设置为 display: -webkit-flex;display: flex;</p>
+			<p>div子元素设置为flex: 1;  此为flex默认布局</p>
+			<div class="flex-box flex-demo1">
+				<div style="background-color: #007DBB;">
+					11
+				</div>
+				<div style="background-color: #F35626;">
+					22
+				</div>
+				<div style="background-color: #398439;">
+					33
+				</div>
+			</div>
+			<h1>二、flex-flow 流式布局</h1>
+			<h4>flex-flow 属性是 flex-direction 属性和 flex-wrap 属性的简写形式，默认值为 row nowrap。</h4>
+			<p>flex-flow: <flex-direction> || <flex-wrap>;</p>
+			<p>flex-direction属性决定主轴的方向</p>
+			<p>flex-direction: row | row-reverse | column | column-reverse;</p>
+			<hr />
+			<div class="flex-box flex-demo2">
+				<div style="background-color: #007DBB;">
+					11
+				</div>
+				<div style="background-color: #F35626;">
+					22
+				</div>
+				<div style="background-color: #398439;">
+					33
+				</div>			
+			</div>
+			<hr />
+			<h1>三、flex-wrap 换行布局</h1>
+			<p>flex-wrap属性定义，如果一条轴线排不下，如何换行。</p>
+			<p>flex-wrap: nowrap | wrap | wrap-reverse;</p>
+			<div class="flex-box flex-demo3">
+				<div style="background-color: #007DBB;">
+					11
+				</div>
+				<div style="background-color: #F35626;">
+					22
+				</div>
+				<div style="background-color: #398439;">
+					33
+				</div>			
+			</div>
+			<hr />
+			<h1>四、版面内容</h1>
+			<p>justify-content属性定义了项目在主轴上的对齐方式。</p>
+			<p>justify-content: flex-start | flex-end | center | space-between | space-around;</p>
+			<p>flex-start（默认值）：左对齐</p>
+			<p>flex-end：右对齐</p>
+			<p>center： 居中</p>
+			<p>space-between：两端对齐，项目之间的间隔都相等。</p>
+			<p>space-around：每个项目两侧的间隔相等。所以，项目之间的间隔比项目与边框的间隔大一倍。</p>
+			<div class="flex-box flex-demo4">
+				<div style="background-color: #007DBB;">
+					111
+				</div>
+				<div style="background-color: #F35626;">
+					22
+				</div>
+				<div style="background-color: #398439;">
+					33
+				</div>			
+			</div>
+			<hr />
+			<h1>五、对齐-项目</h1>
+			<p>align-items属性定义项目在交叉轴上如何对齐。</p>
+			<p>align-items: flex-start | flex-end | center | baseline | stretch;</p>
+			<p>flex-start：交叉轴的起点对齐。</p>
+			<p>flex-end：交叉轴的终点对齐。</p>
+			<p>center：交叉轴的中点对齐。</p>
+			<p>baseline: 项目的第一行文字的基线对齐。</p>
+			<p>stretch（默认值）：如果项目未设置高度或设为auto，将占满整个容器的高度。</p>
+			<div class="flex-box flex-demo5">
+				<div style="background-color: #007DBB;">
+					11
+				</div>
+				<div style="background-color: #F35626;">
+					22
+				</div>
+				<div style="background-color: #398439;">
+					33
+				</div>			
+			</div>
+			<hr />
+			<h1>六、对齐-内容</h1>
+			<p>align-content属性定义了多根轴线的对齐方式。如果项目只有一根轴线，该属性不起作用。</p>
+			<p>align-content: flex-start | flex-end | center | space-between | space-around | stretch;</p>
+			<p>flex-start：与交叉轴的起点对齐。</p>
+			<p>flex-end：与交叉轴的终点对齐。</p>
+			<p>center：与交叉轴的中点对齐。</p>
+			<p>space-between：与交叉轴两端对齐，轴线之间的间隔平均分布。</p>
+			<p>space-around：每根轴线两侧的间隔都相等。所以，轴线之间的间隔比轴线与边框的间隔大一倍。</p>
+			<p>stretch（默认值）：轴线占满整个交叉轴。</p>
+			<div class="flex-box flex-demo6">
+				<div style="background-color: #007DBB;">
+					11
+				</div>
+				<div style="background-color: #F35626;">
+					22
+				</div>
+				<div style="background-color: #398439;">
+					33
+				</div>
+			</div>
+			<hr />
+			<h1>七、order 排列顺序</h1>
+			<p>order属性定义项目的排列顺序。数值越小，排列越靠前，默认为0。</p>
+			<div class="flex-box flex-demo7">
+				<div style="background-color: #007DBB;order: 3;">
+					11
+				</div>
+				<div style="background-color: #F35626;order: 2;">
+					22
+				</div>
+				<div style="background-color: #398439;order: 1;">
+					33
+				</div>
+			</div>
+			<hr />
+			<h1>八、flex 属性布局</h1>
+			<h4>flex属性是flex-grow, flex-shrink 和 flex-basis的简写，默认值为0 1 auto。后两个属性可选。</h4>
+			<h4> flex: none | [ <'flex-grow'> <'flex-shrink'>? || <'flex-basis'> ]</h4>			
+			<h4>flex属性是flex-grow, flex-shrink 和 flex-basis的简写，默认值为0 1 auto。后两个属性可选。</h4>
+			<p>flex-grow属性定义项目的放大比例，默认为0，即如果存在剩余空间，也不放大。</p>
+			<div class="flex-box flex-demo8">
+				<div style="background-color: #007DBB;flex-grow: 1;">
+					11
+				</div>
+				<div style="background-color: #F35626;flex-grow: 2;">
+					22
+				</div>
+				<div style="background-color: #398439;flex-grow: 3;">
+					33
+				</div>
+			</div>
+			<p>flex-shrink属性定义了项目的缩小比例，默认为1，即如果空间不足，该项目将缩小。</p>
+			<p>第二个div设置为 flex-shrink: 3;</p>
+			<h3>测试无效，待实验</h3>
+			<div class="flex-box flex-demo9">
+				<div style="background-color: #007DBB;">
+					11
+				</div>
+				<div style="background-color: #F35626;flex-shrink: 3;">
+					22
+				</div>
+				<div style="background-color: #398439;">
+					33
+				</div>
+			</div>	
+			<p>flex-basis属性定义了在分配多余空间之前，项目占据的主轴空间（main size）。浏览器根据这个属性，计算主轴是否有多余空间。它的默认值为auto，即项目的本来大小。</p>
+			<p>flex-basis: <length> | auto; /* default auto */</p>
+			<p>第二个div设置为 flex-basis: 100px，真实宽度为200px</p>
+			<div class="flex-box flex-demo10">
+				<div style="background-color: #007DBB;">
+					11
+				</div>
+				<div style="background-color: #F35626;flex-basis: 100px">
+					22
+				</div>
+				<div style="background-color: #398439;">
+					33
+				</div>
+			</div>
+			<hr />
+			<h1>九、align-self 对齐-单一的</h1>
+			<p>align-self属性允许单个项目有与其他项目不一样的对齐方式，可覆盖align-items属性。默认值为auto，表示继承父元素的align-items属性，如果没有父元素，则等同于stretch。</p>
+			<p>align-self: auto | flex-start | flex-end | center | baseline | stretch;</p>
+			<p>第二个div设置为align-self: flex-end;</p>
+			<div class="flex-box flex-demo11">
+				<div style="background-color: #007DBB;">
+					11
+				</div>
+				<div style="background-color: #F35626;align-self: flex-end;">
+					22
+				</div>
+				<div style="background-color: #398439;">
+					33
+				</div>
+			</div>	
+		</div>
+			<h1>参考网址：<a href="http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html?bsh_bid=963296243" target="_blank">阮一峰flex基础篇</a></h1>
+			<h1>示例篇：<a href="http://www.ruanyifeng.com/blog/2015/07/flex-examples.html" target="_blank">阮一峰flex实例篇</a></h1>
+	</body>
+</html>

@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <style>
+        ul{ 
+            position: relative;
+            display: inline-block;
+            border: 1px solid #ddd;
+            font-size:0;
+            box-sizing:border-box;
+            padding: 0px;
+        }
+        ul li{                
+            position: relative;
+            float: left;
+            display: inline-block;
+            height:50px;
+            text-align: center;
+            line-height: 50px;
+            color:#333;
+            box-sizing:border-box;
+            margin: 0px;
+            padding: 0px;
+            font-size:16px;
+            font-family: "Microsoft YaHei",sans-serif;
+        }
+        a{
+            display: inline-block;
+            padding: 0 25px;
+            color: #373d41;
+            -webkit-transition: color .2s;
+            transition: color .2s;
+            text-decoration: none;
+        }
+        a:hover{
+
+        }
+/*         ul li:hover{
+    border-bottom: 3px solid #00c1de;
+} */
+        .line{
+            position: absolute;
+            left: 0px;
+            height: 3px;
+            width: 0;
+            padding: 0;
+            background-color: #00c1de;
+            bottom: 0;
+            -webkit-transition: all .3s cubic-bezier(.4,0,.2,1);
+            transition: all .3s cubic-bezier(.4,0,.2,1);
+        }
+        .line:after{
+            visibility: hidden;
+            display: block;
+            font-size: 0;
+            content: " ";
+            clear: both;
+            height: 0;
+        }
+    </style>
+    <script>
+        $(function(){                   
+            $('ul li').hover(function(){
+                l=$('ul li').width(); 
+                m=$(this).index(); 
+                $('.line').css({'width':l,'left':l*m});
+            });
+        });
+    </script>
+</head>
+<body>
+    <ul>
+        <li><a href="###">首页</a></li>
+        <li><a href="###">页面</a></li>
+        <li><a href="###">页面</a></li>
+        <li><a href="###">页面</a></li>
+        <li><a href="###">页面</a></li>
+        <li><a href="###">页面</a></li>
+        <a class="line"></a>
+
+    </ul>
+</body>
+</html>
