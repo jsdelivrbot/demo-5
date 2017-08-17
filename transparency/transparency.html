@@ -14,8 +14,9 @@
       </select><br>
        <div  id="AwsArea">
                               
-         <input type="hidden" name="area_id" > 
-         <span data-bind="area_name"></span>
+        <!--  <input type="hidden" name="area_id" > 
+         <span data-bind="area_name"></span><br> -->
+         <input type="text" data-bind="area_name">
                                 
        </div>
 	<script type="text/javascript" src="jquery-3.1.1.min.js"></script>
@@ -46,33 +47,54 @@
 					class: function(){
 						return this.sta_type_id;
 					},
+					
 					// text: function(){//文本
 					// 	return this.sta_type_id;
 					// }					
-				}
+				},
+		    	area_name:{
+		    		name:function(){
+		    			return this.sta_type_id;
+		    		}
+		    	}
 		    };
 		    $('#createStation-type-picker').render(typeAjaxList,typeAjaxListVal);//render 数据和自定义方法
 		    $('#createStation-type-picker').selectpicker('val','');//从头排序
 			$('#createStation-type-picker').selectpicker('refresh');//刷新列表
 
-			var obj = {};
-			flag='3';
-			if(flag=="1"){
-				obj.area_name='上游';
-				obj.area_id=1;
-			}else if(flag=="2"){
-				obj.area_name='中游';
-				obj.area_id=2;
-			}else if(flag=="3"){
-				obj.area_name='下游';
-				obj.area_id=3;
-			}else if(flag=="4"){
-				obj.area_name='全库';
-				obj.area_id=4;
-			}
+		var typeAjaxList=[
+				{area_id: 1, area_name:"上游"},
+                {area_id: 2, area_name:"中游"},    
+				{area_id: 3, area_name:"下游"},
+				{area_id: 4, area_name:"全库"}
+				
+			];	
+			var typeAjaxListPropoties={
+				area_name:{
+					name:function(){
+						return this.area_id;
+					}
+				}
+			}	
+
+			//var obj = {};
+			// flag='3';
+			// if(flag=="1"){
+			// 	obj.area_name='上游';
+			// 	obj.area_id=1;
+			// }else if(flag=="2"){
+			// 	obj.area_name='中游';
+			// 	obj.area_id=2;
+			// }else if(flag=="3"){
+			// 	obj.area_name='下游';
+			// 	obj.area_id=3;
+			// }else if(flag=="4"){
+			// 	obj.area_name='全库';
+			// 	obj.area_id=4;
+			// }
 			
-			$('#AwsArea').render(obj);//render 一条对象
-			$('#wmsArea').render(obj);
+			//$('#AwsArea').render(obj);//render 一条对象
+			$('#AwsArea').render(typeAjaxList,typeAjaxListPropoties);//render 一条对象
 
 			//render 可以渲染数组,重复渲染数组中的对象,render 的指定元素必须是父元素
 			//XXX."属性名"="-" 定义属性
