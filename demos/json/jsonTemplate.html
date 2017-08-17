@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>一级又一级的json</title>
+		<style>
+			h1{font-size: 16px;}
+			h2{font-size: 14px; padding-left: 16px;}
+			h3{font-size: 12px; padding-left: 30px;}
+			#jsonList div{
+				float: left;
+				margin: 20px 60px;
+			}
+		</style>
+		<script>
+			var jsonData = {
+				"jsonData":[
+					{
+						"id":0,
+						"title":"第一级",
+						"secondData":[
+							{
+								"id":0,
+								"title":"第二级",
+								"thirdData":[
+									{
+										"id":0,
+										"title":"第三级"
+									},
+									{
+										"id":1,
+										"title":"第三级"
+									},
+									{
+										"id":2,
+										"title":"第三级"
+									}
+									,
+									{
+										"id":3,
+										"title":"第三级"
+									}
+								]
+							},
+							{
+								"id":1,
+								"title":"第二级",
+								"thirdData":[
+									{
+										"id":0,
+										"title":"第三级"
+									},
+									{
+										"id":1,
+										"title":"第三级"
+									},
+									{
+										"id":2,
+										"title":"第三级"
+									}
+									,
+									{
+										"id":3,
+										"title":"第三级"
+									}
+								]
+							},
+							{
+								"id":2,
+								"title":"第二级",
+								"thirdData":[
+									{
+										"id":0,
+										"title":"第三级"
+									},
+									{
+										"id":1,
+										"title":"第三级"
+									},
+									{
+										"id":2,
+										"title":"第三级"
+									}
+									,
+									{
+										"id":3,
+										"title":"第三级"
+									}
+								]
+							}
+						]
+					},
+					{
+						"id":1,
+						"title":"第一级",
+						"secondData":[
+							{
+								"id":0,
+								"title":"第二级",
+								"thirdData":[
+									{
+										"id":0,
+										"title":"第三级"
+									},
+									{
+										"id":1,
+										"title":"第三级"
+									},
+									{
+										"id":2,
+										"title":"第三级"
+									}
+									,
+									{
+										"id":3,
+										"title":"第三级"
+									}
+								]
+							},
+							{
+								"id":1,
+								"title":"第二级",
+								"thirdData":[
+									{
+										"id":0,
+										"title":"第三级"
+									},
+									{
+										"id":1,
+										"title":"第三级"
+									},
+									{
+										"id":2,
+										"title":"第三级"
+									}
+									,
+									{
+										"id":3,
+										"title":"第三级"
+									}
+								]
+							},
+							{
+								"id":2,
+								"title":"第二级",
+								"thirdData":[
+									{
+										"id":0,
+										"title":"第三级"
+									},
+									{
+										"id":1,
+										"title":"第三级"
+									},
+									{
+										"id":2,
+										"title":"第三级"
+									}
+									,
+									{
+										"id":3,
+										"title":"第三级"
+									}
+								]
+							}
+						]
+					}
+				]
+			};
+		</script>
+	</head>
+	<body>
+		<div id="jsonList"></div>
+		<script>
+			console.log(jsonData.jsonData.length);
+			var html = "";
+			
+			//循环一级
+			var firstNum = jsonData.jsonData.length;
+			for(var i=0;i<firstNum;i++){
+				html += "<div>";
+				var firstid = jsonData.jsonData[i].id;
+				var firstTitle = jsonData.jsonData[i].title;
+				html+="<h1>"+firstid+firstTitle+"</h1>";
+				
+				//循环二级
+				var secondNum = jsonData.jsonData[i].secondData.length;
+				for(var j=0;j<secondNum;j++){
+					var secondid = jsonData.jsonData[i].secondData[j].id;
+					var secondTitle = jsonData.jsonData[i].secondData[j].title;
+					html+="<h2>"+firstid+secondid+secondTitle+"</h2>";
+					
+					//循环三级
+					var thirdNum = jsonData.jsonData[i].secondData[j].thirdData.length
+					for(var k=0;k<thirdNum;k++){
+						var thirdid = jsonData.jsonData[i].secondData[j].thirdData[k].id;
+						var thirdTitle = jsonData.jsonData[i].secondData[j].thirdData[k].title;
+						html+="<h3>"+firstid+secondid+thirdid+thirdTitle+"</h3>";
+					}
+				}
+				html += "</div>";
+			}
+			
+			document.getElementById('jsonList').innerHTML = html;
+		</script>
+	</body>
+</html>

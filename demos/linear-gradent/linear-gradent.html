@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<style type="text/css">
+		div{
+			width: 200px;
+			height: 100px;
+			margin-top: 10px;
+		}
+		.test{
+			position: relative;
+		}
+		.inner{
+			background: #000;
+		}
+		.test:before{
+			position: absolute;
+			left: -200%;
+			top: 0;
+			width: 100%;
+			height: 100%;
+			content:'';
+			z-index: 2;
+		}
+		.test1:before{
+			background:-webkit-linear-gradient(left,rgba(255,255,255,.05) 20%,rgba(255,255,255,.4) 50%,rgba(255,255,255,.05) 80%);
+			background:-o-linear-gradient(left,rgba(255,255,255,.05) 20%,rgba(255,255,255,.4) 50%,rgba(255,255,255,.05) 80%);
+			background:-moz-linear-gradient(left,rgba(255,255,255,.05) 20%,rgba(255,255,255,.4) 50%,rgba(255,255,255,.05) 80%);
+			background:linear-gradient(left,rgba(255,255,255,.05) 20%,rgba(255,255,255,.4) 50%,rgba(255,255,255,.05) 80%);
+		}
+		.test2:before{
+			background:-webkit-linear-gradient(-45deg,rgba(255,255,255,.05) 20%,rgba(255,255,255,.4) 50%,rgba(255,255,255,.05) 80%);
+			background:-o-linear-gradient(-45deg,rgba(255,255,255,.05) 20%,rgba(255,255,255,.4) 50%,rgba(255,255,255,.05) 80%);
+			background:-moz-linear-gradient(-45deg,rgba(255,255,255,.05) 20%,rgba(255,255,255,.4) 50%,rgba(255,255,255,.05) 80%);
+			background:linear-gradient(-45deg,rgba(255,255,255,.05) 20%,rgba(255,255,255,.4) 50%,rgba(255,255,255,.05) 80%);
+		}
+		@-webkit-keyframes light{0%{left: -200%}100%{left: 100%};}
+		@-o-keyframes light{0%{left: -200%}100%{left: 100%};}
+		@-moz-keyframes light{0%{left: -200%}100%{left: 100%};}
+		@keyframes light{0%{left: -200%}100%{left: 100%};}
+		.test:hover::before{
+			left: 100%;
+			-webkit-animation: light .5s linear;
+			-o-animation: light .5s linear;
+			-moz-animation: light .5s linear;
+			animation: light .5s linear;
+		}
+	</style>
+</head>
+<body>
+	<div class="test test1">
+		<div class="inner"></div>
+	</div>
+	<div class="test test2">
+		<div class="inner"></div>
+	</div>
+</body>
+</html>
