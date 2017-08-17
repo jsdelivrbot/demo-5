@@ -19,6 +19,10 @@
          <input type="text" data-bind="area_name">
                                 
        </div>
+       <br>
+       <div id="template">
+       	<span class="left"></span> <span class="right"></span>
+       </div>
 	<script type="text/javascript" src="jquery-3.1.1.min.js"></script>
 	<script type="text/javascript" src="bootstrap.min.js"></script>
 	<script type="text/javascript" src="bootstrap-select.min.js"></script>
@@ -96,8 +100,27 @@
 			//$('#AwsArea').render(obj);//render 一条对象
 			$('#AwsArea').render(typeAjaxList,typeAjaxListPropoties);//render 一条对象
 
+			var hello={
+				left:"hello",
+				right:'world'
+			};
+			var myHello={
+				left:{
+					name:function(){
+						return this.left;
+					}
+				},
+				right:{
+					name:function(){
+						return this.right;
+					}
+				}			
+			};
+			$('#template').render(hello,myHello);
+
 			//render 可以渲染数组,重复渲染数组中的对象,render 的指定元素必须是父元素
 			//XXX."属性名"="-" 定义属性
+			
 
 		});
 	</script>	
