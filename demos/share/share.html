@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button style="font-size:24px;" id="btn">分享到QQ空间</button>
+
+<script>
+    var ShareTip = function () {
+
+    }
+    //分享到腾讯微博
+    ShareTip.prototype.sharetoqq = function (content, url, picurl) {
+        var shareqqstring = 'http://v.t.qq.com/share/share.php?title=' + content + '&url=' + url + '&pic=' + picurl;
+        window.open(shareqqstring, 'newwindow', 'height=500,width=600,top=100,left=100');
+    }
+    //分享到新浪微博
+    ShareTip.prototype.sharetosina = function (title, url, picurl) {
+        var sharesinastring = 'http://v.t.sina.com.cn/share/share.php?title=' + title + '&url=' + url + '&content=utf-8&sourceUrl=' + url + '&pic=' + picurl;
+        window.open(sharesinastring, 'newwindow', 'height=400,width=400,top=100,left=100');
+    }
+    //分享到QQ空间
+    ShareTip.prototype.sharetoqqzone = function (title, url, picurl) {
+        var shareqqzonestring = 'http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?summary=' + title + '&url=' + url + '&pics=' + picurl;
+        window.open(shareqqzonestring, 'newwindow', 'height=400,width=400,top=100,left=100');
+    }
+
+    var share = new ShareTip();
+    document.getElementById('btn').onclick = function () {
+        share.sharetoqqzone("这是一本关于地图故事的集锦，以一本书的形式来展示地图故事，我们可以使用鼠标拖动来翻页，或者点击翻页按钮，点击 马上体验，可以体验故事，同时在触屏上也有很好的体验效果奥，地图故事，尽在书中，赶快体验吧，建议使用对 HTML5支持较好的浏览器", "http://tm.arcgisonline.cn:8038/App101/MapstoryBook/Default.html", "http://tm.arcgisonline.cn:8038/App101/MapstoryBook/css/Img/ShareBook.jpg");
+    };
+</script>
+</body>
+</html>
