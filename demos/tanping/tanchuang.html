@@ -1,0 +1,109 @@
+<!DOCTYPE>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>弹幕</title>
+    <style>
+        *{
+            margin: 0;
+            padding:0;
+        }
+        .container{
+            width:100%;
+            height:100%;
+            background-color: #f2f2f2;
+        }
+        .barrageBtn{
+            position: absolute;
+            bottom:0px;
+            padding: 5px 0px;
+            height: 50px;
+            width:100%;
+            background-color: #f3f3f3;
+        }
+        .words{
+            width: 60%;
+            float: left;
+            height:35px;
+            padding: 5px;
+            margin-top: 5px;
+            border: 1px solid #000;
+            border-radius: 5px;
+            outline: none;
+            margin-left: 5px;
+        }
+        .btn{
+            float: left;
+            width:120px;
+            height: 37px;
+            margin-left: 15px;
+            border-radius: 5px;
+            background-color: #C34040;
+            margin-top: 5px;
+            text-align: center;
+            line-height: 37px;
+            color: #fff;
+            font-size: 23px;
+            cursor: pointer;
+        }
+        .barrageConatiner{
+            width:100%;
+            height:40%;
+        }
+        .message{
+            width:auto;
+            height: 30px;
+            position: absolute;
+            overflow: hidden;
+            color:#000;
+            font-size: 20px;
+            line-height: 20px;
+            cursor: pointer;
+            white-space:nowrap;
+
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="barrageConatiner"></div>
+    <div class="barrageBtn">
+        <input type="text" class="words" placeholder="请在这里输入要说的话~~">
+        <a class="btn">飞屏</a>
+    </div>
+</div>
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script>
+    $(function(){
+        var color = ["#F70404","#04F70B","#0492F7","#F304F7","#F70431","#DD04F7","#7804F7"];
+        var containerW = parseInt($(document).width());
+        var containerH = parseInt($(".barrageConatiner").height());
+        
+        $(".btn").bind("click",addBarrage);
+        
+        function addBarrage(){
+            var word = $(".words").val();
+            
+            var marginTop = parseInt(containerH*(Math.random()));
+            var num = parseInt(color.length*(Math.random()));
+            
+            var barrageSpan = '<span class="message" style="top:'+marginTop+';right:0;color:'+color[num]+'">'+word+'</span>';
+           
+            $(".words").val("");
+            $(".barrageConatiner").append(barrageSpan);
+            var barrageSpan = $(".barrageConatiner span:last-child");
+            var speedArr = [10000,8000,5000];
+            var speed = speedArr[parseInt(speedArr.length*(Math.random()))];
+            barrageSpan.stop().animate({"right":containerW+200},speed,"linear",function(){
+                        $(this).remove();
+                    });
+        }
+        document.onkeydown = function(e){
+            if(e.keyCode == 13){
+                addBarrage();
+            }
+        }
+   });
+</script>
+</body>
+</html>

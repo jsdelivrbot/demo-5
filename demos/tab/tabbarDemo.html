@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>选项卡</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<script type="text/javascript" src="http://www.xipwang.cn/js/jquery.min.js"></script>
+<style type="text/css">
+html,body{
+	margin:0;
+	padding: 0;
+	min-width: 1270px;
+}
+/*tabNav*/
+ul li{
+	list-style: none;
+
+
+}
+ul {
+	
+	padding: 0
+
+}
+.mod-tab-menu{
+	width: 1180px;
+	margin:0 auto;
+}
+.mod-tab-menu .asn-menu ul{
+	position: relative;
+}
+.mod-tab-menu .asn-menu ul li
+{
+    font-size: 18px;
+    font-weight: bold;
+    float: left;
+    margin-right: 40px;
+    cursor: pointer;
+    color: #333;
+    padding-bottom: 8px;
+}
+.mod-tab-menu .asn-menu ul li:hover{
+     color: #fd7830;
+}
+.mod-tab-menu .asn-menu ul li.current
+{
+    color: #fd7830;
+}
+.mod-tab-menu .mod-content .mod-item
+{
+    min-height: 400px;
+    background: #ccc;
+    display: none;
+}
+.mod-tab-menu .sliderLine{
+    display: block;
+    width: 36px;
+    height: 1px;
+    background: #fd7830;
+    bottom: 0;
+    position: absolute;
+
+}
+.clearfix:after{
+	content:"\200B";
+	 display:block; 
+	 height:0; 
+	 clear:both;
+}
+/*tabNav*/
+</style>
+</head>
+<body>
+	<div class="mod-tab-menu">
+		<div class="asn-menu clearfix" >
+			<ul class="pr clearfix">
+				<li>菜单1111111</li>
+				<li>菜单22</li>
+				<li>菜单3333</li>
+				<span class="sliderLine pa"></span>
+			</ul>
+		</div>
+		<div class="mod-content mt30">
+			<div class="mod-item">1</div>
+			<div class="mod-item">2</div>
+			<div class="mod-item">3</div>
+		</div>
+	</div>
+ <script type="text/javascript">
+(function($) {
+	$.fn.tabNavs = function(option) {
+		function Tab(option, element) {
+			var $this = this;
+			this.init(option, element);
+			$(window).resize(function(){			
+   				$this.leftoffset = ($('body').width() - 1180) / 2;
+			});
+		}
+		Tab.prototype = {
+			init: function(option, element) {
+				var $this = this;
+				$this.default = {
+					index: 0,
+					OnChangecallback:function(){
+
+					}
+				};
+				// 获取父级元素距离浏览器窗口的位置
+				$this.leftoffset = ($('body').width() - 1180) / 2;
+				$this.settings = $.extend(true, $this.default, option || {});
+				$this.el = element;
+				$this.navBox = $this.el.find('.asn-menu');
+				$this.contBox = $this.el.find(".mod-content");
+				$this.sliderLine = $this.el.find(".sliderLine");
+				if($this.settings.index > $this.navBox.children().length){
+					throw new Error('The length of the current parameter value greater than the number of menus');
+				}
+				//初始化当前选中菜单
+				this.current($this.settings.index);
+				//点击事件
+				this.event();
+				// 鼠标移动事件
+				this.hoverNav();
+				
+			},
+			current: function(index) {
+				var $this = this;
+				$this.navBox.find('ul').children().removeClass('current');
+				$this.sliderLine.width($this.navBox.find('ul').children().eq(index).width());
+				$this.contBox.children().hide();
+				$this.navBox.find('ul').children().eq(index).addClass('current');
+				$this.contBox.children().eq(index).show();
+				$this.sliderLine.stop().animate({
+					left: $this.navBox.find('ul').children().eq(index).offset().left - $this.leftoffset
+				}, 100);
+			},
+			event: function() {
+				var $this = this;
+				$this.navBox.find('ul').children().on('click', function() {
+					//当前点击选中对象
+					$this.current($(this).index());
+					$this.settings.OnChangecallback($(this).index());
+				});
+			},
+			hoverNav: function() {
+				var $this = this;
+				$this.navBox.find('ul').hover(function() {
+					$this.navBox.find('ul').children().hover(function() {
+						//当前鼠标移动的对象
+						$this.moveSlide($(this));
+					});
+				}, function() {
+						//LI集合
+					$this.outslider($(this).children());
+				});
+			},
+			moveSlide: function(me) {
+				var $this = this;
+				$this.sliderLine.stop().animate({
+					left: me.offset().left - $this.leftoffset
+				}, 200, function() {
+					$this.sliderLine.width(me.width());
+				});
+			},
+			outslider: function(me) {
+				var $this = this;
+				 me.each(function(index, el) {
+					//当鼠标离开的时候让滑块停在当前选中的位置
+					if ($(this).hasClass('current')) {
+							console.log($(this).offset().left);
+							console.log( $this.leftoffset);
+						var thisC = $(this);
+						$this.sliderLine.stop().animate({
+							left: $(this).offset().left - $this.leftoffset
+						}, 100, function() {
+							$this.sliderLine.width(thisC.width());
+						});
+					}
+				});
+			}
+		};
+		return this.each(function() {
+			new Tab(option, $(this));
+		});
+	};
+})(jQuery);
+
+	$(function(){
+		$(".mod-tab-menu").tabNavs({
+			index:0,
+			OnChangecallback:function(index){ //当前打开菜单
+
+			}
+		});
+	});
+
+
+
+    </script>
+</body>
+</html>

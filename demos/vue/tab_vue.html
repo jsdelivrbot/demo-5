@@ -1,0 +1,104 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>tab切换Vue写法</title>
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<style>
+		*{
+			margin:0;padding:0;
+		}
+		#box{
+			width:606px;
+			margin:50px auto;
+			border:1px solid black;
+		}
+		#head{
+			overflow:hidden;
+		}
+		#head h1{
+			width:200px;
+			height:60px;
+			font-size:32px;
+			text-align:center;
+			line-height:60px;
+			border:1px solid black;
+			float:left;
+		}
+		#con img{
+			width:606px;
+			height:400px;
+		}
+		#con h2{
+			width:606px;
+			height:60px;
+			text-align:center;
+			line-height:60px;
+			font-size:32px;
+			background-color:#C08FF3 ;
+		}
+		#head .color{
+			background-color:#2371E3;
+			color:#fff;
+		}
+		.none{
+			display: none;
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<div id="head">
+			<h1 v-for="(text,index) in h1text" @click='show(index)' v-bind:class='{color:text.show}'>{{text.text}}</h1>
+		</div>
+		<div id="con">
+			<img  alt="" v-for="src in imgs" :src=src.src v-show='src.show'>
+			<h2 v-for="text in h2text" v-show='text.show'>{{text.text}}</h2>
+		</div>
+	</div>
+</body>
+<script src="https://cdn.bootcss.com/vue/2.2.5/vue.js"></script>
+<script>
+	var vm=new Vue({
+		el:"#box",
+		data:{
+			h1text:[
+				{text:"电影",show:true},
+				{text:"音乐",show:false},
+				{text:"视频",show:false},
+			],
+			imgs:[
+				{src:"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1491828289867&di=58884b432980a5eb8413e5e58c0f5acc&imgtype=0&src=http%3A%2F%2Fimg4.duitang.com%2Fuploads%2Fblog%2F201311%2F25%2F20131125095041_sjsPY.thumb.700_0.jpeg",
+				 show:true},
+				{src:"https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1045973142,236443402&fm=23&gp=0.jpg",
+				 show:false},
+				{src:"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1491828434759&di=e08f56735a392cce2b1d78c327c75a06&imgtype=0&src=http%3A%2F%2Fimg.25pp.com%2Fuploadfile%2Fsoft%2Fimages%2F2014%2F0827%2F20140827115315682.jpg",
+				 show:false},
+			],
+			h2text:[
+				{text:"01.jpg",show:true},
+				{text:"02.jpg",show:false},
+				{text:"03.jpg",show:false},
+			]
+		},
+		methods:{
+			show:function(index){
+				this.h1text.forEach(function(item){
+					item.show=false;
+				});
+				this.imgs.forEach(function(item){
+					item.show=false;
+				});
+				this.h2text.forEach(function(item){
+					item.show=false;
+				});
+				this.h1text[index].show=true;
+				this.imgs[index].show=true;
+				this.h2text[index].show=true;
+			}
+		}
+	})
+
+</script>		
+</head>

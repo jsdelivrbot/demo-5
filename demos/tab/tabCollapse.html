@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>collapse</title>
+	<style type="text/css">
+		body{
+			color: #fff;
+			background-color: #fff;
+			margin: 50px;
+			font-family: "Helvetica Neue", sans-serif;
+		}
+		#collapse{
+			width: 450px;
+		}
+		#collapse article{
+			width: 450px;
+			background-color: #9B59B6;
+			border-bottom: 1px solid rgba(255,255,255,.3);
+		}
+		#collapse h1{
+			background: #8E44AD;
+			height: 70px;
+			line-height: 70px;
+			text-indent: 30px;
+			margin: 0;/*语义化，但默认许多设置需要重置，岂不是变烦了？？*/
+			font-size: 24px;
+			cursor: pointer;
+			-webkit-transition: all .5s;
+			transition: all .5s;
+			-webkit-user-select: none;
+			user-select: none;
+			position: relative;
+		}
+		#collapse h1:hover{
+			background: #6e208e;
+		}
+		#collapse h1::after{
+			content: '';
+			width: 0;
+			height: 0;
+			border-width: 7px;
+			border-style: solid;
+			border-color: #fff transparent transparent transparent;
+			position: absolute;
+			right: 20px;
+			top: 35px;
+		}
+		#collapse h1.hide::after{
+			border-color: transparent #fff transparent transparent;
+			right: 22px;
+			top: 30px;
+		}
+		#collapse p{
+			color: rgba(255,255,255,.85);
+			padding: 30px;
+			margin: 0;
+		}
+		#collapse p.hide{
+			display: none;
+		}
+	</style>
+</head>
+<body>
+	<section id="collapse">
+		<article>
+			<h1>Duis quistor</h1>
+			<p>In hendrerit orci est, in lacinia diam suscipit a. Phasellus pulvinar lectus augue, vitae semper tortor ornare sit amet. Aliquam porttitor posuere turpis at volutpat. Aliquam non tellus cursus, interdum tortor non, scelerisque mi. Maecenas id nisi imperdiet, pellentesque dui congue, sollicitudin erat. Quisque finibus, sapien ut dapibus imperdiet, mauris ex feugiat sem, vel tempor ligula tellus quis mi.</p>
+		</article>
+		<article>
+			<h1>Aenean libero</h1>
+			<p>Ut auctor tincidunt sapien, eget pulvinar est tincidunt eu. Vivamus nisl quam, porta at nisi eget, laoreet tincidunt dui. Cras ac tortor a elit pretium hendrerit in non justo. Nullam vestibulum, lorem in lacinia facilisis, sem mauris tempus nisi, eget dignissim elit dui et quam. Curabitur imperdiet lectus orci, eget mollis velit euismod id.</p>
+		</article>
+		<article>
+			<h1>Vestibulum</h1>
+			<p>Duis in lobortis odio, nec tincidunt sem. Cras nibh lorem, sodales a mattis eu, dignissim placerat lacus. Nullam neque dui, euismod vitae egestas sed, feugiat quis tellus. Duis aliquet velit eget ligula lobortis, a maximus orci imperdiet. Pellentesque dictum eleifend lobortis. Sed dignissim viverra arcu, id tristique nunc. Integer sit amet dapibus nisl.</p>
+		</article>
+	</section>
+	<script type="text/javascript">
+		window.onload = function(){
+			var sec = document.getElementById('collapse');
+			var h1 = sec.getElementsByTagName('h1');
+			var p = sec.getElementsByTagName('p');
+			
+			foldAll();
+			function foldAll(){
+				for (var i = 0; i < h1.length; i++) {
+					h1[i].className = 'hide';
+					p[i].className = 'hide';
+				}
+			}
+			
+			for (var i = 0; i < h1.length; i++) {
+				h1[i].addEventListener('click',function(event){
+					event.preventDefault();
+					refreshCollapse(this);					
+				},false)
+			}
+			function refreshCollapse(obj){
+				if (obj.className === 'hide') {
+					foldAll();
+					obj.className = '';
+					obj.nextElementSibling.className = '';
+				} else {
+					obj.className = 'hide';
+					obj.nextElementSibling.className = 'hide';
+				}
+			}
+			
+		}
+	</script>
+</body>
+</html>

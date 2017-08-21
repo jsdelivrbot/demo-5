@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<script src="http://code.jquery.com/jquery-1.8.0.min.js"></script>
+		<title>jquery tabs</title>
+		<style>
+			#div1 div{width: 200px;height: 200px;border: 1px solid #FF0000;display: none;}
+			.active{background: red;}
+			*{margin: 0;padding: 0;}
+			.tab:after{content: '';display: block;clear: both;}
+			.tab li{width: 150px;height: 30px;line-height: 30px;text-align: center;cursor: pointer;list-style: none;float: left;margin: 0 10px;background: #ABCDEF;border-radius: 5px;}
+			.tab li.active{background: #000;color:#fff;}
+			.content:after{content: '';display: block;clear: both;}
+			.content li{width: 460px;height: 300px;padding:20px;background: #f7f7f7;display: none;}
+		</style>
+	</head>
+	<body>
+		
+		<ul class="tab">
+			<li class="active">1</li>
+			<li>2</li>
+			<li>3</li>
+		</ul>
+		<ul class="content">
+			<li style="display: block;">111111111111</li>
+			<li>222222222222</li>
+			<li>333333333333</li>
+		</ul>
+		<script>
+			$(function(){
+			
+				//jQuery 方法二
+				$('.tab').find('li').click(function(){
+					var index = $(this).index();
+					$(this).addClass('active').siblings().removeClass('active');
+					$('.content').find('li').eq(index).show().siblings().hide();
+				})
+			})
+		</script>
+	</body>
+</html>

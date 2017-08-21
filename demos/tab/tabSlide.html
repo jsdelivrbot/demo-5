@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content="Fly">
+    <title>Title</title>
+    <style>
+        *{ margin: 0; padding: 0; font-family:Microsoft yahei,serif;}
+        li{ list-style:none;}
+        #box{
+            width: 200px;
+            margin-left: 50px;
+        }
+        #box ul{
+            overflow: hidden;
+            height: 35px;
+            border: 1px solid skyblue;
+        }
+        #box ul.or{border-top:none;}
+        #box ul li{
+            font-size:14px;
+            height:30px;
+            line-height: 30px;
+            text-indent: 15px;
+            background: #ffd4dc;
+            border-bottom: 1px dashed #bbb;
+            cursor: pointer;
+        }
+        #box ul li.tablb{
+            line-height: 35px;
+            height: 35px;
+            text-indent: 10px;
+            font-size: 16px;
+            background: #b500ff;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <ul>
+            <li class="tablb">好友</li>
+            <li class="qt">涛哥最帅</li>
+            <li class="qt">阿飞最丑</li>
+            <li class="qt">我是波波维奇</li>
+        </ul>
+        <ul class="or">
+            <li class="tablb">五星英雄</li>
+            <li class="qt">寒冰射手</li>
+            <li class="qt">巫灵女巫</li>
+            <li class="qt">萌萌哒瑞雯</li>
+            <li class="qt">光辉女郎</li>
+        </ul>
+        <ul class="or">
+            <li class="tablb">喜欢的运动</li>
+            <li class="qt">篮球</li>
+            <li class="qt">网球</li>
+            <li class="qt">游泳</li>
+        </ul>
+    </div>
+    <script>
+   var tab= document.querySelectorAll('#box ul li.tablb');
+   var fj = document.querySelectorAll("#box ul");
+   var length = fj.length;//展开ul所用到的长度
+    var qt = document.querySelectorAll("#box ul li.qt");
+    var length2 = qt.length;//背景颜色所用到的长度
+       //点击改变ul长度
+       for (var i=0;i<length;i++ ){
+                //fj[i].show = false;//对应ul初始时的状态
+                tab[i].index = i;
+                tab[i].onclick = function(){
+                    var now = fj[this.index];
+                    now.style.height = now.show?'35px':'auto';
+                    now.show = !now.show;
+                };
+            }
+
+        //给每个li点击添加背景颜色
+      for (i=0;i<length2;i++){
+                qt[i].onclick = function(){
+                    for (var j=0;j<length2;j++)qt[j].style.background = '#ffd4dc';
+                    this.style.background = 'skyblue';
+                };
+            }
+
+    </script>
+</body>
+</html>
+
+
+
+
+
+
