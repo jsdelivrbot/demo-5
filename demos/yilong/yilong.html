@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>图片放大</title>
+    <style>
+        *{
+            padding:0;
+            margin:0;
+        }
+        body{
+            padding-top: 100px;
+        }
+        li{
+            list-style: none;
+            height: 260px;
+        }
+        ul{
+            width:1200px;
+            height:250px;
+            overflow:hidden;
+            margin: 0 auto;
+        }
+        li{
+            float:left;
+            position: relative;
+            width:200px;
+            -webkit-transition: width 0.05s ease-out;
+            -moz-transition: width 0.05s ease-out;
+            -ms-transition: width 0.05s ease-out;
+            -o-transition: width 0.05s ase-out;
+            transition: width 0.05s ease-out;
+        }
+        .mask_b{
+            position: absolute;
+            overflow: hidden;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            top: 0;
+            background: rgba(0,0,0,.3);
+        }
+       .mask_b:hover{
+            background: none;
+        }
+        .text{
+            color: #fff;
+            width: 30px;
+            margin: 0 auto;
+            display: block;
+            font: 30px/30px Microsoft Yahei;
+            position: relative;
+            padding: 30px 0 0 0;
+        }
+        li:hover{
+            width:400px;
+        }
+        ul:hover li:not(:hover){
+            width:160px;
+        }
+        ul:hover li:hover .text{
+            display: none;
+        }
+        .pic-auto{
+            height: 100%;
+        }
+        .pic-auto1{
+            background: url(http://img.elongstatic.com/index/ifold/20150120_ifold1.jpg) no-repeat center 0;
+        }
+        .pic-auto2{
+            background: url(http://img.elongstatic.com/index/ifold/20150120_ifold2.jpg) no-repeat center 0;
+        }
+        .pic-auto3{
+            background: url(http://img.elongstatic.com/index/ifold/20150120_ifold3.jpg) no-repeat center 0;
+        }
+        .pic-auto4{
+            background: url(http://img.elongstatic.com/index/ifold/20150120_ifold4.jpg) no-repeat center 0;
+        }
+        .pic-auto5{
+            background: url(http://img.elongstatic.com/index/ifold/20150120_ifold5.jpg) no-repeat center 0;
+        }
+        .pic-auto6{
+            background: url(http://img.elongstatic.com/index/ifold/20150120_ifold6.jpg) no-repeat center 0;
+        }
+    </style>
+</head>
+<body>
+<ul>
+    <li>
+        <a href="#">
+            <div class="mask_b">
+                <span class="text">园林酒店</span>
+            </div>
+            <div class="pic-auto pic-auto1"></div>
+        </a>
+    </li>
+    <li>
+        <a href="#">
+            <div class="mask_b">
+                <span class="text">情侣酒店</span>
+            </div> 
+            <div class="pic-auto pic-auto2"></div>
+        </a>
+    </li>
+    <li>
+        <a href="#">
+            <div class="mask_b">
+                <span class="text">设计师酒店</span>
+            </div>
+            <div class="pic-auto pic-auto3"></div>
+        </a>
+    </li>
+    <li>
+        <a href="#">
+            <div class="mask_b">
+                <span class="text">青年旅社</span>
+            </div>
+            <div class="pic-auto pic-auto4"></div>
+        </a>
+    </li>
+    <li>
+        <a href="#">
+            <div class="mask_b">
+                <span class="text">特色客栈</span>
+            </div> 
+            <div class="pic-auto pic-auto5"></div>
+        </a>
+    </li>
+    <li>
+        <a href="#">
+            <div class="mask_b">
+                <span class="text">海岛酒店</span>
+            </div> 
+            <div class="pic-auto pic-auto6"></div>
+        </a>
+    </li>
+</ul>
+</body>
+</html>

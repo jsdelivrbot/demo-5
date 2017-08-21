@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    .loader{
+     position: absolute;
+        background: rgba(0,0,0,0.3);
+        height: 100%;
+        width: 100%;
+
+    }
+    .loader-inne{
+        position: absolute;
+        width: 80px;
+        height: 80px;
+        top:calc(50% - 40px);
+        left:calc(50% - 10px);
+    }
+    .loader-inne div{
+        background: #fff;
+        width: 5px;
+        height: 15px;
+        position: absolute;
+        margin: 2px;
+        border-radius: 2px;
+        animation: line-spin-fade-loader 1.2s 0.12s infinite ease-in-out;
+    }
+    .loader-inne div:nth-child(1){
+        top:20px;
+        left:0;
+        animation-delay:0.12s
+    }
+    .loader-inne div:nth-child(2){
+        animation-delay:0.24s;
+        top:13.63636px;
+        left:13.63636px;
+        transform: rotate(-45deg);
+        -webkit-transform:rotate(-45deg);
+        -ms-transform:rotate(-45deg);
+    }
+    .loader div:nth-child(3){
+        animation-delay:0.36s;
+        top:0px;
+        left:20px;
+        transform: rotate(90deg);
+        -webkit-transform:rotate(90deg);
+        -ms-transform:rotate(90deg);
+    }
+    .loader-inne div:nth-child(4){
+
+        animation-delay:0.48s;
+        top:-13.63636px;
+        left:13.63636px;
+        transform: rotate(45deg);
+        -webkit-transform:rotate(45deg);
+        -ms-transform:rotate(45deg);
+    }
+    .loader-inne div:nth-child(5){
+
+        animation-delay:0.6s;
+        top:-20px;
+        left:0px;
+    }
+    .loader-inne div:nth-child(6){
+        animation-delay:0.72s;
+        top:-13.63636px;
+        left:-13.63636px;
+        transform: rotate(-45deg);
+        -webkit-transform:rotate(-45deg);
+        -ms-transform:rotate(-45deg);
+    }
+    .loader-inne div:nth-child(7){
+        top:0;
+        left:-20px;
+        animation-delay:0.84s;
+        transform: rotate(90deg);
+        -webkit-transform:rotate(90deg);
+        -ms-transform:rotate(90deg);
+
+    }
+    .loader-inne div:nth-child(8){
+        top:13.63636px;
+        left:-13.63636px;
+        animation-delay:0.96s;
+        transform: rotate(45deg);
+        -webkit-transform:rotate(45deg);
+        -ms-transform:rotate(45deg);
+    }
+
+    @keyframes line-spin-fade-loader {
+        50%{opacity: 0.3}
+    }
+    100%{
+        opacity: 1;
+    }
+</style>
+<body>
+<div class="loader">
+    <div class="loader-inne">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+</div>
+
+</body>
+</html>
