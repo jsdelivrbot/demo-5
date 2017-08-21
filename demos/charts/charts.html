@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<body>
+		<style type="text/css">
+			#chart{
+				width:600px;
+				height:400px;
+			}
+		</style>
+		<div id="chart">
+			
+		</div>
+		
+		<script type="text/javascript" src="https://cdn.bootcss.com/Chart.js/2.6.0/Chart.min.js" ></script>
+		<script>
+			//设置x轴的值，和走向值
+			var dataTime = {
+				order:[20, 50, 100, 75, 25, 45,10,35,40,55],
+				orderMoney:[0.1, 0.5, 1.0, 2.0, 1.5, 0,0.3,0.8,1.2,1.8],
+				tradeDay:["08-13","08-14","08-15","08-16","08-17","08-18","08-19","08-20","08-21","08-22"]
+			}
+			//创建canvas元素
+			var canvas = document.createElement('canvas')
+			//在div中添加canvas
+			document.getElementById('chart').appendChild(canvas)
+			//创建上下文
+			var ctx = canvas.getContext('2d')
+			//使用插件
+			var myChart = new Chart(ctx, {
+			    type: 'bar',
+			    data: { //设置两种走向图
+			        datasets: [{
+			            data: dataTime.order,
+			            label: 'Order',
+			            yAxisID: 'left-y-axis' //关联Y轴 这是左边
+			        }, {
+			        	type:'line',
+			            data: dataTime.orderMoney,
+			            label: 'OrderMoney',
+			            yAxisID: 'right-y-axis'//关联Y轴 这是右边
+			            
+			        }],
+			        labels: dataTime.tradeDay
+			    },
+			    options: {
+			        scales: {
+			            yAxes: [{
+			                id: 'left-y-axis',//关联Y轴的ID
+			                type: 'linear',//属性
+			                position: 'left',//方向
+			                ticks: {
+			                    suggestedMin: 0, //设置最小值
+			                    suggestedMax: 110,//设置最大值
+			                }
+			            }, {
+			                id: 'right-y-axis',//关联Y轴的ID
+			                type: 'linear',
+			                position: 'right',
+			                ticks: {
+			                    suggestedMin: 0,
+			                    suggestedMax: 3.0,
+			                    //设置返回函数，主要返回值前加符号
+			                    callback: function(value, index, values) {
+			                        return '$ ' + value;
+			                    }
+			                },
+			            }],
+			            
+			        },
+			        //布局，设置上下左右的空格
+			        layout: {
+			            padding: {
+			                left: 10,
+			                right: 20,
+			                top: 0,
+			                bottom: 10
+			            }
+			        }
+			    }
+			});
+		</script>
+	</body>
+</html>
