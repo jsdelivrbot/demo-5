@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="apple-touch-fullscreen" content="YES" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="author" content="webkfa.com"/>
+    <title>html5+css3实现手机toast提示</title>
+    <style>
+        *{margin: 0;padding: 0;border: 0;}
+        body{font-family:"微软雅黑";font-size:16px;}
+        ul,li{list-style:none;}
+        a{width:175px;height:32px;background:#34a0f0;border-radius:3px;line-height: 32px;display:block;margin:0 auto;text-align:center;color:#fff;text-decoration:none;}
+    </style>
+</head>
+
+<body>
+    <br />
+    <a onclick="toast('密码错误 ')">测试一下</a>
+    <script type="text/javascript">
+        function init() {
+            oToast = document.createElement('span');
+            oToast.style.display = 'none';
+            oToast.style.position = 'absolute';
+            oToast.style.top = '0';
+            oToast.style.bottom = '0';
+            oToast.style.width = '100%';
+            oToast.style.zIndex = 999;
+            oToast.style.opacity = '0';
+            oToast.style.transition = 'opacity 1s ease-out';  //1s
+            document.body.appendChild(oToast);
+        }
+        
+        function toast(msg){
+            init();
+            oToast.style.display = 'inline-block';
+            oToast.style.opacity = 1;
+            oToast.innerHTML = '<div style="position: absolute;bottom: 80px;width: 100%;text-align: center"><span style="display: inline-block;line-height: 32px;color:#fff;background: rgba(0, 0, 0, 0.4);border-radius: 5px;padding: 0 8px">'+msg+'</span><div>';
+            setTimeout(function(){
+                oToast.style.opacity = 0;
+                setTimeout(function(){oToast.style.display='none';},1000);
+            },1000);
+        }
+    </script>
+</body>
+
+</html>
