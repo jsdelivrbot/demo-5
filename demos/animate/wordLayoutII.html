@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>标题</title>
+    <meta name="keywords" content="关键词">
+    <meta name="description" content="内容描述">
+    <!-- Bootstrap -->
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <style>
+.feature {
+    text-align: center;
+}
+.title {
+    font-size: 48px;
+    margin-bottom: 30px;
+    opacity: 0;    
+    -webkit-transform: translate(0,40%);
+    transform: translate(0,40%);
+}
+.cont {
+    font-size: 20px;
+    line-height: 1.75;
+    opacity: 0;    
+    -webkit-transform: translate(0,40%);
+    transform: translate(0,40%);
+}
+@-webkit-keyframes fade-in {/*针对webkit内核*/  
+   0% {opacity: 0;}  
+   40% {opacity: 0;}  
+   100% {opacity: 1;}  
+}  
+@-moz-keyframes fade-in { 
+   0% {opacity: 0;}  
+   40% {opacity: 0;}  
+   100% {opacity: 1;}  
+} 
+@-o-keyframes fade-in { 
+   0% {opacity: 0;}  
+   40% {opacity: 0;}  
+   100% {opacity: 1;}  
+}
+@-ms-keyframes fade-in { 
+   0% {opacity: 0;}  
+   40% {opacity: 0;}  
+   100% {opacity: 1;}  
+} 
+@keyframes fade-in {  
+   0% {opacity: 0;}/*初始状态 透明度为0*/  
+   40% {opacity: 0;}/*过渡状态 透明度为0*/  
+   100% {opacity: 1;}/*结束状态 透明度为1*/  
+}   
+.effect{    
+  animation: fade-in;/*动画名称*/ 
+  -webkit-animation:fade-in 2s;/*针对webkit内核*/  
+  -moz-animation:fade-in 2s;/*针对webkit内核*/  
+  -o-animation:fade-in 2s;/*针对webkit内核*/  
+  -ms-animation:fade-in 2s;/*针对webkit内核*/    
+  animation-duration: 2s;/*动画持续时间*/ 
+  -moz-transition:all 1s ease-in .5s;
+  -webkit-transition:all 1s ease-in .5s;
+  -o-transition:all 1s ease-in .5s;
+  -ms-transition:all 1s ease-in .5s;
+  transition:all 1s ease-in .5s;
+} 
+</style>
+</head>
+<body>
+	<div class="feature">
+            <h1 class="title effect">什么是幸福</h1>
+            <div class="cont effect">幸福就像彼岸的花朵,隐约可见,却无法触摸.而幸福的方向,一直都是心儿的方向!<br>诗与远方,只能靠自己去追寻...</div>
+    </div>
+<script>
+jQuery(document).ready(function(){
+       $('.effect').animate({opacity: '1'},1000);     
+       $('.effect').css('transform','matrix(1, 0, 0, 1, 0, 0)');
+});
+</script>
+</body>
+</html>

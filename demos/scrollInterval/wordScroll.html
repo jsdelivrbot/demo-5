@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title>移动端 消息滚动效果</title>
+  <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+</head>
+<style type="text/css" media="all">
+    * {
+    margin: 0;
+    padding: 0;
+}
+a{
+    outline: 0;
+    color: #323232;
+    text-decoration: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+ul,li{
+    list-style: none;
+}
+em {
+    font-style: normal;
+}
+div, input, textarea, button, a {
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+div, ul, li, dl, dt, dd, table, td, input {
+    font-size: 12px;
+}
+*, ::after, ::before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+ .zxjx {
+    background: #f6f6f6;
+}
+ .demo{
+     width:90%;
+     margin:auto;
+     overflow:hidden;
+     height:1.62rem;
+     line-height: 1.62rem;
+     position: absolute;
+     top:0;
+     bottom: 0;
+     left:0;
+     right:0;
+ }
+.zxjx_1 {
+    font-family: "MicroSoft Yahei";
+    background: #f6f6f6;
+    overflow: hidden;
+    padding: 0.5rem 0.31rem;
+    height: 2rem;
+    position: relative;
+}
+.hj {
+    color: #cb0504;
+}
+
+</style>
+<body>
+<div class="zxjx_1">
+    <div id="demo" class="demo">
+        <ul id="demo1">
+            <li>
+                <a href="javascript:;">
+                    <em class="hj">奇点</em>  刚刚创惠易购1人次，贡献1份爱心</a>
+            </li>
+            <li>
+                <a href="javascript:;">
+                    <em class="hj">恒久相依</em>  刚刚创惠易购97人次，贡献97份爱心</a>
+            </li>
+            <li>
+                <a href="javascript:;">
+                    <em class="hj">恒久相依</em>  刚刚创惠易购28人次，贡献28份爱心</a>
+            </li>
+            <li>
+                <a href="javascript:;">
+                    <em class="hj">不哭不闹</em>  刚刚创惠易购10人次，贡献10份爱心</a>
+            </li>
+            <li>
+                <a href="javascript:;">
+                    <em class="hj">奇点</em>  刚刚创惠易购48人次，贡献48份爱心</a>
+            </li>
+            <li>
+                <a href="javascript:;">
+                    <em class="hj">奇点</em>  刚刚创惠易购10人次，贡献10份爱心</a>
+            </li>
+            <li>
+                <a href="javascript:;">
+                    <em class="hj">恒久相依</em>  刚刚创惠易购3人次，贡献3份爱心</a>
+            </li>
+            <li>
+                <a href="javascript:;">
+                    <em class="hj">恒久相依</em>  刚刚创惠易购1人次，贡献1份爱心</a>
+            </li>
+            <li>
+                <a href="javascript:;">
+                    <em class="hj">恒久相依</em>  刚刚创惠易购1人次，贡献1份爱心</a>
+            </li>
+            <li>
+                <a href="javascript:;">
+                    <em class="hj">奇点</em>  刚刚创惠易购1人次，贡献1份爱心</a>
+            </li>
+        </ul>
+        <div id="demo2"></div>
+    </div>
+</div>
+<script>
+    var speed = 60
+    var demo = document.getElementById("demo");
+    var demo2 = document.getElementById("demo2");
+    var demo1 = document.getElementById("demo1");
+    demo2.innerHTML = demo1.innerHTML
+
+    function Marquee() {
+        if (demo2.offsetTop - demo.scrollTop <= 0)
+        	console.log( demo.scrollTop , demo1.scrollTop )
+           
+        else {
+            demo.scrollTop++
+        }
+    }
+    var MyMar = setInterval(Marquee, speed)
+    demo.onmouseover = function() {
+        clearInterval(MyMar)
+    }
+    demo.onmouseout = function() {
+        MyMar = setInterval(Marquee, speed)
+    }
+</script>
+</body>
+</html>

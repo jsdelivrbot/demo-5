@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+        <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+                <title>js模拟微博发布消息</title>
+        </head>
+        <style>
+               *{
+                        padding: 0;
+                        margin: 0;
+                }
+                .box{
+                        width: 600px;
+                        height:auto;
+                        margin: 100px auto;
+                        border: 1px solid #ccc;
+                        padding: 20px;
+                }
+                .box span{
+                        line-height: 36px;
+                }
+                input{
+                        width: 450px;
+                        
+                        padding: 10px;
+                }
+                .text-box {
+                        display: inline-block;
+                        width: 450px;
+                    text-align: left;
+                    min-height: 30px;
+                    line-height: 26px;
+                    border: 1px solid #ddd;
+                    padding: 3px 8px;
+                }
+                ul{
+                        margin: 20px auto;
+                        margin-left: 70px;
+                        width: 450px;
+                        list-style:none ;
+                }
+                li{
+                        border-bottom: 1px dashed #ddd;
+                        line-height: 34px;
+                        margin: 5px 0;
+                        overflow: hidden;
+                }
+                ul li .date{
+                        float: right;
+                        margin-right: 10px;
+                        font-size: 12px;
+                }
+                ul li a{
+                        float: right;
+                }
+                button{
+                        padding: 6px 12px;
+                }
+        </style>
+        <body>
+                <div class="box"id="box">
+                        <span>微博发布</span>
+                        <!--<input type="" name="" id="" value="" />-->
+                        <div contenteditable="true" class="text-box form-control"id="text-box"></div>
+                        <button>发布</button>
+                        <!--<ul>
+                                <li>
+                                        123123
+                                        <a href="javascript:">删除</a>
+                                        <span class="date">2017/2/22</span>
+                                </li>
+                        </ul>-->
+                </div>
+        </body>
+</html>
+<script type="text/javascript">
+        window.onload=function(){
+                var box=document.getElementById("box")
+                var txt=document.getElementById("text-box");
+                var btn=document.getElementsByTagName("button")[0];
+                var ul=document.createElement("ul");
+                box.appendChild(ul);
+                btn.onclick=function(){
+                        if (txt.innerHTML=='') {
+                                alert('不能为空');
+                                return false;
+                        }
+                        var myDate = new Date();
+                        var time=myDate.toLocaleString();
+                        var li=document.createElement("li");
+                        ul.appendChild(li);
+                        li.innerHTML=txt.innerHTML+'<a href="javascript:">删除</a><span class="date">'+time+'</span>';
+                        txt.innerHTML='';
+                        var lis=ul.children;
+                        if (lis==0) {
+                                ul.appendChild(li);
+                        } else{
+                                ul.insertBefore(li,lis[0])
+                        }
+                        
+                        
+//                        删除功能
+                        var dele=document.getElementsByTagName("a");
+                        for (var k = 0; k < dele.length; k++) {
+                                dele[k].onclick=function(){
+                                        ul.removeChild(this.parentNode);
+                                }
+                        }
+                }
+                
+                
+                
+        }
+</script>

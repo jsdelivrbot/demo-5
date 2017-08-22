@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>倒计时</title>
+</head>
+<style>
+    .count-btn{
+        width: 100px;
+        height: 50px;
+        border-radius: 10px;
+        border: 1px solid #F6F6F6;
+        cursor: pointer;
+        margin-top: 30px;
+        margin-left: 60px;
+    }
+</style>
+<body>
+<button class="count-btn">获取验证码</button>
+</body>
+<script src="http://apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript">
+    $('.count-btn').click(function(){
+        setTime(60);
+    })
+
+    function setTime(time){
+        var _btn = $('.count-btn');
+        if(!isNaN(time) && time > 0){
+            _btn.html(time);
+            _btn.attr('disabled',true);
+            var b = setInterval(function(){
+                time--;
+                if(time <= 0){
+                    _btn.html('重新发送');
+                    _btn.attr('disabled',false);
+                    clearInterval(b);
+                }else{
+                    _btn.html(time);
+                }
+            },1000);
+        }else{
+            alert("时间有误")
+        }
+    }
+
+</script>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			p{
+				border: 2px solid deeppink;
+				width: 630px;
+				padding: 25px;
+				font: 16px/2 "arial, helvetica, sans-serif";
+				margin: 50px auto 0;
+			}
+		</style>
+	</head>
+	<body>
+		<p><span>I remember tears streaming down your face when I said, "I'll never let you go"<br />
+		When all those shadows almost killed your light<br />
+		I remember you said, "Don't leave me here alone"<br />
+		But all that's dead and gone and passed tonight<br />
+		Just close your eyes, the sun is going down<br />
+		You'll be alright, no one can hurt you now<br />
+		Come morning light, you and I'll be safe and sound<br />
+		Don't you dare look out your window darling, everything's on fire<br />
+		The war outside our door keeps raging on<br />
+		Hold onto this lullaby, even when the music's gone, gone<br />
+		Just close your eyes, the sun is going down<br />
+		You'll be alright, no one can hurt you now</span>...... <a href="javascript:;">	&gt;&gt;fold</a>
+		</p>
+		<script>
+			var aP=document.getElementsByTagName('p')[0];
+			var aSpan=document.getElementsByTagName('span')[0];
+			var aA=document.getElementsByTagName('a')[0];
+			var str=aSpan.innerHTML;
+			var onOff=true;
+			aA.onclick=function(){
+				if(onOff){
+					aSpan.innerHTML=str.slice(0,41);
+					aA.innerHTML='&gt;&gt;unfold';
+				}else{
+					aSpan.innerHTML=str;
+					aA.innerHTML='&gt;&gt;fold';
+				}
+				onOff=!onOff;
+			}
+		</script>
+	</body>
+</html>

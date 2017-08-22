@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        div{
+            width:100px;
+            height: 40px;
+            border:1px solid #aaa;
+            background: lightblue;
+            margin-bottom: 10px;
+            font-style:italic;
+            text-align: center;
+            background-image: -webkit-gradient(linear, 0 0, 0 bottom, from(rgba(122, 134, 100, 1)), to(rgba(11, 151, 51, 1)));
+            -webkit-background-clip:text;
+            -webkit-text-fill-color:transparent;
+        }
+       
+    </style>
+</head>
+<body  onload="createCode()">
+    <div id="code"></div>
+    <script src="jquery-1.11.3.min.js"></script>
+    <script>
+        function createCode(){
+            var code="";
+            var codeLength = 4;//验证码的长度
+            var checkCode = document.getElementById("code");
+            var random = [0,1,2,3,4,5,6,7,8,9,'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R', 'S','T','U','V','W','X','Y','Z'];//随机数
+            for(var i = 0; i <codeLength; i++) {
+                var index = Math.floor(Math.random()*56);
+                code += random[index];
+            }
+            checkCode.innerHTML = code;
+        };
+        $("#code").click(function(){
+            createCode()
+        });
+       /* var iCode = document.getElementById("input");
+
+        iCode.onblur=function validate(){
+            var inputCode = document.getElementById("input").value.toLowerCase(); //取得输入的验证码并转化为大写
+            if(inputCode.length <= 0) {
+                alert("请输入验证码！");
+            }
+            else if(inputCode != (code.toLowerCase()) ) {
+                alert("验证码输入错误！@_@");
+                createCode();
+                document.getElementById("input").value = "";
+            }
+            else {
+                alert("输入正确");
+            }
+        }*/
+    </script>
+</body>
+</html>
