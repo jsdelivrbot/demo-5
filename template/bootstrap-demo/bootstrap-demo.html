@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>某管理系统</title>
+  <link rel="stylesheet" href="bootstrap.min.css">
+  <!--[if lt IE 9]>
+    <script src="js/html5shiv.js"></script>
+    <script src="js/respond.min.js"></script>
+  <![endif]-->
+  <style type="text/css">
+    body{
+      padding:50px 0;
+    }
+    .sidebar{
+      position:fixed;
+      top:51px;
+      left:0;
+      bottom:0;  /* top和bottom都设置可以使高度为撑满页面 */
+      width:253px;
+      padding:20px 0 0;
+      background-color:#f5f5f5;
+    }
+    .content{
+      margin-left:253px;
+    }
+    .nav-sidebar>.active>a,
+    .nav-sidebar>.active>a:hover,
+    .nav-sidebar>.active>a:focus{
+      color:#fff;
+      background-color:#428bca;
+    }
+    .groupbtn{
+      padding:0 15px 15px;
+    }
+    .progress{
+      margin-top:15px;
+    }
+    @media (max-width:830px){  /* 防止登录表单换行，使顶部导航栏高度大于50px */
+      .form-login{
+        display:none;
+      }
+    }
+  </style>
+</head>
+<body>
+<!-- 顶部导航条开始 -->
+<div class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-1">
+        <span class="sr-only"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <div class="navbar-brand">某管理系统</div>
+    </div>
+    <div class="collapse navbar-collapse" id="navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">首页</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">功能
+            <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+            <li class="divider"></li>
+            <li><a href="#">One more separated link</a></li>  
+          </ul>
+        </li>
+        <li><a href="#">帮助</a></li>
+      </ul>
+      <form class="navbar-form navbar-right form-login">
+        <input class="form-control" type="text" placeholder="用户名">
+        <input class="form-control" type="text" placeholder="密码">
+        <button class="btn btn-default" type="submit">登录</button>
+      </form>
+    </div>
+  </div>
+</div>
+<!-- 顶部导航条结束 -->
+<!-- 正文开始 -->
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-2 sidebar">
+      <ul class="nav nav-sidebar">
+        <li class="active"><a href="#">首页</a></li>
+        <li><a href="#">信息建立</a></li>
+        <li><a href="#">信息查询</a></li>
+        <li><a href="#">信息管理</a></li>
+        <li><a href="#">设置</a></li>
+        <li><a href="#">帮助</a></li>
+      </ul>
+    </div>
+    <div class="col-md-10 content">
+      <h1>管理控制台</h1>
+      <hr>
+      <div class="row groupbtn">
+        <button class="btn btn-default" type="button">操作1</button>
+        <button class="btn btn-primary" type="button">操作2</button>
+        <button class="btn btn-success" type="button">操作3</button>
+        <button class="btn btn-info" type="button">操作4</button>
+        <button class="btn btn-warning" type="button">操作5</button>
+        <button class="btn btn-danger" type="button">操作6</button>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="panel panel-primary">
+            <div class="panel-heading">最新提醒</div>
+            <div class="panel-body">
+              <div class="alert alert-success">
+                <strong>提示</strong>&nbsp;您的订单（2014001）已经审批通过！
+              </div>
+              <div class="alert alert-danger">
+                <strong>提示</strong>&nbsp;您的订单（2014002）被打回！
+              </div>
+              <div class="alert alert-warning">
+                <strong>提示</strong>&nbsp;您的订单（2014003）客户付款延迟！
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="panel panel-primary">
+            <div class="panel-heading">我的任务</div>
+            <div class="panel-body">
+              <ul class="list-group">
+                <li class="list-group-item list-group-item-info">订单审批<span class="badge">42</span></li>
+              </ul>
+              <ul class="list-group">
+                <li class="list-group-item list-group-item-info">收款确认<span class="badge">20</span></li>
+              </ul>
+              <ul class="list-group">
+                <li class="list-group-item list-group-item-info">付款确认<span class="badge">10</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="panel panel-primary">
+            <div class="panel-heading">最新订单</div>
+            <div class="panel-body">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>产品</th>
+                    <th>数量</th>
+                    <th>总金额</th>
+                    <th>业务员</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td>Apple Macbook air</td>
+                    <td>10</td>
+                    <td>80000</td>
+                    <td>王小贱</td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td>Apple iPad air</td>
+                    <td>20</td>
+                    <td>65000</td>
+                    <td>尹开花</td>
+                  </tr>
+                  <tr>
+                    <td>3</td>
+                    <td>Apple Macbook pro</td>
+                    <td>5</td>
+                    <td>50000</td>
+                    <td>刘老根</td>
+                  </tr>
+                </tbody>
+
+              </table>
+              <a href="#" class="btn btn-primary">查看详细&nbsp;>></a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="panel panel-primary">
+            <div class="panel-heading">工程进度
+            </div>
+            <div class="panel-body">
+              <div class="label label-primary">水井挖掘工程</div>
+              <div class="progress">
+                <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:60%">
+                </div>
+              </div>
+              <div class="label label-danger">基建工程</div>
+                <div class="progress">
+                  <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width:80%">
+                  </div>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- 正文结束 -->
+
+
+
+<script src="jquery-3.2.1.min.js"></script>
+<script src="bootstrap.min.js"></script>
+</body>
+</html>

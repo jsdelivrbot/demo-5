@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <meta name="apple-mobile-web-app-capable" content="yes" /><!--ios拖动隐藏浏览器底部工具栏-->
+    <title>活动</title>
+    <link rel="icon" href="data:image/ico;base64,aWNv"><!-- 避免favicon.ico请求404 -->
+    <script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+    <style type="text/css">
+        @charset "utf-8";
+    /**reset**/
+    html {
+        color: #000;
+        background: #fff;
+        overflow-y: scroll;
+        -webkit-text-size-adjust: 100%;
+        -ms-text-size-adjust: 100%
+    }
+
+    html * {
+        outline: 0;
+        -webkit-text-size-adjust: none;
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0)
+    }
+
+    html,
+    body {
+        font-family: sans-serif;
+    }
+
+    body,
+    div,
+    dl,
+    dt,
+    dd,
+    ul,
+    ol,
+    li,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    pre,
+    code,
+    form,
+    fieldset,
+    legend,
+    input,
+    textarea,
+    p,
+    blockquote,
+    th,
+    td,
+    hr,
+    button,
+    article,
+    aside,
+    details,
+    figcaption,
+    figure,
+    footer,
+    header,
+    hgroup,
+    menu,
+    nav,
+    section {
+        margin: 0;
+        padding: 0
+    }
+
+    input,
+    select,
+    textarea {
+        font-size: 100%
+    }
+
+    table {
+        border-collapse: collapse;
+        border-spacing: 0
+    }
+
+    fieldset,
+    img {
+        border: 0;
+        vertical-align: top;
+    }
+
+    abbr,
+    acronym {
+        border: 0;
+        font-variant: normal
+    }
+
+    del {
+        text-decoration: line-through
+    }
+
+    address,
+    caption,
+    cite,
+    code,
+    dfn,
+    em,
+    th,
+    var {
+        font-style: normal;
+        font-weight: 500
+    }
+
+    ol,
+    ul {
+        list-style: none
+    }
+
+    caption,
+    th {
+        text-align: left
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-size: 100%;
+        font-weight: 500
+    }
+
+    q:before,
+    q:after {
+        content: ''
+    }
+
+    sub,
+    sup {
+        font-size: 75%;
+        line-height: 0;
+        position: relative;
+        vertical-align: baseline
+    }
+
+    sup {
+        top: -.5em
+    }
+
+    sub {
+        bottom: -.25em
+    }
+
+    a:hover {
+        text-decoration: none
+    }
+
+    ins,
+    a {
+        text-decoration: none
+    }
+    input[type=button], input[type=submit], input[type=file], button { cursor: pointer; -webkit-appearance: none; } 
+    input[type=button],button {
+        border:0;
+        outline: 0;
+    }
+    .fl {
+        float: left;
+    }
+    .clearfix:after {
+        content:".";
+        display:block;
+        height:0;
+        clear:both;
+        visibility:hidden;
+    }
+    .clearfix {
+        clear:both;
+        zoom:1;
+    }
+    /*
+      global-tips
+    */
+    .global-tips {
+        position: fixed;
+        bottom:50%;
+        left:10%;
+        width: 80%;
+        text-align: center;
+        z-index: 999;
+    }
+    .global-tips-desc {
+        color: #fff;
+        display: inline-block;
+        background:#4a4a4a;
+        min-width: 20%;
+        padding: 10px;
+        font-size: 16px;
+        border-radius: 5px;
+    }
+    /**2017-8-22 index**/
+    main {
+        padding:30px 0;
+    }
+    .top-banner {
+        width: 100%;
+        vertical-align: top;
+    }
+    .activity-receive {
+        width: 80%;
+        margin: 0 auto;
+    }
+
+    .title{
+        width: 100%;
+        line-height: 30px;
+        font-size: 22px;
+        color: #3E3A39;
+        text-align: center;
+        font-weight: normal;
+        margin-top: 10px;
+        padding: 0 0.266667rem;
+        box-sizing: border-box;
+        white-space: nowrap;
+    }
+    .text{
+        width:70%;
+        margin: 0.4rem auto 0;
+    }
+    .item .ic{
+        width: 10px;
+        height: 10px;
+        background: #ffdc00;
+        border-radius: 5px;
+        display: inline-block;
+        position: absolute;
+        left: 0;
+        top:3px;
+    }
+    .item{
+        padding-left: 15px;
+        position: relative;
+        font-size: 15px;
+        color:#4e4e4e;
+        line-height: 20px;
+        margin-bottom: 15px;
+    }
+    .phone,.coupon{
+        margin: 0 0 20px;
+        width: 100%;
+        background: #fff;
+        height: 55px;
+        padding: 10px 15px;
+        line-height: 35px;
+        font-size: 16px;
+        border:  1px solid #cfcfcf;
+        outline: 0;
+        border-radius: 55px;
+        box-sizing: border-box;
+    }
+    .code-box{
+        background: #fff;
+        height: 55px;
+        border:  1px solid #cfcfcf;
+        border-radius: 55px;
+        overflow: hidden;
+        position: relative;
+    }
+    .code{
+        outline: 0;
+        border: 0;
+        height: 53px;
+        padding: 10px 15px;
+        font-size: 16px;
+        line-height: 33px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    .get-code{
+        height: 43px;
+        background: #FFDC00;
+        border-radius: 43px;
+        position: absolute;
+        right: 5px;
+        top:5px;
+        color: #333;
+        font-size: 15px;
+        width: 98px;
+        text-align: center;
+    }
+    .login-buy{
+        margin: 15px auto 10px;
+        background: #FFDC00;
+        width: 150px;
+        height: 45px;
+        font-size: 15px;
+        border-radius: 45px;
+        color: #333;
+        display: block;
+    }
+    .get-code:disabled,
+    .login-buy:disabled{
+        background: #ebebeb;
+        color: #999;    
+    }
+    .input::-webkit-input-placeholder{
+        color:#b6b6b6;
+    }   
+    .input:-moz-placeholder{
+        color:#b6b6b6;
+    }
+    .input::-moz-placeholder{
+        color:#b6b6b6;
+    }
+    .input:-ms-input-placeholder{
+        color:#b6b6b6;
+    }
+    </style>
+</head>
+
+<body>
+	<!--header Begin-->
+	<header></header>
+	<!--header End-->
+
+    <!--main Begin-->
+    <main>
+        
+        <!--领取操作-->
+        <div class="activity-receive">
+            <input class="phone input" type="tel" maxlength="11" placeholder="请输入手机号">
+            <div class="code-box">
+                <input class="code input" type="tel" placeholder="请输入验证码" maxlength="4">
+                <button class="get-code" disabled="">发送验证码</button>
+            </div>
+            <button class="login-buy" disabled="">立即兑换</button>
+        </div>
+
+    </div>
+		
+
+    </main>
+    <!--main End-->
+
+    <script>
+    //global tips
+    function globalTips(tips) {
+        var oHtml = "<div class='global-tips'><div class='global-tips-desc r5'></div></div>";
+            $("body").append(oHtml);
+            $(".global-tips").children(".global-tips-desc").html(tips);
+            setTimeout("$('.global-tips').remove();", 2000);
+    }
+    //手机号长度校验
+    var a = /^(0|86|17951)?(13[0-9]|15[012356789]|18[0-9]|14[57]|17[0678])[0-9]{8}$/; //手机号校验正则
+    var countdown = 60;//验证码倒计时默认59s
+    $(".phone").keyup(function(){
+        var phone = $(this).val();//手机号
+        var phoneLength = phone.length;
+        if(phoneLength == 11 && phone.match(a)){
+           $(".get-code").attr("disabled",false); 
+        } else {
+           $(".get-code").attr("disabled",true); 
+        }
+    });
+    //验证码长度校验
+    $(".code").keyup(function(){
+        var codeLength = $(this).val().length;
+        if(codeLength == 4){
+           $(".login-buy").attr("disabled",false); 
+        } else {
+           $(".login-buy").attr("disabled",true); 
+        }
+    });
+    //发送验证码
+    $(".get-code").click(function(){
+        var code = $(".code").val();
+        var obj = $(this);
+        obj.attr("disabled",true); 
+        if (countdown == 0 || countdown == 60) {  
+            if(countdown == 0){
+                countdown = 60;
+                obj.attr("disabled",false); 
+                obj.html("发送验证码");   
+                return;
+            } else {
+                obj.html("重新发送(" + countdown +"s)"); 
+                console.log(1);//执行方法do something
+                countdown--; 
+            }
+        } else { 
+            obj.html("重新发送(" + countdown +"s)"); 
+            countdown--; 
+        } 
+        setTimeout('$(".get-code").click()',1000);
+    });
+    //兑换提交
+    $(".login-buy").click(function(){
+        
+        var phone = $(".phone").val();//手机号
+        var code = $(".code").val();//验证码
+
+        $(this).attr("disabled",true);//提交按钮2s内禁止提交多次
+        setTimeout('$(".login-buy").attr("disabled",false)',2000);
+
+        if(phone =="" || !phone.match(a)){
+            globalTips("请输入正确的手机号码！");
+            return;
+        }
+
+        if(code =="" || code.length < 4){
+            globalTips("请输入正确的验证码！");
+            return;
+        }
+
+        globalTips("兑换成功！");//如果手机号正确，对应的验证码也正确显示成功
+    });
+
+    </script>
+</body>
+
+</html>
