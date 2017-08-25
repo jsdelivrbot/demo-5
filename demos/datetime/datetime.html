@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+	<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+	<meta name="apple-mobile-web-app-capable" content="yes" /><!--ios拖动隐藏浏览器底部工具栏-->
+	<title>日期筛选</title>
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+	<link rel="icon" href="data:image/ico;base64,aWNv"><!-- 避免favicon.ico请求404 -->
+	<link href="" rel="stylesheet">
+	<style type="text/css">
+	.single {
+		margin: 15px;
+	}
+	</style>
+</head>
+<body>
+
+	<!--当前年份至前10年 Begin-->
+	<section class="single">
+		当前年份至前10年
+		<select id="tenYear"></select>
+	</section>
+
+	<!--当前年份至前5年 Begin-->
+	<section class="single">
+		当前年份至前5年
+		<select id="fiveYear"></select>
+	</section >
+	
+	<!--获取某个年份(比如2015)至当前年份 Begin-->
+	<section class="single">
+		获取某个年份(比如2015)至当前年份 
+		<select id="year2015"></select>
+	</section >
+
+	<!--获取某个年份(比如2010)至当前年份 Begin-->
+	<section class="single">
+		获取某个年份(比如2010)至当前年份 
+		<select id="year2010"></select>
+	</section >
+
+	<!--获取当前日期的前7天 Begin-->
+	<section class="single">
+		获取当前日期的前7天 
+		<select class="date7"></select>
+	</section >
+
+	<!--获取当前日期的前7天 Begin-->
+	<section class="single">
+		获取当前日期的前3天 
+		<select class="date3"></select>
+	</section >
+
+    <script type="text/javascript">
+    //获取当前年份至前10年 selector参数是要操作的元素，yearNum参数是获取当前至多少年
+    function selectYear(selector,yearNum){
+	    var year = new Date().getFullYear();//获取当前年份
+	    var obj = document.getElementById(selector);//要操作的元素
+	    for(var i = year; i > year - yearNum; i--){
+	        obj.options[year+1-i]=new Option(i,i);//第一个参数是option的文本值，第二个参数是option的value值
+	    }
+	    obj.options[0]=new Option('所有年份','');
+	    obj.options[0].selected="selected";//默认选择第一个option
+	}
+
+	selectYear("tenYear",10);//执行获取前10年方法
+
+	selectYear("fiveYear",5);//执行获取前5年方法
+
+
+	//获取某个年份(比如2015)至当前年份
+	function selectYearCur(selector,yearNum){
+	    var year = new Date().getFullYear();
+	    var obj = document.getElementById(selector);
+	    for(var i = yearNum; i <= year; i++){
+	        obj.options[year+1-i] = new Option(i,i);//第一个参数是option的文本值，第二个参数是option的value值
+	    }
+	    obj.options[0] = new Option('所有年份','');
+	    obj.options[1].selected="selected";//设置当前年份为选择状态
+	}
+
+	selectYearCur("year2015",2015);//执行获取某个年份(比如2015)至当前年份方法
+
+	selectYearCur("year2010",2010);//执行获取某个年份(比如2010)至当前年份方法
+
+
+	//获取当前日期的前七天 
+    function selectDate(selector,dateNum){
+	    var myDate = new Date(); //获取今天日期
+	    //var obj = document.getElementById(selector);//要操作的元素
+	    var obj = document.querySelector(selector);
+	    myDate.setDate(myDate.getDate() - (dateNum-1));//getDate() 方法可返回月份的某一天 setDate() 方法用于设置一个月的某一天
+	    for(var i = 0; i < dateNum; i++){
+	    	var dateTemp = myDate.getFullYear().toString() + "-" + getMonth(myDate.getMonth() + 1) + "-" + getDay(myDate.getDate());//年月日拼接
+	    	myDate.setDate(myDate.getDate() + 1);
+	        obj.options[dateNum-i]=new Option(dateTemp,i);//第一个参数是option的文本值，第二个参数是option的value值
+	    }
+	    obj.options[0]=new Option('日期','');
+	    obj.options[0].selected="selected";//默认选择第一个option
+	}
+
+	selectDate(".date7",7);//执行当前日期至前7天方法
+
+	selectDate(".date3",3);//执行当前日期至前3天方法
+
+	//如果月份个位数，前面拼个0.例如1=>01
+	function getMonth(month) {
+        return month < 10 ? "0" + month : month;
+    }
+    //如果日期个位数，前面拼个0.例如1=>01
+    function getDay(day){
+        return day < 10 ? "0" + day : day;
+    }
+    </script>
+</body>
+</html>
