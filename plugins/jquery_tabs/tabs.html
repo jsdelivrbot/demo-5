@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/jquery/1.12.0/jquery.js"></script>
+    <style>
+        #tab {
+            width:400px;
+            height:30px;
+        }
+        #tab li, #tab ul {
+            list-style-type:none;
+        }
+        #tab ul {
+            width:400px;
+            height: 30px;
+            border-bottom:1px solid #ccc;
+            line-height: 30px;
+        }
+        #tab ul li {
+            float:left;
+            margin-left: 20px;
+            padding:0px 10px;
+        }
+        #tab ul li.active {
+            background: yellow;
+        }
+        #tab ul li a {
+            text-decoration: none;
+            color:#666;
+        }
+        #tab div {
+            width:400px;
+            height:350px;
+            background-color:#ccc;
+        }
+        .clearfix:after{
+            content: '';
+            display: block;
+            clear: both;
+            height: 0;
+            visibility: hidden;
+        }
+    </style>
+    
+</head>
+<body>
+    <div id="tab">
+        <ul class="clearfix">
+            <li><a href="#tab1">选项1</a></li>
+            <li><a href="#tab2">选项2</a></li>
+            <li><a href="#tab3">选项3</a></li>
+        </ul>
+        <div id="tab1">
+            <div>1</div>
+        </div>
+        <div id="tab2">
+            <div>2</div>
+        </div>
+        <div id="tab3">
+            <div>3</div>
+        </div>
+    </div>
+	<script src="tab2.js"></script>
+    <script>
+        $(function(){
+            $("#tab").tabs( { evType : 'click' } );
+        });
+    </script>    
+</body>
+</html>
