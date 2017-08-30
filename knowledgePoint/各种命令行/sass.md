@@ -5,8 +5,8 @@
 3. sass -v 查看版本
 4. sass -h 帮助命令
 
-1. sass test.scss\\显示代码内容;
-2. sass test.scss test.css\\把test.scss的文件生成test.css
+1. sass test.scss \\显示代码内容;
+2. sass test.scss test.css \\把test.scss的文件生成test.css
 
 **编译**  
 

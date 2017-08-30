@@ -12,7 +12,6 @@ plugin相关
 过程相关
 1 `npm init -y` 快速新建npm信息
 2 `npm install --save-dev webpack`本地载入webpack
-3
 
 命令
 * 运行：webpack
@@ -23,7 +22,8 @@ plugin相关
 
 服务器监听
 * `webpack-dev-server`
-
+* 注: 若此命令不行,可以设置`npm start`(必须是start)为`node_modules/.bin/webpack-dev-server`
+* `webpack --progress --watch`
 
 
 `npm install css-loader --registry=https://registry.npm.taobao.org/` 使用淘宝的代理
@@ -32,13 +32,4 @@ plugin相关
 ```
 context: path.resolve(__dirname,'src'),
 entry: './index.js',
-```
-```
-
-```
-```
-
-```
-```
-
 ```
