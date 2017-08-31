@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+  // Add smooth scrolling to all links
+  $("a").on('click', function(event) {
+    if (this.hash !== "") {
+      event.preventDefault();
+      var hash = this.hash;
+      $('html, body').animate({
+        scrollTop: $(hash).offset().top
+      }, 800, function(){
+    
+      window.location.hash = hash;
+      });
+    } // End if
+  });
+});
+</script>
+ <style>
+body, html, .main {
+    height: 100%;
+}
+ 
+section {
+    min-height: 100%;
+}
+</style>
+</head>
+<body>
+<a href="#section2" style="
+      font-size: 30px;
+      font-weight: bold;
+      text-align: center;
+">点击此处平滑滚动到第二部分</a>
+<div class="main">
+  <section></section>
+</div>
+<div class="main" id="section2">
+  <section style="
+      background-color: #03c03c;
+      color: #fff;
+      font-size: 30px;
+      text-align: center">
+      SECTION 2
+  </section>
+</div>
+</body>
+</html>
