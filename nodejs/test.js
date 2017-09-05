@@ -56,26 +56,67 @@ http.createServer(function (request, response) {
 // console.log("文件压缩完成。");
 
 
-function printDir(){
-   console.log(__dirname);
-}
+// function printDir(){
+//    console.log(__dirname);
+// }
 // 两秒后执行以上函数
 // var t = setTimeout(printDir, 2000);
 // clearTimeout(t);
 // setInterval(printDir, 2000);
 
-// 输出当前目录
-console.log('当前目录: ' + process.cwd());
+// // 输出当前目录
+// console.log('当前目录: ' + process.cwd());
 
-// 输出当前版本
-console.log('当前版本: ' + process.version);
+// // 输出当前版本
+// console.log('当前版本: ' + process.version);
 
-// 输出内存使用情况
-console.log(process.memoryUsage());
+// // 输出内存使用情况
+// console.log(process.memoryUsage());
 
-// util.inherits 实现继承
-// util.inspect 对象转为字符串
-// util.isArray(object) 判断是否为数组
-// util.isRegExp(object) 是否满足正则
-// util.isDate(object) 是否是一个日期
-// util.isError(object) 是否是错误对象
+//读取文件
+// 异步读取
+// fs.readFile('input.txt', function (err, data) {
+//    if (err) {
+//        return console.error(err);
+//    }
+//    console.log("异步读取: " + data.toString());
+// });
+
+// // 同步读取
+// var data = fs.readFileSync('input.txt');
+// console.log("同步读取: " + data.toString());
+
+// fs.open('input.txt', 'r+', function(err, fd) {
+//    if (err) {
+//        return console.error(err);
+//    }
+//   console.log("文件打开成功！");     
+// });
+// 
+// fs.stat('input.txt', function (err, stats) {
+//    if (err) {
+//        return console.error(err);
+//    }
+//    console.log(stats);
+//    console.log("读取文件信息成功！");
+   
+//    // 检测文件类型
+//    console.log("是否为文件(isFile) ? " + stats.isFile());
+//    console.log("是否为目录(isDirectory) ? " + stats.isDirectory());    
+// });
+// 
+//写入文件
+fs.writeFile('input.txt', '随便写点什么...！',  function(err) {
+   if (err) {
+       return console.error(err);
+   }
+ 
+   fs.readFile('input.txt', function (err, data) {
+      if (err) {
+         return console.error(err);
+      }
+      console.log(data.toString());
+   });
+});
+
+
