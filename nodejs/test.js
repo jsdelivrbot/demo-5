@@ -120,3 +120,11 @@ fs.writeFile('input.txt', '随便写点什么...！',  function(err) {
 });
 
 
+// fs.read//读取文件
+// fs.close//关闭文件
+// fs.ftruncate//截取文件
+// fs.unlink('index.txt');//删除文件
+// fs.mkdir
+// fs.readdir//读取目录
+// fs.rmdir//删除目录
+
