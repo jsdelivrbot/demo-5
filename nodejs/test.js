@@ -72,3 +72,10 @@ console.log('当前版本: ' + process.version);
 
 // 输出内存使用情况
 console.log(process.memoryUsage());
+
+// util.inherits 实现继承
+// util.inspect 对象转为字符串
+// util.isArray(object) 判断是否为数组
+// util.isRegExp(object) 是否满足正则
+// util.isDate(object) 是否是一个日期
+// util.isError(object) 是否是错误对象
