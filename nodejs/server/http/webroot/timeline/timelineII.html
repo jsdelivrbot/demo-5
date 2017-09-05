@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>app</title>
+	<style>
+	.time_line_box{
+       
+        width: 604px;
+        height:46px;
+        margin: 30px;
+    }
+    .time_line{
+        position: relative;
+	    z-index: 1;
+	    left: 0;
+	    top: 12px;
+	    height: 2px;
+	    background: #d2d2d2;
+	    /* -webkit-transition: -webkit-transform 0.4s;
+	    -moz-transition: -moz-transform 0.4s;
+	    transition: transform 0.4s; */
+    }
+    /**文字位置**/
+    .order_item{
+    	padding-top: 3px;
+        position: absolute;
+	    top: 10px;
+	    z-index: 2;
+	    font-size: 14px;
+		color: #dfdfdf;
+    }
+    .order_item.active{
+    	color:#80a5f5;
+    }
+    /**内层圆圈**/
+    .order_item:after{
+        content: '';
+	    position: absolute;
+	    left: 50%;
+	    right: auto;
+	    margin-left: -5px;
+	   /*  transform: translateX(-50%);  */
+	    top: -14px;
+	    height: 10px;
+	    width: 10px;
+	    border-radius: 50%;
+	    background-color: #d2d2d2;
+    }
+    /**外层圈圈**/
+    .order_item:before{
+    	content: '';
+	    position: absolute;
+	    left: 50%;
+	    right: auto;
+	    bottom: 8px;
+	    margin-left: -10px;
+	   /*  transform: translateX(-50%);  */
+	    top: -19px;
+	    height: 16px;
+	    width: 16px;
+	    border-radius: 50%;
+	    border: 2px solid #d2d2d2;
+	    background-color: #fff;
+    }
+     .order_item.active:before{
+	 	border: 2px solid #80a5f5;
+     }
+    /**当前**/
+    .order_item.active:after{
+        background-color: #80a5f5;
+    	border-color: #80a5f5;
+    }
+
+    .filling_line{
+        position: absolute;
+	    z-index: 1;
+	    left: 0;
+	    top: 0;
+	    height: 100%;
+	    width: 100%;
+	    background-color: #80a3f4;
+	   /*  transform-origin: left center;
+	    transition-property: transform;
+	    transition-duration: 0.3s;
+	    transition-timing-function: initial;
+	    transition-delay: initial; */
+    }
+    .time_line:before{
+    	content: '';
+    	position: absolute;
+	    z-index: 1;
+	    left: -6px;
+	    top: -2px;
+	    height: 6px;
+	    width: 6px;
+	    background-color: #80a3f4;
+    }
+    .time_line:after{
+    	content: '';
+    	position: absolute;
+	    z-index: 1;
+	    right: 0px;
+	    top: -2px;
+	    height: 6px;
+	    width: 6px;
+	    background-color: #d2d2d2;
+    }
+    .time_line.end:after{
+		background:#80a3f4;
+    }
+
+
+    ol{
+    	list-style: none;
+    }
+   
+	</style>
+</head>
+<body>
+	<div class="time_line_box">
+            <div class="time_line">
+                <ol>
+                    <li>
+                        <a class="order_item" style="left:27px;">待接单</a>
+                    </li>
+                     <!--间距126-->
+                    <li>
+                        <a class="order_item" style="left:138px;">工作处理中</a>
+                    </li>
+                    <!--间距126-->
+                    <li>
+                        <a class="order_item" style="left:264px;">工单内审中</a>
+                    </li>
+                     <!--间距126-->
+                    <li>
+                        <a class="order_item" style="left:390px;">工单终审中</a>
+                    </li>
+                    <li>
+                        <a class="order_item" style="left:529px">已关闭</a>
+                    </li>
+                    
+                </ol>
+                <span class="filling_line" style="width:598px;"></span>
+            </div>
+        </div>
+       
+	<!--1 selected  width:46px;
+		2 selected	width:163px;
+		3 selected  width:290px;
+		4 selected  width:550px;
+		5 selected	width:598px;
+
+	-->
+		<script src='jquery.min.js'></script>
+		<script>
+			$(function(){
+				var status=2;			
+					if(status==0){
+					$('.order_item').eq(status).addClass('active').parent().prevAll().find('.order_item').addClass('active');
+					$('.filling_line').css('width','46px');	
+				}else if(status==1){
+					$('.order_item').eq(status).addClass('active').parent().prevAll().find('.order_item').addClass('active');
+					$('.filling_line').css('width','163px');	
+				}else if(status==2){
+					$('.order_item').eq(status).addClass('active').parent().prevAll().find('.order_item').addClass('active');
+					$('.filling_line').css('width','290px');	
+				}else if(status==3){
+					$('.order_item').eq(status).addClass('active').parent().prevAll().find('.order_item').addClass('active');;
+					
+					$('.filling_line').css('width','416px');	
+				}else if(status==4){
+					$('.order_item').eq(status).addClass('active').parent().prevAll().find('.order_item').addClass('active');
+					$('.filling_line').css('width','598px');
+					$('.time_line').addClass('end');
+				}					
+			})
+			
+		</script>
+
+		
+</body>
+</html>
