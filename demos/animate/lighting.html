@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <title> new document </title>
+  <meta charset="utf-8">
+  <script src="jquery-1.11.3.js"></script>
+  <script src="jquery-ui.js"></script>
+  <link rel="stylesheet" href="jquery-ui.css">
+  <style>
+  div{
+  width:0px;
+  height:0px;
+  background-color:#f00;
+  position:absolute;
+  top:250px;
+  left:250px;
+  text-align:center;
+  border-radius:50%;
+  }
+  div>p{
+  position:absolute;
+  top:-100px;
+  left:80px;
+  
+  
+  
+  }
+ 
+  </style>
+ </head>
+
+ <body>
+	<div><p>我祈祷拥有一个透明的心灵，和会流泪的眼睛</p></div>
+	<script>
+	$("div").animate({
+		width:500,
+		height:500,
+		backgroundColor:"#fff",
+		opacity:0.1,
+	},3000).animate({
+		backgroundColor:"#f00",
+		opacity:1,
+	},3000).animate({
+		backgroundColor:"#fff",
+		opacity:0.1,
+	},3000)
+	
+	
+	
+	
+	</script>
+ </body>
+</html>

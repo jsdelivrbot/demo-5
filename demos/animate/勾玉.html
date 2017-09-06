@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>写轮眼</title>
+	<style>
+		canvas{
+			position:absolute;
+			left:200px;
+			top:100px;
+		}
+	</style>
+</head>
+<body>
+	<canvas id="canvas" width="400px" height="400px"></canvas>
+	<script type="text/javascript">
+		var canvas=document.getElementById("canvas");
+		var context=canvas.getContext("2d");
+		context.translate(canvas.width/2,canvas.height/2);
+
+		function yuan(){
+			context.fillStyle="black";//外圆
+			context.beginPath();
+			context.arc(0,0,30,0,Math.PI*2);
+			context.fill();
+			context.fillStyle="white";
+			context.beginPath();
+			context.arc(0,0,10,0,Math.PI*2);//小圆
+			context.fill();
+			context.beginPath();
+			context.arc(0,0,120,0,Math.PI*2);
+			context.stroke();
+			context.beginPath();
+			context.arc(0,0,198,0,Math.PI*2);
+			context.stroke();
+			context.fillStyle="black";
+			context.beginPath();
+			context.arc(-104,-60,40,0,Math.PI*2);
+			context.fill();
+			context.beginPath();
+			context.arc(104,-60,40,0,Math.PI*2);
+			context.fill();
+			context.beginPath();
+			context.arc(0,120,40,0,Math.PI*2);
+			context.fill();
+			
+			
+		}
+		function gouyu(){
+			context.fillStyle="white";
+			context.beginPath();
+			context.arc(-103,-60,40,Math.PI/2,Math.PI*3/2,true);
+			context.fill();
+			context.beginPath();
+			context.arc(-104,-81,20,0,Math.PI*2);
+			context.fill();
+			context.fillStyle="black";
+			context.beginPath();
+			context.arc(-104,-40,20,0,Math.PI*2);
+			context.fill();
+		}
+		yuan();
+		gouyu();
+		setInterval(function(){
+		context.clearRect(-canvas.width/2,-canvas.height/2,canvas.width,canvas.height);
+		context.rotate(Math.PI/180*-5);
+		yuan();
+		gouyu();
+		context.beginPath();
+			context.arc(0,0,120,0,Math.PI*2);
+			context.stroke();
+		
+	},10);
+		
+	</script>
+</body>
+</html>

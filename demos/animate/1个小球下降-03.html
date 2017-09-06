@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+ <head>
+  <title> new document </title>
+  <meta charset="utf-8"/>
+  <link href="" type="text/css" rel="stylesheet"/>
+ </head>
+
+ <body>
+	<canvas id="canvas" width="1000px" height="600px" style="background:pink;"></canvas>
+	<script>
+		var canvas=document.getElementById("canvas");
+		var context=canvas.getContext("2d");
+		var y=30;
+		var py=5;
+		var seepd=0;
+
+		function qiu1(){
+			seepd++;
+		if(seepd%110==0){
+			var r=parseInt(Math.random()*255);
+			var g=parseInt(Math.random()*255);
+			var b=parseInt(Math.random()*255);
+		}
+		context.fillStyle="rgb("+r+","+g+","+b+")";
+		context.clearRect(0,0,canvas.width,canvas.height);
+		context.beginPath();
+
+		context.arc(500,y,30,0,Math.PI*2);
+		context.fill();
+		if(y>canvas.height-30||y<30){
+			py=-py;
+		}
+		y+=py;
+		}
+		
+		setInterval(function(){
+			qiu1();
+		},5);
+	</script>
+ </body>
+</html>

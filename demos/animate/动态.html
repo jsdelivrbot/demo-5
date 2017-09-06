@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <title> new document </title>
+  <meta charset="utf-8">
+  <script src="jquery-1.11.3.js"></script>
+  <script src="jquery-ui.js"></script>
+  <link rel="stylesheet" href="jquery-ui.css">
+  <style>
+  div{
+  width:0px;
+  height:0px;
+  background-color:pink;
+  position:absolute;
+  top:0px;
+  left:0px;
+  text-align:center;
+  border-radius:50%;
+  }
+  
+  
+  </style>
+ </head>
+
+ <body>
+	<div>一旦拥有，别无所求</div>
+	<script>
+	$("div").animate({
+		top:0,
+		left:1420,
+		width:500,
+		height:500,
+		backgroundColor:"red",
+		opacity:1,
+		
+		
+
+		
+	},3000).animate({
+		top:250,
+		left:0,
+		backgroundColor:"green",
+		opacity:0.1,
+	},3000).animate({
+		top:500,
+		left:1420,
+		backgroundColor:"blue",
+		opacity:1,
+	},3000)
+	
+	
+	
+	
+	</script>
+ </body>
+</html>

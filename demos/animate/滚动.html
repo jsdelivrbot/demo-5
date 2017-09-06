@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <title> new document </title>
+  <meta charset="utf-8">
+  <style>
+	ul{list-style:none;
+	position:relative;
+	
+	}
+	
+	li{width:200px;
+	height:200px;
+	line-height:200px;
+	border:1px solid transparent;
+	border-radius:50%;
+	position:absolute;
+	margin-left:500px;
+	text-align:center;
+	font-size:12px;
+	
+	}
+	
+	
+	
+	
+	
+
+	
+	
+	li.red{background-color:red;
+	-webkit-animation:red 1000ms linear 0s;
+	left:0px;
+	}
+	@-webkit-keyframes red{from{transform:translate(-740px);}
+	to{transform:translate(0px);}
+	}
+
+
+
+	li.orange{background-color:orange;
+	-webkit-animation:orange 1243ms linear 0s;
+	left:180px;
+	}
+	@-webkit-keyframes orange{from{transform:translate(-920px);}
+	to{transform:translate(0px);}
+	}
+
+
+
+	li.yellow{background-color:yellow;
+	-webkit-animation:yellow 1486ms linear 0s;
+	left:360px;
+	}
+	@-webkit-keyframes yellow{from{transform:translate(-1100px);}
+	to{transform:translate(0px);}
+	}
+	
+
+	li.green{background-color:green;
+	-webkit-animation:green 1730ms linear 0s;
+	left:540px;
+	}
+	@-webkit-keyframes green{from{transform:translate(-1280px) rotate(0deg);}
+	to{transform:translate(0px) rotate(360deg);}
+	}
+  
+  
+  </style>
+ </head>
+
+ <body>
+  <div>
+	<ul>
+		
+			<li class="red"><span>达</span></li>
+			<li class="orange"><span>内</span></li>
+			<li class="yellow"><span>科</span></li>
+			<li class="green"><span>技</span></li>
+	
+	
+	</ul>
+  </div>
+ </body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <title> new document </title>
+  <meta charset="utf-8">
+ </head>
+
+ <body>
+	<canvas id="canvas" width="1000" height="600" style="background:black">
+	
+	</canvas>
+	<script>
+		var canvas=document.getElementById("canvas");
+		var context=canvas.getContext("2d");
+		function Qiu(){
+			this.x=parseInt(Math.floor(Math.random()*canvas.width));
+			this.y=-this.x;
+			this.rand=Math.floor(Math.random()*6);
+			this.creat=function(){
+				this.r=Math.floor(Math.random()*256);
+				this.g=Math.floor(Math.random()*256);
+				this.b=Math.floor(Math.random()*256);
+				
+				context.beginPath();
+				context.moveTo(this.x,this.y);
+				context.lineTo(this.x+this.rand*6,this.y);
+				context.lineTo(this.x+this.rand,this.y+this.rand*3);
+				context.lineTo(this.x+this.rand*3,this.y-this.rand*2);
+				context.lineTo(this.x+this.rand*5,this.y+this.rand*3);
+				context.lineTo(this.x,this.y);
+				
+				context.fillStyle="rgb("+this.r+","+this.g+","+this.b+")";
+				context.fill();
+			}
+			this.step=function(){
+				this.y++;
+			}
+		}
+		var arr=[];
+		function create(){
+			arr.push(new Qiu());
+		
+		}
+		function paint(){
+			for(var i=0;i<arr.length;i++){
+				arr[i].creat();
+				arr[i].step();
+			
+			}
+		
+		}
+		var timer=0;
+		setInterval(function(){
+			context.clearRect(0,0,canvas.width,canvas.height);
+			timer++;
+			if(timer%10==0){
+				create();
+			
+			}
+			paint();
+
+		},10);
+	
+	</script>
+  
+ </body>
+</html>

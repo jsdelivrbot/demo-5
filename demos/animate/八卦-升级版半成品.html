@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Canvas创建路径-绘制图形</title>
+ </head>
+ <body>
+  <canvas id="canvas" width="1000px" height="1000px" ></canvas>
+
+  <script>
+	var canvas = document.getElementById("canvas");
+	var context = canvas.getContext('2d');
+	// //填充矩形
+	// context.beginPath();
+	// context.rect(10,10,100,100);
+	// context.fill();
+	// //描边矩形
+	// context.beginPath();
+	// context.rect(10,120,100,100);
+	// context.stroke();
+	// //填充圆形
+	// context.beginPath();
+	// context.arc(170,60,50,0,Math.PI*2);
+	// context.fill();
+	// //描边圆形
+	// context.beginPath();
+	// context.arc(170,170,50,0,Math.PI*2);
+	// context.stroke();
+	// //填充弧形
+	// context.beginPath();
+	// context.arc(280,10,50,0,Math.PI);
+	// context.fill();
+	// //填充弧形
+	// context.beginPath();
+	// context.arc(280,120,50,Math.PI,Math.PI*2);
+	// context.fill();
+	// //描边弧形
+	// context.beginPath();
+	// context.arc(280,130,50,0,Math.PI);
+	// context.stroke();
+	// //描边弧形
+	// context.beginPath();
+	// context.arc(280,240,50,Math.PI,Math.PI*2);
+	// //context.closePath();
+	// context.stroke();
+	// context.beginPath();
+	// context.arc(390,60,50,Math.PI/2,Math.PI*3/2);
+	// context.closePath();
+	// context.stroke();
+
+	// context.beginPath();
+	// context.arc(390,160,50,Math.PI*3/2,Math.PI/2);
+	// context.closePath();
+	// context.stroke();
+
+	// //绘制直线
+	// context.beginPath();
+	// context.moveTo(10,300);
+	// context.lineTo(100,300);
+	// context.stroke();
+	// //绘制折线(正方形)
+	// context.beginPath();
+	// context.moveTo(110,300);
+	// context.lineTo(210,300);
+	// context.lineTo(210,400);
+	// context.lineTo(110,400);
+	// context.lineTo(110,300);
+	// context.stroke();
+	// //绘制多边形(五角星)
+	// context.beginPath();
+	// context.moveTo(300,350);
+	// context.lineTo(450,350);
+	// context.lineTo(320,450);
+	// context.lineTo(375,290);
+	// context.lineTo(425,450);
+	// context.lineTo(300,350);
+	// context.stroke();
+
+	//八卦图
+	context.translate(canvas.width/2,canvas.height/2);
+
+	function bg(){
+	
+	context.beginPath();
+	context.arc(0,0,202,0,Math.PI*2);
+	context.stroke();
+	context.beginPath();
+	context.arc(0,0,200,Math.PI/2,Math.PI*3/2,true);
+	context.fill();
+	context.beginPath();
+	context.arc(0,100,100,0,Math.PI*2);
+	context.fill();
+
+	context.fillStyle="white";
+	context.beginPath();
+	context.arc(0,-100,100,0,Math.PI*2);
+	context.fill();
+
+	context.beginPath();
+	context.arc(0,100,30,0,Math.PI*2);
+	context.fill();
+
+	context.fillStyle="black";
+	context.beginPath();
+	context.arc(0,-100,30,0,Math.PI*2);
+	context.fill();
+	//外围线1-1上
+	context.strokeStyle="black";
+	context.lineWidth=5;
+	context.beginPath();
+	context.moveTo(-50,-240);
+	context.lineTo(50,-240);
+	context.stroke();
+	context.beginPath();
+	context.moveTo(-50,-250);
+	context.lineTo(50,-250);
+	context.stroke();
+	context.beginPath();
+	context.moveTo(-50,-260);
+	context.lineTo(50,-260);
+	context.stroke();
+	//外围线1-2下
+	context.strokeStyle="black";
+	context.lineWidth=5;
+	context.beginPath();
+	context.moveTo(-50,240);
+	context.lineTo(-10,240);
+	context.stroke();
+	context.beginPath();
+	context.moveTo(10,240);
+	context.lineTo(50,240);
+	context.stroke();
+	context.beginPath();
+	context.moveTo(-50,250);
+	context.lineTo(-10,250);
+	context.stroke();
+	context.beginPath();
+	context.moveTo(10,250);
+	context.lineTo(50,250);
+	context.stroke();
+	context.beginPath();
+	context.moveTo(-50,260);
+	context.lineTo(-10,260);
+	context.stroke();
+	context.beginPath();
+	context.moveTo(10,260);
+	context.lineTo(50,260);
+	context.stroke();
+	//外围线2-1左
+	context.strokeStyle="black";
+	context.lineWidth=5;
+	context.beginPath();
+	context.moveTo(-240,-50);
+	context.lineTo(-240,50);
+	context.stroke();
+	context.beginPath();
+	context.moveTo(-250,-50);
+	context.lineTo(-250,-10);
+	context.stroke();
+	context.beginPath();
+	context.moveTo(-250,10);
+	context.lineTo(-250,50);
+	context.stroke();
+	context.beginPath();
+	context.moveTo(-260,-50);
+	context.lineTo(-260,50);
+	context.stroke();
+	//外围线2-2右
+	context.strokeStyle="black";
+	context.lineWidth=5;
+	context.beginPath();
+	context.moveTo(240,-50);
+	context.lineTo(240,-10);
+	context.stroke();
+	context.beginPath();
+	context.moveTo(240,10);
+	context.lineTo(240,50);
+	context.stroke();
+	context.beginPath();
+	context.moveTo(250,-50);
+	context.lineTo(250,50);
+	context.stroke();
+	context.beginPath();
+	context.moveTo(260,-50);
+	context.lineTo(260,-10);
+	context.stroke();
+	context.beginPath();
+	context.moveTo(260,10);
+	context.lineTo(260,50);
+	context.stroke();
+	//外围线3-1左上
+	context.strokeStyle="black";
+	context.lineWidth=5;
+	context.beginPath();
+	context.moveTo(-200,-140);
+	context.lineTo(-140,-200);
+	context.stroke();
+	context.beginPath();
+	context.moveTo(-208,-148);
+	context.lineTo(-148,-208);
+	context.stroke();
+	context.beginPath();
+	context.moveTo(-216,-156);
+	context.lineTo(-196,-176);
+	context.stroke();
+	context.beginPath();
+	context.moveTo(-156,-216);
+	context.lineTo(-181,-191);
+	context.stroke();
+	}
+	bg();
+	setInterval(function(){
+		context.clearRect(-canvas.width/2,-canvas.height/2,canvas.width,canvas.height);
+		context.rotate(Math.PI/180*1);
+		bg();
+
+	},10);
+	
+	// context.lineWidth=5;
+	// context.lineCap="round";//设置线的端点形状
+	// context.lineJoin="miter";//设置线的交点形状
+	// context.miterLimit=5;
+	// context.strokeStyle="pink";
+	// context.beginPath();
+	// context.moveTo(10,600);
+	// context.lineTo(100,650);
+	// context.lineTo(50,450);
+	// context.stroke();
+	
+  </script>
+ </body>
+</html>

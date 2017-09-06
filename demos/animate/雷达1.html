@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <title> 雷达区域图 </title>
+  <meta charset="utf-8">
+  <style>
+	#canvas{
+	position:absolute;
+	
+	}
+	#canvas1{
+	position:absolute;
+	
+	}
+
+  
+  
+  </style>
+ </head>
+
+ <body>
+ <canvas id="canvas" width="600px" height="600px" ><!--圆的容器-->
+ </canvas>
+ <canvas id="canvas1" width="600px" height="600px" ></canvas><!--方形的容器-->
+<script>
+	var canvas=document.getElementById("canvas");
+	var context=canvas.getContext("2d");
+	var canvas1=document.getElementById("canvas1");
+	var context1=canvas1.getContext("2d");
+	context.translate(canvas.width/2,canvas.height/2);
+	context1.translate(canvas1.width/2,canvas1.height/2);
+	function one(){//圆+针
+	this.r=Math.floor(Math.random()*256);
+	this.g=Math.floor(Math.random()*256);
+	this.b=Math.floor(Math.random()*256);
+	context.strokeStyle="rgb("+this.r+","+this.g+","+this.b+")";
+	context.beginPath();
+	context.arc(50,260,60,0,Math.PI*2);
+	context.stroke();
+	context.beginPath();
+	context.moveTo(0,0);
+	context.lineTo(0,-150);
+	//context.strokeStyle="rgb("+r+","+g+","+b+")";
+	context.stroke();
+	
+	}
+	function two(){//正方形
+		this.r=Math.floor(Math.random()*256);
+		this.g=Math.floor(Math.random()*256);
+		this.b=Math.floor(Math.random()*256);
+		context1.beginPath();
+		context1.moveTo(-canvas1.width/4,-canvas1.height/4);//从原点出发
+		context1.lineTo(canvas1.width/4,-canvas1.height/4);
+		context1.lineTo(canvas1.width/4,canvas1.height/4);
+		context1.lineTo(-canvas1.width/4,canvas1.height/4);
+		context1.lineTo(-canvas1.width/4,-canvas1.height/4);//回原点
+		context1.strokeStyle="rgb("+this.r+","+this.g+","+this.b+")";
+		context1.stroke();
+	}
+	
+	
+	
+	
+
+	setInterval(function(){
+	
+	
+	//
+	context.clearRect(-canvas.width/2,-canvas.width/2,canvas.width,canvas.height);
+	context1.clearRect(-canvas1.width/2,-canvas1.width/2,canvas1.width,canvas1.height);
+	// context.beginPath();
+	// context.moveTo(0,0);
+	// context.lineTo(0,-150);
+	// context.strokeStyle="rgb("+r+","+g+","+b+")";
+	// context.stroke();//为什么不能用fill？？？？思考
+	context.rotate(Math.PI/180*-100);
+	context1.rotate(Math.PI/180*20);
+	one();
+	two();
+	},100);
+	
+
+	
+
+</script>
+ </body>
+</html>

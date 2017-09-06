@@ -1,0 +1,78 @@
+<!doctype html>
+<html>
+ <head>
+  <title> new document </title>
+  <meta charset="utf-8"/>
+  <link href="" type="text/css" rel="stylesheet"/>
+ </head>
+
+ <body>
+	<canvas id="canvas" width="1000px" height="600px" style="background:black;"></canvas>
+	<script>
+		var canvas=document.getElementById("canvas");
+		var context=canvas.getContext("2d");
+		
+		
+		function Qiu(){
+			//this.r=20;
+			this.x=parseInt(Math.random()*canvas.width);
+			this.y=18;
+			this.py=5;
+			
+			
+			this.paint=function(){
+			var r=parseInt(Math.random()*255);
+			var g=parseInt(Math.random()*255);
+			var b=parseInt(Math.random()*255);
+			context.fillStyle="rgb("+r+","+g+","+b+")";	
+				context.beginPath();	
+				context.moveTo(this.x,this.y);
+				context.lineTo(this.x+30,this.y);
+				context.lineTo(this.x+5,this.y+15);
+				context.lineTo(this.x+15,this.y-10);
+				context.lineTo(this.x+25,this.y+15);
+				context.lineTo(this.x,this.y);
+				context.fill();	
+			}
+			this.step=function(){
+
+					if(this.y>canvas.height-60){
+						this.py-=10;
+					
+					}
+					if(this.y<30){
+						this.py+=10;
+					
+					}			
+					this.y+=this.py;
+					
+			}
+			
+		}
+		
+		var arr=[];
+		function createQiu(){
+			var qiu=new Qiu();
+			arr.push(qiu);
+			
+		}
+		function paintQiu(){
+			for(var i=0;i<arr.length;i++){
+							
+				arr[i].paint();
+				arr[i].step();
+				
+			}
+		}
+		var time=0;
+		setInterval(function(){
+			context.clearRect(0,0,canvas.width,canvas.height);
+			time++;
+			if(time%10==0){
+				createQiu();
+			}
+			paintQiu();
+		},50);
+	</script>
+ </body>
+</html>

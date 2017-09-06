@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <title>练习</title>
+  <style>
+  .lf{float:left;   
+  }
+  .rt{float:right;  
+  }
+  #box{width:404px;
+  height:202px;
+  margin:0px auto;
+  }
+  #div1{border:1px solid #000;
+  width:200px;
+  height:200px;
+  line-height:200px;
+  text-align:center;
+  border-radius:50%;
+  background-color:red;
+  -webkit-animation:div1 2s linear 0s infinite alternate;
+
+  }
+
+  @-webkit-keyframes div1{
+  from{transform:translate(-1500px) rotate(0deg);}
+  to{transform:translate(0px) rotate(1080deg);}
+  }
+
+  #div2{border:1px solid #000;
+  width:200px;
+  height:200px;
+  line-height:200px;
+  text-align:center;
+  border-radius:50%;
+  background-color:green;
+  -webkit-animation:div2 2s linear 0s infinite alternate;
+  }
+
+  @-webkit-keyframes div2{
+  from{transform:translate(1500px) rotate(1080deg);}
+  to{transform:translate(0px) rotate(0deg);}
+  }
+   
+  </style>
+ </head>
+
+ <body>
+	<div id="box">
+	<div id="div1" class="lf">我是红球</div>
+	<div id="div2" class="rt">我是绿球</div>
+	<div>
+  
+ </body>
+</html>
