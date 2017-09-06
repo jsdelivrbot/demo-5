@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link href="css/style.css" rel="stylesheet" type="text/css" />
+    <script src="jquery-1.11.3.js"></script>
+    <script>
+        $(function () {
+　　　　　　　　//为每个必填字段后面加上*
+            $("form :input.required").each(function () {
+                var $required = $("<strong class='high'>*</strong>");
+                $(this).parent().append($required);
+            });
+　　　　　　　　//textbox失去焦点事件
+            $("form :input").blur(function () {
+                var $parent = $(this).parent();
+                $parent.find(".formtips").remove();
+                if ($(this).is('#username')) {
+                    if (this.value == "" || this.value.length < 6) {
+                        var errorMsg = "请输入至少6位的用户名";
+                        $parent.append('<span class="formtips onError">' + errorMsg + "</span>");
+                    } else {
+                        var okMsg = "输入正确"
+                        $parent.append('<span class="formtips onSuccess">' + okMsg + '</span>');
+                    }
+                }
+                if ($(this).is('#email')) {
+                    if (this.value == "" || (this.value != "" && !/.+@.+\.[a-zA-Z]{2,4}$/.test(this.value))) {
+                        var errorMsg = "请输入正确的E-Mail地址";
+                        $parent.append('<span class="formtips onError">' + errorMsg + "</span>");
+                    } else {
+                        var okMsg = "输入正确"
+                        $parent.append('<span class="formtips onSuccess">' + okMsg + '</span>');
+                    }
+                }
+            }).keyup(function () {
+                $(this).triggerHandler("blur");//keyup和focus利用triggerHandler来触发blur事件
+            }).focus(function () {
+                $(this).triggerHandler("blur");
+            });
+            $("#send").click(function () {//提交按钮事件
+                $("form .required:input").trigger('blur');
+                var numError = $('form .onError').length;
+                if(numError)
+                {
+                    return false;
+                }
+                alert("注册成功，密码已发到你的邮箱，请查收");
+            });
+        });
+
+    </script>
+</head>
+<body>
+    <form method="post" action="">
+        <div class="int">
+            <label for="username">用户名</label>
+            <input type="text" id="username" class="required" />
+        </div>
+        <div class="int">
+            <label for="email">邮箱</label>
+            <input type="text" id="email" class="required" />
+        </div>
+        <div class="int">
+            <label for="=personinfo">个人资料</label>
+            <input type="text" id="personinfo" />
+        </div>
+        <div class="sub">
+            <input type="submit" value="提交" id="send" />
+            <input type="reset" id="res" />
+        </div>
+    </form>
+</body>
+</html>

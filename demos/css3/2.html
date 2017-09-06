@@ -1,0 +1,26 @@
+<!DOCTYPE html> 
+<html> 
+	<head> 
+	<meta charset="UTF-8"> 
+	<title>测试</title> 
+		<script src="jquery-1.11.3.js"></script> 
+		<script type="text/javascript"> 
+				$(function(){ 
+				//动态添加 
+					$(".add").on("click",function(){ 
+						console.log("进来了"); 
+						$(".info").append('<div class="delete"><h3>单击我来删除我</h3></div>'); 
+					}); 
+					 //对动态添加的元素添加事件-删除 
+					$(".info").on("click",".delete",function(){ 
+						console.log("进来了Delete！"); 
+						$(this).remove(); 
+					}); 
+				 });  
+		</script> 
+ 	</head> 
+	<body> 
+ 		<h2 class='add'>单击我添加动态元素</h2> 
+ 		<div class="info"></div> 
+ 	</body> 
+</html>

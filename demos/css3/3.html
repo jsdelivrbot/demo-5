@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Examples</title>
+        <meta name="description" content="">
+        <meta name="keywords" content="">
+        <style type="text/css">
+            body{
+                width: 100%;
+                height: auto;
+            }
+            .content{
+                width: 150px;
+                height: 50px;
+                position: absolute;
+                top: 20px;
+                left: 20px;
+                overflow: hidden;
+                background-color: red;
+            }
+            .slide-box{
+                width: 300px;
+                position: relative;
+                overflow: hidden;
+            }
+            .slide1{
+                width: 150px;
+                height: 50px;
+                float: left;
+                display: inline-block;
+                line-height: 50px;
+                text-align: center;
+                background-color: #BDD8CF;
+            }
+            .slide2{
+                width: 150px;
+                height: 50px;
+                float: right;
+                display: inline-block;
+                line-height: 50px;
+                text-align: center;
+                background-color: #C1C4C4;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="content">
+            <div class="slide-box">
+                <span class="slide1">左边的元素</span>
+                <span class="slide2">右边的元素</span>
+            </div>
+        </div>
+        
+        
+    <script src="jquery-1.11.3.js"></script>
+    <script>
+        $(function(){
+            $(".content").hover(function(){
+                $(".slide-box").stop(true).animate({right:"150px"},'slow');
+            },function(){
+                $(".slide-box").stop(true).animate({right:"0"},'slow');
+            });
+        })
+    </script>
+    </body>
+</html>

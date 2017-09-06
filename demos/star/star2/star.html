@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	img{
+		position:relative;
+	}
+
+	</style>
+</head>
+<body>
+	<div class='container'>
+		
+	</div>
+	
+
+	<script src='jquery-1.11.3.js'></script>
+	<script>
+	
+    for(var i=0; i<20; i++){
+	      var star = $('<img src="star.png">');
+	      star.css('left', rn(0,$(document).width())+'px');
+	      star.css('top', rn(0,$(document).height())+'px');
+	      star.css('width', rn(50,100)+'px');
+	      $('body').append(star);
+	} 
+    //random number：返回指定范围内的随机整数
+    function rn(min,max){
+      return Math.floor(Math.random()*(max-min))+min;
+    }
+
+	
+	// function FI(){
+	// 	$('img').fadeIn(2000);
+
+	// }
+	// function FO(){
+	// 	$('img').fadeOut(2000);
+
+	// }
+
+
+
+	</script>
+</body>
+</html>
