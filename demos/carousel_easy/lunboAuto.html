@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>自动切换图片</title>
+		<link rel="stylesheet" href="css/idnex2.css" />
+	</head>
+	<style>
+		body,
+		div,
+		p,
+		ul,
+		li,
+		span,
+		input {
+			padding: 0;
+			/*去掉内边距*/
+			margin: 0;
+			/*去掉外边距*/
+		}
+		
+		li {
+			list-style: none;
+			/*去掉列表项的点*/
+		}
+		
+		a {
+			display: block;
+			/*转换成块状元素*/
+			text-decoration: none;
+			/*去掉下划线*/
+		}
+		
+		.le {
+			float: left;
+			/*左浮动*/
+		}
+		
+		.ri {
+			float: right;
+			/*右浮动*/
+		}
+		
+		.clear {
+			clear: both;
+			/*清除浮动*/
+		}
+		
+		div {
+			width: 450px;
+			height: 250px;
+			margin: 200px auto;
+			background: #000;
+			overflow: hidden;
+			position: relative;
+		}
+		
+		div>ul {
+			width: 400%;
+			height: 100%;
+		}
+		
+		div>ul>li {
+			width: 25%;
+			height: 100%;
+			float: left;
+			background: #999;
+		}
+		
+		div>ul>li>p {
+			position: absolute;
+			bottom: 0px;
+			height: 50px;
+			width: 100%;
+			background: rgba(255, 255, 255, .4);
+			color: #fff;
+			text-indent: .5em;
+			line-height: 50px;
+			font-size: 20px;
+		}
+		
+		div>ol {
+			position: absolute;
+			right: 15px;
+			bottom: 0px;
+		}
+		
+		div>ol>li {
+			width: 15px;
+			height: 15px;
+			background: #666;
+			float: left;
+			margin-left: 10px;
+			cursor: pointer;
+			border-radius: 50%;
+		}
+		
+		div>ol>li.on {
+			background: red;
+		}
+		
+		.left,
+		.right {
+			width: 50px;
+			height: 50px;
+			position: absolute;
+			top: 50%;
+			margin-top: -25px;
+			background: rgba(153, 153, 153, .6);
+			text-align: center;
+			line-height: 50px;
+			font-size: 30px;
+			font-weight: bold;
+			color: #fff;
+			cursor: pointer;
+			border-radius: 50%;
+		}
+		
+		.left {
+			left: 10px;
+		}
+		
+		.right {
+			right: 10px;
+		}
+		
+		.left:hover,
+		.right:hover {
+			background: rgba(153, 153, 153, 1);
+		}
+	</style>
+
+	<body>
+		<div class="banner">
+			<ul>
+				<li>
+					<img src="img/time.jpg" />
+					<p>图片嘻嘻嘻1</p>
+				</li>
+				<li><img src="img/timg.jpg" />
+					<p>图片嘻嘻嘻2</p>
+				</li>
+				<li><img src="img/time.jpg" />
+					<p>图片嘻嘻嘻3</p>
+				</li>
+				<li><img src="img/timg.jpg" />
+					<p>图片嘻嘻嘻4</p>
+				</li>
+			</ul>
+			<ol>
+				<li class="on"></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ol>
+
+			<div class="left">&lt;</div>
+			<div class="right">&gt;</div>
+		</div>
+		<script>
+			window.onload = function() {
+				var banner = document.getElementsByClassName("banner").item(0);
+				var ol = banner.getElementsByTagName("ol").item(0);
+				var ul = banner.getElementsByTagName("ul").item(0);
+				var focusLi = ol.getElementsByTagName("li");
+				var left = document.getElementsByClassName("left").item(0);
+				var right = document.getElementsByClassName("right").item(0);
+				var num = 0; //对应图片的下标
+				var tiemr = null;
+				//焦点效果
+				for(var i = 0; i < focusLi.length; i++) {
+					focusLi[i].setAttribute("index", i); //给对应元素添加属性及对应属性值
+					focusLi[i].onclick = function() {
+						//console.log(this.getAttribute("index"));//获取对应元素的属性值
+						moveImg(this);
+						num = this.getAttribute("index");
+					}
+				}
+				//左按钮效果
+				left.onclick = function() {
+					num--;
+					if(num < 0) {
+						num = focusLi.length - 1;
+					}
+					moveImg(focusLi[num])
+				}
+				//右按钮效果
+				right.onclick = function() {
+					num++;
+					if(num > focusLi.length - 1) {
+						num = 0;
+					}
+					moveImg(focusLi[num])
+				}
+				//自动切换
+				timer = setInterval(function() {
+					num++;
+					if(num > focusLi.length - 1) {
+						num = 0;
+					}
+					moveImg(focusLi[num]);
+				}, 2000)
+				//
+				banner.onmouseover = function() {
+					clearInterval(timer);
+				}
+				banner.onmouseout = function() {
+					timer = setInterval(function() {
+						num++;
+						if(num > focusLi.length - 1) {
+							num = 0;
+						}
+						moveImg(focusLi[num]);
+					}, 2000)
+				}
+
+				function moveImg(e) {
+					//焦点切换
+					for(var j = 0; j < focusLi.length; j++) {
+						focusLi[j].className = "";
+					}
+					e.className = "on";
+					//图片切换
+					ul.style.marginLeft = -(e.getAttribute("index") * 100) + "%";
+
+				}
+
+			}
+		</script>
+	</body>
+
+</html>
