@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		#div1{height:500px;width:100%;background: #3d3;position:relative;
+
+		}
+		#div2{
+			position: absolute;background-color:orange;
+		}
+
+	</style>
+</head>
+<body>
+	<div id="div1" >
+        <div id="div2">垂直水平居中</div>
+    </div> 
+	<script src='jquery-1.11.3.js'></script>
+		<script>
+		    var height1=$("#div1").height();
+		    var height2=$("#div2").height();
+		    var width1=$("#div1").width();
+		    var width2=$("#div2").width();
+		    var marginTop=(height1-height2)/2;
+		    var marginLeft=(width1-width2)/2;
+		    $("#div2").css({"top":marginTop+"px","left":marginLeft+"px"});
+		</script>
+</body>
+</html>

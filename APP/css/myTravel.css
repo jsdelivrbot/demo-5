@@ -1,0 +1,27 @@
+body>div{width:100%;height:28.4rem;background:url("../images/body_BG.png") no-repeat;
+    background-size:100%;}
+/*够旅游logo*/
+header>a{font-family:"SimHei";color:#fff;position: absolute;left:0.75rem;top:1rem;}
+header>h3{font-size:0.9rem;color:#fff;text-align: center;margin-top:1rem;}
+/*<!--用户头像-->*/
+.favicon{position: relative;}
+.favicon>div{width:4.25rem;height:4.25rem;border-radius:50%;margin:1.65rem auto 0;}
+.favicon img{width:100%;height:100%;}
+.favicon>a{display: inline-block;font-family:"SimHei";color:#fff;font-weight: bold;
+    position: absolute;right:0.75rem;top:1.5rem;}
+.buttonGroup{text-align: center;margin:1.125rem 0;}
+.buttonGroup>a{width:3.8rem;height:1.7rem;line-height:1.7rem;text-align:center;display:inline-block;font-size:0.8rem;
+    color:#fff;background:#37b5e5;border-radius:1rem;}
+.buttonGroup>a:last-child{background:rgba(0,0,0,0.4);margin-left:2.2rem;}
+
+.findPassword{background:#fff;height:16.35rem;}
+.findPassword ul>li{height:2.175rem;line-height:2.175rem;padding:0 0.75rem;color:#333333;font-size:0.7rem;border-bottom:0.05rem solid #cccccc;}
+.findPassword ul>li>span{display:inline-block;width:0.9rem;height:0.9rem;border-radius:50%;position: relative;top:0.2rem;
+    background:#37b5e5 url("../images/order.png") no-repeat center center;background-size:50%;}
+.findPassword ul>li:nth-child(2)>span{background-image:url("../images/collect.png");}
+.findPassword ul>li:nth-child(3)>span{background-image:url("../images/consultant.png");background-size: 36%;}
+.findPassword ul>li:nth-child(4)>span{background-image:url("../images/coupon.png");}
+.findPassword ul>li:nth-child(5)>span{background-image:url("../images/settings.png");}
+.findPassword ul>li>p{display: inline-block;margin-left:0.5rem;}
+.findPassword ul>li>a{display: inline-block;font-family:"SimHei";font-weight: bold;color:#ccc;
+    position: absolute;right:0.75rem;}

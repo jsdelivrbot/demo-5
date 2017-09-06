@@ -1,0 +1,65 @@
+* {
+	margin:0;
+	padding:0;
+	list-style:none;
+	font-family:"Microsoft YaHei",SimSun,SimHei;
+	font-size:14px;
+}
+body {
+	background:#fff;
+	
+}
+img {
+	border:0;
+}
+a {
+	text-decoration:none;
+	
+}
+
+.clearfix:after {
+	content:"";
+	display:block;
+	clear:both;
+	
+}
+
+
+	
+.navBar {
+	width:100%;
+	height:50px;
+	line-height:50px;
+	background:#EFEFEF;
+}
+.nav {
+	position:relative;
+	margin:0px 0px 0px 40px;	
+}
+
+
+.nav .m {
+	float:left;
+	position:relative;
+}
+
+.nav h3 a {
+	color:#0D0D0D;
+	display:block;
+	width:75px;
+	text-align:center;
+	font-weight:bold;
+}
+.nav h3 a.active {
+	color:#0DB7E4;
+	
+}
+
+.nav .block {
+	height:6px;
+	width:80px;
+	background:#0DB7E4;
+	position:absolute;
+	left:0;
+	top:44px;
+}

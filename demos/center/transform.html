@@ -1,0 +1,17 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{margin:0px; padding:0px;}
+		.test {position: absolute; left:50%; top:50%; -webkit-transform:translate(-50%,-50%); transform:translate(-50%,-50%);}
+		/*css里面有个比较特殊的属性是相对自身宽高来计算的。那就是transform:translate(),注意：百分比计算不是以父元素为基准，而是以自己为基准。; 低版本IE不兼容*/
+	</style>
+</head>
+<body>
+	<div class="test">
+		垂直水平居中
+	</div>	
+</body>
+</html>

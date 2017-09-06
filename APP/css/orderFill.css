@@ -1,0 +1,47 @@
+/*头部订单填写*/
+body>div{width: 100%;height:auto; background:#EDF2F5;}
+header{width:100%;height:2.5rem;line-height:2.5rem;background:#37b5e5;color:#fff;
+    text-align: center;font-size:0.9rem;padding:0 0.75rem;}
+header>a{display: inline-block;font-family:"SimHei";position: absolute;left:0.75rem;}
+header>span{display: inline-block;letter-spacing:0.1rem;}
+
+.basicInfomaion,.discount,.expenseDetail,.schedulInfo{width: 100%;padding-left:0.75rem;background-color:#fff;
+    color:#333333;margin-bottom:0.6rem;}
+
+/*基本信息*/
+.basicInfomaion{margin-top:0.6rem;}
+.basicInfomaion>div{height:1.5rem;line-height:1.5rem; border-bottom:0.025rem solid #E6E6E6;padding-right:0.75rem;}
+.basicInfomaion div h3{font-size:0.7rem;font-weight: bold;float: left;}
+.basicInfomaion div p{float: right;font-size:0.6rem;}
+.basicInfomaion div p>span{display: inline-block;margin-left:0.85rem;}
+.basicInfomaion>p{font-size:0.6rem;line-height:130%;padding:0.3rem 0;}
+/*优惠券*/
+.discount{padding-right:0.75rem;height:2.15rem;line-height:2.15rem;}
+.discount>h3{font-size:0.7rem;font-weight: bold;float: left;}
+.discount>p{float:right;color:#cccccc;font-size:0.6rem;}
+.discount>p>span{display:inline-block;font-family:"SimHei";font-size:0.7rem;font-weight: bold;margin-left: 0.55rem;}
+/*费用明细*/
+.expenseDetail>h3{height:1.5rem;line-height:1.5rem; font-size:0.7rem;font-weight:bold;border-bottom:0.025rem solid #E6E6E6;}
+.expenseDetail ul li{font-size:0.6rem;padding:0.275rem 0;}
+.expenseDetail ul li.borBo{border-bottom:0.025rem solid #E6E6E6; }
+.expenseDetail ul li>p{float: left;}
+.expenseDetail ul li:last-child{height:1.6rem;line-height:1rem;}
+.expenseDetail ul li:last-child>p>span{display:inline-block; width:.8rem;height:.8rem;vertical-align: middle;
+    background: url("../images/youhuiquan.png") no-repeat;background-size: 100%;margin-right:0.25rem;}
+.expenseDetail ul li>span{float:right;margin-right:0.75rem;}
+.expenseDetail div>h5{height:2rem;line-height:2rem; text-align: right;font-size:0.6rem;padding-right: 0.75rem;}
+.expenseDetail div>h5>span{display: inline-block;font-weight: bold;margin-left: 0.4rem;font-size:0.7rem;}
+/*预订人信息*/
+.schedulInfo{margin-bottom:2.5rem;}
+.schedulInfo h3{height:1.5rem;line-height:1.5rem; font-size:0.7rem;font-weight: bold;border-bottom:0.025rem solid #e6e6e6;}
+.schedulInfo form ul li{width:100%;height:1.7rem;line-height:1.7rem;font-size:0.7rem;border-bottom:0.025rem solid #e6e6e6;}
+.schedulInfo form ul li:last-child{border:none;height: auto;}
+.schedulInfo form ul li span{float: left;letter-spacing:0.5rem;}
+.schedulInfo form ul li input{float: left;width:70%;height:1.6rem;line-height:1.6rem;padding-left:0.8rem;}
+.schedulInfo form ul li textarea{width:95%;height:4.8rem;border:0.025rem solid #e6e6e6;border-radius:0.3rem;
+    margin:0.6rem 0.75rem 0 0;padding:0.4rem 0.45rem;background-color:#f2f7fa;color:#ccc;font-size:0.6rem;
+    resize:none;}
+.schedulInfo form ul li textarea:focus{color:#333;outline:none;}
+/*底部提交订单*/
+footer{position: fixed;bottom:0; width:100%;height:2.5rem;line-height:2.5rem;background:#37b5e5;color:#fff;text-align:center;
+    font-size:0.75rem;letter-spacing:0.7rem;}
