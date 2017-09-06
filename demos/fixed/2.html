@@ -1,0 +1,130 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf8">
+		<title>jquery固定定位demo</title>
+		<style type="text/css">
+		*{padding:0px;margin:0px}
+			body {
+				margin: 0;
+				padding-top: 100px;
+				background-color: #fff;
+			}
+			
+			.content {
+				width: 500px;
+				height: 300px;
+				background-color: #ccc;
+			}
+			
+			h2 {
+				padding: 10px;
+				background-color: #000;
+				color: #fff;
+			}
+		</style>
+		<script type="text/javascript" src="jquery-1.11.0.js"></script>
+	</head>
+
+	<body>
+		<div class="floor">
+			<h2 class="fixed1">第一楼</h2>
+			<div class="content">ddddd</div>
+		</div>
+		<div class="floor">
+			<h2 class="fixed2">第二楼</h2>
+			<div class="content">ffff</div>
+		</div>
+		<div class="floor">
+			<h2 class="fixed3">第三楼</h2>
+			<div class="content">sdfsf</div>
+		</div>
+		<div class="floor">
+			<h2 class="fixed4">第四楼</h2>
+			<div class="content" style="height:5000px">aaaaaa</div>
+		</div>
+		<script type="text/javascript">
+			var fixedHeight=parseInt($('.fixed1').outerHeight());
+			console.log(fixedHeight);
+			var fixed1=$(".fixed1");
+			var fixed2=$(".fixed2");
+			var fixed3=$(".fixed3");
+			var fixed4=$(".fixed4");
+			
+//			获取四个定位元素定位方式
+			var position1 = fixed1.css("position");
+			var position2=fixed2.css("position");
+			var position3=fixed3.css("position");
+			var position4=fixed4.css("position");
+				
+			var offsetTop1 = fixed1.offset().top;//获得需定位元素距离页面顶部的高度 100px
+			var offsetTop2=fixed2.offset().top-fixedHeight;//获得需定位元素距离页面顶部的高度 447px
+			var offsetTop3=fixed3.offset().top-fixedHeight;//获得需定位元素距离页面顶部的高度 794px
+			var offsetTop4=fixed4.offset().top-fixedHeight;//获得需定位元素距离页面顶部的高度 1141px
+		
+		
+			
+			
+			//定义滚动事件，判断scrollTop及offsetTop
+			$(window).scroll(function() {
+				var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;//获得滚动过的高度
+				console.log(scrollTop);
+				
+				if(scrollTop > offsetTop1) {//当滚动过的高度大于需定位元素距离顶部的距离时->固定在顶部
+					fixed1.css({
+						"position": "fixed",
+						"width": "100%",
+						"top": "0"
+					});
+				} else {
+					fixed1.removeAttr("style").css({
+						"position": position1,
+						"width": "100%"
+					});
+
+				}
+				if(scrollTop >352) {//当滚动过的高度大于需定位元素距离顶部的距离时->固定在顶部
+					fixed2.css({
+						"position": "fixed",
+						"width": "100%",
+						"top": "0"
+					});
+				} else {
+					fixed2.removeAttr("style").css({
+						"position": position2,
+						"width": "100%"
+					});
+
+				}
+				if(scrollTop >650) {//当滚动过的高度大于需定位元素距离顶部的距离时->固定在顶部
+					fixed3.css({
+						"position": "fixed",
+						"width": "100%",
+						"top": "0"
+					});
+				} else {
+					fixed3.removeAttr("style").css({
+						"position": position3,
+						"width": "100%"
+					});
+
+				}
+				if(scrollTop >954) {//当滚动过的高度大于需定位元素距离顶部的距离时->固定在顶部
+					fixed4.css({
+						"position": "fixed",
+						"width": "100%",
+						"top": "0"
+					});
+				} else {
+					fixed4.removeAttr("style").css({
+						"position": position4,
+						"width": "100%"
+					});
+
+				}
+				 
+			});
+			
+		</script>
+	</body>

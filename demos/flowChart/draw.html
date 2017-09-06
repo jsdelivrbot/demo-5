@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>组织结构图</title>
+    <link rel="stylesheet" href="js/joint.css"/>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/lodash.min.js"></script>
+    <script src="js/backbone-min.js"></script>
+    <script src="js/joint.js"></script>
+</head>
+<body>
+    <div id="draw"></div>
+    <script>
+        //获取文档显示区的高度和宽度
+        var screenWidth=window.innerWidth;
+        var screenHeight=window.innerHeight;
+        var str=[];
+        var  arr=[];
+        var longStr={"maxP":"4","orgnzation":{"1":[{"id":"1","code":null,"key":null,"name":"\u6cb3\u5317\u5927\u5b66","desc":null,"height":"1","parentid":"0","status":"N","created":null,"createdby":null,"updated":null,"updatedby":null}],"2":[{"id":"2","code":null,"key":null,"name":"\u6570\u8ba1\u5b66\u9662","desc":null,"height":"2","parentid":"1","status":"N","created":null,"createdby":null,"updated":null,"updatedby":null},{"id":"3","code":null,"key":null,"name":"\u7ba1\u7406\u5b66\u9662","desc":null,"height":"2","parentid":"1","status":"N","created":null,"createdby":null,"updated":null,"updatedby":null}],"3":[{"id":"4","code":null,"key":null,"name":"\u6570\u75354\u73ed","desc":null,"height":"3","parentid":"2","status":"N","created":null,"createdby":null,"updated":null,"updatedby":null},{"id":"5","code":null,"key":null,"name":"\u7ba1\u74062\u73ed","desc":null,"height":"3","parentid":"3","status":"N","created":null,"createdby":null,"updated":null,"updatedby":null}],"4":[{"id":"6","rank":"\u8bb5\u5821","code":null,"key":null,"name":"\u8bb8\u6821","desc":null,"height":"4","parentid":"4","status":"N","created":null,"createdby":null,"updated":null,"updatedby":null}]}}
+        //画布设置
+        var graph=new joint.dia.Graph();
+        var paper=new joint.dia.Paper({
+                    el:$("#draw"),
+                    width:screenWidth,
+                    height:screenHeight,
+                    gridSize:1,
+                    model:graph
+                });
+        //部门结构基本图形基本结构设定
+        var drect=function(x,y,dname,cellWidth,cellHeight){
+            var cell=new joint.shapes.basic.Rect({
+                size:{width:cellWidth,height:cellHeight},
+                position:{x:x,y:y},
+                attrs:{rect:{fill:"blue",stroke:"none"},text:{text:dname,fill:"white"}}
+            });
+            graph.addCell(cell);
+            return cell;
+        };
+        //部门结构的连接线设定
+        var dlink=function(source,target,point){
+            var cell=new joint.dia.Link({
+                source:{id:source.id},
+                target:{id:target.id},
+                vertices:point,
+                attrs:{
+                    '.connection':{
+                        "fill":"none",
+                        "stroke-linejoin":"round",
+                        "stroke-width":"2",
+                        "stroke":"#333"
+                    }
+                }
+            });
+            graph.addCell(cell);
+            return cell;
+        };
+//部门基本图形绘制
+        var DRDraw=function(dname,maxdeep,num,deep,order,id,pid){
+
+            var gridWidth=screenWidth/num;
+            var gridHeight=screenHeight/maxdeep;
+            var cellWidth=gridWidth*0.6;
+            var cellHeight=gridHeight*0.3;
+            var spacingWidth=gridWidth*0.2;
+//            var spacingHeight=gridHeight*0.3;
+            var y=(gridHeight-cellHeight)*deep;
+            var x=(gridWidth*order)+spacingWidth;
+            var idName=du();
+            idName=drect(x,y,dname,cellWidth,cellHeight);
+            str[id]=idName;
+            return idName;
+        };
+        //变量生成函数
+        var generation=function(){
+            var n=0;
+            return function() {
+                var name = "dp" + n;
+                n++;
+                return name;
+            }
+        }
+//部门间连接线绘制
+        var DClink=function(source,target){
+            //获取元素的位置
+            var souP=source.get("position");
+            var tarP=target.get("position");
+            //获得起始元素的尺寸
+            var w1=source.get("size").width;
+            var h1=source.get("size").height;
+            //获取目标元素的尺寸
+            var w2=target.get("size").width;
+            var h2=target.get("size").height;
+            //计算第一节点的位置
+            var x1=souP.x+w1/2;
+            var y1=tarP.y-(tarP.y-souP.y-h1)/2;
+            //计算第二节点的位置
+            var x2=tarP.x+w2/2;
+            var pointer=[{x:x1,y:y1},{x:x2,y:y1}];
+            dlink(source,target,pointer);
+        };
+        //人员基本图形设定
+        var member=function(x,y,width,height,image,rank,name,id,pid){
+            var cell=new joint.shapes.org.Member({
+                position:{x:x,y:y},
+                size:{width:width,height:height},
+                attrs:{
+                    image:{'xlink:href':image,"ref-y":7},
+                    ".card":{
+                        fill: {
+                            type: 'linearGradient',//线性渐变，中心渐变 radialGradient
+                            stops: [
+                                { offset: '0%', color:  '#39f' },
+                                { offset: '50%', color: '#33f' },
+                                { offset: '100%', color: '#5af' }
+                            ],
+                            attrs: { x1: '0%', y1: '0%', x2: '0%', y2: '100%' }//渐变方向变化
+                        },stroke:"none"},
+                    ".rank":{text:rank,fill:"white","font-weight":"bold","text-decoration":"none"},
+                    ".name":{text:name,fill:"white"}
+                }
+            });
+            graph.addCell(cell);
+            return cell;
+        };
+        //人员基本图形绘制
+        var MDraw=function(mname,rank,image,maxdeep,num,deep,order,id,pid){
+            var gridWidth=screenWidth/num;
+            var gridHeight=screenHeight/maxdeep;
+            var cellWidth=gridWidth*0.6;
+            var cellHeight=gridHeight*0.3;
+            var spacingWidth=gridWidth*0.2;
+//            var spacingHeight=gridHeight*0.3;
+            var y=(gridHeight-cellHeight)*deep;
+            var x=(gridWidth*order)+spacingWidth;
+            var idName=du();
+            idName=member(x,y,cellWidth,cellHeight,image,rank,mname,id,pid);
+            str[id]=idName;
+            return idName;
+        };
+//总体绘制部分
+        var total=function(longStr){
+            var maxdeep=longStr.maxP;//最大层数
+            var numArr=[];
+            var Mnum=1;//层内最大个数
+            for(var i=1;i<=maxdeep;i++ ){
+                var cengNum=longStr.orgnzation[i].length;
+                numArr.push(cengNum);
+            }//获取每层个数
+            for(var c=0;c<numArr.length-1;c++){
+                numArr[c]>numArr[c+1]?Mnum=numArr[c]:Mnum=numArr[c+1];
+            }//获取层内最大个数
+            //*****************逐层绘制********************
+            for(var ceng=1;ceng<=maxdeep;ceng++){
+                var deep=ceng;
+                for(var ge=0;ge<numArr[ceng-1];ge++){
+                    var order=ge;
+                    var id=longStr.orgnzation[ceng][ge].id;
+                    var pid=longStr.orgnzation[ceng][ge].parentid;
+                    var dname=longStr.orgnzation[ceng][ge].name;
+                    var rank=longStr.orgnzation[ceng][ge].rank;
+                    var image;
+                    (pid==0)?(num=1):(num=Mnum);
+                    if(rank==undefined){//判断是否为人员信息
+                        DRDraw(dname,(maxdeep-1),num,(deep-1),order,id,pid);
+                    }else{
+                        MDraw(dname,rank,image,(maxdeep-1),num,(deep-1),order,id,pid);
+                    }
+                    //连接部分
+                   (pid!=0)&&DClink(str[pid],str[id]);
+                    console.log(deep);
+                    console.log(num);
+                    console.log(ge);
+                    console.log(id);
+                    console.log(pid);
+                    console.log(dname);
+                    console.log(rank);
+                }
+            }
+        }
+        var du=generation();
+        total(longStr);
+    </script>
+</body>
+</html>
