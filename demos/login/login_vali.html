@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+    </head>
+    <script src="jquery.min.js"></script>
+    <script>
+        $(function() {
+            $("input[name='uname']").blur(function() { //失去焦点
+                var namestr = $(this).val();
+                var regstr = /^[\u4e00-\u9fa5]{2,4}$/;
+                if(!regstr.test(namestr)) {
+                    $(this).parent().next().html("用户名必须是2-4个汉字").css("color", "red");
+                    return false;
+                }
+                return true;
+            });
+            $("input[name = 'uname']").focus(function() { //获取焦点
+                $(this).val("");
+                $(this).parent().next().html("");
+            });
+            $("input[name='pwd']").blur(function() {
+                var pwdstr = $(this).val();
+                var regstr = /^\w{6}$/;
+                if(!regstr.test(pwdstr)) {
+                    $(this).parent().next().html("密码必须是6位数字字母下划线").css("color", "red");
+                    return false;
+                }
+                return true;
+            });
+            $("input[name='pwd']").focus(function() {
+                $(this).parent().next().html("");
+            });
+            $("input[name='birthday']").blur(function() {
+                var birthdaystr = $(this).val();
+                var regstr = /^(19|20)\d{2}-(1[0-2]|0?[1-9])-(3[0-1]|2[0-9]|0?[1-9])$/;
+                if(!regstr.test(birthdaystr)) {
+                    $(this).parent().next().html("日期格式不正确").css("color", "red");
+                    return false;
+                }
+                return true;
+            });
+            $("input[name='birthday']").focus(function() {
+                $(this).parent().next().html("");
+            });
+            $("input[name='email']").blur(function(){
+                var emailstr = $(this).val();
+                var regstr = /^[\w\-]+@[a-z0-9A-Z]+(\.[a-zA-Z]{2,3}){1,2}$/;
+                if(!regstr.test(emailstr)){
+                    $(this).parent().next().html("邮箱格式不正确").css("color","red");
+                    return false;
+                }
+                return true;
+            });
+            $("input[name='email']").focus(function(){
+                $(this).parent().next().html("");
+            });
+            
+        });
+    </script>
+    <style>
+        body {
+            font-size: 12px;
+        }
+        
+        #home {
+            background-color: beige;
+            border: solid 1px black;
+            width: 550px;
+            height: 185px;
+            margin: auto;
+            margin-top: 20px;
+        }
+        
+        #head {
+            height: 135px;
+        }
+        
+        #foot {
+            text-align: center;
+        }
+        
+        .dl1 {
+            clear: both;
+            padding-left: 10px;
+        }
+        
+        .dl1 dt {
+            float: left;
+            height: 30px;
+            width: 80px;
+            line-height: 30px;
+        }
+        
+        .dl1 dd {
+            float: left;
+            height: 30px;
+            line-height: 30px;
+            /*width: 250px;*/
+        }
+        
+        #btn_res {
+           
+            width: 80px;
+            height: 34px;
+        }
+        
+        #btn_sub {
+           
+            width: 80px;
+            height: 34px;
+        }
+    </style>
+
+    <body>
+        <div id="home">
+            <div id="head">
+                <form action="" method="post">
+                    <dl class="dl1">
+                        <dt>用户名 : </dt>
+                        <dd class="dd1"><input type="text" value="输入用户名" name="uname" /></dd>
+                        <dd></dd>
+                    </dl>
+                    <dl class="dl1">
+                        <dt>用户密码 : </dt>
+                        <dd class="dd1"><input type="password" name="pwd" /></dd>
+                        <dd></dd>
+                    </dl>
+                    <dl class="dl1">
+                        <dt>出生日期 : </dt>
+                        <dd class="dd1"><input type="text" name="birthday" /></dd>
+                        <dd>yyyy-mm-dd</dd>
+                    </dl>
+                    <dl class="dl1">
+                        <dt>用户邮箱 : </dt>
+                        <dd><input type="text" name="email"/></dd>
+                        <dd></dd>
+                    </dl>
+                </form>
+            </div>
+            <div id="foot">
+                <input type="submit" value="" id="btn_sub" />
+                <input type="reset" value="" id="btn_res" />
+            </div>
+        </div>
+    </body>
+
+</html>
