@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+	<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>animate</title>
+		<link rel="stylesheet" href="">
+	</head>
+	<body>
+		<img src="img/mr.png" alt="" id="img1" style="width:32px;height:32px;">
+		<input type="button" value="开始" id="btnGo"><br>
+		<canvas id="c1" width="320" height="200"></canvas><br>
+		<script>
+			var isAnimStart=false,animHandle=null;
+			var frames=[
+             [0,0],[32,0],[64,0]
+			];
+			var fWidth=32,fHeight=32;
+			function $(id){
+               return document.getElementById(id);
+			}
+
+			function init(){
+               $('btnGo').onclick=function(){
+                   if(!isAnimStart){
+                   	var ctx=$('c1').getContext('2d');
+                   	var fIndex=0;//当前序号
+                   	var cX=160,cY=100;//中心
+                   	var img1=$('img1');
+                   	animHandle=setInterval(function(){
+                   		ctx.clearRect(0,0,320,100);
+                   		ctx.drawImage(img1,frames[fIndex][0],frames[fIndex][0],fWidth,fHeight,cX-64,cY-64,fWidth*4,fHeight*4);
+                   		fIndex++;
+                   		if(fIndex>=frames.length){
+                   			fIndex=0;
+                   		}
+                   	},100);
+                    $('btnGo').value="暂停";
+                   	isAnimStart=false;                     
+                   }else{
+                   	$('btnGo').value="开始";
+                   	isAnimStart=false;
+                   	clearInterval(animHandle);
+                   }
+               }
+			}
+			init();
+		</script>		
+	</body>
+	</html>	
