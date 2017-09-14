@@ -1,0 +1,98 @@
+<view class="container">
+  <view class="title flex">
+    <view class="flex_auto">
+      <view style="font-size:38rpx;">吉林省谷本康健生物科技有限公司</view>
+       <view class="title_sub">丽人 瘦体健身</view>
+    </view>
+    
+    <view class="right">
+      <image src="../images/1.png" class="logo"></image>
+    </view>
+  </view>
+  <view class="flex item">
+    <view class="flex_auto item_left">
+      <view>
+        <view class="item_title"><image src="../images/vip.jpg" class="vip_pic"></image>VIP会员</view>
+      </view>
+    </view>
+    <view class="item_right">
+      <view class="right_btn" bindtap="showDialog" data-statu="open">领取</view>
+    </view>
+  </view>
+
+  <view class="flex item">
+    <view class="flex_auto item_left">
+      <view>
+        <view class="item_title"><image src="../images/sale.jpg" class="sale_pic"></image>10元蛋糕券</view>
+        <text class="sub_title">消费满200元可用；适用于蛋糕甜...</text>
+      </view>
+    </view>
+    <view class="item_right">
+      <view class="right_btn" bindtap="showDialog" data-statu="open">查看</view>
+    </view>
+  </view>
+
+
+  <view class="flex item_last">
+    <view class="flex_auto item_left">
+      <view class="m30">
+        <view class="item_title"><image src="../images/address.jpg" class="address_pic"></image>吉林省长春市朝阳区盛世国际4...
+        <image src="../images/next.jpg" class="next_pic"></image>
+        </view>
+      </view>
+      <view class="m30">
+        <view class="item_title"><image src="../images/time.jpg" class="time_pic"></image>9:00-17:00</view>
+      </view>
+      <view class="m30">
+        <view class="item_title"><image src="../images/tel.jpg" class="tel_pic"></image>4008894567</view>
+      </view>
+    </view>
+    <view class="item_right">
+      <view class="right_btn" bindtap="showDialog" data-statu="open">分店</view>
+    </view>
+  </view>
+  <view class="floor floor1">
+    <view class="floor_title">
+      <view style="font-size:24rpx;"><image src="../images/video.jpg" class="video_pic"></image>门店视频</view>
+    </view>
+    <video src="http://www.w3school.com.cn//i/movie.mp4" binderror="videoErrorCallback"></video>
+  </view>
+
+  <view class="floor">
+    <view class="floor_title flex bettwen">
+      <view class="fl" style="font-size:24rpx;"><image src="../images/small_pic.jpg" class="video_pic"></image>门店照片</view>
+      <view class="fr" style="font-size:22rpx;" bindtap="flodFn">展示全部</view>
+    </view>
+    <block>
+    <image wx:for="{{pictures}}"  wx:key="unique" src="{{item}}"  class="col-3" data-index="{{index}}" bindtap="previewImage"></image>
+ <image wx:for="{{picturesTwo}}"  wx:key="unique" src="{{item}}"  class="col-3" data-index="{{index}}" bindtap="previewImage"wx-if="{{isFold}}"></image>
+      <!-- <image src="../images/1.png" class="col-3"></image>
+      <image src="../images/1.png" class="col-3" style="margin-right:0;"></image>
+      <image src="../images/1.png" class="col-3"></image>
+      <image src="../images/1.png" class="col-3"></image>
+      <image src="../images/1.png" class="col-3"  style="margin-right:0;"></image>
+      <image src="../images/1.png" class="col-3"></image>
+      <image src="../images/1.png" class="col-3"></image>
+      <image src="../images/1.png" class="col-3"  style="margin-right:0;"></image> -->
+    </block>
+  </view>
+
+  <view class="floor">
+    <image src="../images/1.png" class="col-12"></image>
+    <text>技术支持：智赢科技</text>
+  </view>
+
+  <!--测试弹窗-->
+  <view class="dialogMarsk" bindtap="showDialog" data-statu="close" wx:if="{{isDialogShow}}"></view>
+  <!--dialog-->
+  <view class="dialog" wx:if="{{isDialogShow}}">
+    <view wx:for="{{dialogData}}" wx:key="item" class="dialogList">
+      <view class="unitItemLeft">
+        <text class="itemTitle">{{item.name}}</text>
+      </view>
+       <view class="unitItemLeft">
+        <text class="itemContent">{{item.address}}</text>
+      </view>
+    </view>
+  </view>
+</view>
