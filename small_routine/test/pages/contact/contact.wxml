@@ -61,11 +61,12 @@
   <view class="floor">
     <view class="floor_title flex bettwen">
       <view class="fl" style="font-size:24rpx;"><image src="../images/small_pic.jpg" class="video_pic"></image>门店照片</view>
-      <view class="fr" style="font-size:22rpx;" bindtap="flodFn">展示全部</view>
+      <view class="fr" style="font-size:22rpx;margin-right:12rpx;" bindtap="flodFn">展示全部</view>
     </view>
     <block>
-    <image wx:for="{{pictures}}"  wx:key="unique" src="{{item}}"  class="col-3" data-index="{{index}}" bindtap="previewImage"></image>
- <image wx:for="{{picturesTwo}}"  wx:key="unique" src="{{item}}"  class="col-3" data-index="{{index}}" bindtap="previewImage"wx-if="{{isFold}}"></image>
+    <image wx:for="{{pictures}}"  wx:key="unique"  src="{{item}}"  class="col-3" data-index="{{index}}" bindtap="previewImage"></image>
+  
+ <!-- <image wx:for="{{picturesTwo}}"  wx:key="unique" src="{{item}}"  class="col-3" data-index="{{index}}" bindtap="previewImage"wx-if="{{isFold}}"></image> -->
       <!-- <image src="../images/1.png" class="col-3"></image>
       <image src="../images/1.png" class="col-3" style="margin-right:0;"></image>
       <image src="../images/1.png" class="col-3"></image>
@@ -77,9 +78,12 @@
     </block>
   </view>
 
-  <view class="floor">
-    <image src="../images/1.png" class="col-12"></image>
-    <text>技术支持：智赢科技</text>
+  <view class="floor col-12">
+    <image src="../images/1.png" style="width:100%;" mode="widthFix"></image>
+   
+  </view>
+  <view style="text-align:center;width:100%;margin:20rpx 0;">
+   <text>技术支持：智赢科技</text>
   </view>
 
   <!--测试弹窗-->

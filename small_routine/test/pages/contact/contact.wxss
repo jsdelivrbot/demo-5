@@ -81,22 +81,23 @@ wxss.txtPage {
   margin-bottom:26rpx;
 }
 video{
-  width:652rpx;
+  width:100%;
   height:370rpx;
 }
 
 .col-3 {
-  width:217rpx;
+  width:217.3rpx;
   height:152rpx;
   float:left;
   margin-right:10rpx;
   margin-bottom:10rpx;
 }
 .col-12{
-  width:674rpx;
+  width:670rpx;
   height:466rpx;
 }
 .floor1{
+  width:100%;
   margin-bottom:44rpx;
 }
 .fl{
