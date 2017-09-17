@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>选项卡-点击触发效果</title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+				list-style: none;
+			}
+			body{
+				background: #58596B;
+				display: flex;
+  				justify-content: center;
+			}
+			#box{
+				margin-top: 10%;
+			}
+			.box ul{
+				width:600px;
+				height: 60px;
+				background: #33344A;
+			}
+			.box ul li{
+				float: left;
+				transition: 0.3s;
+			}
+			.box ul li a{
+				display: block;
+				width: 100px;
+				height: 60px;
+				line-height: 60px;
+				/*border: 1px solid red;*/
+				text-decoration: none;
+				text-align: center;
+				color: #717181;
+				font-size: 15px;
+			}
+			.boxtwo {
+				clear: left;
+			}
+			.boxtwo ul{
+				width: 600px;
+				height: 300px;
+				background: white;
+			}
+			.boxtwo ul li{
+				position: absolute;
+				transition: 0.3s;
+				padding: 30px;
+				font-family: "微软雅黑";
+				font-size: 15px;
+				width: 600px;
+				height: 10px;
+			}
+			.show{
+				opacity: 3;
+			}
+			.hide{
+				opacity: 0;
+			}
+			.bj{
+				background: #e74c3c;
+			}
+		</style>
+		<script type="text/javascript">
+			window.onload=function(){
+				var OneLi=document.getElementsByClassName('box')[0].getElementsByTagName('li');
+				var TwoLi=document.getElementsByClassName('boxtwo')[0].getElementsByTagName('li');
+				var a=document.getElementsByClassName('box')[0].getElementsByTagName('a')
+				
+				OneLi[0].className='bj'
+				a[0].style.color='white'
+				for(var i=0;i<OneLi.length;i++){
+					OneLi[i].index=i
+					OneLi[i].onclick=function(){
+						var num=parseInt(this.index)
+						for(var j=0;j<OneLi.length;j++){
+							OneLi[j].className=''
+							TwoLi[j].className='hide'
+							a[j].style.color=''
+						}
+							OneLi[num].className='bj'
+							TwoLi[num].className='show'
+							a[num].style.color='white'
+					}
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<div id="box">
+			<div class="box">
+				<ul>
+					<li><a href="javascript:void(0)">新闻</a></li>
+					<li><a href="javascript:void(0)">综艺</a></li>
+					<li><a href="javascript:void(0)">娱乐</a></li>
+					<li><a href="javascript:void(0)">购物</a></li>
+				</ul>
+			</div>
+			<div class="boxtwo">
+				<ul>
+					<li class="show">还在打王者LOL呢？国家大事你关心了么？</li>
+					<li class="hide">元芳薛之谦事件你怎么看？</li>
+					<li class="hide">娱乐圈的那点事，潜规则？</li>
+					<li class="hide">淘宝双十一你们是不是又要剁手了？</li>
+				</ul>
+			</div>
+		</div>
+	</body>
+</html>
