@@ -1,0 +1,93 @@
+.bannerBox{
+  position: relative;
+}
+.banner{
+  width:100%;
+}
+
+.sub_title{
+  display: flex;
+  justify-content: space-between;
+  align-items:center;
+  width:640rpx;
+  margin:0 auto;
+  height:92rpx;
+  /* line-height:92rpx; */
+  border-radius: 4rpx;
+  background: #fff;
+  padding:0px 30rpx;
+  position: absolute;
+  bottom:-46rpx;
+  left:50%;
+  margin-left:-350rpx;
+  box-shadow:0px 10rpx 80rpx #E7E6E3;
+}
+.order{
+  width:41rpx;
+  height:38rpx;
+  margin-right:10rpx;
+  vertical-align: middle;
+}
+.sub_title_text{
+  font-size:24rpx;
+  color:#c2bdb7;
+}
+.next{
+  width:18rpx;
+  height:30rpx;
+ 
+}
+.sendForm{
+  padding-top:92rpx;
+}
+.send,.collect{
+  width:60rpx;
+  height:75rpx;
+  margin-right:28rpx;
+  vertical-align: middle;
+}
+.flexBox{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+input{
+  display: inline-block;
+  font-size:24rpx;
+}
+.formView{
+  box-shadow: 10rpx 10rpx 80rpx #E7E6E3;
+}
+.formItem{
+  padding:20rpx 55rpx 20rpx 50rpx;
+}
+.formItem1{
+  border-bottom: 1rpx solid #ddd;
+}
+.labelBox{
+  display:flex;
+  margin-top:30px;
+  padding-left:30rpx;
+}
+.radio{
+  vertical-align: middle;
+  margin-right:10rpx;
+}
+.labelBox .text{
+    font-size:20rpx;
+    color:#c8c4BF;
+  }
+  .labelBox .text text{
+    color:#0089f1;
+  }
+  .submitBox{
+     margin-top:323rpx;  
+    margin-bottom:100rpx;
+  }
+  .callSubmit{
+    width:550rpx;
+    height:90rpx;
+    background: #ff6932;
+    color:#fff;
+    border-radius: 40rpx;
+  }

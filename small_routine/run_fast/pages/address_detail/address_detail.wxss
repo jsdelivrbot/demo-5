@@ -1,0 +1,73 @@
+.next{
+  width:18rpx;
+  height:30rpx;
+}
+.sendForm{
+ 
+}
+.send,.collect{
+  width:60rpx;
+  height:75rpx;
+  margin-right:28rpx;
+  vertical-align: middle;
+}
+.flexBox{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+input{
+  display: inline-block;
+  font-size:24rpx;
+  width:400rpx;
+}
+.nameBox{
+  width:248rpx;
+  height:90rpx;
+  border-right:1rpx solid #ddd;
+}
+.nameInput{
+  width:200rpx;
+}
+.telBox{
+  width:482rpx;
+  height:90rpx;
+}
+.telInput{
+  width:452rpx;
+}
+.formView{
+  padding-left:20rpx;
+  box-shadow: 10rpx 10rpx 80rpx #E7E6E3;
+}
+.formItem{
+  padding:0rpx 44rpx 0rpx 44rpx;
+  height:90rpx;
+}
+.formItem1{
+  border-bottom: 1rpx solid #ddd;
+}
+.formItem2{
+  border-bottom: 1rpx solid #ddd;
+}
+.formItem_spe{
+  height:90rpx;
+  padding-left:44rpx;
+  display:flex;
+  align-items:center;
+}
+.tellBox{
+  display: flex;
+}
+
+  .submitBox{
+     margin-top:323rpx;  
+    margin-bottom:100rpx;
+  }
+  .callSubmit{
+    width:550rpx;
+    height:90rpx;
+    background: #ff6932;
+    color:#fff;
+    border-radius: 40rpx;
+  }

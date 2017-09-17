@@ -1,0 +1,36 @@
+<view class="container">
+  <form bindsubmit="formBindsubmit" bindreset="formReset" class="sendForm">
+    <view class="formView">
+      <view class="flexBox formItem formItem1">
+        <view class="flexBox">
+          <view>
+            <input type="text" name="send" placeholder="{{location.address}}" bindtap="gotoMap" readonly/>
+          </view>
+        </view>
+      </view>
+
+      <view class="flexBox formItem formItem2">
+        <view class="flexBox">
+          <view>
+            <input type="text" name="extra_address" placeholder="请补充楼栋号，例：1栋2单元4楼3号" />
+          </view>
+        </view>
+      </view>
+      <view class="formItem_spe">
+        <view class="flexBox nameBox">
+          <view>
+            <input type="text" name="nameInput" class="nameInput" placeholder="收货人姓名"/>
+          </view>
+        </view>
+         <view class="tellBox">
+          <view style="padding-left:27rpx;">
+            <input type="text" class="tellInput" name="tellInput" placeholder="收货人电话"/>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="submitBox flex">
+      <button class="callSubmit" bindtap="gotoIndex">回到首页</button>
+    </view>
+  </form>
+</view>
