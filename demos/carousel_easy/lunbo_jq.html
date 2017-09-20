@@ -1,0 +1,93 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>标题</title>
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<style>
+	body,h1,h2,h3,h4,h5,h6,div,p,dl,dt,dd,ol,ul,li,form,table,th,td,a,img,span,strong,var,em,input,textarea,select,option{margin: 0; padding: 0;}
+	html,body{font-family:"微软雅黑","宋体",Arail,Tabhoma; font-size: 12px; text-align: left;}
+	ul,ol{list-style: none;}
+	img{border: 0;}
+	input,select,textarea{outline:0;}
+	textarea{resize:none; overflow: auto;}
+	table{border-collapse: collapse; border-spacing: 0;}
+	th,strong,var,em{font-weight: normal; font-style: normal;}
+	a{text-decoration: none;}
+	
+	
+	
+	.outer{margin:0 auto;height:300px;width:500px;position: relative;}
+	.outer img{position: absolute;height:300px;width:500px;}
+	.btn{height:50px;width:30px;background: black;opacity: 0.5;color:white;font-size:40px;text-align: center;line-height: 50px;position: absolute;top:125px;left:260px;}
+	.btn2{height:50px;width:30px;background: black;opacity: 0.5;color:white;font-size:40px;text-align: center;line-height: 50px;position: absolute;top:125px;right:260px;}
+	.shuzi{height:20px;position: absolute;left:45%;top:279px;}
+	li{width:20px;height:20px;background: skyblue;border-radius: 50%;float:left;color:white;font-size:14px;text-align: center;line-height: 20px;}
+	.sel{background: red}
+	</style>
+</head>
+<body>
+	<div class="outer">
+		<img src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3974870478,441709541&fm=27&gp=0.jpg" alt="">
+		<img src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1410013081,1524825774&fm=27&gp=0.jpg" alt="">
+		<img src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=2464952321,3339139972&fm=27&gp=0.jpg" alt="">
+		<img src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2045851784,769837280&fm=27&gp=0.jpg" alt="">
+		<img src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=1401968824,2433090857&fm=11&gp=0.jpg" alt="">
+	
+	</div>
+	<div class="btn"><</div>
+	<div class="btn2">></div>
+	<ul class="shuzi">
+		<li class="sel">1</li>
+		<li>2</li>
+		<li>3</li>
+		<li>4</li>
+		<li>5</li>
+	</ul>
+</body>
+<script src="http://lib.sinaapp.com/js/jquery/1.7.2/jquery.min.js"></script>
+<script>	
+	var i=0,timer;
+	tim();
+	$('img').eq(0).show().siblings().hide();
+		$('li').click(function(){
+			clearInterval(timer);
+			i=$(this).index();
+			show();
+			tim();
+		})
+		$(".btn").click(function(){
+			clearInterval(timer);
+			if(i==0){
+				i=5;
+			}
+			i--;
+			show();
+			tim();
+		})
+		$(".btn2").click(function(){
+			clearInterval(timer);
+			if(i==4){
+				i=-1;
+			}
+			i++;
+			show();
+			tim();
+		})
+
+	function show(){
+		$('img').eq(i).fadeIn(300).siblings().fadeOut();
+		$('li').eq(i).addClass('sel').siblings().removeClass('sel');
+	}
+	function tim(){
+		timer=setInterval(function(){
+			i++;
+			if(i==5){
+				i=0;
+			}
+			show();
+		},2500)
+	}
+</script>
+</html>
