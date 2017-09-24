@@ -1,0 +1,121 @@
+<view class="container">
+  <view class="swiper-tab">
+    <view class="swiper-tab-item {{currentTab==0?'active':''}}" data-current="0" data-code="0" bindtap="clickTab">全部</view>
+    <view class="swiper-tab-item {{currentTab==1?'active':''}}" data-current="1" data-code="1" bindtap="clickTab">待取件</view>
+    <view class="swiper-tab-item {{currentTab==2?'active':''}}" data-current="2" data-code="2" bindtap="clickTab">配送中</view>
+    <view class="swiper-tab-item {{currentTab==3?'active':''}}" data-current="3" data-code="4" bindtap="clickTab">已完成</view>
+    <view class="swiper-tab-item {{currentTab==4?'active':''}}" data-current="4" data-code="3" bindtap="clickTab">已取消</view>
+  </view>
+
+  <swiper current="{{currentTab}}" duration="300" bindchange="swiperTab" style="height:calc( 100vh - 92rpx );">
+    <!-- 全部 -->
+    <swiper-item>
+      <scroll-view scroll-y="true" scroll-top="{{scrolltop}}" bindscroll="scrollHandle" wx:for="{{all.data}}" lower-threshold="50"  bindscrolltolower="scrollLoading" bindscrolltoupper="onPullDownRefresh">
+          <!-- 全部item -->
+          <view class="item" bindtap="allStatus">
+            <view class="item_head flexBox">
+              <view data-orderid="{{item.order_id}}">{{item.order_sn}}</view>
+              <view class="orderStatus" >{{item.statusName}}</view>
+            </view>
+            <view class="item_body flex">
+              <view class="mb20">收件人：<text data-endphone="{{item.end_phone}}">{{item.end_name}}</text></view>
+              <view class="mb30">地址：<text>{{item.address}}</text></view>
+              <view class="mb20">寄件人：<text>{{item.start_name}}</text></view>
+              <view>地址：<text data-startaddressid="{{item.start_address_id}}">{{item.start_address}}</text></view>
+            </view>
+            <view class="item_foot">
+              <button class="pay_now">立即支付</button>
+            </view>
+          </view> 
+      </scroll-view>
+    </swiper-item>
+
+    <!-- 待取件 -->
+    <swiper-item>
+        <scroll-view scroll-y="true" scroll-top="{{scrolltop}}" bindscroll="scrollHandle" wx:for="{{substitude.data}}">
+          <!-- 全部item -->
+          <view class="item" bindtap="allStatus">
+            <view class="item_head flexBox">
+              <view data-orderid="{{item.order_id}}">{{item.order_sn}}</view>
+              <view class="orderStatus" >{{item.statusName}}</view>
+            </view>
+            <view class="item_body flex">
+              <view class="mb20">收件人：<text data-endphone="{{item.end_phone}}">{{item.end_name}}</text></view>
+              <view class="mb30">地址：<text>{{item.address}}</text></view>
+              <view class="mb20">寄件人：<text>{{item.start_name}}</text></view>
+              <view>地址：<text data-startaddressid="{{item.start_address_id}}">{{item.start_address}}</text></view>
+            </view>
+            <view class="item_foot">
+              <button class="pay_now">立即支付</button>
+            </view>
+          </view> 
+      </scroll-view>
+    </swiper-item>
+
+    <!-- 配送中 -->
+    <swiper-item>
+      <scroll-view scroll-y="true" scroll-top="{{scrolltop}}" bindscroll="scrollHandle" wx:for="{{delivering.data}}">
+          <!-- 全部item -->
+          <view class="item" bindtap="allStatus">
+            <view class="item_head flexBox">
+              <view data-orderid="{{item.order_id}}">{{item.order_sn}}</view>
+              <view class="orderStatus" >{{item.statusName}}</view>
+            </view>
+            <view class="item_body flex">
+              <view class="mb20">收件人：<text data-endphone="{{item.end_phone}}">{{item.end_name}}</text></view>
+              <view class="mb30">地址：<text>{{item.address}}</text></view>
+              <view class="mb20">寄件人：<text>{{item.start_name}}</text></view>
+              <view>地址：<text data-startaddressid="{{item.start_address_id}}">{{item.start_address}}</text></view>
+            </view>
+            <view class="item_foot">
+              <view>已支付：13</view>
+            </view>
+          </view> 
+      </scroll-view>
+    </swiper-item>
+
+    <!-- 已完成 -->
+    <swiper-item>
+      <scroll-view scroll-y="true" scroll-top="{{scrolltop}}" bindscroll="scrollHandle" wx:for="{{completed.data}}">
+          <!-- 全部item -->
+          <view class="item" bindtap="allStatus">
+            <view class="item_head flexBox">
+              <view data-orderid="{{item.order_id}}">{{item.order_sn}}</view>
+              <view class="orderStatus" >{{item.statusName}}</view>
+            </view>
+            <view class="item_body flex">
+              <view class="mb20">收件人：<text data-endphone="{{item.end_phone}}">{{item.end_name}}</text></view>
+              <view class="mb30">地址：<text>{{item.address}}</text></view>
+              <view class="mb20">寄件人：<text>{{item.start_name}}</text></view>
+              <view>地址：<text data-startaddressid="{{item.start_address_id}}">{{item.start_address}}</text></view>
+            </view>
+            <view class="item_foot">
+              <view>已支付：13</view>
+            </view>
+          </view> 
+      </scroll-view>
+    </swiper-item>
+
+    <!-- 已取消 -->
+    <swiper-item>
+      <scroll-view scroll-y="true" scroll-top="{{scrolltop}}" bindscroll="scrollHandle" wx:for="{{candeled.data}}">
+          <!-- 全部item -->
+          <view class="item" bindtap="allStatus">
+            <view class="item_head flexBox">
+              <view data-orderid="{{item.order_id}}">{{item.order_sn}}</view>
+              <view class="orderStatus" >{{item.statusName}}</view>
+            </view>
+            <view class="item_body flex">
+              <view class="mb20">收件人：<text data-endphone="{{item.end_phone}}">{{item.end_name}}</text></view>
+              <view class="mb30">地址：<text>{{item.address}}</text></view>
+              <view class="mb20">寄件人：<text>{{item.start_name}}</text></view>
+              <view>地址：<text data-startaddressid="{{item.start_address_id}}">{{item.start_address}}</text></view>
+            </view>
+            <view class="item_foot">
+              <view>已取消</view>
+            </view>
+          </view> 
+      </scroll-view>
+    </swiper-item>
+  </swiper>
+</view>

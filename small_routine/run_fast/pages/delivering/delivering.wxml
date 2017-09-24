@@ -1,0 +1,122 @@
+<view class="container">
+  <view class="title">
+    <view class="top" style=" display:inline-flex;">
+      <view style="flex:1;">
+        <image class="user_pic" src="../../imgs/collect.png"></image>
+      </view>
+      <view class="title_right">
+        <view class="title_right_1">
+          <text class="person"> 快递员：</text>李博</view>
+        <view class="title_right_1">
+          <text class="phone"> 手机员：</text>15621587895</view>
+      </view>
+      <view class="orderStatus">配送中</view>
+    </view>
+    <view class="down flexBox">
+      <view>
+        <view class="payMoney">您已支付快递费用：25元</view>
+      </view>
+    </view>
+  </view>
+
+    <view class="swiper-tab">
+      <view class="swiper-tab-list swiper-tab-list1 {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">查看订单</view>
+      <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">物流跟踪</view>
+    </view>
+
+    <swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:{{winHeight - 31}}px" bindchange="bindChange">
+      <!-- 我是哈哈 -->
+      <swiper-item>
+        <view style="height:100%;">
+          <view class="info">
+            <view style='width:100%;'>
+              <view class="info_1 inlineFlex" style="width:95%;">
+                <view class="mr20">
+                  <image class="small_pic" src="../../imgs/collect.png"></image>
+                </view>
+                <view style="width:624rpx;">
+                  <view class="flexBox">
+                    <view class="mb20">刘美丽</view>
+                    <view>13200225588</view>
+                  </view>
+                  <view>保定市雄县白洋淀俱乐部东门后院</view>
+                </view>
+              </view>
+            </view>
+            <view style="width:100%;">
+              <view class="info_2 inlineFlex" style="width:95%;">
+                <view class="mr20">
+                  <image class="small_pic" src="../../imgs/collect.png"></image>
+                </view>
+                <view style="width:624rpx;">
+                  <view class="flexBox">
+                    <view class="mb20">刘美丽</view>
+                    <view>13200225588</view>
+                  </view>
+                  <view>保定市雄县白洋淀俱乐部东门后院</view>
+                </view>
+              </view>
+            </view>
+            <view class="info_3">
+              <view class="flexBox">
+                <text clas="extra_info"> 备注：</text>
+                <textarea placeholder='请您输入想要快递小哥注意的事项或其他（选填）'></textarea>
+              </view>
+            </view>
+          </view>
+
+          <view class="foot">
+            <view class="flexBox foot_1">
+              <view class="foot_item_left">类型</view>
+              <view>其他</view>
+            </view>
+            <view class="flexBox foot_2">
+              <view class="foot_item_left">订单编号</view>
+              <view>KDP08111406</view>
+            </view>
+            <view class="flexBox foot_3">
+              <view class="foot_item_left">下单时间</view>
+              <view>2017-08-11 14:06</view>
+            </view>
+
+            <view class="codeBox">
+             <image src="../../imgs/code.png" class="code_pic"></image>
+            </view>
+          </view>
+         </view>
+      </swiper-item>
+      <!-- 我是呵呵 -->
+      <swiper-item>
+          <view >
+            <view class="inlineFlex item2_title">
+              <view class="process">进度条</view>
+              <view class="orderProcess">地图跟踪</view>
+            </view>
+            <view class="timeLineBox">
+               <view class="timeline">
+                
+                    <view class="timeLine_item">
+                      <view class="content">123</view>
+                      <view class="date">11 May 2013</view>
+                      <view class="cirecle"></view>
+                    </view>
+                    
+                    <view class="timeLine_item">
+                      <view class="content">123</view>
+                      <view class="date">11 May 2013</view>
+                      <view class="cirecle"></view>
+                    </view>
+
+                    <view class="timeLine_item">
+                      <view class="content">123</view>
+                      <view class="date">11 May 2013</view>
+                      <view class="cirecle"></view>
+                    </view>
+                 
+              </view>
+            </view> 
+          </view>
+      </swiper-item>
+
+    </swiper>
+</view>

@@ -1,0 +1,24 @@
+<view class="container">
+  <view class="titleBox">
+    <view class="title">正为您寻找快递员</view>
+    <view class="title_sub">附近的快递员会优先通知</view>
+  </view>
+  <view class="circle-box"s style="width:200px; height:200px;">
+    <canvas class="circle" style="z-index: -99; width:200px; height:200px;" canvas-id="canvasCircle">
+    </canvas>
+    <canvas class="circle" style="width:200px; height:200px;" canvas-id="canvasArcCir">
+    </canvas>
+    <view class="canvasCenter">
+      <view class="cavasText">
+        已等待
+        <text class='second'>{{minutes}}</text>
+        分
+        <text class='second'>{{seconds}}</text>
+        秒
+      </view>
+      <view class="cavasTime"></view>
+    </view>
+  
+  </view>
+  <button class="cancelOrder" bindtap="cancelOrder">取消订单</button>
+</view>

@@ -9,27 +9,62 @@
       <image src="../../imgs/next.png" class="next"></image>
     </view>
   </view>
-	
+
   <form bindsubmit="formBindsubmit" bindreset="formReset" class="sendForm">
   <view class="formView">
-    <view class="flexBox formItem formItem1">
+    <view class="flexBox formItem formItem1"  bindtap="gotoSendMap">
       <view class="flexBox">
+        <!-- 图片 -->
         <image src="../../imgs/send.png" class="send"></image>
-        <view>
-         <input type="text" name="send" placeholder="{{location.address}}" bindtap="gotoMap" readonly/>
+        <!-- 填写地址:true -->
+        <view wx:if="{{send.status.hasAddressData}}">
+          <!-- 填写联系人:true -->
+          <view wx:if="{{send.status.hasPerson}}" class='address'>
+            <text>{{send.location.address+' '+send.location.extraAddress}}</text>
+            <view>
+              <text class='contactPerson'>{{send.location.contactPerson}}</text>
+              <text class='telephone'>{{send.location.telephone}}</text>
+            </view>
+          </view>
+          <!-- 填写联系人:false -->
+          <view wx:else class='address'>
+            <text>{{send.location.address+' '+send.location.extraAddress}}</text>
+            <text>{{send.info.noContactPerson}}</text>
+          </view>
         </view>
-<!--         
-          <text>{{location.name}}</text><text>{{location.address}}</text> -->
-      
+        <!-- 填写地址:false -->
+        <view wx:else class="clickBox">
+          <text>{{send.info.noAddress}}</text>
+        </view>
       </view>
-       <image src="../../imgs/next.png" class="next"></image>
+      <image src="../../imgs/next.png" class="next"></image>
     </view>
-    <view class="flexBox formItem">
+    <view class="flexBox formItem"  bindtap="gotoReceiveMap">
       <view class="flexBox">
+        <!-- 图片 -->
         <image src="../../imgs/collect.png" class="collect"></image>
-        <input type="text"  name="collect" placeholder="请完善收件人详细地址"bindtap="gotoMap" readonly/>
+        <!-- 填写地址:true -->
+        <view wx:if="{{receive.status.hasAddressData}}">
+          <!-- 填写联系人:true -->
+          <view wx:if="{{receive.status.hasPerson}}" class='address'>
+            <text>{{receive.location.address+' '+receive.location.extraAddress}}</text>
+            <view>
+              <text class='contactPerson'>{{receive.location.contactPerson}}</text>
+              <text class='telephone'>{{receive.location.telephone}}</text>
+            </view>
+          </view>
+          <!-- 填写联系人:false -->
+          <view wx:else class='address'>
+            <text>{{receive.location.address+' '+receive.location.extraAddress}}</text>
+            <text>{{receive.info.noContactPerson}}</text>
+          </view>
+        </view>
+        <!-- 填写地址:false -->
+        <view wx:else class="clickBox" >
+          <text>{{receive.info.noAddress}}</text>
+        </view>
       </view>
-       <image src="../../imgs/next.png" class="next"></image>
+      <image src="../../imgs/next.png" class="next"></image>
     </view>
     </view>
     <view class="labelBox">
@@ -37,10 +72,22 @@
       <radio value="1" checked="{{item.checked}}" class="radio"/>
       <text class="text">我已经详细阅读并同意<text>《服务协议》</text></text>
      </label>
+     <view bindtap="gotoOrder">订单</view>
     </view>
     <view class="submitBox flex">
-      <button class="callSubmit" bindtap="">呼叫快递小哥</button>
+      <button class="callSubmit" bindtap="callExpress">呼叫快递小哥</button>
     </view>
+    	
   </form>
+  <!--mask-->  
+  <view class="toast_mask" wx:if="{{isShowToast}}"></view>  
+  <!--以下为toast显示的内容-->  
+  <view class="toast_content_box" wx:if="{{isShowToast}}">  
+    <view class="toast_content">  
+      <view class="toast_content_text">  
+        {{toastText}}  
+      </view>  
+    </view>  
+</view>  
  
 </view>

@@ -2,7 +2,14 @@
   "pages": [
     "pages/index/index",
     "pages/logs/logs",
-    "pages/address_detail/address_detail"
+    "pages/address_detail/address_detail",
+    "pages/call/call",
+    "pages/order/order",
+    "pages/substitute/substitute",
+    "pages/delivering/delivering",
+    "pages/completed/completed",
+    "pages/canceled/canceled"
+
   ],
   "window": {
     "backgroundTextStyle": "light",

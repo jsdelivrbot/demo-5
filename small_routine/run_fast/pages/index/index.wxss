@@ -35,7 +35,8 @@
 .next{
   width:18rpx;
   height:30rpx;
- 
+  box-sizing: content-box;
+  padding: 20rpx 10rpx;
 }
 .sendForm{
   padding-top:92rpx;
@@ -55,6 +56,7 @@ input{
   display: inline-block;
   font-size:24rpx;
 }
+
 .formView{
   box-shadow: 10rpx 10rpx 80rpx #E7E6E3;
 }
@@ -74,14 +76,14 @@ input{
   margin-right:10rpx;
 }
 .labelBox .text{
-    font-size:20rpx;
+    font-size:24rpx;
     color:#c8c4BF;
   }
   .labelBox .text text{
     color:#0089f1;
   }
   .submitBox{
-     margin-top:323rpx;  
+     /* margin-top:323rpx;   */
     margin-bottom:100rpx;
   }
   .callSubmit{
@@ -91,3 +93,55 @@ input{
     color:#fff;
     border-radius: 40rpx;
   }
+
+
+/* text类型字体 */
+text{
+  font-size: 24rpx;
+  color: #999;
+}
+.clickBox{
+  width: 520rpx;
+}
+
+.address{
+  max-width: 525rpx;
+}
+.address>text{
+  display: block;
+}
+.address>view{
+  width: 100%;
+}
+/* 地址 */
+.address>text:first-child{
+  font-size: 28rpx;
+  color: #333;
+  /* 最多2行,超过加省略号; */
+  overflow:hidden; 
+  text-overflow:ellipsis;
+  display:-webkit-box; 
+  -webkit-box-orient:vertical;
+  -webkit-line-clamp:2; 
+}
+/* 联系人姓名 */
+.contactPerson{
+  font-size: 28rpx;
+  vertical-align: middle;
+  display: inline-block;
+  width: 216rpx;
+  overflow: hidden;
+  text-overflow: clip;
+  white-space: nowrap;
+}
+/* 联系人电话 */
+.telephone{
+  vertical-align: middle;
+  display: inline-block;
+  font-size: 28rpx;
+  margin-left: 40rpx;
+  max-width: 264rpx;
+  overflow: hidden;
+  text-overflow: clip;
+  white-space: nowrap;
+}

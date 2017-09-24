@@ -16,10 +16,11 @@
   justify-content:space-between;
   align-items:center;
 }
-input{
+input,text{
   display: inline-block;
   font-size:24rpx;
   width:400rpx;
+  color: black;
 }
 .nameBox{
   width:248rpx;
@@ -71,3 +72,13 @@ input{
     color:#fff;
     border-radius: 40rpx;
   }
+.formItem1 text{
+  color: #7a7a7a;
+}
+
+.hasData{
+  color: #333 !important;
+}
+.address{
+  font-size: 28rpx;
+}
