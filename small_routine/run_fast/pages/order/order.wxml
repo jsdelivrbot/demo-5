@@ -12,9 +12,9 @@
     <swiper-item>
       <scroll-view scroll-y="true" scroll-top="{{scrolltop}}" bindscroll="scrollHandle" wx:for="{{all.data}}" lower-threshold="50"  bindscrolltolower="scrollLoading" bindscrolltoupper="onPullDownRefresh">
           <!-- 全部item -->
-          <view class="item" bindtap="allStatus">
+          <view class="item" bindtap="allStatus" data-orderid="{{item.order_id}}">
             <view class="item_head flexBox">
-              <view data-orderid="{{item.order_id}}">{{item.order_sn}}</view>
+              <view >{{item.order_sn}}</view>
               <view class="orderStatus" >{{item.statusName}}</view>
             </view>
             <view class="item_body flex">
@@ -34,9 +34,9 @@
     <swiper-item>
         <scroll-view scroll-y="true" scroll-top="{{scrolltop}}" bindscroll="scrollHandle" wx:for="{{substitude.data}}">
           <!-- 全部item -->
-          <view class="item" bindtap="substitute">
-            <view class="item_head flexBox">
-              <view data-orderid="{{item.order_id}}">{{item.order_sn}}</view>
+          <view class="item" bindtap="substitute" >
+            <view class="item_head flexBox" data-orderid="{{item.order_id}}">
+              <view >{{item.order_sn}}</view>
               <view class="orderStatus" >{{item.statusName}}</view>
             </view>
             <view class="item_body flex">
@@ -56,9 +56,9 @@
     <swiper-item>
       <scroll-view scroll-y="true" scroll-top="{{scrolltop}}" bindscroll="scrollHandle" wx:for="{{delivering.data}}">
           <!-- 全部item -->
-          <view class="item" bindtap="delivering">
+          <view class="item" bindtap="delivering" data-orderid="{{item.order_id}}">
             <view class="item_head flexBox">
-              <view data-orderid="{{item.order_id}}">{{item.order_sn}}</view>
+              <view >{{item.order_sn}}</view>
               <view class="orderStatus" >{{item.statusName}}</view>
             </view>
             <view class="item_body flex">
@@ -78,9 +78,9 @@
     <swiper-item>
       <scroll-view scroll-y="true" scroll-top="{{scrolltop}}" bindscroll="scrollHandle" wx:for="{{completed.data}}">
           <!-- 全部item -->
-          <view class="item" bindtap="completed">
+          <view class="item" bindtap="completed" data-orderid="{{item.order_id}}">
             <view class="item_head flexBox">
-              <view data-orderid="{{item.order_id}}">{{item.order_sn}}</view>
+              <view >{{item.order_sn}}</view>
               <view class="orderStatus" >{{item.statusName}}</view>
             </view>
             <view class="item_body flex">
@@ -100,9 +100,9 @@
     <swiper-item>
       <scroll-view scroll-y="true" scroll-top="{{scrolltop}}" bindscroll="scrollHandle" wx:for="{{candeled.data}}">
           <!-- 全部item -->
-          <view class="item" bindtap="canceled">
+          <view class="item" bindtap="canceled" data-orderid="{{item.order_id}}">
             <view class="item_head flexBox">
-              <view data-orderid="{{item.order_id}}">{{item.order_sn}}</view>
+              <view >{{item.order_sn}}</view>
               <view class="orderStatus" >{{item.statusName}}</view>
             </view>
             <view class="item_body flex">

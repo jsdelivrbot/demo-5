@@ -1,6 +1,8 @@
 //index.js 
 //获取应用实例 
-var app = getApp()
+var app = getApp();
+var host = app.globalData.host;
+var session_id = app.globalData.session3rd;
 Page({
   data: {
     /** 
@@ -11,8 +13,9 @@ Page({
     // tab切换 
     currentTab: 0,
   },
-  onLoad: function () {
+  onLoad: function (options) {
     var that = this;
+    console.log(options);
 
     /** 
      * 获取系统信息 
@@ -27,7 +30,7 @@ Page({
       }
 
     });
-    that.getOrderInfo();
+    that.getOrderInfo(options.order_id);
   },
   /** 
     * 滑动切换tab 
@@ -53,7 +56,30 @@ Page({
       })
     }
   },
-  getOrderInfo:function(){
-    
+  getOrderInfo: function (order_id){
+    var that=this;
+    var data = {
+      session3rd: session_id,
+      order_id: order_id
+    };
+    console.log(data);
+    wx.request({
+      url: host + '/Run/orderInfo',
+      type: 'post',
+      dataType: 'json',
+      data: data,
+      success: function (res) {
+        console.log(res.data);
+        var code = res.data.code;
+        var data=res.data.data;
+        if (code == 0) {
+         console.log(data);
+        } else if (code == 1) {
+
+        } else if (code == 2) {
+
+        }
+      }
+    })
   }
 }) 

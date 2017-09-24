@@ -1,8 +1,7 @@
-// import xxx from '../../app.js';
-
 var app = getApp();
+var host = app.globalData.host;
+var session_id = app.globalData.session3rd;
 
-var host = app.globalData.host
 Page({
   data: {
     all: {subData: [],page: 1},
@@ -167,7 +166,11 @@ Page({
     }
     this.fetchTestData();
   },
-  substitute:function(){//代取件
+  substitute:function(e){//代取件
+    var that=this;
+    
+    var order_id=e.target.dataset.orderid;
+    console.log(order_id);
     wx.navigateTo({
       url: '../substitute/substitute',
     });
