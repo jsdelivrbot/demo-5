@@ -133,13 +133,13 @@ Page({
       success: function (res) {
         // console.log(that);
         var data = that.data;
-        // console.log(res);
+        console.log(res);
         that.setData({
           'location.latitude': res.latitude,
           'location.longitude': res.longitude,
-          'location.address': res.name,
+          'location.address': res.name||res.address,
         });
-        // console.log(that.data.location)
+         console.log(that.data.location)
       },
       fail: function (res) {
         // console.log(res);

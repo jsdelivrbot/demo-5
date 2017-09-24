@@ -1,12 +1,14 @@
 //获取应用实例
 var app = getApp()
-
+var session_id = app.globalData.session3rd;
 var interval;
 var varName;
 var ctx = wx.createCanvasContext('canvasArcCir');
 
 Page({
   data: {
+   
+    order_id:'',
     minutes: "0",
     seconds: "01",
   },
@@ -14,6 +16,10 @@ Page({
     var that = this;
     console.log(options.session3rd);
     console.log(options.order_id);
+    that.setData({
+      'order_id': options.order_id,
+     
+    });
     clearInterval(varName);
     function drawArc(s, e) {
       ctx.setFillStyle('white');
@@ -78,17 +84,45 @@ Page({
   },
 
   cancelOrder:function(){
+    var that=this;
     wx.showModal({
       title: '提示',
       content: '您确认取消订单吗?',
       success: function (res) {
         if (res.confirm) {
-          wx.navigateBack();
+          // wx.navigateBack();
+          that.cancel();
+         
         } else {
           console.log('用户点击取消')
         }
       }
     }) 
+  },
+  cancel:function(){
+    var that=this;
+    var data={
+      session3rd: session3rd,
+      order_id: that.data.order_id
+    };
+    wx.request({
+      url: host + '/Run/cancel',
+      type: 'post',
+      dataType: 'json',
+      data: data,
+      success: function (res) {
+        console.log(res.data);
+
+        if (code == 0) {
+          console.log('取消订单');
+          wx.navigateTo({
+            url: '../order/order',
+          });
+        } else if (code == 1) {
+          console.log('error');
+        }
+      }
+    })
   },
   call: function (session3rd,order_id){//ajax
     var data={
@@ -128,7 +162,14 @@ Page({
 
         if (code == 0) {
           console.log('有司机接单了');
-        } else if (code == 3) {
+          wx.navigateTo({
+            url: '../order/order',
+          })
+        } else if (code == 1){
+
+        } else if (code == 2) {
+          
+        }else if (code == 3) {
           console.log('正在等待司机接单');
         }
       }
