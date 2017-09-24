@@ -1,5 +1,6 @@
 //获取应用实例
-var app = getApp()
+var app = getApp();
+var host = app.globalData.host;
 var session_id = app.globalData.session3rd;
 var interval;
 var varName;
@@ -112,7 +113,7 @@ Page({
       data: data,
       success: function (res) {
         console.log(res.data);
-
+        var code=res.data.code;
         if (code == 0) {
           console.log('取消订单');
           wx.navigateTo({
@@ -136,7 +137,7 @@ Page({
       data: data,
       success: function (res) {
         console.log(res.data);
-      
+        var code=res.data.code;
         if (code == 0) {
           console.log('等待司机接单');
         }else if(code==1){
