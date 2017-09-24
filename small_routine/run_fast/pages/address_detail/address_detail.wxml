@@ -30,7 +30,7 @@
       </view>
     </view>
     <view class="submitBox flex">
-       <button class="callSubmit" bindtap="gotoIndex">回到首页</button> 
+       <button class="callSubmit" bindtap="gotoIndex">下一步</button> 
     </view>
   </form>
 </view>

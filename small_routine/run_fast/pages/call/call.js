@@ -56,6 +56,7 @@ Page({
         if(m==10){
           m=0;
           that.call(options.session3rd, options.order_id);
+          that.waitStaff(options.session3rd, options.order_id);
         }
     };
     varName = setInterval(animation, animation_interval);
@@ -90,7 +91,6 @@ Page({
     }) 
   },
   call: function (session3rd,order_id){//ajax
-    console.log('呼叫司机');
     var data={
       session3rd: session3rd,
       order_id: order_id
@@ -104,9 +104,34 @@ Page({
         console.log(res.data);
       
         if (code == 0) {
-         console.log('正在等待司机接单');
+          console.log('等待司机接单');
+        }else if(code==1){
+         
+        }else{
+
         }
       }
   })
- }
+ },
+  waitStaff: function (session3rd, order_id){
+    var data = {
+      session3rd: session3rd,
+      order_id: order_id
+    };
+    wx.request({
+      url: host + '/Run/waitStaff',
+      type: 'post',
+      dataType: 'json',
+      data: data,
+      success: function (res) {
+        console.log(res.data);
+
+        if (code == 0) {
+          console.log('有司机接单了');
+        } else if (code == 3) {
+          console.log('正在等待司机接单');
+        }
+      }
+    })
+  }
 });

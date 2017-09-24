@@ -8,9 +8,11 @@ App({
     
   },
   onShow: function(){
+    var that = this;
     wx.login({
       success: function (res) {
         var code = res.code;
+        
         // success  
         // 获取用户信息  
         wx.getUserInfo({
@@ -37,8 +39,10 @@ App({
               method: 'get',
               header: { 'Content-Type': 'application/x-www-form-urlencoded' },  
               success: function (res) { 
-               // console.log(res);
-               // console.log(rawData);
+              
+                that.globalData.session3rd=res.data.session3rd;
+                console.log(that.globalData)
+                // console.log(rawData);
               }
             })
           }
@@ -101,6 +105,7 @@ App({
   },
   globalData: {
     userInfo: null,
+    session3rd:'',
     host: 'https://run.dev.xinduobang.cn'
   },
 });
