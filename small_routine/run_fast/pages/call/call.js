@@ -160,7 +160,7 @@ Page({
       data: data,
       success: function (res) {
         console.log(res.data);
-
+        var code=res.data.code;
         if (code == 0) {
           console.log('有司机接单了');
           wx.navigateTo({

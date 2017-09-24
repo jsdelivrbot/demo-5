@@ -27,6 +27,7 @@ Page({
       }
 
     });
+    that.getOrderInfo();
   },
   /** 
     * 滑动切换tab 
@@ -51,5 +52,8 @@ Page({
         currentTab: e.target.dataset.current
       })
     }
+  },
+  getOrderInfo:function(){
+    
   }
 }) 
