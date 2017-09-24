@@ -95,7 +95,7 @@ Page({
 
         }
 
-        console.log(that.data);
+        //console.log(that.data);
       }
 
     });
@@ -170,9 +170,9 @@ Page({
     var that=this;
     
     var order_id=e.target.dataset.orderid;
-    console.log(order_id);
+    //console.log(order_id);
     wx.navigateTo({
-      url: '../substitute/substitute',
+      url: '../substitute/substitute?order_id='+order_id,
     });
   },
   delivering: function () {//配送中

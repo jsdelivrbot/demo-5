@@ -32,7 +32,7 @@
             <view style='width:100%;'>
               <view class="info_1 inlineFlex" style="width:95%;">
                 <view class="mr20">
-                  <image class="small_pic" src="../../imgs/collect.png"></image>
+                  <image class="small_pic" src="../../imgs/send.png"></image>
                 </view>
                 <view style="width:624rpx;">
                   <view class="flexBox">

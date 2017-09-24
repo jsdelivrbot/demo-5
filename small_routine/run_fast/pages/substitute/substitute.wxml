@@ -5,14 +5,14 @@
         <image class="user_pic" src="../../imgs/collect.png"></image>
       </view>  
       <view class="title_right">
-       <view class="title_right_1"><text class="person"> 快递员：</text>李博</view>
-       <view class="title_right_1"><text class="phone"> 手机员：</text>15621587895</view>   
+       <view class="title_right_1"><text class="person"> 快递员：</text><text>{{obj.newSite.name}}</text> </view>
+       <view class="title_right_1"><text class="phone"> 手机员：</text><text>{{obj.newSite.phone}}</text></view>   
       </view>
        <view class="orderStatus">代取件</view>
     </view>
     <view class="down flexBox">
       <view>
-        <view class="payMoney">您需支付快递费用：_元</view>
+        <view class="payMoney">您需支付快递费用：{{obj.pay_money}}元</view>
         <view class="tips">* 您所支付的快递费用需同快递员沟通</view>
       </view>
       <view>
@@ -24,14 +24,14 @@
   <view style='width:100%;'>
     <view class="info_1 inlineFlex" style="width:95%;">
       <view class="mr20">
-        <image class="small_pic"  src="../../imgs/collect.png"></image>
+        <image class="small_pic"  src="../../imgs/send.png"></image>
       </view>
       <view style="width:624rpx;">
         <view class="flexBox">
-          <view class="mb20">刘美丽</view>
-          <view>13200225588</view>        
+          <view class="mb20">{{obj.start_name}}</view>
+          <view>{{obj.start_phone}}</view>        
         </view>
-        <view>保定市雄县白洋淀俱乐部东门后院</view>
+        <view>{{obj.start_address}}</view>
       </view>
     </view>
     </view>
@@ -42,30 +42,30 @@
           </view>
           <view style="width:624rpx;">
             <view class="flexBox">
-              <view class="mb20">刘美丽</view>
-              <view>13200225588</view>        
+              <view class="mb20">{{obj.end_name}}</view>
+              <view>{{obj.end_phone}}</view>        
             </view>
-            <view>保定市雄县白洋淀俱乐部东门后院</view>
+            <view>{{obj.end_address}}</view>
           </view>
         </view>
       </view>
-    <view class="info_3">
+    <!-- <view class="info_3">
       <view class="flexBox"><text clas="extra_info"> 备注：</text> <textarea placeholder='请您输入想要快递小哥注意的事项或其他（选填）'></textarea></view>
-    </view>
+    </view> -->
   </view>
 
   <view class="foot">
-    <view class="flexBox foot_1">
+    <!-- <view class="flexBox foot_1">
       <view class="foot_item_left">类型</view>
       <view>其他</view>
-    </view>
+    </view> -->
      <view class="flexBox foot_2">
       <view  class="foot_item_left">订单编号</view>
-      <view>KDP08111406</view>
+      <view>{{obj.order_sn}}</view>
     </view>
     <view class="flexBox foot_3">
       <view  class="foot_item_left">下单时间</view>
-      <view>2017-08-11  14:06</view>
+      <view>{{obj.addtime}}</view>
     </view>
   </view>
   <view  class="cancelOrderBox">
