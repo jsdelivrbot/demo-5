@@ -1,4 +1,7 @@
 <view class="container">
+<view class="mapBox">
+    <map longitude="{{longitude}}" latitude="{{latitude}}" markers="{{markers}}" covers="{{covers}}" style="width: 100%; height: 300px;"></map>
+  </view>
   <view class="title">
     <view class="top" style=" display:inline-flex;">
       <view style="flex:1;">
@@ -14,7 +17,7 @@
     </view>
     <view class="down flexBox">
       <view>
-        <view class="payMoney">您已支付快递费用：{{obj.newSite.pay_money}}元</view>
+        <view class="payMoney">您已支付快递费用：{{obj.pay_money}}元</view>
       </view>
     </view>
   </view>

@@ -5,8 +5,8 @@
         <image class="user_pic" src="../../imgs/collect.png"></image>
       </view>  
       <view class="title_right">
-       <view class="title_right_1"><text class="person"> 快递员：</text><text>{{obj.newSite.name}}</text></view>
-       <view class="title_right_1"><text class="phone"> 手机员：</text><text>{{obj.newSite.phone}}</text></view>   
+       <view class="title_right_1"><text class="person"> 快递员：</text><text>暂无</text></view>
+       <view class="title_right_1"><text class="phone"> 手机员：</text><text>暂无</text></view>   
       </view>
        <view class="orderStatus">已取消</view>
     </view>

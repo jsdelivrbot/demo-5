@@ -114,7 +114,7 @@ Page({
     });
   },
   scrollHandle: function (e) { //滚动事件
-    console.log(e.detail)
+    //console.log(e.detail)
     this.setData({
       scrolltop: e.detail.scrollTop
     })
@@ -129,7 +129,7 @@ Page({
   //点击切换
   clickTab: function (e) {
     var that = this;
-
+     
     if (this.data.currentTab === e.target.dataset.current) {
       return false;
     } else {
@@ -137,11 +137,11 @@ Page({
         currentTab: e.target.dataset.current
       });
     }
-    console.log(e.target.dataset.code);
+    
     this.getOrderList(e.target.dataset.code,1);  // 获取全部订单数据
   },
   onPullDownRefresh: function () {
-    console.log('上or下');
+   
     if (this.currentTab==0){
       this.setData({
         'all.data': [],
@@ -171,7 +171,7 @@ Page({
     
   },
   scrollLoading: function(){
-    console.log('上or下');
+   console.log('上拉加载更多');
     if (this.data== 3) {
       wx.showToast({
         title: '已经到最后一页了',
@@ -183,7 +183,7 @@ Page({
   },
   allStatus:function(e){
     var that=this;
-    console.log(e.target.dataset);
+   
     that.setData({
       order_id: e.target.dataset.orderid,
       status: e.target.dataset.status
@@ -192,22 +192,22 @@ Page({
     console.log(that.data.order_id, that.data.status);
     var status = that.data.status;
     if (status==1){//代取件
-      console.log('代取件');
+     
       wx.navigateTo({
         url: '../substitute/substitute?order_id=' + that.data.order_id,
       });
     } else if (status == 2) {//配送中
-      console.log('配送中');
+      
       wx.navigateTo({
         url: '../deliveringe/deliveringe?order_id=' + that.data.order_id,
       });
     } else if (status == 3) {//已取消
-      console.log('已取消');
+     
       wx.navigateTo({
         url: '../canceled/canceled?order_id=' + that.data.order_id,
       });
     } else if (status == 4) {//已完成
-      console.log('已完成');
+     
       wx.navigateTo({
         url: '../completed/completed?order_id=' + that.data.order_id,
       });

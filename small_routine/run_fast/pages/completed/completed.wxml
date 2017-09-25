@@ -1,8 +1,11 @@
 <view class="container">
+  <view class="mapBox">
+    <map longitude="{{longitude}}" latitude="{{latitude}}" markers="{{markers}}" covers="{{covers}}" style="width: 100%; height: 300px;"></map>
+  </view>
   <view class="title">
     <view class="top" style=" display:inline-flex;">
       <view style="flex:1;">
-        <image class="user_pic" src="../../imgs/collect.png"></image>
+        <image class="user_pic" src="{{obj.newSite.avatar}}"></image>
       </view>
       <view class="title_right">
         <view class="title_right_1">
@@ -14,7 +17,7 @@
     </view>
     <view class="down flexBox">
       <view>
-        <view class="payMoney">您已支付快递费用：{{obj.newSite.pay_money}}
+        <view class="payMoney">您已支付快递费用：{{obj.pay_money}}
         元</view>
       </view>
     </view>
@@ -26,7 +29,7 @@
     </view>
 
     <swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:{{winHeight - 31}}px" bindchange="bindChange">
-      <!-- 我是哈哈 -->
+      <!-- 查看订单 -->
       <swiper-item>
         <view style="height:100%;">
           <view class="info">
@@ -86,34 +89,33 @@
           </view>
          </view>
       </swiper-item>
-      <!-- 我是呵呵 -->
+      <!-- 物流跟踪 -->
       <swiper-item>
           <view >
             <view class="inlineFlex item2_title">
-              <view class="process">进度条</view>
+              <view class="process">
+                <view  class="start_address inlineFlex">
+                  <view class="point"></view>
+                   <view class="adress">{{obj.start_address}}</view>
+                </view>
+              
+                <progress percent="{{obj.position}}"  stroke-width="5"color="#ff6932" active="true"/>
+                 <view  class="end_address inlineFlex">
+                  <view class="point"></view>
+                  <view class="adress">{{obj.start_address}}</view>
+                </view>
+               
+              
+              </view>
               <view class="orderProcess">地图跟踪</view>
             </view>
             <view class="timeLineBox">
-               <view class="timeline">
-                
-                    <view class="timeLine_item">
-                      <view class="content">123</view>
-                      <view class="date">11 May 2013</view>
+               <view class="timeline">   
+                    <view class="timeLine_item" wx:for="{{list}}" wx:key="item">
+                      <view class="content">{{item.log}}</view>
+                      <view class="date">{{item.addtime}}</view>
                       <view class="cirecle"></view>
-                    </view>
-                    
-                    <view class="timeLine_item">
-                      <view class="content">123</view>
-                      <view class="date">11 May 2013</view>
-                      <view class="cirecle"></view>
-                    </view>
-
-                    <view class="timeLine_item">
-                      <view class="content">123</view>
-                      <view class="date">11 May 2013</view>
-                      <view class="cirecle"></view>
-                    </view>
-                 
+                    </view>    
               </view>
             </view> 
           </view>

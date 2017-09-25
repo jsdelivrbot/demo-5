@@ -15,7 +15,16 @@ Page({
     // tab切换 
     currentTab: 0,
     obj: {},
-    addtime:''
+    list:[],//物流跟踪数据
+    order_id:'',
+    addtime:'',
+    avatar:'',
+    latitude: 0,//纬度  司机
+    longitude: 0,//经度 司机
+    speed: 0,//速度 
+    accuracy: 16,//位置精准度 
+    markers: [],//气泡
+    covers: [] //司机icon
   },
   onLoad: function (options) {
     var that = this;
@@ -33,7 +42,11 @@ Page({
       }
 
     });
+    that.setData({
+      order_id: options.order_id
+    })
     that.getOrderInfo(options.order_id);
+    
   },
   /** 
     * 滑动切换tab 
@@ -50,14 +63,19 @@ Page({
   swichNav: function (e) {
 
     var that = this;
+    
 
     if (this.data.currentTab === e.target.dataset.current) {
-      return false;
+      // return false;
     } else {
       that.setData({
         currentTab: e.target.dataset.current
       })
     }
+    if (this.data.currentTab == 1) {
+      that.orderTrip();
+    }
+    
   },
    
   getOrderInfo: function (order_id) {
@@ -81,13 +99,77 @@ Page({
           console.log(data);
           that.setData({
             obj: data,
-            addtime: util.formatTime(new Date(parseInt(data.addtime)))
+            addtime: util.formatTime(new Date(parseInt(data.addtime))),
+            longitude: data.newSite.longitude,
+            latitude: data.newSite.latitude,
+            avatar: data.newSite.avatar
           });
-          console.log(that.data.obj.url);
+          that.getlocation();
         } else if (code == 1) {
 
         } else if (code == 2) {
 
+        }
+      }
+    })
+  },
+  getlocation: function () {
+    var that=this;
+    var markers = [{
+      latitude: that.data.latitude,
+      longitude: that.data.longitude,
+      // name: '天安门广场',
+      desc: '司机位置'
+    }]
+    var covers = [{
+      latitude: that.data.latitude,
+      longitude: that.data.longitude, 
+      iconPath: '../../imgs/courier.png',
+      rotate: 0
+    }]
+    this.setData({
+      longitude: that.data.longitude ,
+      latitude: that.data.latitude ,
+      markers: markers,
+      covers: covers,
+    })
+  },
+  orderTrip:function(){
+    var that = this;
+
+    var data = {
+      session3rd: 'test',
+      order_id: that.data.order_id
+    };
+
+    wx.request({
+      url: host + '/Run/orderTrip',
+      type: 'post',
+      dataType: 'json',
+      data: data,
+      success: function (res) {
+        //console.log(res.data);
+        var code = res.data.code;
+        var data = res.data.data;
+        if (code == 0) {
+          console.log('成功');
+          var list=data.list;
+          for (var i = 0; i < list.length;i++){
+            list[i].addtime = util.formatTime(new Date(parseInt(list[i].addtime)));
+          }
+          that.setData({
+            // longitude: data.newsite.longitude,
+            // latitude: data.newsite.latitude,
+            // avatar: data.newsite.avatar,
+            list: data.list,
+           
+
+          });
+          console.log(that.data.list);
+        } else if (code == 1) {
+          console.log('失败');
+        } else if (code == 2) {
+          console.log('重新登录');
         }
       }
     })
