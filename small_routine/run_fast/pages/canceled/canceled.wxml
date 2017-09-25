@@ -5,8 +5,8 @@
         <image class="user_pic" src="../../imgs/collect.png"></image>
       </view>  
       <view class="title_right">
-       <view class="title_right_1"><text class="person"> 快递员：</text>暂无</view>
-       <view class="title_right_1"><text class="phone"> 手机员：</text>暂无</view>   
+       <view class="title_right_1"><text class="person"> 快递员：</text><text>{{obj.newSite.name}}</text></view>
+       <view class="title_right_1"><text class="phone"> 手机员：</text><text>{{obj.newSite.phone}}</text></view>   
       </view>
        <view class="orderStatus">已取消</view>
     </view>
@@ -22,10 +22,10 @@
       </view>
       <view style="width:624rpx;">
         <view class="flexBox">
-          <view class="mb20">刘美丽</view>
-          <view>13200225588</view>        
+          <view class="mb20">{{obj.start_name}}</view>
+          <view>{{obj.start_phone}}</view>        
         </view>
-        <view>保定市雄县白洋淀俱乐部东门后院</view>
+        <view>{{obj.start_address}}</view>
       </view>
     </view>
     </view>
@@ -36,30 +36,30 @@
           </view>
           <view style="width:624rpx;">
             <view class="flexBox">
-              <view class="mb20">刘美丽</view>
-              <view>13200225588</view>        
+              <view class="mb20">{{obj.end_name}}</view>
+              <view>{{obj.end_phone}}</view>        
             </view>
-            <view>保定市雄县白洋淀俱乐部东门后院</view>
+            <view>{{obj.end_address}}</view>
           </view>
         </view>
       </view>
-    <view class="info_3">
+    <!-- <view class="info_3">
       <view><text clas="extra_info"> 备注：</text> 无</view>
-    </view>
+    </view> -->
   </view>
 
   <view class="foot">
-    <view class="flexBox foot_1">
+    <!-- <view class="flexBox foot_1">
       <view class="foot_item_left">类型</view>
       <view>其他</view>
-    </view>
+    </view> -->
      <view class="flexBox foot_2">
       <view  class="foot_item_left">订单编号</view>
-      <view>KDP08111406</view>
+      <view>{{obj.order_sn}}</view>
     </view>
     <view class="flexBox foot_3">
       <view  class="foot_item_left">下单时间</view>
-      <view>2017-08-11  14:06</view>
+      <view>{{addtime}}</view>
     </view>
   </view>
 </view>

@@ -175,19 +175,28 @@ Page({
       url: '../substitute/substitute?order_id='+order_id,
     });
   },
-  delivering: function () {//配送中
+  delivering: function (e) {//配送中
+    var that = this;
+
+    var order_id = e.target.dataset.orderid;
     wx.navigateTo({
-      url: '../delivering/delivering',
+      url: '../delivering/deliveringe?order_id=' + order_id,
     });
   }, 
-  completed: function () {//已完成
+  completed: function (e) {//已完成
+    var that = this;
+
+    var order_id = e.target.dataset.orderid;
     wx.navigateTo({
-      url: '../completed/completed',
+      url: '../completed/completed?order_id=' + order_id,
     });
   },
-  canceled:function(){//已取消
+  canceled:function(e){//已取消
+    var that = this;
+
+    var order_id = e.target.dataset.orderid;
     wx.navigateTo({
-      url: '../canceled/canceled',
+      url: '../canceled/canceled?order_id=' + order_id,
     });
   }
 

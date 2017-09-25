@@ -65,7 +65,7 @@
     </view>
     <view class="flexBox foot_3">
       <view  class="foot_item_left">下单时间</view>
-      <view>{{obj.addtime}}</view>
+      <view>{{addtime}}</view>
     </view>
   </view>
   <view  class="cancelOrderBox">

@@ -2,7 +2,7 @@
   <view class="bannerBox">
     <image src="../../imgs/banner.gif" class="banner" mode="widthFix"></image>
     <view class="sub_title">
-      <view>
+      <view  bindtap="gotoOrder">
         <image src="../../imgs/order.png" class="order"></image>
         <text class="sub_title_text">小主您的所有订单都已备好，等您来查看</text>
       </view>
@@ -72,7 +72,7 @@
       <radio value="1" checked="{{item.checked}}" class="radio"/>
       <text class="text">我已经详细阅读并同意<text>《服务协议》</text></text>
      </label>
-     <view bindtap="gotoOrder">订单</view>
+     
     </view>
     <view class="submitBox flex">
       <button class="callSubmit" bindtap="callExpress">呼叫快递小哥</button>

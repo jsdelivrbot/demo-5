@@ -3,6 +3,7 @@
 var app = getApp();
 var host = app.globalData.host;
 var session_id = app.globalData.session3rd;
+var util = require('../../utils/util.js');
 
 Page({
   data: {
@@ -13,7 +14,8 @@ Page({
     winHeight: 0,
     // tab切换 
     currentTab: 0,
-    obj:{}
+    obj:{},
+    addtime:''
   },
   onLoad: function (options) {
     var that = this;
@@ -78,7 +80,8 @@ Page({
         if (code == 0) {
          console.log(data);
          that.setData({
-           obj: data
+           obj: data,
+           addtime: util.formatTime(new Date(parseInt(data.addtime)))
          })
         } else if (code == 1) {
 
