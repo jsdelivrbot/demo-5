@@ -16,7 +16,10 @@ Page({
     winWidth: 0,
     winHeight: 0,
     // tab切换 
-    currentTab: 0, 
+    currentTab: 0,
+    pageNum:1,
+    dataList:[]//保存当前列表
+    
   },
   onLoad: function (options) {
     var that=this;
@@ -63,7 +66,10 @@ Page({
               icon: 'success'
             });
           },1000);
-          
+         that.setData({
+          dataList:resData.data
+         });
+         console.log(that.data.dataList);
           resData.data.forEach((val, i) => {
             if (val.status == 1) {
               val.statusName = "待取件";
@@ -123,7 +129,9 @@ Page({
   swiperTab: function (e) {
     var that = this;
     that.setData({
-      currentTab: e.detail.current
+      currentTab: e.detail.current,
+        scrolltop: 0,
+        pageNum: 0
     });
   },
   //点击切换
@@ -137,6 +145,11 @@ Page({
         currentTab: e.target.dataset.current
       });
     }
+    that.setData({
+      scrolltop:0,
+      pageNum:0
+
+    });
     
     this.getOrderList(e.target.dataset.code,1);  // 获取全部订单数据
   },
@@ -171,15 +184,22 @@ Page({
     
   },
   scrollLoading: function(){
+  var that=this;
    console.log('上拉加载更多');
-    if (this.data== 3) {
-      wx.showToast({
-        title: '已经到最后一页了',
-        icon: ''
-      })
-      return;
-    }
-    this.fetchTestData();
+   console.log(that.data.dataList);
+   if(!that.data.dataList.length==0){
+     var pageNum = that.data.pageNum + 1;
+     that.setData({
+       pageNum: pageNum
+     });
+     this.getOrderList(that.data.pageNum);
+   }else{
+     wx.showToast({
+       title: '已经到最后一页了',
+       icon: ''
+     })
+     return;
+   }  
   },
   allStatus:function(e){
     var that=this;
