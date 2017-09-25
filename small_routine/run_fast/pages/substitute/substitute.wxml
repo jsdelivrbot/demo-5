@@ -5,7 +5,7 @@
   <view class="title">
     <view class="top" style=" display:inline-flex;">
       <view style="flex:1;">
-        <image class="user_pic" src="../../imgs/collect.png"></image>
+        <image class="user_pic" src="{{obj.newSite.avatar}}"></image>
       </view>  
       <view class="title_right">
        <view class="title_right_1"><text class="person"> 快递员：</text><text>{{obj.newSite.name}}</text> </view>
