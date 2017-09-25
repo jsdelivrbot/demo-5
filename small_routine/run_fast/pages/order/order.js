@@ -9,7 +9,9 @@ Page({
     delivering: {subData: [],page: 1},
     completed: {subData: [],page: 1},
     candeled: {subData: [],page: 1},
-
+    order_id:'',
+    status:'',
+    total_fee:'',//用户输入支付金额
     scrolltop: 0,
     winWidth: 0,
     winHeight: 0,
@@ -33,6 +35,7 @@ Page({
   },
   // 获取订单数据  0全部 1待揽件 2配送中 3已取消 4已送达
   getOrderList: function (type, pageNum){
+   
     var that = this;
     if(pageNum==""||pageNum==undefined){
       pageNum = 1;
@@ -54,6 +57,13 @@ Page({
         
         var resData = res.data;
         if (resData.code === 0) {// 成功
+          setTimeout(function(){
+            wx.showToast({
+              title: '加载完成',
+              icon: 'success'
+            });
+          },1000);
+          
           resData.data.forEach((val, i) => {
             if (val.status == 1) {
               val.statusName = "待取件";
@@ -78,14 +88,17 @@ Page({
             that.setData({
               'delivering.data': resData.data,
             });
+            
           } else if (type == 3) {
             that.setData({
               'candeled.data': resData.data,
             });
+           
           } else if (type == 4) {
             that.setData({
               'completed.data': resData.data,
             });
+          
           }
           
         } else if (resData.code === 1) {
@@ -128,6 +141,7 @@ Page({
     this.getOrderList(e.target.dataset.code,1);  // 获取全部订单数据
   },
   onPullDownRefresh: function () {
+    console.log('上or下');
     if (this.currentTab==0){
       this.setData({
         'all.data': [],
@@ -157,6 +171,7 @@ Page({
     
   },
   scrollLoading: function(){
+    console.log('上or下');
     if (this.data== 3) {
       wx.showToast({
         title: '已经到最后一页了',
@@ -166,38 +181,146 @@ Page({
     }
     this.fetchTestData();
   },
+  allStatus:function(e){
+    var that=this;
+    console.log(e.target.dataset);
+    that.setData({
+      order_id: e.target.dataset.orderid,
+      status: e.target.dataset.status
+    }) 
+    
+    console.log(that.data.order_id, that.data.status);
+    var status = that.data.status;
+    if (status==1){//代取件
+      console.log('代取件');
+      wx.navigateTo({
+        url: '../substitute/substitute?order_id=' + that.data.order_id,
+      });
+    } else if (status == 2) {//配送中
+      console.log('配送中');
+      wx.navigateTo({
+        url: '../deliveringe/deliveringe?order_id=' + that.data.order_id,
+      });
+    } else if (status == 3) {//已取消
+      console.log('已取消');
+      wx.navigateTo({
+        url: '../canceled/canceled?order_id=' + that.data.order_id,
+      });
+    } else if (status == 4) {//已完成
+      console.log('已完成');
+      wx.navigateTo({
+        url: '../completed/completed?order_id=' + that.data.order_id,
+      });
+    } 
+  },
   substitute:function(e){//代取件
     var that=this;
     
     var order_id=e.target.dataset.orderid;
+    that.setData({
+      order_id: order_id
+    })
     //console.log(order_id);
     wx.navigateTo({
-      url: '../substitute/substitute?order_id='+order_id,
+      url: '../substitute/substitute?order_id='+that.data.order_id,
     });
   },
   delivering: function (e) {//配送中
     var that = this;
 
     var order_id = e.target.dataset.orderid;
+    that.setData({
+      order_id: order_id
+    })
     wx.navigateTo({
-      url: '../delivering/deliveringe?order_id=' + order_id,
+      url: '../delivering/deliveringe?order_id=' + +that.data.order_id,
     });
   }, 
   completed: function (e) {//已完成
     var that = this;
 
     var order_id = e.target.dataset.orderid;
+    that.setData({
+      order_id: order_id
+    })
     wx.navigateTo({
-      url: '../completed/completed?order_id=' + order_id,
+      url: '../completed/completed?order_id=' +that.data.order_id,
     });
   },
   canceled:function(e){//已取消
     var that = this;
 
     var order_id = e.target.dataset.orderid;
+    that.setData({
+      order_id: order_id
+    })
     wx.navigateTo({
-      url: '../canceled/canceled?order_id=' + order_id,
+      url: '../canceled/canceled?order_id=' +that.data.order_id,
     });
-  }
+  },
+  pay_now: function (e) {
+    var that = this;
+    that.setData({
+      order_id:e.target.dataset.orderid
+    });
+    var order_id=that.data.order_id
+    var data={
+      session3rd:'test',
+      order_id: order_id,
+      total_fee:that.data.total_fee
+    }
+    wx.request({
+      url: 'https://run.dev.xinduobang.cn/Pay/wxPay',
+      data:data,
+      type:'POST',
+      dataType: 'json',
+      success:function(res){
+        var code=res.data.code;
+        if(code==1){
+          console.log('success');
+          that.pay(res.data.data);
+        }else if(code==2){
+          console.log('error');
+        } else if(code == 3) {
+          console.log('重新登录');
+        }
+      }
 
+    })
+  },
+  
+  pay: function (param) {
+    var that = this;
+    wx.requestPayment({
+      'timeStamp': param.timeStamp,
+      'nonceStr': param.nonceStr,
+      'package': param.package,
+      'signType': param.signType,
+      'paySign': param.paySign,
+      success: function (res) {
+        // success
+        console.log(res);
+        that.showInfo('支付成功');
+      },
+      fail: function (res) {
+        // fail
+        console.log(res);
+        var strMsg = res.errMsg;
+        if (res.err_desc) {
+          strMsg += ', ' + res.err_desc;
+        }
+        console.log(strMsg);
+      },
+      complete: function () {
+        // complete
+        console.log("支付完成");
+      }
+    });
+  },
+  gotoDetail:function(e){
+    var that=this;
+    that.allStatus(e);
+
+  }
+  
 })

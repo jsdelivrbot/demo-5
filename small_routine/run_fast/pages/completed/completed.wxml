@@ -81,7 +81,7 @@
             </view>
 
             <view class="codeBox">
-             <image src="../../imgs/code.png" class="code_pic"></image>
+             <image src="{{obj.url}}" class="code_pic"></image>
             </view>
           </view>
          </view>

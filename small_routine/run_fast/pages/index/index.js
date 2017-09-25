@@ -189,7 +189,8 @@ Page({
   },
   gotoOrder:function() {
     wx.navigateTo({
-      url: '../order/order',
+     url: '../order/order',
+     
     });
   },
   showToast: function () {

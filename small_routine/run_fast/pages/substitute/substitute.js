@@ -15,7 +15,8 @@ Page({
     // tab切换 
     currentTab: 0,
     obj:{},
-    addtime:''
+    addtime:'',//订单创建时间
+    userPayMoney:''//用户输入金额
   },
   onLoad: function (options) {
     var that = this;
@@ -90,5 +91,12 @@ Page({
         }
       }
     })
+  },
+  user_payNum:function(e){
+    var that=this;
+    that.setData({
+      userPayMoney: e.detail.value
+    });
+    console.log(that.data.userPayMoney);
   }
 }) 

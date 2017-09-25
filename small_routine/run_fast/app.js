@@ -46,20 +46,38 @@ App({
               }
             })
           }
-        })
+        });
+        wx.request({
+          url: "https://run.dev.xinduobang.cn/Run/checkOrder",
+          data: {"session3rd":"test"},
+          method: 'get',
+          header: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          success: function (res) {
+          //登录时做检查订单操作，根据code 值做跳转
+           var code=res.data.code;
+           if (code==0){
+              console.log('成功');
+            }else if(code==1){
+             console.log('失败');
+            }else if(code==2){
+            console.log('重新登录');
+            }else if(code==3){
+             console.log('正在寻找快递员中，需要跳转到寻找快递员的页面');
+             wx.navigateTo({
+               url: '../call/call',
+             })
+            }else if(code==4){
+             console.log('快递员已经确认，正在揽件的路上');
+             wx.navigateTo({
+               url: '../order/order',
+             })
+            }
+          }
+        });
       }
-    })
-    // console.log(222222);
-    // wx.getUserInfo({
-    //   'withCredentials': false,
-    //   success: function(res){
-
-    //     // console.log(res);
-        
-        
-    //   }
-    // });
+    });
   },
+   
   getUserInfo: function (cb) {
     console.log(123);
     var that = this;

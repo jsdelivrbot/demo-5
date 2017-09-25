@@ -53,7 +53,7 @@ Page({
         var code = res.data.code;
         var data = res.data.data;
         if (code == 0) {
-          console.log(data);
+          
           that.setData({
             obj: data,
             addtime: util.formatTime(new Date(parseInt(data.addtime)))

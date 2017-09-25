@@ -116,6 +116,16 @@
 .payMoney{
   margin-bottom:30rpx;
 }
+.payInputBox{
+  margin:0 15rpx;
+   width:135rpx;
+   height:50rpx;
+   border-bottom: 1rpx solid #ddd;
+}
+.payInput{
+  width:135rpx;
+  height:50rpx;
+}
   .payButton{
     width:200rpx;
     height:60rpx;

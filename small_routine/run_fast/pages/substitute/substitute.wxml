@@ -12,7 +12,7 @@
     </view>
     <view class="down flexBox">
       <view>
-        <view class="payMoney">您需支付快递费用：{{obj.pay_money}}元</view>
+        <view class="payMoney">您需支付快递费用：<view class="inlineFlex payInputBox"><input class=" payInput" bindchange="user_payNum" type="number"/></view>元</view>
         <view class="tips">* 您所支付的快递费用需同快递员沟通</view>
       </view>
       <view>

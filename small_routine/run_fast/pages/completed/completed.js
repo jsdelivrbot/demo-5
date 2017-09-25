@@ -19,7 +19,7 @@ Page({
   },
   onLoad: function (options) {
     var that = this;
-    console.log(options);
+    //console.log(options);
     /** 
      * 获取系统信息 
      */
@@ -82,7 +82,8 @@ Page({
           that.setData({
             obj: data,
             addtime: util.formatTime(new Date(parseInt(data.addtime)))
-          })
+          });
+          console.log(that.data.obj.url);
         } else if (code == 1) {
 
         } else if (code == 2) {
