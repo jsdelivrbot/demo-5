@@ -1,7 +1,11 @@
 <view class="container">
   <form bindsubmit="formBindsubmit" bindreset="formReset" class="sendForm">
     <view class="formView">
-      <view class="flexBox formItem formItem1" bindtap="gotoMap">
+      <view class="flexBox formItem formItem0">
+        <view class="address_detail " bindtap="gotoMap">详细地址</view>
+        <view class="history " bindtap="history_address">历史地址</view>
+      </view>
+      <view class="flexBox formItem formItem1" >
         <view class="flexBox">
           <view>
             <input class='hasData address' placeholder="{{info.address}}" value="{{location.address}}" readonly="readonly"/>
@@ -9,10 +13,10 @@
         </view>
       </view>
       <!-- 补充内容 -->
-      <view class="flexBox formItem formItem2">
+      <view class="{{showView?'show':'hide'}}">
         <view class="flexBox">
           <view>
-            <input type='text' name="extraAddress" placeholder="{{info.extraAddress}}" value="{{location.extraAddress}}" bindinput="changeExtraAddress"/>
+            <input type='text' name="extraAddress" placeholder="{{info.extraAddress}}" value="{{location.extraAddress}}" bindinput="changeExtraAddress" disabled="{{noMap}}"/>
           </view>
         </view>
       </view>

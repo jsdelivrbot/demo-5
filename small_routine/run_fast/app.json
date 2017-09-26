@@ -3,6 +3,7 @@
     "pages/index/index",
     "pages/logs/logs",
     "pages/address_detail/address_detail",
+    "pages/history/history",
     "pages/call/call",
     "pages/order/order",
     "pages/substitute/substitute",

@@ -5,8 +5,10 @@ Page({
    * 页面的初始数据
    */
   data: {
+      noMap:true,//开关
+      showView: true,//false 隐藏补充 true 显示补充
       status: {
-        type: 0,
+        type: 1,//1 寄件人 2 收件人
       },
       location: {
         latitude: '',
@@ -21,21 +23,32 @@ Page({
         contactPerson: '',
         telephone: '',
         extraAddress: '请补充楼栋号,例1栋2单元4楼3号',
-      }
+      },
+      addressid:'',
+      latitude:'',
+      longitude:''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (data) {
-    if(data.type == 0){  // 寄件型
+    console.log(data);
+    if(data.type == 1){  // 寄件型
       this.setData({
         status: {
-          type: 0
-        }
+          type: 1
+        },
+        'location.address': data.address,
+        addressid: data.address_id,
+        'location.latitude': data.latitude,
+        'location.longitude': data.longitude,
+        noMap:false
       });
+      console.log(this.data.location);
+    
       this.setData({
-        'location.status.type': '0',
+        'location.status.type': '1',
         'location.address': data.address,
         'location.extraAddress': data.extraAddress,
         'location.contactPerson': data.contactPerson,
@@ -47,7 +60,7 @@ Page({
     }else{
       this.setData({
         status: {
-          type: 1
+          type: 2
         }
       });
       this.setData({
@@ -80,7 +93,7 @@ Page({
       'location.contactPerson': e.detail.value
     })
   },
-  // 联系方式
+  // 联系电话
   changeTelephone: function(e){
     this.setData({
       'location.telephone': e.detail.value
@@ -129,6 +142,10 @@ Page({
   },
   gotoMap:function(){
     var that = this;
+    that.setData({
+      showView:true
+    });
+   
     wx.chooseLocation({
       success: function (res) {
         // console.log(that);
@@ -138,6 +155,7 @@ Page({
           'location.latitude': res.latitude,
           'location.longitude': res.longitude,
           'location.address': res.name||res.address,
+          noMap:false
         });
          console.log(that.data.location)
       },
@@ -149,7 +167,18 @@ Page({
       }
     })
   },
+  history_address:function(){//历史地址
+    var that=this;
+    that.setData({
+      showView:false
+    });
+    wx.navigateTo({
+      url: '../history/history?type='+that.data.status.type,
+    });
+    
+  },
   gotoIndex: function(){
+  
     var status = this.data.status;
     var location = this.data.location;
     // console.log(status.type);
@@ -222,7 +251,7 @@ Page({
         'receive.status.hasPerson': false,
       });
     }
-
+  
     wx.navigateBack();
   }
   

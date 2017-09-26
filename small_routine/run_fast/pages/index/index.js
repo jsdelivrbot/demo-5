@@ -113,7 +113,7 @@ Page({
   },  
   gotoSendMap:function(e){
     
-    var type = 0;  //0:寄件人; 1:收件人;
+    var type = 1;  //1:寄件人; 2:收件人;
     // wx.setStorageSync('receiveData', this.data.receive);
     var sendLocation = this.data.send.location;
     // console.log("go1");
@@ -127,11 +127,11 @@ Page({
   gotoReceiveMap: function (e) {
     // console.log("go2")
     
-    var type = 1;  //0:寄件人; 1:收件人;
+    var type = 2;  //1:寄件人; 2:收件人;
     // wx.setStorageSync('sendData', this.data.send);
     var receiveLocation = this.data.receive.location;
     wx.navigateTo({
-      url: '../address_detail/address_detail?' + 'type=' + type + '&address=' + receiveLocation.address + '&extraAddress=' + receiveLocation.extraAddress + '&contactPerson=' + receiveLocation.contactPerson + '&telephone=' + receiveLocation.telephone
+      url: '../address_detail/address_detail?' + 'type=' + type + '&address=' + receiveLocation.address + '&extraAddress=' + receiveLocation.extraAddress + '&contactPerson=' + receiveLocation.contactPerson + '&telephone=' + receiveLocation.telephone 
     });
   },
   callExpress:function(){

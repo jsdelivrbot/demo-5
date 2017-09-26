@@ -1,0 +1,5 @@
+<view class="container">
+  <view wx:for="{{address_list}}" wx:key="item" class="adress_list_item flexBox" data-addressid="{{item.address_id}}" data-latitude="{{item.latitude}}" data-longitude="{{item.longitude}}" data-address="{{item.address}}" bindtap='chooseItem'>
+    <view class="adress">{{item.address}}</view>
+  </view>
+</view>

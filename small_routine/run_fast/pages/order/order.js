@@ -18,6 +18,7 @@ Page({
     // tab切换 
     currentTab: 0,
     pageNum:1,
+    pageCode:0,//获取对应列表订单状态
     dataList:[]//保存当前列表
     
   },
@@ -34,15 +35,11 @@ Page({
         // console.log(that.data.winHeight);
       }
     });
-    this.getOrderList(0);  // 获取全部订单数据
+    this.getOrderList(0,1,false);  // 获取全部订单数据
   },
   // 获取订单数据  0全部 1待揽件 2配送中 3已取消 4已送达
-  getOrderList: function (type, pageNum){
-   
+  getOrderList: function (type, pageNum, isClear) { // 订单类型, 页数, 是否清除原数据 
     var that = this;
-    if(pageNum==""||pageNum==undefined){
-      pageNum = 1;
-    }
     wx.showToast({
       title: '加载中',
       icon: 'loading'
@@ -69,7 +66,7 @@ Page({
          that.setData({
           dataList:resData.data
          });
-         console.log(that.data.dataList);
+         //console.log(that.data.dataList);
           resData.data.forEach((val, i) => {
             if (val.status == 1) {
               val.statusName = "待取件";
@@ -83,28 +80,74 @@ Page({
           });
 
           if(type==0){
+            if (isClear) {
+              that.setData({
+                'all.subData': []
+              });
+              console.log('下拉刷新或者点击重新将数组列表志为空');
+            }
             that.setData({
               'all.data': resData.data,
             });
           }else if(type==1){
+            if (isClear) {
+              that.setData({
+                'substitude.subData': []
+              })
+            }
             that.setData({
               'substitude.data': resData.data,
             });
           } else if (type == 2) {
+            if (isClear) {
+              that.setData({
+                'delivering.subData': []
+              })
+            }
             that.setData({
               'delivering.data': resData.data,
             });
             
           } else if (type == 3) {
+            if (isClear) {
+              that.setData({
+                'candeled.subData': []
+              })
+            }
             that.setData({
               'candeled.data': resData.data,
             });
            
           } else if (type == 4) {
+            if (isClear) {
+              that.setData({
+                'completed.subData': []
+              })
+            }
             that.setData({
               'completed.data': resData.data,
             });
           
+          }
+
+          // 判断是否最后一页:无数据
+          if (!resData.data || resData.data.length == 0) {
+            that.setData({
+              'pageNum': that.data.pageNum - 1
+            });
+            if (pageNum != 1) {
+              wx.showToast({
+                title: '最后一页了',
+                icon: 'success'
+              });
+            }
+          }
+          // 判断是否最后一页:小于10条数据
+          if ((pageNum != 1) && (resData.data.length < 10)) {
+            wx.showToast({
+              title: '最后一页了',
+              icon: 'success'
+            });
           }
           
         } else if (resData.code === 1) {
@@ -136,64 +179,35 @@ Page({
   },
   //点击切换
   clickTab: function (e) {
-    var that = this;
-     
-    if (this.data.currentTab === e.target.dataset.current) {
-      return false;
-    } else {
-      that.setData({
-        currentTab: e.target.dataset.current
-      });
-    }
-    that.setData({
-      scrolltop:0,
-      pageNum:0
-
+    // 更新页面属性
+    this.setData({
+      'currentTab': e.target.dataset.current,
+      'pageCode': e.target.dataset.code,
+      'pageNum': 1,
+      'scrollTop': 0
     });
-    
-    this.getOrderList(e.target.dataset.code,1);  // 获取全部订单数据
+    this.getOrderList(this.data.pageCode, 1, true);  // 获取第一页订单数据
   },
   onPullDownRefresh: function () {
-   
-    if (this.currentTab==0){
-      this.setData({
-        'all.data': [],
-      });
-      this.getOrderList(0);
-    } else if (this.currentTab == 1){
-      this.setData({
-        'substitude.data': [],
-      });
-      this.getOrderList(1);
-    }else if(this.currentTab == 2){
-      this.setData({
-        'delivering.data': [],
-      });
-      this.getOrderList(2);
-    }else if(this.currentTab == 3){
-      this.setData({
-        'completed.data': [],
-      });
-      this.getOrderList(4);
-    } else if (this.currentTab == 4){
-      this.setData({
-        'candeled.data': [],
-      });
-      this.getOrderList(3);
-    }
-    
+    console.log('下拉刷新');//加载多次问题
+    // wx.showToast({
+    //   title: '刷新中',
+    //   icon: 'loading'
+    // });
+    this.getOrderList(this.data.pageCode, 1,true);  
   },
   scrollLoading: function(){
   var that=this;
    console.log('上拉加载更多');
-   console.log(that.data.dataList);
-   if(!that.data.dataList.length==0){
+   //console.log(that.data.dataList);
+   if(that.data.dataList.length!==0){
      var pageNum = that.data.pageNum + 1;
      that.setData({
        pageNum: pageNum
      });
-     this.getOrderList(that.data.pageNum);
+     this.getOrderList(this.data.pageCode,that.data.pageNum,false);//获取订单列表，每次pageNum+1
    }else{
+     //console.log(111);不进这里
      wx.showToast({
        title: '已经到最后一页了',
        icon: ''

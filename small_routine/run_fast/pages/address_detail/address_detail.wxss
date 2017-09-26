@@ -45,12 +45,10 @@ input,text{
   padding:0rpx 44rpx 0rpx 44rpx;
   height:90rpx;
 }
-.formItem1{
+.formItem0,.formItem1,.formItem2{
   border-bottom: 1rpx solid #ddd;
 }
-.formItem2{
-  border-bottom: 1rpx solid #ddd;
-}
+
 .formItem_spe{
   height:90rpx;
   padding-left:44rpx;
@@ -59,6 +57,7 @@ input,text{
 }
 .tellBox{
   display: flex;
+  margin-left:20rpx;
 }
 
   .submitBox{
@@ -81,4 +80,28 @@ input,text{
 }
 .address{
   font-size: 28rpx;
+}
+.address_detail,.history{
+  width:325rpx;
+  height:100%;
+  font-size:24rpx;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+}
+.address_detail{
+  border-right:1rpx solid #ddd;
+}
+.show{
+  
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:0rpx 44rpx 0rpx 44rpx;
+  height:90rpx;
+  border-bottom: 1rpx solid #ddd;
+}
+.hide{
+  display:none;
 }

@@ -1,0 +1,12 @@
+.flexBox{
+  display:flex;
+  align-items:center;
+}
+.adress_list_item{
+  font-size:24rpx;
+  width:100%;
+  height:130rpx;
+  border-top:1rpx solid #ddd;
+  border-bottom:1rpx solid #ddd;
+  padding-left:113rpx;
+}
