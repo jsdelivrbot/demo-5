@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="keywords" content="希望之星,希望之星英语风采大赛,StarOutLook,中央电视台希望之星,CCTV希望之星">
+		<title>参赛信息</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="../css/mui.min.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/iosSelect.css"/>
+		<link rel="stylesheet" type="text/css" href="../fonts/iconfont.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/webuploader.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/mymatch.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/competing.css"/>
+	</head>
+	<body>
+		<header id="header" class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">参赛信息</h1>
+		</header>
+		
+		<div id="competAreaPopover" class="mui-popover">
+			<header class="iosselect-header">
+				<a href="javascript:void(0)" id="cancel" class="close">取消</a>
+				<a href="javascript:void(0)" id="confirm" class="sure">确定</a>
+			</header>
+			<div class="mui-scroll-wrapper">
+				<div class="mui-scroll">
+					<!--赛区列表-->
+				</div>
+			</div>
+		</div>
+
+		<ul class="container">
+			<li id="filePicker" class="container-one" >
+				<label for="">证件照:</label>
+				<span class="select">比赛评分使用</span>
+				<div id="fileList" class="profilePic uploader-list">
+					<img src="../images/profilePic.png" alt="" />
+				</div>
+				<i class="iconfont iconfontright">&#xe600;</i>
+
+			</li>
+			<li class="container-two" style="display: none;">
+				<label for="competArea">所属赛区:</label>
+				<span class="select" id="selectcompetArea">请选择</span>
+        		<!--<input type="hidden" id="competArea" value="">-->
+        		<i class="iconfont iconfontright">&#xe600;</i>
+			</li>
+			<li class="container-three">
+				<label for="school">学校/机构:</label>
+				<input type="text" id="school" value="" placeholder="可输入文字/数字/字母" />
+			</li>
+			<li class="container-three">
+				<label for="class">所属班级:</label>
+				<input type="text" id="class" value="" placeholder="可输入文字/数字/字母" />
+			</li>
+			<li class="container-three">
+				<label for="email">父/母邮箱:</label>
+				<input type="text" id="email" value="" autocomplete="off"/>
+			</li>
+			<li class="container-four">
+				<label for="">项目/组别:</label>
+				<span class="btn-group" id="showGeneral">请选择</span>
+				<input type="hidden" name="su_id" id="suId" value="">
+        		<input type="hidden" name="wei_id" id="weiId" value="">
+
+			</li>
+		</ul>
+		<button id="confirmButton" class="btn" disabled="disabled">完成</button>
+
+		<div id="confirmPopover" class="mui-popover">
+			<i class="btn-close"></i>
+			<div class="mui-scroll-wrapper">
+				<div class="mui-scroll">
+
+					<h3 class="title">基本信息</h3>
+					<div class="base">
+						<div class="user">
+							<div class="user-head"><img src="" alt="" /></div>
+							<div class="user-info">
+								<p style="width: 3.9rem;">真实姓名:<span id="name"></span></p>
+								<p>选手性别:<span id="sex"></span></p>
+							</div>
+						</div>
+						<p>民族:<span id="nation"></span></p>
+						<p>所属赛区:<span id="area"></span></p>
+						<p>身份证号:<span id="card"></span></p>
+					</div>
+					<h3 class="title"><span>参赛信息</span></h3>
+					<div class="match">
+						<p style="display: none;"><span class="popoverTitle">所属赛区:</span><span id="matchArea"></span></p>
+						<p><span class="popoverTitle">项目/组别:</span><span id="group"></span></p>
+						<p><span class="popoverTitle">学校机构:</span><span id="schoolText"></span></p>
+						<p><span class="popoverTitle">所属班级:</span><span id="popoverClass"></span></p>
+						<p><span class="popoverTitle">父/母邮箱:</span><span id="popoverEmail"></span></p>
+					</div>
+					<p class="tips">特别提醒:<span>请仔细核对信息，提交后不可更改</span></p>
+					<div class="send-btn"><button id="send" class="btn">提交&nbsp;(提交后不可更改)</button></div>
+				</div>
+			</div>
+		</div>
+
+	</body>
+	<script src="../js/lib/jquery/jquery-1.11.3.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/lib/mui/mui.min.js" charset="utf-8"></script>
+	<script src="../js/lib/upload/webuploader.js"></script>
+	<script src="../js/lib/select/data.js"></script>
+	<script src="../js/lib/select/iosSelect.js"></script>
+	<script src="../js/main/competing.js"></script>
+	<script src="../js/lib/layer/layer.m.js" type="text/javascript" charset="utf-8"></script>
+</html>

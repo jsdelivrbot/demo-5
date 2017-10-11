@@ -1,0 +1,60 @@
+/*body*/
+body{
+	background:#2b2938;
+}
+
+.mui-bar-nav {
+    top: 0;
+    -webkit-box-shadow:none;
+    box-shadow:none;
+    background:#15141b;
+}
+.mui-bar {
+   height:0.88rem;
+}
+.mui-title {
+     color: #fff;
+     line-height:0.88rem;
+     font-size:0.34rem;
+}
+.mui-bar-nav.mui-bar .mui-icon{
+	height: .88rem;
+	padding-top: 0;
+}
+
+.mui-icon-back:before, .mui-icon-left-nav:before {
+    content: '\e471';
+    line-height: .88rem;
+}
+a {
+    text-decoration: none;
+    color: #fff;
+}
+/*img*/
+.star{
+	width:4rem;
+	height:3.5rem;
+	margin:2.06rem auto 1.46rem;
+	display:block;
+}
+p{
+	text-align:center;
+	line-height:1.5;
+	font-size:0.26rem;
+	color:#807f87;
+	
+}
+/*button*/
+#proveBtn{
+	display:block;
+	margin:.7rem auto 3.68rem;
+	width:3.6rem;
+	height:0.84rem;
+	border-radius:0.42rem;
+	background:#FF296A;
+	font-size:0.3rem;
+	color:#FFFFFF;
+	border:none;
+}
+
+

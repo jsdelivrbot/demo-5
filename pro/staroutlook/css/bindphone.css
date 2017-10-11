@@ -1,0 +1,117 @@
+@charset "utf-8";
+* {
+	margin: 0;
+	padding: 0;
+}
+
+li {
+	list-style: none;
+}
+
+img {
+	border: 0;
+	vertical-align: top;
+}
+
+a {
+	text-decoration: none;
+}
+
+body {
+	background-color: #2b2938;
+}
+
+.phone-content {
+	margin-top: .88rem;
+	width: 100%;
+	box-sizing: border-box;
+	overflow: hidden;
+	position: relative;
+	background: #2b2938;
+}
+
+.phone-content ul {
+	margin: 0;
+	width: 100%;
+	background: #22202d;
+}
+
+.phone-content ul li {
+	position: relative;
+	width: 7.5rem;
+	height: 1rem;
+	line-height: 1;
+	border-bottom: 1px solid rgba(220, 220, 220, 0.1);
+	font-size: .28rem;
+	overflow: hidden;
+}
+
+.phone-content ul li input {
+	float: left;
+	margin: 0;
+	padding: 0;
+	height: 1rem;
+	line-height: 1;
+	background: none;
+	border: 0;
+	font-size: .28rem;
+	color: #fff;
+	text-indent: .24rem;
+}
+
+.phone-content ul li .icon-close {
+	display: none;
+	position: absolute;
+	top: .36rem;
+	right: .1rem;
+	font-size: .28rem !important;
+	color: #fff;
+}
+
+.phone-content ul li input.bind-code {
+	position: absolute;
+	top: .25rem;
+	right: .2rem;
+	width: 1.72rem;
+	height: .5rem;
+	border-radius: .25rem;
+	font-size: .24rem;
+	color: #fff;
+	background: #ff296a;
+	text-indent: 0;
+}
+
+.phone-content .btn-confirm {
+	display: block;
+	margin: .4rem auto;
+	width: 6.5rem;
+	height: 0.84rem;
+	border-radius: .42rem;
+	background: #605f6a;
+	border: 0;
+	outline: 0;
+	color: #fff;
+	font-size: .3rem;
+	text-indent: 0;
+}
+
+.phone-content ul li input::-webkit-input-placeholder {/* WebKit browsers */
+	line-height: 1.2;
+	color: #6c6c6c;
+}
+
+.phone-content ul li input:-moz-placeholder {/* Mozilla Firefox 4 to 18 */
+	line-height: 1.2;
+	color: #6c6c6c;
+}
+
+.phone-content ul li input::-moz-placeholder {/* Mozilla Firefox 19+ */
+	line-height: 1.2;
+	color: #6c6c6c;
+}
+
+.phone-content ul li input:-ms-input-placeholder {/* Internet Explorer 10+ */
+	line-height: 1.2;
+	color: #6c6c6c;
+}
+

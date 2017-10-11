@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>评委信息</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" href="../css/common.css" />
+		<style>
+			.container {padding: .5rem;}
+			.judges-img {margin: 0 auto;width: 1.62rem;height: 1.62rem;border-radius: 50%;overflow: hidden;}
+			.judges-name {padding: .3rem 1.56rem .4rem;text-align: center;font-weight: bold;line-height: 1.2;}
+			.container p {margin-bottom: .26rem;line-height: 1.6;font-size: .28rem;text-indent: 2em;text-align: justify;}
+		</style>
+	</head>
+
+	<body>
+		<div class="container">
+			<div class="judges-img">
+			</div>
+			<h2 class="judges-name color-fe741a f32"></h2>
+			<div class="judges-details">
+			</div>
+		</div>
+	</body>
+	<script src="../js/jquery-1.11.3.min.js"></script>
+	<script src="../js/common.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			var id = GetQueryString("judgesId");
+			var data= {"userId":userId,"token":token,"id":id,}
+			new ajax("/star/sequential/judges/item", "get", data, "json", suc, err)
+			function suc(data){
+				if(data.result == '1'){
+					var html = '';
+					html += '<div class="judges-img">\
+								<img src="' + data.data.logoUrl + '" />\
+							</div>\
+							<h2 class="judges-name color-fe741a f32">' + data.data.name + '</h2>\
+							<div class="judges-details">' + data.data.details + '</div>';
+					$('.container').html('').append(html);
+				}else{
+					mask.Alert("请求失败，请重试!",2);
+				}
+			}
+			function err(data){
+				mask.Alert("请求失败，稍后请重试!",2);
+			}
+		})
+	</script>
+</html>

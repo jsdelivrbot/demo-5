@@ -1,0 +1,76 @@
+@charset "utf-8";
+* {
+  margin: 0;
+  padding: 0;
+}
+li {
+  list-style: none;
+}
+img {
+  border: 0;
+  vertical-align: top;
+}
+a {
+  text-decoration: none;
+}
+html,
+body {
+  width: 100%;
+  height: 100%;
+  background-color: #282938;
+}
+.mui-bar-nav {
+  background-color: #15141B;
+  box-shadow: none;
+}
+.mui-icon-left-nav {
+  color: #fff;
+}
+.mui-bar .mui-title {
+  color: #fff;
+}
+.mui-content .sContent {
+  webkit-box-flex: 1;
+  /* android 2.1-3.0, ios 3.2-4.3 */
+
+  -webkit-flex: 1;
+  /* Chrome 21+ */
+
+  -ms-flex: 1;
+  /* WP IE 10 */
+
+  -moz-box-flex: 1;
+  /* FF */
+
+  flex: 1;
+  /* android 4.4 */
+
+  width: 100%;
+  background-color: #282938;
+}
+.mui-content .sContent .sysNews {
+  width: 100%;
+  background-color: #282938;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 0 0.13rem;
+}
+.mui-content .sContent .sysNews li {
+  width: 100%;
+  height: 0.88rem;
+}
+.mui-content .sContent .sysNews li:first-child {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  color: #fff;
+  font-size: 0.14rem;
+  line-height: 0.88rem;
+}
+.mui-content .sContent .sysNews li:last-child {
+  color: #8f8f8f;
+  font-size: 0.12rem;
+  line-height: 0.88rem;
+  border-bottom: none;
+}

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>通知详情</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="../css/common.css" />
+		<style>
+			.title {font-size: .3rem;font-weight: bold;text-align: center;}
+			.table {padding: .2rem .1rem;padding-top: 0;font-size: 0;}
+			.table .title-container {position: fixed;top: 0;width: 7.3rem;color: #fff;padding-top: .2rem;background: #fefdfd;}
+			.table .title-wrapper {background: #fe741a;}
+			.table .title {margin: 0 auto;width: 7.1rem;padding: .26rem .6rem;line-height:.4rem;border-bottom: 1px solid #e66510;box-sizing: border-box;}
+			.table li {border-bottom: 2px solid #fdf1ea;}
+			.table span {display: inline-block;text-align: center;}
+			.table span:first-child,.table span:last-child {width: 1rem;}
+			.table li>span+span {width: 1rem;}
+			.table li>span+span+span {width: 2.48rem;}
+			.table li>span+span+span+span {width: 1.72rem;}
+			.table-head span {height: .7rem;line-height: .7rem;font-size: .26rem;}
+			.table>.title-wrapper{padding-top: .2rem;}
+			.table-body span {height: .88rem;line-height: .88rem;font-size: .24rem;}
+		</style>
+	</head>
+
+	<body>
+		<div class="table">
+			<div class="title-container">
+				<div class="title-wrapper">
+					<h2 class="title"></h2>
+					<ul class="table-head">
+						<li>
+							<span>序号</span>
+							<span>抽签号</span>
+							<span>选手姓名</span>
+							<span>赛区</span>
+							<span>总分</span>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<ul class="table-body">
+			</ul>
+		</div>
+	</body>
+</html>
+<script src="../js/jquery-1.11.3.min.js"></script>
+<script src="../js/common.js"></script>
+<script>
+	$(function(){
+		var id = GetQueryString("id");
+		var data= {"id":id};
+		new ajax("/star/transcripts/list", "get", data, "json", suc, err);
+		function suc(data){
+			if(data.result == '1'){
+				$("h2").text(data.data.transcripts.name);
+				var html = '';
+				$.each(data.data.dataList, function(index, list) {
+					html += '<li>\
+								<span>' + (index+1) + '</span>\
+								<span>' + list.drawNumber + '</span>\
+								<span>' + list.name + '</span>\
+								<span>' + list.matchZone + '</span>\
+								<span>' + list.totalScore + '</span>\
+							</li>';
+				})
+				$('.table-body').html('').append(html);
+				$(".table-body span").each(function() {
+					if($(this).text().length >= 9) {
+						$(this).css({
+							"line-height": "1.8",
+							"vertical-align": "top"
+						})
+					}
+				});
+				var title = $(".title-container");
+				title.after(title.html());
+			}else{
+				mask.Alert("请求失败，请重试!",2);
+			}
+		}
+		function err(data){
+			mask.Alert("请求失败，稍后请重试!",2);
+		}
+	})
+</script>

@@ -1,0 +1,133 @@
+.section,
+ul.section>li {
+	background: #fff;
+	border-radius: 4px;
+	box-shadow: 0px 1px 20px 4px rgba(254, 120, 32, .1);
+}
+
+.btn {
+	display: block;
+	margin: 1.2rem auto .9rem;
+	width: 5.8rem;
+	height: .8rem;
+	line-height: .8rem;
+	border-radius: 20px;
+	color: #fff;
+	font-size: .3rem;
+	font-weight: bold;
+	text-align: center;
+	background: #fe741a;
+	box-shadow: 2px 14px 10px -5px rgba(254, 120, 32, .2);
+}
+
+
+/*问卷开始页面*/
+
+.question-start {
+	padding: .5rem .16rem;
+	line-height: 1.6;
+}
+
+.question-start h1 {
+	padding: 0 .6rem;
+	font-size: .28rem;
+	color: #fe741a;
+	line-height: 1.6;
+	text-align: center;
+}
+
+.question-start .title {
+	font-size: .26rem;
+	color: #38312c;
+}
+
+.question-start .section {
+	padding: .32rem .22rem;
+	margin: .34rem auto;
+}
+
+.question-start ul {
+	padding-left: .22rem;
+}
+
+.question-start li {
+	list-style: decimal;
+}
+
+
+/*问卷答题页面*/
+
+.question-container {
+	font-size: .28rem;
+}
+
+.question-container label {
+	display: inline-block;
+	width: 88%;
+}
+
+.question-container input {
+	width: 6rem;
+	border: none;
+	margin: 0 .86rem .3rem .64rem;
+	height: .62rem;
+	line-height: .62rem;
+	border-bottom: 1px solid #443c36;
+}
+
+.question-container .section>li {
+	margin: .2rem 0;
+}
+
+.question-container .question>p {
+	padding: 0 .3rem;
+	height: .98rem;
+	line-height: .98rem;
+	border-bottom: 1px solid #eee8e4;
+	font-weight: bold;
+}
+
+.question-container .question>ul>li {
+	margin: 0 .3rem;
+	height: .92rem;
+	line-height: .92rem;
+	border-bottom: 1px solid #eee8e4;
+	color: #5a5553;
+}
+
+.question-container .question>ul>li:last-child {
+	border-bottom: none;
+}
+
+.question-container .option i {
+	display: inline-block;
+	margin-right: .3rem;
+	width: .4rem;
+	height: .4rem;
+	background: url(../images/my_guidebook_survey_questionnaire_btn_select_default.png) no-repeat;
+	background-size: 100% 100%;
+	vertical-align: middle;
+}
+
+.question-container .section .fill>p {
+	border-bottom: none;
+}
+
+.question-container .btn {
+	margin: .64rem auto .8rem;
+	background: #373533;
+	box-shadow: 2px 14px 10px -5px rgba(55, 53, 51, .2);
+}
+
+.question-container .btn.submit {
+	background: #fe741a;
+	box-shadow: 2px 14px 10px -5px rgba(254, 120, 32, .2);
+}
+
+.question-container .question>ul>li.selected {
+	color: #38312c;
+}
+
+.question-container .selected i {
+	background-image: url(../images/my_guidebook_survey_questionnaire_btn_select_pressed.png);
+}

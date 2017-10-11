@@ -1,0 +1,50 @@
+@charset "utf-8";
+* {
+  margin: 0;
+  padding: 0;
+}
+li {
+  list-style: none;
+}
+img {
+  border: 0;
+  vertical-align: top;
+}
+a {
+  text-decoration: none;
+}
+body {
+    background: #2b2938;
+}
+.logo {
+	
+  width: 1.54rem;
+  height: 2.62rem;
+  position: relative;
+  margin: 0 auto;
+  margin-top: .88rem;
+}
+.logo img {
+  display: block;
+  width: 1.54rem;
+  height: 1.54rem;
+  position: absolute;
+  top: 30%;
+}
+.introduce {
+  width: 90%;
+  margin: 0 auto;
+}
+.introduce h3 {
+  font-size: .3rem;
+  color: #fff;
+  line-height: 1.2rem;
+  text-align: center;
+}
+.introduce p {
+  font-size: .26rem;
+  color: #fff;
+  line-height: .44rem;
+  text-indent: .4rem;
+  text-align: justify;
+}

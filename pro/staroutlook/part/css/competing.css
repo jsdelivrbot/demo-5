@@ -1,0 +1,176 @@
+li.container-one{
+	height: 2rem;
+	line-height: 2rem;
+	margin-left: 0;
+	/*padding-left: 0.3rem;*/
+}
+li.container-one .select{
+	margin-left: 0.6rem;
+}
+li.container-two{
+	height: 1rem;
+	line-height: 1rem;
+}
+li.container-two .select{
+	margin-left: 0.3rem;
+}
+.container li.container-three{
+	margin-left: 0;
+	padding-left: 0.3rem;
+}
+.container-four{
+	height: 2.86rem;
+	padding: 0.2rem 0 1rem;
+}
+
+
+.profilePic{
+	position: absolute;
+    top: 0.3rem;
+    right: 0.6rem;
+	width: 1.32rem;
+    height: 1.32rem;
+    border-radius: 0.1rem;
+    overflow: hidden;
+}
+#chooseButton{
+	width: 4.2rem;
+	height: 0.7rem;
+	margin-left: -2rem;
+	color: #6c6c6c;
+	border: 2px solid rgba(220,220,220,.1);
+	background-color: #22202d;
+}
+
+#confirmPopover{
+	position: fixed;
+	height: 10.4rem;
+    top: 1.2rem;
+    left: 50%;
+    margin-left: -3.35rem;
+	width: 6.7rem;
+	border-radius: 0.3rem;
+	background-color: #2b2938;
+	box-sizing: border-box;
+}
+@media screen and (min-width: 750px){
+	#confirmPopover{
+		height: 8rem;
+	}
+}
+.btn-close{
+	position: absolute;
+	top: -0.16rem;
+    right: -0.16rem;
+    width: 0.6rem;
+    height: 0.6rem;
+    background: url(../images/close.png) no-repeat;
+    background-size: 100%;
+    z-index: 10;
+}
+.mui-scroll{
+	padding: 0.1rem;
+}
+.mui-scroll>div{
+	padding: 0.4rem;
+	padding-bottom: 0.1rem;
+	border-top: 2px solid #3d3b49;
+	border-bottom: 2px solid #3d3b49;
+}
+.mui-popover .mui-popover-arrow:after{
+	content: none;
+}
+.mui-scroll-wrapper{
+	top: 0;
+}
+
+.title{
+	margin: 0;
+    padding: 0;
+    height: 1.06rem;
+    line-height: 1.06rem;
+    font-size: 0.32rem;
+    color: #fff;
+    text-align: center;
+    
+}
+.user{
+	position: relative;
+	margin-bottom: 0.3rem;
+}
+.user-head{
+	display: inline-block;
+	width: 1.32rem;
+	height: 1.32rem;
+	margin-right: 0.3rem;
+	border: 2px solid #fff;
+	border-radius: 0.08rem;
+	box-shadow: 0.06rem 0.06rem 0.16rem #191824;
+	vertical-align: bottom;
+}
+.user-info {
+	display: inline-block;
+}
+p{
+	font-size: 0.3rem;
+	color: #cacaca;
+}
+
+.special{
+	font-size: 0.26rem;
+	color: #8e4feb;
+}
+.send-btn{
+	padding: 0 0 1.2rem 0 !important;
+	border: none !important;
+}
+#send{
+	background-color: #ff296a;
+}
+
+.group{
+	width: 5rem;
+    margin-left: 1.4rem;
+}
+.btn-group{
+	position: absolute;
+	top: 1rem;
+	display: inline-block;
+	width: 4.2rem;
+    height: 0.7rem;
+	line-height: 0.7rem;
+    background-color: #22202d;
+    border: 1px solid rgba(220,220,220,.1);
+    color: #6c6c6c;
+    border-radius: 0.42rem;
+    text-align: center;
+    font-size: 0.3rem;
+}
+.tips{
+	color: #6c6c6c;
+}
+.tips span{
+	color: #8e4feb;
+}
+
+#class{
+	margin-left: 0.08rem;
+}
+
+#confirmPopover span{
+	margin-left: 0.2rem;
+}
+
+/*证件照上传*/
+.webuploader-pick{
+	padding: 0;
+	background: none;
+	color: #6c6c6c;
+}
+
+
+span.popoverTitle{
+	display: inline-block;
+    width: 1.4rem;
+    text-align: right;
+}

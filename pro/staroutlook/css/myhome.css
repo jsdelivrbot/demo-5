@@ -1,0 +1,397 @@
+@charset "utf-8";
+a {
+	text-decoration: none;
+}
+
+html,
+body {
+	width: 100%;
+	height: 100%;
+}
+
+html {
+	font-size: 100px;
+	background: #2b2938;
+}
+
+body {
+	height: 100%;
+	width: 100%;
+	background-color: #323042;
+}
+
+body .remyinfo {
+	width: 100%;
+	height: 3.92rem;
+	background-color: #282938;
+	position: relative;
+	overflow: hidden;
+}
+
+body .remyinfo .reImg {
+	width: 102%;
+    height: 102%;
+    margin: -1%;
+}
+
+body .remyinfo .reImg img {
+	opacity: 0.7;
+	-webkit-filter: blur(4px);
+	-moz-filter: blur(4px);
+	-o-filter: blur(4px);
+	-ms-filter: blur(4px);
+	filter: blur(4px);
+}
+
+body .remyinfo .reImg .head {
+	width: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: .88rem;
+	color: #fff;
+}
+
+body .remyinfo .reImg .head span {
+	display: inline-block;
+	width: 50%;
+	height: .88rem;
+	text-indent: 10px;
+	font-size: .24rem;
+	line-height: .88rem;
+}
+
+body .remyinfo .avator {
+	width: 100%;
+	height: 3rem;
+	overflow: hidden;
+	position: absolute;
+	top: 25%;
+}
+
+body .remyinfo .avator .headavator {
+	position: relative;
+	width: 1.2rem;
+	height: 1.2rem;
+	margin: auto;
+
+}
+
+.headavator img{
+	border-radius: 50%;
+	
+}
+.headavator>.icon-v{
+	bottom: 0;
+}
+
+body .remyinfo .avator p {
+	margin: 0;
+	width: 100%;
+	height: .4rem;
+	font-size: .28rem;
+	color: #fff;
+	text-align: center;
+	line-height: .4rem;
+}
+
+body .remyinfo .avator button {
+	margin: auto;
+	display: block;
+	padding: 0;
+	width: 1.2rem;
+	height: .6rem;
+	border: 0;
+	border-radius: 5px;
+	background: #f6146f;
+	font-size: .24rem;
+	color: #fff;
+	outline: none;
+}
+
+.mui-fullscreen{
+	top: 3.92rem;
+}
+.mui-fullscreen .mui-segmented-control~.mui-slider-group{
+	top: 1.2rem;
+}
+body #home-swiper #home-swiper2 {
+	width: 100%;
+	color: #fff;
+}
+
+body #home-swiper #home-swiper2 #home-hot-nav {
+	padding: .24rem 0;
+	background: #272534;
+}
+
+body #home-swiper #home-hot-nav li {
+	float: left;
+	width: 25%;
+	font-size: .28rem;
+	color: #fff;
+	text-align: center;
+	line-height: 24px;
+	border-right: 1px solid #777;
+	border-bottom: none;
+}
+
+body #home-swiper #home-hot-nav li:last-child {
+	border: 0;
+}
+
+body #home-swiper #home-hot-nav li.active {
+	color: #cb2177;
+}
+
+body .reContent {
+	margin-bottom: .2rem;
+	width: 100%;
+	background-color: #282938;
+}
+
+body .reContent .reHeader {
+	width: 100%;
+	background-color: #373846;
+	padding: 0.26rem;
+}
+
+body .reContent .reHeader> ul li:nth-child(1) {
+	position: relative;
+	float: left;
+	width: 0.82rem;
+	height: .82rem;
+	margin-right: 0.2rem;
+
+}
+.reHeader img{
+	border-radius: 50%;
+}
+
+body .reContent .reHeader> ul li:nth-child(2) {
+	width: 100%;
+	height: .82rem;
+	line-height: .9rem;
+	font-size: 0.28rem;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	padding-left: 0.2rem;
+}
+
+.yo-ico {
+	float: right;
+	color: #ababab;
+	font-size: 0.24rem;
+}
+
+body .reContent .reImg {
+	position: relative;
+	width: 100%;
+	height: 5rem;
+	background: #000;
+}
+
+body .reContent .reImg video {
+	width: 100%;
+	height: 100%;
+	display: block;
+}
+
+body .reContent .reImg> p.reMess {
+	width: 100%;
+	height: 0.56rem;
+	line-height: 0.56rem;
+	font-size: 0.28rem;
+	text-indent: 0.26rem;
+	color: #fff;
+	position: absolute;
+	top: 0;
+	text-indent: 0.26rem;
+	z-index: 999;
+}
+
+body .reContent .reShare {
+	width: 100%;
+	height: 0.78rem;
+	padding: 0.24rem 0;
+	background-color: #373846;
+}
+
+body .reContent .reShare> li {
+	width: 33%;
+	float: left;
+	border-right: 0.02rem solid #808087;
+	line-height: 0.3rem;
+	font-size: 0.24rem;
+	color: #fff;
+	text-align: center;
+}
+
+body .reContent .reShare> li> span.rehear {
+	color: #f93271;
+}
+
+body .reContent .reShare> li:last-child {
+	border-right: 0;
+}
+
+
+/* 关注 */
+
+#attentionTab li,
+#followTab li {
+	padding: 0 0.26rem;
+	height: 1.04rem;
+	font-size: 18px;
+}
+
+#attentionTab a,
+#followTab a {
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+
+#attentionTab img,
+#followTab img {
+	margin: 0.1rem 0;
+	width: 0.82rem;
+	height: 0.82rem;
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	border-radius: 50%;
+}
+
+#attentionTab .reName,
+#followTab .reName {
+	width: 100%;
+	height: 1.04rem;
+	line-height: 1.04rem;
+	padding-left: 0.2rem;
+	font-size: 0.4rem;
+	color: #fff;
+	text-align: left;
+}
+
+a.share {
+	color: #fff;
+}
+
+.mui-table-view:after {
+	background-color: #323042;
+}
+
+.mui-control-item {
+	display: inline-block;
+	width: 100%;
+	height: 100%;
+}
+
+.mui-control-item span {
+	display: block;
+	height: 0.4rem;
+	line-height: 0.4rem;
+}
+
+.mui-content {
+	background: none;
+}
+
+.mui-bar~.mui-content .mui-fullscreen {
+	top: 44px;
+	height: auto;
+}
+
+.mui-pull-top-tips {
+	position: absolute;
+	top: -20px;
+	left: 50%;
+	margin-left: -25px;
+	width: 40px;
+	height: 40px;
+	border-radius: 100%;
+	z-index: 1;
+}
+
+.mui-bar~.mui-pull-top-tips {
+	top: 24px;
+}
+
+.mui-pull-top-wrapper {
+	width: 42px;
+	height: 42px;
+	display: block;
+	text-align: center;
+	border: 1px solid #ddd;
+	border-radius: 25px;
+	background-clip: padding-box;
+	box-shadow: 0 4px 10px #bbb;
+	overflow: hidden;
+}
+
+.mui-pull-top-tips.mui-transitioning {
+	-webkit-transition-duration: 200ms;
+	transition-duration: 200ms;
+}
+
+.mui-pull-top-tips .mui-pull-loading {
+	/*-webkit-backface-visibility: hidden;
+	-webkit-transition-duration: 400ms;
+	transition-duration: 400ms;*/
+	margin: 0;
+}
+
+.mui-pull-top-wrapper .mui-icon,
+.mui-pull-top-wrapper .mui-spinner {
+	margin-top: 7px;
+}
+
+.mui-pull-bottom-tips {
+	text-align: center;
+	font-size: 15px;
+	line-height: 40px;
+	color: #777;
+}
+
+.mui-pull-top-canvas {
+	overflow: hidden;
+	background-color: #fafafa;
+	border-radius: 40px;
+	box-shadow: 0 4px 10px #bbb;
+	width: 40px;
+	height: 40px;
+	margin: 0 auto;
+}
+
+.mui-pull-top-canvas canvas {
+	width: 40px;
+}
+
+.mui-slider-indicator.mui-segmented-control {
+	background-color: #efeff4;
+}
+
+.icon-v {
+	bottom: .1rem;
+	left: 0.5rem;
+}
+
+
+/*他人主页关注粉丝*/
+#attentionTab .icon-v,
+#followTab .icon-v {
+	bottom: .1rem;
+	left: 0.8rem;
+}
+
+/*视频的播放与暂停*/
+.video_Btnplaye {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -.61rem 0 0 -.61rem;
+    width: 1.22rem;
+    height: 1.22rem;
+    z-index: 10;
+}
