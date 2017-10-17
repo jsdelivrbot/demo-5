@@ -1,0 +1,104 @@
+//获取url中的参数
+var getUrlParamH = function getUrlParam(name) {
+    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+    var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+    if (r != null) return unescape(r[2]); return null; //返回参数值
+}
+/**
+ * 弹框的关闭
+ * @param msg 弹框关闭后的提示信息
+ * @param hideArea 弹框id
+ */
+var outBoxClose = function outBox(msg,hideArea){
+	$("#tipMsg").addClass("active").html(msg).show();
+	function tipHide(){
+		$("#tipMsg").hide();
+	}
+    setTimeout(tipHide,2000);
+	$("#"+hideArea).modal('hide');
+}
+
+/**数组中删除指定元素**/
+ var deleteValue = function(arr,val){
+   	for (var i = 0; i < arr.length; i++) {
+   	 	if(arr[i] == val){
+   	 		arr.splice(i,1);
+   	 		break;
+   	 	}
+   	 }
+ }
+
+//获取当前日期
+var DateToday= function(flag) {
+  var d = new Date();
+  var year = d.getFullYear();
+  var month = d.getMonth() + 1;
+  if (month < 10) {
+    month = '0' + month;
+
+  }
+  var day = d.getDate();
+  if (day < 10) {
+    day = '0' + day;
+  }
+  var hour = d.getHours();
+  if (hour < 10) {
+    hour = '0' + hour;
+  }
+  var min = d.getMinutes();
+ if (min < 10) {
+    min = '0' + min;
+  }
+  var str;
+  if(flag=="years"){
+    str = year;
+    return str;
+  }else if(flag=="months"){
+    str = year + "-" + month ;
+    return str;
+  }else if(flag=="days"){
+    str = year + "-" + month + "-" + day;
+    return str;
+  }
+
+}
+
+var datePrev=function(){
+
+  var year= $('#monthsPicker').val().split("-")[0];
+  var month = $('#monthsPicker').val().split("-")[1];
+  month--;
+ if(month<1){
+    month=12;
+    year-=1;
+ }
+
+  if(month<10){
+      month='0'+month;
+  }
+  $('#monthsPicker').val(year+'-'+month);
+  
+
+}
+var dateNext=function(){
+  var d=new Date();
+  var year= $('#monthsPicker').val().split("-")[0];
+  var month = $('#monthsPicker').val().split("-")[1];
+  month++;
+  if(month<10){
+    month='0'+month;
+  }
+
+  if(month>12){
+    year++;
+    month-=12;
+    if(month<10){
+      month='0'+month;
+    }
+  }
+  if(year==d.getFullYear()&&month>d.getMonth()+1){
+      return ;
+  }
+  $('#monthsPicker').val(year+'-'+month);
+}
+

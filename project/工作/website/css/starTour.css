@@ -1,0 +1,329 @@
+/*列表公共样式*/
+
+.list-img {
+	width: 100%;
+	height: 100%;
+	/*--------------添加-------------------------------*/
+	overflow:hidden;
+}
+/*--------------添加-------------------------------*/
+.list-img img{ transition:transform 1s;cursor: pointer;}
+.list-img img:hover{ transform:scale(1.1);}
+/*-----------------------------------------------*/
+.list-title {
+	position: absolute;
+	width: 100%;
+	bottom: 0;
+	height: 50px;
+	line-height: 50px;
+	background: rgba(0, 0, 0, .7);
+	text-align: center;
+}
+
+.list-title span {
+	display: inline-block;
+}
+
+.list-title span:nth-child(1) {
+	width: 256px;
+	padding: 0 4px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.list-title span:nth-child(2) {
+	width: 100px;
+	background: rgba(0, 0, 0, .8);
+}
+
+.ef6002 {
+	font-style: normal;
+	color: #ef6002;
+}
+
+.more {
+	display: inline-block;
+	width: 100px;
+	height: 34px;
+	line-height: 30px;
+	background: transparent;
+	color: #3b3c3d;
+	border: 2px solid #3b3c3d;
+	text-align: center;
+}
+.more:hover{ color:#76360b; border:solid 2px #76360b;}
+
+.review-wrapper .more {
+	color: #fff;
+	border: 2px solid #fff;
+}
+
+.banner {
+	padding-top: 234px;
+	height: 768px;
+	background-image: url(../images/xw_startour_bg_1.jpg);
+}
+
+.banner-wrapper {
+	height: 400px;
+	background: #ef6002;
+}
+
+.banner-img {
+	width: 540px;
+	height: 400px;
+	margin-top: -30px;
+	margin-left: 30px;
+}
+
+.banner-content {
+	width: 430px;
+	padding: 24px 40px;
+	font-size: 12px;
+	line-height: 22px;
+}
+
+.banner-list-title {
+	display: inline-block;
+	margin-bottom: 22px;
+	line-height: 50px;
+	font-size: 26px;
+	font-weight: 600;
+	border-bottom: 2px solid #f7b081;
+}
+
+.route {
+	height: 700px;
+	background: url(../images/xw_startour_bg_2.jpg) no-repeat;
+	background-size: 100% 100%;
+}
+
+.route-nav {
+	width: 240px;
+	height: 740px;
+	margin-top: -40px;
+}
+
+.nav-img {
+	width: 240px;
+	height: 250px;
+}
+
+.route-nav ul {
+	padding: 0 20px;
+	height: 490px;
+	padding-left: 30px;
+	background: #ef6002;
+}
+
+.route-nav li {
+	position: relative;
+	padding: 10px 0;
+	font-size: 16px;
+	line-height: 20px;
+	border-bottom: 1px solid #f28035;
+}
+.route-nav li:last-child{
+	border-bottom: none;
+}
+.route-nav li:before {
+	position: absolute;
+	content: "";
+	display: inline-block;
+	width: 4px;
+	left: -16px;
+	top: 11px;
+	height: 36px;
+	background: #fff;
+}
+
+.route-nav li span {
+	display: block;
+}
+
+.route-nav li span:nth-of-type(2) {
+	font-size: 12px;
+}
+
+.route-content {
+	margin: 114px 0 32px 32px;
+	width: 728px;
+}
+
+.route-content li {
+	float: left;
+	position: relative;
+	margin-left: 8px;
+	margin-bottom: 8px;
+	width: 356px;
+	height: 231px;
+}
+
+.review {
+	height: 726px;
+	padding-top: 184px;
+	background: url(../images/xw_startour_bg_3.jpg);
+	background-size: 100% 100%;
+}
+
+.review-wrapper li {
+	position: relative;
+	float: left;
+}
+
+.review-wrapper>li {
+	width: 600px;
+	height: 400px;
+}
+
+.review-wrapper ul {
+	width: 400px;
+	height: 200px;
+}
+
+.review-list1 li:nth-child(1) {
+	width: 270px;
+	height: 270px;
+	margin-top: -40px;
+	margin-left: -70px;
+	background: url(../images/xw_startour_image_lookback.png);
+	text-align: center;
+}
+
+.review-list1 li:nth-child(1) p {
+	margin-top: 70px;
+	margin-bottom: 70px;
+	font-size: 40px;
+}
+
+.review-list1 li:nth-child(2) {
+	width: 200px;
+	height: 200px;
+}
+
+.review-list2 li:nth-child(1) {
+	width: 200px;
+	height: 170px;
+	margin-top: 30px;
+}
+
+.review-list2 li:nth-child(2) {
+	width: 200px;
+	height: 200px;
+}
+
+.review .list-title span {
+	width: 100%;
+}
+
+.record {
+	height: 1000px;
+	background: url(../images/xw_startour_bg_4.jpg);
+	background-size: 100% 100%;
+	text-align: center;
+}
+
+.record-wrapper {
+	padding-top: 130px;
+	margin-bottom: 70px;
+}
+
+.record-title {
+	margin-top: 48px;
+	height: 50px;
+	line-height: 50px;
+	text-align: center;
+}
+
+.record-img {
+	margin: 30px auto;
+	width: 224px;
+	height: 168px;
+}
+
+.record-content {
+	padding: 0 50px;
+	color: #222;
+	font-size: 12px;
+}
+.record-text{
+	position: relative;
+	height: 220px;
+	overflow: hidden;
+}
+.record-content p {
+	position: relative;
+	line-height: 22px;
+	text-align: left;
+}
+
+.record-content .more {
+	font-size: 12px;
+	color: #ef6002;
+	border: none;
+	text-align: left;
+}
+
+/*翻页*/
+.magazine-viewport .shadow {
+	-webkit-transition: -webkit-box-shadow 0.5s;
+	-moz-transition: -moz-box-shadow 0.5s;
+	-o-transition: -webkit-box-shadow 0.5s;
+	-ms-transition: -ms-box-shadow 0.5s;
+	-webkit-box-shadow: 0 0 20px #ccc;
+	-moz-box-shadow: 0 0 20px #ccc;
+	-o-box-shadow: 0 0 20px #ccc;
+	-ms-box-shadow: 0 0 20px #ccc;
+	box-shadow: 0 0 20px #ccc;
+}
+
+.magazine-viewport {
+	display: inline-block;
+	position: relative;
+}
+
+.magazine-viewport i {
+	position: absolute;
+	bottom: 20px;
+	width: 56px;
+	height: 28px;
+}
+
+.previous-button {
+	left: 40px;
+	background-position: 0 0;
+}
+
+.next-button {
+	right: 40px;
+	background-position: -70px 0;
+}
+
+.next-button.disabled {
+	pointer-events: none;
+	background-image: url(../images/xw_startour_icon_growup_right_2.png);
+}
+
+.magazine h2 {
+	margin: 176px auto;
+	width: 40px;
+	font-size: 36px;
+	line-height: 72px;
+	color: #252525;
+}
+.page .record-text:after{
+	content: "...";
+	position: absolute;
+	bottom: -5px;
+	right: 0;
+	width: 25px;
+	height: 25px;
+}
+.odd .record-text:after {
+	background: url(../images/ellipsis_bg1.png) repeat-y;
+}
+
+.even .record-text:after {
+	background: url(../images/ellipsis_bg2.png) repeat-y;
+}

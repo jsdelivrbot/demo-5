@@ -1,0 +1,126 @@
+<HTML><HEAD><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /><link href="Resources/axurerpprototype.css" type="text/css" rel="stylesheet"></HEAD>
+<BODY>
+<A href=# onclick='parent.CloseSitemap()' style='font-size:8pt'>Close Frames</A><br><br>
+
+<SCRIPT LANGUAGE="JavaScript">
+image1 = new Image();
+image1.src = 'Resources/plus.gif';
+
+function CloseSitemap()
+{
+	parent.URL = parent.mainFrame.URL
+}
+
+function ToggleDiv(node, id)
+{
+	sibling = document.getElementById(id);
+	if (sibling.style.display == 'none')
+	{
+		if (node.childNodes.length > 0)
+		{
+			if (node.childNodes[0].tagName == "IMG")
+			{
+				node.childNodes[0].src = "Resources/minus.gif";
+			}
+		}
+
+		sibling.style.display = '';
+	}
+	else
+	{
+		if (node.childNodes.length > 0)
+		{
+			if (node.childNodes[0].tagName == "IMG")
+			{
+				node.childNodes[0].src = "Resources/plus.gif";
+			}
+		}
+		sibling.style.display = 'none';
+	}
+}
+
+var currentPage = null;
+
+function highlight(id)
+{
+	if (currentPage != null)
+	{
+		currentPage.style.backgroundColor = '#EEEEFF';
+		currentPage.style.paddingLeft = '0px';
+		currentPage.style.paddingRight = '0px';
+		currentPage.style.border = '0px solid #666666';
+	}
+	
+	currentPage = document.getElementById(id);
+    if (currentPage) {
+	    currentPage.style.backgroundColor = '#DDDDDD';
+	    currentPage.style.paddingLeft = '3px';
+	    currentPage.style.paddingRight = '3px';
+	    currentPage.style.border = '1px solid #666666';
+    }
+}
+
+</SCRIPT>
+<TABLE BORDER="0" cellspacing="0" cellpadding="0">
+	<TR>
+		<TD nowrap><A onclick="ToggleDiv(this, 'de89439a17ea743d086fe056cab486132')"><IMG SRC="Resources/minus.gif"></A>&nbsp;&nbsp;<A onclick="parent.mainFrame.location='中水水库雨水情测报系统.html'"><IMG class="plusminus" SRC="Resources/page.gif" border=0><SPAN id="pe89439a17ea743d086fe056cab486132">中水水库雨水情测报系统</SPAN></A><DIV id="de89439a17ea743d086fe056cab486132">
+<TABLE BORDER="0" cellspacing="0" cellpadding="0">
+	<TR>
+		<TD WIDTH="30" nowrap>&nbsp;</TD>
+		<TD nowrap><A onclick="parent.mainFrame.location='人工报汛.html'"><IMG class="plusminus" SRC="Resources/page.gif" border=0><SPAN id="p8f44f6d248d34c31ad5733d8e391cea0">人工报汛</SPAN></A><DIV id="td8f44f6d248d34c31ad5733d8e391cea0">
+			</DIV>
+		</TD>
+	</TR>
+</TABLE>
+<TABLE BORDER="0" cellspacing="0" cellpadding="0">
+	<TR>
+		<TD WIDTH="30" nowrap>&nbsp;</TD>
+		<TD nowrap><A onclick="parent.mainFrame.location='河道水情.html'"><IMG class="plusminus" SRC="Resources/page.gif" border=0><SPAN id="p60d4bec388854ff492fa88ad27f3b8e6">河道水情</SPAN></A><DIV id="td60d4bec388854ff492fa88ad27f3b8e6">
+			</DIV>
+		</TD>
+	</TR>
+</TABLE>
+<TABLE BORDER="0" cellspacing="0" cellpadding="0">
+	<TR>
+		<TD WIDTH="30" nowrap>&nbsp;</TD>
+		<TD nowrap><A onclick="parent.mainFrame.location='水库水情.html'"><IMG class="plusminus" SRC="Resources/page.gif" border=0><SPAN id="pe327b3479228405ea512704ce48c528b">水库水情</SPAN></A><DIV id="tde327b3479228405ea512704ce48c528b">
+			</DIV>
+		</TD>
+	</TR>
+</TABLE>
+<TABLE BORDER="0" cellspacing="0" cellpadding="0">
+	<TR>
+		<TD WIDTH="13" nowrap>&nbsp;</TD>
+		<TD nowrap><A onclick="ToggleDiv(this, 'dd75bbba03c8d4f3383d0f396525dfd8d')"><IMG SRC="Resources/minus.gif"></A>&nbsp;&nbsp;<A onclick="parent.mainFrame.location='流域平均降雨计算.html'"><IMG class="plusminus" SRC="Resources/page.gif" border=0><SPAN id="pd75bbba03c8d4f3383d0f396525dfd8d">流域平均降雨计算</SPAN></A><DIV id="dd75bbba03c8d4f3383d0f396525dfd8d">
+<TABLE BORDER="0" cellspacing="0" cellpadding="0">
+	<TR>
+		<TD WIDTH="30" nowrap>&nbsp;</TD>
+		<TD nowrap><A onclick="parent.mainFrame.location='流域管理.html'"><IMG class="plusminus" SRC="Resources/page.gif" border=0><SPAN id="pe1b32c469b1844238377a09cfced236e">流域管理</SPAN></A><DIV id="tde1b32c469b1844238377a09cfced236e">
+			</DIV>
+		</TD>
+	</TR>
+</TABLE>
+			</DIV>
+		</TD>
+	</TR>
+</TABLE>
+<TABLE BORDER="0" cellspacing="0" cellpadding="0">
+	<TR>
+		<TD WIDTH="30" nowrap>&nbsp;</TD>
+		<TD nowrap><A onclick="parent.mainFrame.location='自动测报数据修补.html'"><IMG class="plusminus" SRC="Resources/page.gif" border=0><SPAN id="p13bb49bb27ee41a8afcb50994fe1c59a">自动测报数据修补</SPAN></A><DIV id="td13bb49bb27ee41a8afcb50994fe1c59a">
+			</DIV>
+		</TD>
+	</TR>
+</TABLE>
+<TABLE BORDER="0" cellspacing="0" cellpadding="0">
+	<TR>
+		<TD WIDTH="30" nowrap>&nbsp;</TD>
+		<TD nowrap><A onclick="parent.mainFrame.location='测站信息管理.html'"><IMG class="plusminus" SRC="Resources/page.gif" border=0><SPAN id="p13f7a7a1d4fc4cba960a77dd8428a589">测站信息管理</SPAN></A><DIV id="td13f7a7a1d4fc4cba960a77dd8428a589">
+			</DIV>
+		</TD>
+	</TR>
+</TABLE>
+			</DIV>
+		</TD>
+	</TR>
+</TABLE></BODY></HTML>

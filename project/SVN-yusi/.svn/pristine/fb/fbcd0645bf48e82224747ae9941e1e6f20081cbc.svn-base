@@ -1,0 +1,152 @@
+"use strict";
+var $ = jQuery;
+
+var lis='';
+var thisDate = new Date();
+thisDate.setDate(0);
+var days = [];  //定义日期条数据;
+
+// 获取月份天数,不传值代表当月
+function getMonthAllDays(yueNumber){
+	var someDate = new Date();
+	if (arguments.length === 0) {
+		yueNumber = someDate.getMonth()+1;
+	}
+	someDate.setMonth(yueNumber);
+	someDate.setDate(0);
+	return someDate.getDate();
+}
+
+function createTimeBlock(time){
+	var thisDate;
+	if (time) {
+		thisDate = new Object(time);
+	}else {
+		thisDate = new Object();
+	}
+}
+
+// 初始化日期条
+function initTimeBar(){
+	var subThisDate = new Date();
+	var todayNumber = subThisDate.getDate();
+	var weekDay = ['日','一','二','三','四','五','六'];
+	for(var i=1;i<=getMonthAllDays();i++){
+		subThisDate.setDate(i);
+		var item = {};
+		item.dateDayNumber = i;  //日期数
+		item.weekDayNumber = subThisDate.getDay();  //星期数
+		item.weekDayTip = weekDay[subThisDate.getDay()];  //星期汉字
+		item.isToday = false;  //是否今天
+		item.reportStatus = 1;  //状态:已报1,迟报2,混报3,未报4;
+		days.push(item);
+		if (todayNumber === i) {
+			item.isToday = true;
+			days[i-1].weekDayTip = "今天";
+		}
+		if (i > todayNumber ) {
+			item.reportStatus = 4;
+		}
+	}
+}
+initTimeBar();
+
+var daysProperty = {  //日期条属性
+	weekDayTip: {
+		class: function(){
+			return ((this.weekDayNumber==6)||(this.weekDayNumber==0))?"weekend":"";
+		}
+	},
+	isToday: {
+		class: function(e){
+			return this.isToday?e.element.className+" active":e.element.className;
+		}
+	},
+	reportStatus: {
+		class: function(e){
+			var result = e.element.className;
+			switch(this.reportStatus){
+				case 2:
+					result = result+" lateReport";  //迟报
+					break;
+				case 3:
+					result = result+" leakReport";  //漏报
+					break;
+				case 4:
+					result = result+" notReport";  //未报
+					break;
+				default:
+					result = result;  //正常
+			}
+			return this.isToday?result+" active":result;
+		}
+	}
+};
+$('#slider-index ul').render(days,daysProperty);
+
+
+//向左按钮点击事件
+function clickLeft(){
+	if (!$(".container-top ul li.active").prev().length) {
+		$(".leftBtn").removeClass("active");
+	}else{
+		$(".container-top ul li.active").prev().addClass("active").siblings().removeClass("active");
+	}
+	testLeftAndRightPosition();
+}
+//向右按钮点击事件
+function clickRight(){
+	if (!$(".container-top ul li.active").next().length) {
+		$(".rightBtn").removeClass("active");
+	}else {
+		$(".container-top ul li.active").next().addClass("active").siblings().removeClass("active");
+	}
+	testLeftAndRightPosition();
+}
+// 检测并设置日期条的位置;
+function testLeftAndRightPosition(){
+	var liactiveLeft = Math.abs($("ul.clearfix>.active").position().left);
+	var ulLeft = Math.abs($("ul.clearfix").position().left);
+	var showBox = $(".showBox").outerWidth();
+
+	if ((liactiveLeft-ulLeft) < 0) {
+		$("ul.clearfix").css("left",$("ul.clearfix").position().left+50);
+	}
+	if ((liactiveLeft-ulLeft) >= showBox){
+		$("ul.clearfix").css("left",$("ul.clearfix").position().left-50);
+	}
+	testLeftAndRightBtn();
+}
+// 检测并设置切换日期按钮的状态
+function testLeftAndRightBtn(){
+	if ($("ul.clearfix>li:first").hasClass("active")) {
+		$(".leftBtn").removeClass("active");
+	}else if($("ul.clearfix>li:last").hasClass("active")){
+		$(".rightBtn").removeClass("active");
+	}else {
+		$(".leftBtn,.rightBtn").addClass("active");
+	}
+}
+
+$(function(){
+	//日期切换(直接点击)
+	$(".clearfix").on("click","li",function(){
+		$(this).addClass('active').siblings().removeClass('active');
+		testLeftAndRightPosition();
+	});
+	//日期切换(左右键)
+	$('.leftBtn.active').click(clickLeft);
+	$('.rightBtn.active').click(clickRight);
+
+
+
+    //日期切换
+    $('#monthsPicker').val(DateToday('months'));
+    $('.prevButton ').on('click',function(){
+        datePrev();
+    });
+    $('.nextButton ').on('click',function(){
+        dateNext();
+    });
+
+});

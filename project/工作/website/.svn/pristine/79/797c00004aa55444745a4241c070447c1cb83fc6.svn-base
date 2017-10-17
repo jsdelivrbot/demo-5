@@ -1,0 +1,301 @@
+sup {
+	display: inline-block;
+	width: 70px;
+	background: url(../images/xw_login_icon_slash.png) no-repeat 61px;
+}
+
+sub {
+	display: inline-block;
+	margin-left: -12px;
+	text-indent: 8px;
+	background: url(../images/xw_login_icon_slash.png) no-repeat;
+}
+_:-ms-lang(x),
+sup,sub {
+    font-size: 14px;
+}
+.wrapper {
+	min-height: 660px;
+	margin: 30px auto 40px;
+	color: #222;
+	text-align: center;
+}
+
+.match-wrapper {
+	width: 800px;
+	min-height: 660px;
+	background: #fff;
+}
+
+
+/*参赛编码*/
+
+.code-wrapper {
+	display: none;
+	position: relative;
+	margin-top: 78px;
+}
+.entryCode-box{
+	position: absolute;
+	top: 75px;
+	left: 50%;
+	transform: translateX(-50%);
+}
+.code-box{
+	display: none;
+	margin-bottom: 20px;
+}
+#verifyImg{
+	width: 120px;
+    height: 40px;
+    top: 16px;
+    position: relative;
+}
+
+
+/*未配置比赛*/
+.unconfigured-wrapper{
+	display: none;
+}
+.unconfigured-wrapper p {
+	width: 230px;
+	margin: 78px auto;
+	text-indent: 38px;
+	height: 38px;
+	line-height: 38px;
+	color: #7b7b7b;
+	background: url(../images/xw_login_image_blank.png) no-repeat;
+}
+
+/*已配置比赛*/
+
+.configured-wrapper {
+	display: none;
+	position: relative;
+	min-height: 530px;
+	margin-top: 25px;
+	text-align: left;
+}
+
+.configured-date {
+	position: relative;
+	width: 192px;
+	padding-top: 15px;
+	padding-left: 48px;
+}
+
+.configured-bg {
+	position: absolute;
+	width: 192px;
+	height: 100%;
+	border-right: 1px dashed #73401e;
+}
+
+.configured-bg:before {
+	content: "";
+	position: absolute;
+	left: 176px;
+	top: -32px;
+	display: inline-block;
+	width: 34px;
+	height: 34px;
+	background: url(../images/xw_login_icon_time.png) no-repeat;
+}
+
+.configured-wrapper li {
+	padding-bottom: 60px;
+}
+
+.configured-wrapper li:last-child {
+	margin-bottom: 0;
+}
+
+.configured-wrapper li:nth-child(2) p:nth-of-type(1) {
+	width: initial;
+}
+.configured-wrapper li p:nth-of-type(1) {
+	width: 100%;
+	margin-bottom: 0;
+}
+.configured-match {
+	position: relative;
+	width: 512px;
+	height: 162px;
+	margin-left: -6px;
+	color: #fff;
+	background: url(../images/xw_login_image_bg_match.png) no-repeat 26px;
+}
+
+.configured-match:before {
+	content: "";
+	position: absolute;
+	left: 0;
+	top: 18px;
+	display: inline-block;
+	width: 12px;
+	height: 12px;
+	background: url(../images/xw_login_icon_point.png) no-repeat;
+}
+
+.configured-match p {
+	display: inline-block;
+	margin: 20px 0;
+	padding-left: 60px;
+}
+
+.configured-match p span {
+	margin-left: 6px;
+	font-size: 20px;
+}
+
+.configured-info {
+	line-height: 50px;
+	font-size: 20px;
+}
+
+.configured-info span:nth-child(1) {
+	width: 364px;
+	padding-left: 70px;
+}
+
+.configured-info span:nth-child(2) {
+	width: 142px;
+	text-align: center;
+}
+
+.match-wrapper h2 {
+	height: 100px;
+	line-height: 100px;
+	font-size: 26px;
+}
+
+
+/*基本信息*/
+
+.info-wrapper {
+	width: 280px;
+	height: 340px;
+	margin-top: 6px;
+	background: #eb6004;
+}
+
+.info {
+	width: 280px;
+	height: 340px;
+	background: #fff;
+	margin-top: -6px;
+	margin-left: -6px;
+}
+
+.info>li {
+	line-height: 24px;
+}
+
+.info>li:nth-child(1) {
+	padding: 30px 0 14px;
+}
+
+.info>li:nth-child(2) {
+	margin-bottom: 28px;
+	font-size: 18px;
+	font-weight: 600;
+}
+
+.info>li:nth-child(3) span:nth-child(1) {
+	margin-right: 30px;
+}
+
+.info-portrait {
+	width: 120px;
+	height: 120px;
+	border-radius: 50%;
+	overflow: hidden;
+	margin: 0 auto
+}
+
+button {
+	width: 120px;
+	height: 40px;
+	background: #ef6002;
+	border: none;
+	color: #fff;
+	font-size: 16px;
+	font-weight: 600;
+}
+
+input {
+	width: 250px;
+	height: 40px;
+	margin-right: 16px;
+	padding: 0 16px;
+	border: 1px solid #e3e3e3;
+	font-size: 14px;
+}
+
+.btn {
+	display: block;
+	width: 100px;
+	height: 32px;
+	line-height: 32px;
+	text-align: center;
+	background: #b74a03;
+	margin-left: 6px;
+}
+
+.configured-match .btn.btn-start {
+	display: inline-block;
+	margin-left: 8px;
+	cursor: pointer;
+}
+
+.configured-match .btn {
+	width: 124px;
+	margin-left: 60px;
+}
+
+.not-qualify {
+	color: #fe7114;
+}
+
+/*loading动画*/
+.spinner {
+  width: 60px;
+  height: 60px;
+ 
+  position: relative;
+  margin: 100px auto;
+}
+ 
+.double-bounce1, .double-bounce2 {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: #EF6002;
+  opacity: 0.6;
+  position: absolute;
+  top: 0;
+  left: 0;
+   
+  -webkit-animation: bounce 2.0s infinite ease-in-out;
+  animation: bounce 2.0s infinite ease-in-out;
+}
+ 
+.double-bounce2 {
+  -webkit-animation-delay: -1.0s;
+  animation-delay: -1.0s;
+}
+ 
+@-webkit-keyframes bounce {
+  0%, 100% { -webkit-transform: scale(0.0) }
+  50% { -webkit-transform: scale(1.0) }
+}
+ 
+@keyframes bounce {
+  0%, 100% {
+    transform: scale(0.0);
+    -webkit-transform: scale(0.0);
+  } 50% {
+    transform: scale(1.0);
+    -webkit-transform: scale(1.0);
+  }
+}

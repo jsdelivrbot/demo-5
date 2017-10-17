@@ -1,0 +1,49 @@
+var lis='';
+var  days=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31];
+for(var i=0;i<days.length-4;i++){
+	lis+='<li class="lis"><span>'+days[i]+'</span></li>';
+}
+$('#slider-index').append(lis);
+$('.lis:first').addClass('active');
+   
+    //向左按钮点击事件
+    var index = 0;
+    var liLen=$(".container-top ul li").length;
+    function clickLeft(){
+ 		index--;
+        if(index <= 0){
+        	index=0;
+        	alert("这是第一页，不能再往点击了！");
+            $(".container-top ul li").eq(index).addClass('active').siblings().removeClass('active');
+        }else{
+             $(".container-top ul li").eq(index).addClass('active').siblings().removeClass('active');
+        }
+    }    	
+    
+
+    //向右按钮点击事件
+    function clickRight(){
+    	index++;
+ 		if(index >=liLen){
+ 			alert("已经到达最后一页，不能再往点击了！");
+            index = liLen-1;           
+        }else{
+               $(".container-top ul li").eq(index).addClass('active').siblings().removeClass('active');
+        }
+    }    	
+    
+ 
+
+$(function(){
+	$("#slider-index>li").each(function(){
+		$(this).click(function(){
+			$(this).addClass('active').siblings().removeClass('active');
+			index=$(this).index();
+			
+
+		})
+	});
+	$('.leftBtn').click(clickLeft);
+	$('.rightBtn').click(clickRight);
+
+})

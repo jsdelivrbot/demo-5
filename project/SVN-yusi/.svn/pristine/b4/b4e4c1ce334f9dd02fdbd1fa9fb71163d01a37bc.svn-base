@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>水位统计</title>
+    <link rel="stylesheet" type="text/css" href="/pro_css/common/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/pro_css/common/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" type="text/css" href="/pro_css/common/jquery.mCustomScrollbar.css">
+    <link rel="stylesheet" type="text/css" href="/pro_css/common/common.css">
+    <link rel="stylesheet" type="text/css" href="/pro_css/header.css">
+    <link rel="stylesheet" type="text/css" href="/pro_css/popup.css">
+    <link rel="stylesheet" type="text/css" href="/pro_css/waterLevelStatistical.css">
+</head>
+<body>
+<!-- 头部 -->
+    <div id="header">
+      <div class="header-top">
+        <div class="header-top-content">
+          <div class="header-top-content-left">
+            <img src="../imgs/common/logo.png" alt="">
+          </div>
+          <div class="header-top-content-right">
+            <span>94476455@qq.com</span>&nbsp;|&nbsp;<a href = "/logout">退出</a>
+          </div>
+        </div>
+      </div>
+      <div class="header-bottom">
+        <ul>
+          <li class="header-bottom-item header-bottom-item1"><span>实时信息查询</span></li>
+          <li class="header-bottom-item header-bottom-item2"><span>雨量统计</span></li>
+          <li class="header-bottom-item header-bottom-item3 active"><span>水位统计</span></li>
+          <li class="header-bottom-item header-bottom-item4"><span>测站状态</span></li>
+          <li class="header-bottom-item header-bottom-item5"><span>人工报讯</span></li>
+          <li class="header-bottom-item header-bottom-item6"><span>数据管理</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!--主体-->
+    <div id="container" class="clearfix">
+        <ul id="left">
+            <li class="left-item left-item1 active">河道水情</li>
+            <li class="left-item left-item2">水库水情</li>
+        </ul>
+        <div id="right">
+          <div class="right-title clearfix">
+              <div class="btn-tabs fl d-ib">
+                <button type="button" class="btn1 mr20 active">近24小时</button>
+                <button type="button" class="btn2 mr20">近7天</button>
+                <button type="button" class="btn3 mr20">近30天</button>
+                <button type="button" class="btn4 mr20">自定义</button>
+              </div>
+              <div class="timepickerBox hide fl">
+                  <input type="text" id="content1Starttime" class="timePicker" readonly="readonly">
+                  <span class="mar6">—</span>
+                  <input type="text" id="content1Endtime" class="timePicker" readonly="readonly">
+              </div>
+              <div class="selectBox">
+                    <i class="prevButton mr20"></i>
+                    <p class="selectView"><span>河道水位站1</span></p>
+                    <i class="nextButton ml20"></i>
+                    <ul class="dropDonMenu"><!--
+                    --><li>河道水位站1</li><!--
+                     --><li>河道水位站2</li><!--
+                     --><li>河道水位站3</li><!--
+                     --><li>河道水位站4</li><!--
+                     --><li>河道水位站5</li><!--
+                  --></ul>
+              </div>
+              <button  class="fr export" type="button" id="export">导出</button>
+          </div>
+          <div class="rightContent clearfix">
+            <div id="echart" class="echart fl">
+              <div id="echartContent" class="echartContent"></div>
+            </div>
+            <div class="rightTable panel fl">
+              <div class="panel-body">
+                  <div class="table-responsive">
+                      <ul class="mb5"><!--
+                     --><li>时间</li><!--
+                     --><li>水位(m)</li><!--
+                     --><li>流量(m<sup>3</sup>/s)</li><!--
+                    --></ul>
+                    <div class="scollBox">
+                      <div class="data-bind">
+                        <ul><!--
+                        --><li>17.07.01&nbsp;&nbsp;08:00:00</li><!--
+                        --><li>14.35</li><!--
+                        --><li>300.00</li><!--
+                    --></ul>
+                        <ul><!--
+                        --><li>17.07.01&nbsp;&nbsp;08:00:00</li><!--
+                        --><li>14.35</li><!--
+                        --><li>300.00</li><!--
+                    --></ul>
+                      <ul><!--
+                        --><li>17.07.01&nbsp;&nbsp;08:00:00</li><!--
+                        --><li>14.35</li><!--
+                        --><li>300.00</li><!--
+                    --></ul>
+                      <ul><!--
+                        --><li>17.07.01&nbsp;&nbsp;08:00:00</li><!--
+                        --><li>14.35</li><!--
+                        --><li>300.00</li><!--
+                    --></ul>
+                      <ul><!--
+                        --><li>17.07.01&nbsp;&nbsp;08:00:00</li><!--
+                        --><li>14.35</li><!--
+                        --><li>300.00</li><!--
+                    --></ul>
+                      <ul><!--
+                        --><li>17.07.01&nbsp;&nbsp;08:00:00</li><!--
+                        --><li>14.35</li><!--
+                        --><li>300.00</li><!--
+                    --></ul>
+                      <ul><!--
+                        --><li>17.07.01&nbsp;&nbsp;08:00:00</li><!--
+                        --><li>14.35</li><!--
+                        --><li>300.00</li><!--
+                    --></ul>
+                       <ul><!--
+                        --><li>17.07.01&nbsp;&nbsp;08:00:00</li><!--
+                        --><li>14.35</li><!--
+                        --><li>300.00</li><!--
+                    --></ul>
+                        <ul><!--
+                        --><li>17.07.01&nbsp;&nbsp;08:00:00</li><!--
+                        --><li>14.35</li><!--
+                        --><li>300.00</li><!--
+                    --></ul>
+                        <ul><!--
+                        --><li>17.07.01&nbsp;&nbsp;08:00:00</li><!--
+                        --><li>14.35</li><!--
+                        --><li>300.00</li><!--
+                    --></ul>
+                        <ul><!--
+                        --><li>17.07.01&nbsp;&nbsp;08:00:00</li><!--
+                        --><li>14.35</li><!--
+                        --><li>300.00</li><!--
+                    --></ul>
+                        <ul><!--
+                        --><li>17.07.01&nbsp;&nbsp;08:00:00</li><!--
+                        --><li>14.35</li><!--
+                        --><li>300.00</li><!--
+                    --></ul>
+                        <ul><!--
+                        --><li>17.07.01&nbsp;&nbsp;08:00:00</li><!--
+                        --><li>14.35</li><!--
+                        --><li>300.00</li><!--
+                    --></ul>
+                        <ul><!--
+                        --><li>17.07.01&nbsp;&nbsp;08:00:00</li><!--
+                        --><li>14.35</li><!--
+                        --><li>300.00</li><!--
+                    --></ul>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+          </div>
+        </div>
+    </div>
+
+    <!-- 500错误提示框 -->
+    <div class="modal fade" id="errorBtn" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" class="closeImg fr">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true" class=" closeImg fr">&times;</span><span class="sr-only">Close</span></button>
+                </div>
+                <div class="modal-body">
+                    <p class="modal-body-row"><span class="question-info" id="errorInfo"></span></p>
+                </div>
+                <div class="modal-footer">
+                    <!-- <button type="button" class="btn btn-delete">删除</button> -->
+                    <button type="button" class="btn btn-cancel" data-dismiss="modal">确定</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="/pro_js/publicJs/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="/pro_js/publicJs/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/pro_js/publicJs/bootstrap-datetimepicker.js"></script>
+    <script type="text/javascript" src="/pro_js/publicJs/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script type="text/javascript" src="/pro_js/publicJs/jquery.mCustomScrollbar.js"></script>
+    <script type="text/javascript" src="/pro_js/publicJs/transparency.min.js"></script>
+    <script type="text/javascript" src="/pro_js/publicJs/common.js"></script>
+    <script type="text/javascript" src="/pro_js/ajaxRequestUrls.js"></script>
+    <script type="text/javascript" src="/pro_js/publicJs/echarts.min.js"></script>
+    <script type="text/javascript" src="/pro_js/publicJs/charts.js"></script>
+    <script type="text/javascript" src="/pro_js/header.js"></script>
+    <script type="text/javascript" src="/pro_js/waterLevelStatistical.js"></script>
+    <script type="text/javascript">
+        $(".rightTable .table-responsive .scollBox").mCustomScrollbar({
+            theme:"3d-dark"
+        });
+         /*初始化datetimepicker*/
+        $(".timePicker").datetimepicker({
+          bootcssVer:3,
+          language: 'zh-CN',
+          format: 'yyyy-mm-dd hh:ii',
+          autoclose: true,
+          todayBtn: true,
+          pickerPosition: "bottom-right",
+        });
+    </script>
+</body>
+</html>

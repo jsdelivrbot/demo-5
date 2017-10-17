@@ -1,0 +1,217 @@
+var Map = {
+    //地图初始化
+    init: function(flag) {
+        // 设置地图限制区域
+          var arr = ol.proj.fromLonLat([-110, 12]);
+          var arr1 = ol.proj.fromLonLat([-40, 60]);
+          arr = arr.concat(arr1);
+
+      
+        // 实例化地图
+        map = new ol.Map({
+            logo: false,
+            layers: [
+                new ol.layer.Tile({
+                    source: new ol.source.TileWMS({
+                        params: {
+                            'LAYERS': 'topp:states',
+                            'VERSION': '1.1.0',
+                            'BBOX': [-124.73142200000001, 24.955967, -66.969849, 49.371735],
+                            'CRS': 'EPSG:3857',
+                            'WIDTH': 768,
+                            'HEIGHT': 330
+                        },
+                        projection: "EPSG:3857",
+                        url: 'http://192.168.1.253:8080/geoserver/topp/wms'
+                    })
+                })
+            ],
+            target: 'map',
+            controls: ol.control.defaults({
+                attributionOptions: /** @type {olx.control.AttributionOptions} */ ({
+                    collapsible: false
+                })
+            }),
+            view: new ol.View({
+                extent: arr,
+                center: ol.proj.fromLonLat([-82, 35]),
+                zoom: 3,
+                maxZoom: 6,
+                minZoom: 3
+            })
+        });
+        var _this = this;
+
+        if (flag) {
+            //交互：获取鼠标点击当前经纬度
+            map.on('click', function(evt) {
+                _this.mapClick(evt);
+            });
+            //绘制点
+
+            this.clickAddPoints();
+        }
+
+    },
+    rainSetInfos: function(position, title,rainfail, i) { /*读取添加站名框*/
+        
+        $('body').append('<div class="popup" id="popup' + i + '">' + title + "&nbsp;&nbsp;&nbsp;"+rainfail+ '</div>');
+
+        var popup = new ol.Overlay({
+            element: document.getElementById('popup' + i),
+            autoPan: true,
+            autoPanAnimation: {
+                duration: 250
+            }
+        });
+        popup.setOffset([0, -32]);
+        popup.setPosition(position);
+        map.addOverlay(popup);
+
+    },
+    rainAddPoints: function(position, title,rainfall) { /*自动读取添加站点*/
+        var iconColor;
+        var src='../imgs/common/Real-time-';
+        var iconSrc;    
+       
+        if(rainfall==""){//无降雨 gray
+            iconSrc=src+'6.png';
+        }else if(rainfall==0){//white
+            iconSrc=src+'7.png';
+        }else if(rainfall>=0.1&&rainfall<=10){//cyan
+            iconSrc=src+'8.png';
+        }else if(rainfall>10&&rainfall<=25){//atrovirens
+            iconSrc=src+'9.png';
+        }else if(rainfall>25&&rainfall<=50){//wathet
+            iconSrc=src+'10.png';
+        }else if(rainfall>50&&rainfall<=100){//darkBlue
+            iconSrc=src+'11.png';
+        }else if(rainfall>100&&rainfall<=250){//croci
+            iconSrc=src+'12.png';
+        }else if(rainfall>250){//red
+            iconSrc=src+'13.png';
+        }
+      
+        var iconFeature = new ol.Feature({
+            geometry: new ol.geom.Point(position),
+            name: title,
+            population: 4000,
+            rainfall: 500
+        });
+        var vectorSource = new ol.source.Vector({
+            features: [iconFeature]
+        });
+        var vectorLayer = new ol.layer.Vector({
+            source: vectorSource
+        });
+        var iconStyle = new ol.style.Style({
+            image: new ol.style.Icon( /** @type {olx.style.IconOptions} */ ({
+                src:iconSrc ,
+                width: 50
+            }))
+        });
+        iconFeature.setStyle(iconStyle);
+        map.addLayer(vectorLayer);
+
+    },
+    waterSetInfos: function(position, title,waterLevel, i) { /*读取添加站名框*/
+        
+        $('body').append('<div class="popup" id="popup' + i + '">' + title + "&nbsp;&nbsp;&nbsp;"+waterLevel+ '</div>');
+
+        var popup = new ol.Overlay({
+            element: document.getElementById('popup' + i),
+            autoPan: true,
+            autoPanAnimation: {
+                duration: 250
+            }
+        });
+        popup.setOffset([0, -32]);
+        popup.setPosition(position);
+        map.addOverlay(popup);
+
+    },    
+    waterAddPoints: function(position, title,waterLineType) { /*自动读取添加站点*/
+        var iconColor;
+        var src='../imgs/common/Real-time-';
+        var iconSrc;
+
+        if(waterLineType=="0"){//库水位
+            iconSrc=src+'23.png';
+        }else if(waterLineType=="1"){//河道水位
+            iconSrc=src+'24.png';
+        }
+      
+        var iconFeature = new ol.Feature({
+            geometry: new ol.geom.Point(position),
+            name: title,
+            population: 4000,
+            rainfall: 500
+        });
+        var vectorSource = new ol.source.Vector({
+            features: [iconFeature]
+        });
+        var vectorLayer = new ol.layer.Vector({
+            source: vectorSource
+        });
+        var iconStyle = new ol.style.Style({
+            image: new ol.style.Icon( /** @type {olx.style.IconOptions} */ ({
+                src:iconSrc ,
+                width: 50
+            }))
+        });
+        iconFeature.setStyle(iconStyle);
+        map.addLayer(vectorLayer);
+
+    },    
+    mapClick: function(evt) { //获取经纬度
+        var coordinate = evt.coordinate;
+        // 坐标转经纬度
+        // var pos = ol.proj.transform(coordinate, 'EPSG:3857', 'EPSG:4326');
+        // 处理坐标点的保留位数
+        var x = coordinate[0].toFixed(8); //经度
+        var y = coordinate[1].toFixed(8); //纬度
+        $('input[name="x"]').val(x);
+        $('input[name="y"]').val(y);
+
+    },
+    clickAddPoints: function() { //交互部分：点击图层加点
+        // 绘制点及样式
+        var vector = new ol.layer.Vector({
+            source: new ol.source.Vector(),
+            style: new ol.style.Style({
+                fill: new ol.style.Fill({
+                    color: 'rgba(255, 255, 255, 0.2)'
+                }),
+                stroke: new ol.style.Stroke({
+                    color: '#ffcc33',
+                    width: 2
+                }),
+                image: new ol.style.Circle({
+                    radius: 7,
+                    fill: new ol.style.Fill({
+                        color: '#ffcc33'
+                    })
+                })
+            })
+        });
+
+        map.addLayer(vector);
+        // map.removeLayer(map.getLayers().item(1));
+
+        // if(vector){
+        //   map.removeLayer(vector);移除之前的layer
+        // }
+        // 绘制方法
+        var Draw = {
+            init: function() {
+                map.addInteraction(this.Point);
+            },
+            Point: new ol.interaction.Draw({
+                source: vector.getSource(),
+                type: /** @type {ol.geom.GeometryType} */ ('Point'),
+                maxPoints: 2
+            })
+        };
+        Draw.init();
+    }
+};

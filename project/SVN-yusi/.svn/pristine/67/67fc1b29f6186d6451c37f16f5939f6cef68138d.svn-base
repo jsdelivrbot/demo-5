@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>数据管理</title>
+    <link rel="stylesheet" type="text/css" href="/pro_css/common/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/pro_css/common/bootstrap-select.css">
+    <link rel="stylesheet" type="text/css" href="pro_css/common/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" type="text/css" href="/pro_css/common/common.css">
+    <link rel="stylesheet" type="text/css" href="/pro_css/header.css">
+    <link rel="stylesheet" type="text/css" href="/pro_css/dataManagement.css">
+</head>
+<body>
+    <!-- 头部 -->
+    <div id="header">
+      <div class="header-top">
+        <div class="header-top-content">
+          <div class="header-top-content-left">
+            <img src="../imgs/common/logo.png" alt="">
+          </div>
+          <div class="header-top-content-right">
+            <span>94476455@qq.com</span>&nbsp;|&nbsp;<a href = "/logout">退出</a>
+          </div>
+        </div>
+      </div>
+      <div class="header-bottom">
+        <ul>
+          <li class="header-bottom-item header-bottom-item1"><span>实时信息查询</span></li>
+          <li class="header-bottom-item header-bottom-item2"><span>雨量统计</span></li>
+          <li class="header-bottom-item header-bottom-item3"><span>水位统计</span></li>
+          <li class="header-bottom-item header-bottom-item4"><span>测站状态</span></li>
+          <li class="header-bottom-item header-bottom-item5"><span>人工上报</span></li>
+          <li class="header-bottom-item header-bottom-item6 active"><span>数据管理</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!--主体-->
+    <div id="container" class="w">
+    		<ul id="left">
+    			<li class="left-item left-item1 active">自动测报数据修补</li>
+    			<li class="left-item left-item2">测站信息管理</li>
+    			<li class="left-item left-item3">区域平均降雨</li>
+    			<li class="left-item left-item4">区域信息管理</li>
+    		</ul>
+    		<div id="right">
+
+    			<div class="rightContent rightContent1">
+    				<div class="right-title">测站信息管理
+    					<button class="create fr">新建测站</button>
+    				</div>
+
+    				<div class="right-body-table">
+    					<ul class="right-table-title clearfix">
+    						<li class="right-table-title-item">测站名称</li>
+    						<li class="right-table-title-item">测站系统编码</li>
+    						<li class="right-table-title-item">国家标准码</li>
+    						<li class="right-table-title-item">经度</li>
+    						<li class="right-table-title-item">纬度</li>
+    						<li class="right-table-title-item">站址</li>
+    						<li class="right-table-title-item">测站类型</li>
+    						<li class="right-table-title-item">所属区域</li>
+    						<li class="right-table-title-item">管理</li>
+    					</ul>
+    					<div class="right-table-body">
+    						<ul class="right-table-row clearfix">
+    							<li class="right-table-row-item">雨量1</li>
+    							<li class="right-table-row-item"></li>
+    							<li class="right-table-row-item"></li>
+    							<li class="right-table-row-item">230.27</li>
+    							<li class="right-table-row-item"></li>
+    							<li class="right-table-row-item"><span>辽宁省大连市XX镇XX乡XXXXXX</span></li>
+    							<li class="right-table-row-item"></li>
+    							<li class="right-table-row-item"></li>
+    							<li class="right-table-row-item"><i></i><span>修改</span></li>
+    						</ul>
+    					</div>
+
+    				</div>
+    			</div>
+
+    			<div class="rightContent rightContent2 hide">
+    				<div class="right-title">测站信息管理
+    					<button id="create" class="create fr">新建测站</button>
+    				</div>
+
+    				<div class="right-body-table">
+    					<ul class="right-table-title clearfix">
+    						<li class="right-table-title-item">测站名称</li>
+    						<li class="right-table-title-item">测站系统编码</li>
+    						<li class="right-table-title-item">国家标准码</li>
+    						<li class="right-table-title-item">经度</li>
+    						<li class="right-table-title-item">纬度</li>
+    						<li class="right-table-title-item">站址</li>
+    						<li class="right-table-title-item">测站类型</li>
+    						<li class="right-table-title-item">所属区域</li>
+    						<li class="right-table-title-item">管理</li>
+    					</ul>
+    					<div class="right-table-body">
+    						<ul class="right-table-row clearfix">
+    							<li class="right-table-row-item">雨量1</li>
+    							<li class="right-table-row-item"></li>
+    							<li class="right-table-row-item"></li>
+    							<li class="right-table-row-item">230.27</li>
+    							<li class="right-table-row-item"></li>
+    							<li class="right-table-row-item">辽宁省大连市XX镇XX乡XXXXXX</li>
+    							<li class="right-table-row-item"></li>
+    							<li class="right-table-row-item"></li>
+    							<li class="right-table-row-item"><p id="editBox" class="d-ib editBox"><i class="editPic mr5"></i><span id="edit">修改</span></p></li>
+    						</ul>
+							<div class="notContent hide">
+								无数据
+							</div>
+    					</div>
+
+    					<!--页脚-->
+						<div class="pageChange">
+							<span class="pageChange-span1 pageChange-span d-ib" data-bind="prevPageDis">
+								<span class="pageChange-span-up"></span>上一页
+							</span>
+							<span class="pageChange-span2 pageChange-span d-ib" data-bind="currentPage"></span>
+
+							<span class="pageChange-span3 pageChange-span d-ib" data-bind="nextPageDis">
+							下一页<span class="pageChange-span-down"></span>
+							</span>
+							<span class="txt">共<span data-bind="totalPage"></span>页
+						</div>
+
+    				</div>
+    			</div>
+
+    			<div class="rightContent rightContent3 hide">
+                    <div class="right-title">
+                        <div class="pannel-content">
+                          <div class="pickerBox"><input type="text" id="starttime" class="timePicker" readonly="readonly" placeholder="开始时间"/><span class="timePickerCaret"></span></div><span class="mar8">&macr;&macr;</span><div class="pickerBox"><input type="text" id="endtime" class="timePicker" readonly="readonly" placeholder="结束时间"/><span class="timePickerCaret"></span></div>
+
+                           <button type="button" id="water_search_btn" class="confirm">确定</button>
+                        </div>
+    					<button class="create fr">算法管理</button>
+    				</div>
+
+    				<div class="right-body-table">
+    					<ul class="right-table-title clearfix">
+    						<li class="right-table-title-item">区域</li>
+    						<li class="right-table-title-item">降雨历时</li>
+    						<li class="right-table-title-item">平均雨量(mm)</li>
+    						<li class="right-table-title-item">
+                                <span>最大雨量</span><!--
+                             --><span>最大雨量站</span><!--
+    						 --><span>最大雨量(mm)</span>
+    						</li>
+    					</ul>
+    					<div class="right-table-body">
+    						<ul class="right-table-row clearfix">
+    							<li class="right-table-row-item">区域A</li>
+    							<li class="right-table-row-item"></li>
+    							<li class="right-table-row-item"></li>
+    							<li class="right-table-row-item">230.27</li>
+    							<li class="right-table-row-item"></li>
+    						</ul>
+                            <div class="notContent hide">
+								无数据
+							</div>
+    					</div>
+
+                        <!--页脚-->
+						<div class="pageChange">
+							<span class="pageChange-span1 pageChange-span d-ib" data-bind="prevPageDis">
+								<span class="pageChange-span-up"></span>上一页
+							</span>
+							<span class="pageChange-span2 pageChange-span d-ib" data-bind="currentPage"></span>
+
+							<span class="pageChange-span3 pageChange-span d-ib" data-bind="nextPageDis">
+							下一页<span class="pageChange-span-down"></span>
+							</span>
+							<span class="txt">共<span data-bind="totalPage"></span>页
+						</div>
+    				</div>
+
+    			</div>
+
+    			<div class="rightContent rightContent4 hide">
+    				<div class="right-title">测站信息管理
+    					<button class="create fr">新建测站</button>
+    				</div>
+
+    				<div class="right-body-table">
+    					<ul class="right-table-title clearfix">
+    						<li class="right-table-title-item">测站名称</li>
+    						<li class="right-table-title-item">测站系统编码</li>
+    						<li class="right-table-title-item">国家标准码</li>
+    						<li class="right-table-title-item">经度</li>
+    						<li class="right-table-title-item">纬度</li>
+    						<li class="right-table-title-item">站址</li>
+    						<li class="right-table-title-item">测站类型</li>
+    						<li class="right-table-title-item">所属区域</li>
+    						<li class="right-table-title-item">管理</li>
+    					</ul>
+    					<div class="right-table-body">
+    						<ul class="right-table-row clearfix">
+    							<li class="right-table-row-item">雨量1</li>
+    							<li class="right-table-row-item"></li>
+    							<li class="right-table-row-item"></li>
+    							<li class="right-table-row-item">230.27</li>
+    							<li class="right-table-row-item"></li>
+    							<li class="right-table-row-item">辽宁省大连市XX镇XX乡XXXXXX</li>
+    							<li class="right-table-row-item"></li>
+    							<li class="right-table-row-item"></li>
+    							<li class="right-table-row-item"><i></i><span>修改</span></li>
+    						</ul>
+    					</div>
+
+    				</div>
+    			</div>
+
+    		</div>
+    	</div>
+
+        <!-- 以下是弹窗 -->
+        <!-- 信息 -->
+        <div class="modal fade" id="createStation" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" class="closeImg fr">
+           <div class="modal-dialog">
+             <div class="modal-content">
+               <div class="modal-header">新建测站
+                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true" class=" closeImg fr">&times;</span><span class="sr-only">Close</span></button>
+               </div>
+               <div class="modal-body">
+                    <form class="" action="index.html" method="post">
+                        <p>
+                            <span>测站名称</span>
+                            <input type="text" name="" value="">
+                        </p>
+                        <p>
+                            <span>测站名系统编码</span>
+                            <input type="text" name="" value="">
+                        </p>
+                        <p>
+                            <span>国家标准码</span>
+                            <input type="text" name="" value="">
+                        </p>
+                        <p>
+                            <span>经度</span>
+                            <input type="text" name="" value="">
+                        </p>
+                        <p>
+                            <span>纬度</span>
+                            <input type="text" name="" value="">
+                        </p>
+                        <p>
+                            <span>站址</span>
+                            <input type="text" name="" value="">
+                        </p>
+                        <p>
+                            <span>测站类型</span>
+                            <select class="select-picker" name="">
+                                <option value="">1</option>
+                                <option value="">2</option>
+                                <option value="">3</option>
+                            </select>
+                        </p>
+                        <p>
+                            <span>区域码</span>
+                            <select class="select-picker" name="">
+                                <option value="">13</option>
+                                <option value="">23</option>
+                                <option value="">33</option>
+                            </select>
+                        </p>
+                        <p>
+                            <span>备注</span>
+                            <textarea name="name" rows="4" cols="30"></textarea>
+                        </p>
+
+                        <p class="saveAndQuit">
+                            <input type="submit" name="" value="保存">
+                            <input type="button" name="" value="取消">
+                        </p>
+                    </form>
+               </div>
+
+             </div>
+           </div>
+         </div>
+
+
+      <script type="text/javascript" src="/pro_js/publicJs/jquery-3.1.1.min.js"></script>
+      <script type="text/javascript" src="/pro_js/publicJs/bootstrap.min.js"></script>
+      <script type="text/javascript" src="/pro_js/publicJs/bootstrap-select.min.js"></script>
+      <script type="text/javascript" src="pro_js/publicJs/bootstrap-datetimepicker.js"></script>
+      <script type="text/javascript" src="pro_js/publicJs/bootstrap-datetimepicker.zh-CN.js"></script>
+      <script type="text/javascript" src="/pro_js/header.js"></script>
+      <script type="text/javascript" src="/pro_js/dataManagement.js"></script>
+      <script type="text/javascript">
+            
+            $('.select-picker').selectpicker({
+            	size: 6
+            });
+            $(".timePicker,.timePickerCaret").datetimepicker({
+              bootcssVer:3,
+              language:  'zh-CN',
+              format: 'yyyy-mm-dd hh:ii',
+              autoclose: true,
+              todayBtn: true,
+              pickerPosition: "bottom-right"
+            });
+
+      </script>
+</body>
+
+
+
+</html>

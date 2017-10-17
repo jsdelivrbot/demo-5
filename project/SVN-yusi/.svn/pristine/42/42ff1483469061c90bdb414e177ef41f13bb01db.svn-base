@@ -1,0 +1,61 @@
+package ekuter.mvc.controller;
+
+import java.util.List;
+import java.util.Map;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import ekuter.mvc.constants.Constants;
+import ekuter.mvc.exception.BusinessException;
+import ekuter.mvc.util.ResultMessageUtil;
+import mybatisPro.mybatisService.impl.StationStatusService;
+
+/**
+ * 测站状态统计控制类
+ * @author si.yu
+ * @date 2017/08/31
+ * @version 1.0
+ * */
+@RestController
+@RequestMapping("stationStatus")
+public class StationStatusController {
+
+	private static final Logger logger = LoggerFactory.getLogger(StationStatusController.class);
+	
+	@Autowired
+	private StationStatusService statusService;
+	
+	/**
+	 * 测站状态查询（mouth）
+	 * @param time
+	 * @return 
+	 * */
+	@RequestMapping("getStatusInfoList")
+	public ResultMessageUtil getStatusInfoList(String begin_time,String end_time){
+		
+		ResultMessageUtil resultMsg = new ResultMessageUtil();
+		
+		if(null != begin_time || null != end_time){
+			
+			List<Map<String, Object>> statusEntities = 
+					statusService.getStationStatusList(begin_time, end_time);
+			
+			if(null != statusEntities){
+				resultMsg.setData(statusEntities);
+				resultMsg.setStatus(0);
+				resultMsg.setMsg("search success!");
+				return resultMsg;
+			}else{
+				logger.info(Constants.EXCEPTION_MAP.get("EX_STATIONSTATUS"));
+				throw new BusinessException(Constants.EXCEPTION_MAP.get("EX_STATIONSTATUS"));
+			}
+		}else{
+			logger.info(Constants.EXCEPTION_MAP.get("PARAMERROR"));
+			throw new BusinessException(Constants.EXCEPTION_MAP.get("PARAMERROR"));
+		}
+	}
+}

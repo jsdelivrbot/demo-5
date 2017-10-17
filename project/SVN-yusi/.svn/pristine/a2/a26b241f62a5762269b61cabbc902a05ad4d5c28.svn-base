@@ -1,0 +1,471 @@
+/*.noContent{
+    min-height: 300px;
+    line-height: 300px;
+    color: lightgray;
+    text-align: center;
+}*/
+
+#container{
+    min-width: 1260px;
+    position: absolute;
+    top: 145px;
+    left: 0;
+    right:0;
+    bottom: 0;
+}
+
+.container-top {
+    background: #fff;
+    padding-top: 20px;
+	text-align: center;
+}
+
+.container-top p {
+    margin-bottom: 10px;
+}
+
+.container-top .title {
+    margin-left: 28px;
+}
+.wrap-title-third {
+    display:inline-block;
+}
+.prevButton, .nextButton {
+    display: inline-block;
+    vertical-align: middle;
+    width: 10px;
+    height: 10px;
+    background: url(../imgs/common/common.png) no-repeat;
+    margin: 0 0 2px 0;
+    background-clip: content-box;
+    box-sizing: content-box;
+    padding: 15px 15px;
+}
+.prevButton.active {
+    background-position: -64px -126px;
+    cursor: pointer;
+}
+.nextButton.active {
+    background-position: -81px -126px;
+    cursor: pointer;
+}
+.prevButton {
+    background-position: -98px -126px;
+}
+.nextButton {
+    background-position: -119px -126px;
+}
+.timePicker {
+    width: 121px;
+    height: 38px;
+    text-align: center;
+    font-size:16px;
+    font-weight:bold;
+    color:#4791EA;
+    border:none;
+    outline: none;
+    cursor: pointer;
+}
+
+.container-top .circle {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    line-height: 12px;
+    text-align: center;
+    border-radius: 50%;
+    margin-right: 8px;
+    vertical-align: middle;
+}
+
+.container-top .circle.red {
+    background: #E7211E;
+}
+
+.container-top .circle.green {
+    background: #01CF60;
+}
+
+.container-top .circle.yellow {
+    background: #ffa200;
+}
+
+.container-top .circle.gray {
+    background: #ccc;
+}
+
+.top-right-last {
+    margin-right: 42px;
+}
+
+.container-top button {
+    width: 90px;
+    height: 32px;
+    line-height: 32px;
+    text-align: center;
+    color: #fff;
+    background: #4991EA;
+    border-radius: 3px;
+    border: none;
+    font-size: 14px;
+    margin-left: 28px;
+}
+
+.left, .right {
+    display: inline-block;
+    width: 51px;
+    vertical-align: middle;
+    margin: 0 10px;
+}
+
+.left span, .right span {
+    display: inline-block;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: url('../imgs/common/common.png') no-repeat;
+}
+
+.left span.leftBtn.active {
+    background-position: -171px -56px;
+    cursor: pointer;
+}
+
+.left span.leftBtn {
+    background-position: -171px -107px;
+}
+
+.right span.rightBtn.active {
+    background-position: -233px -56px;
+    cursor: pointer;
+}
+
+.right span.rightBtn {
+    background-position: -233px -107px;
+}
+
+.sliderBar {
+    display: inline-block;
+    vertical-align: middle;
+    /*width: calc(100% - 102px);*/
+	max-width: 1600px;
+	height: 90px;
+	overflow: hidden;
+	text-align: center;
+    position: relative;
+}
+.sliderBar .showBox{
+    overflow: hidden;
+    text-align: center;
+    height: 100%;
+    display: inline-block;
+    position: relative;
+}
+.sliderBar ul{
+	text-align: left;
+    height: 100%;
+    width: calc(50px * 31);
+    position: relative;
+    left: 0px;
+    /*transition: left .25s;*/
+}
+
+.sliderBar li {
+	font-size: 0;
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 100%;
+    text-align: center;
+    cursor: pointer;
+	padding: 15px 5px 15px;
+}
+.sliderBar li.curr{/*当前选中*/
+    background:#d2d2d2;
+}
+.sliderBar li.active {/*当前日期*/
+    background-color: #4791ea;
+    cursor: pointer;
+    color: #fff;
+}
+.sliderBar li{
+    cursor: default;
+}
+.sliderBar li .dateDay{/*未报(默认)*/
+    font-size: 14px;
+	width: 100%;
+    height: 0;
+	border-radius: 50%;
+    padding-bottom: 100%;
+    position: relative;
+    background-color: #ccc;
+}
+.sliderBar li .dateDay span{
+    color:#333;
+}
+
+.sliderBar li.hasReport .dateDay{  /*已报*/
+    background: #00cf63;
+    color: white;
+}
+.sliderBar li.lateReport .dateDay{/*迟报*/
+    background-color: #ffa200;
+}
+.sliderBar li.leakReport .dateDay{/*漏报*/
+    background-color: #e7211e;
+}
+.sliderBar li.lateReport .dateDay span,
+.sliderBar li.hasReport .dateDay span,
+.sliderBar li.leakReport .dateDay span{
+    color: white;
+}
+.sliderBar li.leakReport,
+.sliderBar li.lateReport,
+.sliderBar li.hasReport{
+    cursor: pointer;
+}
+
+
+.sliderBar li.active .dateDay{
+    background-color: #fff;
+}
+.sliderBar li>div:last-child{
+	font-size: 14px;
+    margin-top: 5px;
+}
+.sliderBar li.notReport>div:last-child{
+    color:#ccc;
+}
+.sliderBar li>div.afterToday{
+	color: #ccc;
+}
+.sliderBar li>div.weekend{
+	color: #8f9ca5;
+}
+
+.sliderBar li span {
+	width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -10px;
+    margin-left: -10px;
+	color: white;
+}
+
+.sliderBar li.active span {
+    color: #4791ea;
+}
+
+.sliderBar li.active div[data-bind=weekDayTip]{
+    color: white;
+}
+
+.container-bottom{
+    padding:30px 140px 20px 140px;
+    margin-top:10px;
+    background:#fff;
+    height:calc(100% -  162px);
+}
+.container-bottom-title{
+    margin-bottom:26px;
+    height: 32px;
+}
+.container-bottom-title>p{
+    vertical-align: sub;
+}
+.container-bottom-title button{
+    color: #fff;
+    background-color: #fff;
+    border-radius: 3px;
+    border: 1px solid #4991EA;
+    color: #4991EA;
+    font-size: 14px;
+    width: 88px;
+    height: 32px;
+    line-height: 32px;
+}
+.container-bottom-title button.save,
+.container-bottom-title button.edit{
+    background: #4991EA;
+    color: white;
+    margin-right: 10px;
+}
+.ui-jqgrid-labels{
+    background:#f2f2f2;
+}
+
+/*重置jqGrid表格样式*/
+/*#mainTable tbody>tr>td{
+    padding: 20px 0;
+}
+#mainTable tbody>tr.jqgfirstrow>td{
+    padding: 0;
+}*/
+
+/*表格样式*/
+.container-bottom-content{
+    /*max-height: calc(100% - 60px);*/
+    height: calc(100% - 60px);
+}
+.container-bottom-content ul{
+    font-size: 0px;
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+
+}
+.container-bottom-content>ul{
+    background-color: #f2f2f2;
+    border: 1px solid #e1e1e1;
+}
+.container-bottom-content-dataBind{
+    border-left: 1px solid #e1e1e1;
+    border-right: 1px solid #e1e1e1;
+    border-top: none;
+}
+.mCustomScrollBox{
+    /*border-bottom: none;*/
+}
+.container-bottom-content ul li{
+    display: inline-block;
+    font-size: 14px;
+    text-align: center;
+    height: 100%;
+    width: calc((100% - 70px) / 6);
+    border-right: 1px solid #e1e1e1;
+    border-bottom: 1px solid #e1e1e1;
+    vertical-align: middle;
+}
+.container-bottom-content ul li:last-child{
+    border-right: none;
+}
+.container-bottom-content ul li:first-child{
+    width: 69px;
+}
+.container-bottom-content div ul{
+    height: 56px;
+}
+.container-bottom-content div ul li{
+    padding: 3px 5px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    cursor: default;
+}
+.container-bottom-content div ul:last-child{
+    border-bottom: none;
+}
+.container-bottom-content div ul:last-child li{
+    border-bottom: none;
+}
+.container-bottom-content div ul li:last-child{
+    text-align: left;
+}
+.container-bottom-content div ul li:last-child input{
+    text-align: center;
+    width: 96%;
+}
+.container-bottom-content input{
+    width: 100%;
+    height: 46px;
+    line-height: 46px;
+    text-align: center;
+    border: 1px dashed transparent;
+    background-color: #fff;
+}
+.container-bottom-content input.frozen,
+.container-bottom-content.active input.frozen{
+    border: 1px dashed transparent;
+    background-color: #fff;
+    color: lightgray;
+}
+.container-bottom-content.active input{
+    border: 1px dashed #4b93e8;
+    background-color: #f0f7ff;
+}
+.container-bottom-content.active input::-ms-clear{display:none;}
+
+#scrollBox{
+    /*max-height: calc(100% - 50px);*/
+    max-height: calc(100vh - 477px);
+    border-bottom: 1px solid #e1e1e1;
+}
+.mCSB_inside > .mCSB_container{
+    margin-right: 0;
+}
+.mCS-3d-dark.mCSB_scrollTools{
+    margin-right: 0;
+}
+
+
+/**按钮样式**/
+#gotoToday:hover,
+#gotoToday:active,
+.save:hover,
+.save:active,
+.edit:hover,
+.edit:active{
+    cursor:pointer;
+    background:#4385d5!important;
+}
+
+
+
+/*顶部日期条的宽度*/
+@media screen and (max-width:1366px){
+    .container-bottom{
+        padding:30px 95px 20px 95px;
+        margin-top:10px;
+        background:#fff;
+        height:calc(100% -  162px);
+    }
+    .container-top p{
+        margin-bottom: 20px;
+    }
+    .sliderBar{
+        height:90px;
+    }
+    .sliderBar .showBox{
+        max-width: calc(50px * 22);
+    }
+    .sliderBar li{
+        padding: 18px 5px 14px;
+    }
+}
+@media screen and (min-width:1360px) and (max-width:1600px){
+    .container-bottom{
+        padding:30px 80px 30px 80px;
+        margin-top:10px;
+        background:#fff;
+        height:calc(100% -  162px);
+    }
+    .sliderBar .showBox{
+        max-width: calc(50px * 24);
+    }
+}
+@media screen and (min-width:1600px) and (max-width:1800px){
+    .container-bottom{
+        padding:30px 145px 30px 145px;
+        margin-top:10px;
+        background:#fff;
+        height:calc(100% -  162px);
+
+    }
+    .sliderBar .showBox{
+        max-width: calc(50px * 28);
+    }
+}
+@media screen and (min-width:1800px) and (max-width:1920px){
+    .container-bottom{
+        padding:30px 190px 30px 190px;
+        margin-top:10px;
+        background:#fff;
+        height:calc(100% -  162px);
+
+     }
+    .sliderBar .showBox{
+        max-width: calc(50px * 31);
+    }
+}

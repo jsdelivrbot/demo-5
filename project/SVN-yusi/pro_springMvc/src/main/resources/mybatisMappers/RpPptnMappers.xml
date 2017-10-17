@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC 
+    "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mybatisPro.myBatisDao.RpPptnMapper">
+
+
+	<insert id="insertDataInfo"  parameterType="java.util.List">
+		 INSERT IGNORE INTO ST_RP_PPTN_R(
+		 	`sta_id`, `time`, `time_rainfall`, `time_interval`,`systemtime`,`createtime`
+		 )
+		  VALUES 
+		 <foreach collection="data_info" index="index" item="item"  separator="," >
+			 (
+				 #{item.sta_id},#{item.time},#{item.time_rainfall},#{item.time_interval},#{item.systemtime},#{item.createtime}
+			 )
+		</foreach>
+	</insert>
+	
+	<!-- 查询最大colletttime -->
+	<select id="getMaxCollectTime" resultType="long">
+		SELECT 
+			<!-- DISTINCT -->
+			MAX(id) AS id
+		   <!--  collecttime AS collect_time,
+		    paravalue AS para_value -->
+	    FROM
+	    	st_alldata_c 
+	    WHERE 
+	    	collecttime = (
+	    		SELECT 
+	    			MAX(collecttime) 
+	    		FROM
+	    			st_alldata_c 
+	    		INNER JOIN `rwdb`.`ParamId_StationId` 
+			    ON (
+			    	`st_alldata_c`.`paraid` = `ParamId_StationId`.`param_id`
+			     ) 
+	    		WHERE sta_id = #{sta_id} AND is_reorganize=1
+	    	)
+	</select>
+	
+</mapper>

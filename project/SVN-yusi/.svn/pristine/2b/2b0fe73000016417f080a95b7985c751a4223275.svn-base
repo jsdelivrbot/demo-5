@@ -1,0 +1,10 @@
+$(function(){
+	$('.left-item').click(function(){
+	$(this).addClass('active').siblings().removeClass('active');
+		$('.rightContent').eq($(this).index()).removeClass('hide').siblings().addClass('hide');
+	});
+	$('.create').click(function(){
+		 $("#createStation").modal("show");
+	})
+	
+})

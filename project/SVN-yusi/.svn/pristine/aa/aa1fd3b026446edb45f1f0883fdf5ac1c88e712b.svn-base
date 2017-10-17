@@ -1,0 +1,454 @@
+// "use strict";
+var thisDate = new Date();
+var todayNumber = thisDate.getDate();
+var tomonthNumber = thisDate.getMonth()+1;
+var toyearNumber = thisDate.getFullYear();
+var monthNumber;
+
+//获取月份中最后一天
+function getLastDay(y,m){
+	var dt = new Date(y,m,1);
+	var cdt = new Date(dt.getTime()-1000*60*60*24);
+	alert(cdt.getFullYear()+"年"+(Number(cdt.getMonth())+1)+"月的最后一天是:"+cdt.getDate()+"日");
+}
+
+//补0操作
+function getzf(num){
+    if(parseInt(num) < 10){
+        num = '0'+num;
+    }
+    return num;
+}
+
+// 初始化日期条
+function initTimeBar(placeHolder){
+	var yyyymm = $("#monthsPicker").val();  // yyyy-mm
+	var allMonthDay = (placeHolder===undefined)?getMonthAllDays():getMonthAllDays(placeHolder[0],placeHolder[1]);  //获取月份的天数
+	var beginTime = yyyymm+"-01";  //开始时间
+	var endTime = yyyymm+"-"+((placeHolder===undefined)?todayNumber:allMonthDay);  //结束时间
+	// console.log(endTime);
+	$.ajax({
+		url: getListOfReportStatusUrl,
+		type: 'get',
+		dataType: 'json',
+		data: {
+			begin_time: beginTime,
+			end_time: endTime,
+		},
+		success: function(result){
+			var timebarData = result.data;
+
+			var todayStartTime = new Date();  //今天start点
+			todayStartTime.setHours(0);
+			todayStartTime.setMinutes(0);
+			todayStartTime.setSeconds(0);
+			todayStartTime.setMilliseconds(0);
+			var todayEndTime = new Date(todayStartTime.getTime()+24*60*60*1000);  //今天end点
+			var days = [];  //定义日期条数据;
+			var weekDay = ['日','一','二','三','四','五','六'];
+
+			for(var i=1;i<=allMonthDay;i++){
+				var compareTime = new Date($("#monthsPicker").val()+"-"+i+" 08:00");  //循环点时间
+				var compareDate = $("#monthsPicker").val()+((i<10)?"-0":"-")+i; //循环日期,和后台数据对比
+
+				var item = {};
+				item.date = compareTime.getTime();  //时间戳
+				item.dateDayNumber = i;  //日期数
+				item.weekDayNumber = compareTime.getDay();  //星期(数)
+				item.weekDayTip = weekDay[item.weekDayNumber];  //星期(汉字)
+				// 以前or今天or以后
+				if (compareTime < todayStartTime) {
+					item.beforeToday = true;
+					item.isToday = false;
+				}else if(compareTime > todayEndTime){
+					item.beforeToday = false;
+					item.isToday = false;
+				}else {
+					item.beforeToday = false;
+					item.isToday = true;
+				}
+				//状态:已报9,迟报10,漏报11,未报12;
+				if (compareTime < todayStartTime) {
+					$.each(timebarData,function(index,val){
+						if (val.reportTime === compareDate) {
+							item.reportStatus = val.reportStatus;  // 已报 or 迟报
+						}
+					});
+					if (!item.reportStatus) {
+						item.reportStatus = 10;  // 漏报
+					}
+				}else {
+					item.reportStatus = 11;  //未报
+				}
+				days.push(item);
+			}
+
+			var daysProperty = {
+				weekDayTip: {
+					class: function(){
+						return ((this.weekDayNumber==6)||(this.weekDayNumber==0))?"weekend":"";
+					}
+				},
+				reportStatus: {
+					class: function(e){
+						var result = e.element.className;
+						switch(this.reportStatus){
+							case 8:
+								result = result+" hasReport";  //已报
+								break;
+							case 9:
+								result = result+" lateReport";  //迟报
+								break;
+							case 10:
+								result = result+" leakReport";  //漏报
+								break;
+							default:
+								result = result;  //未报
+						}
+						return this.isToday?result+" active end curr":result;
+					},
+					"data-date": function(){
+						return this.date;
+					}
+				}
+			};
+
+			$('#slider-index ul').render(days,daysProperty);
+			$("ul.clearfix").width($("ul.clearfix li").length*50);
+			$("ul.clearfix li:first").addClass("curr");
+			$.each($("ul.clearfix li"),function(i,val){
+				if ($(val).hasClass("active")) {
+					$(val).siblings().removeClass('curr');
+				}
+			});
+
+			setLeftAndRightMonthStatus();
+			setLeftAndRightStatus();
+			getAndBackupTable(placeHolder);
+		},
+		error: function(err){
+			console.log(err);
+		}
+	});
+}
+
+// 获取月份天数,不传值代表当月
+function getMonthAllDays(years,yueNumber){
+
+	var someTime = new Date();
+	if (null==years&&null==yueNumber) {
+		yueNumber = someTime.getMonth()+1;
+	}
+	someTime.setMonth(yueNumber);
+	someTime.setDate(0);
+	return someTime.getDate();
+}
+
+//切换月份
+function clickLeftOrRightMonth(){
+	if ($(this)[0].className.indexOf("prevButton")!==-1) {
+		var arr = datePrev();
+	}else {
+		var arr = dateNext();
+	}
+	arr = arr.split('-');
+
+	setLeftAndRightMonthStatus();
+	initTimeBar(arr);
+}
+
+//设置月份左右按钮状态
+function setLeftAndRightMonthStatus(){
+	var arr = $('#monthsPicker').val().split("-");
+
+	$(".nextButton").removeClass("active");
+	if (Number(arr[0]) < Number(toyearNumber)) {
+		$(".nextButton").addClass("active");
+	}else if (Number(arr[0]) === Number(toyearNumber)) {
+		if (Number(arr[1]) < Number(tomonthNumber)) {
+			$(".nextButton").addClass("active");
+		}
+	}
+}
+
+// 日期点击事件
+function clickLis(){
+	// 设置时间今天头(开始)
+	var thisDateMin = new Date();
+	thisDateMin.setHours(0);
+	thisDateMin.setMinutes(0);
+	thisDateMin.setSeconds(0);
+	thisDateMin.setMilliseconds(0);
+	// 设置时间今天尾(结束)
+	var thisDateMax = new Date(thisDateMin.getTime()+24*60*60*1000);
+	// 获取li上的时间戳
+	var liDate = new Date($(this).data("date"));
+	// 比较
+	if (liDate < thisDateMin) {  //以前
+		$(this).addClass('curr').siblings().removeClass('curr');
+		getAndBackupTable("placeHolder");
+	}else if(liDate > thisDateMax){  //以后
+		$('.lis').removeClass('curr');
+
+	}else {  //今天
+		$(this).addClass('end curr').siblings().removeClass('end curr');
+		getAndBackupTable("placeHolder");
+	}
+
+
+}
+
+//左右按钮点击事件
+function clickLeftOrRight(){
+	var left;
+	if ($(this).hasClass("leftBtn")) {
+		left = $(".dateBox").position().left + 50;
+	}else if ($(this).hasClass("rightBtn active")) {
+		left = $(".dateBox").position().left - 50;
+	}
+	$(".dateBox").css("left", left);
+
+	setLeftAndRightStatus();
+}
+
+//设置左右按钮状态
+function setLeftAndRightStatus(){
+	var $firstLeft = $(".container-top li:first")[0].getBoundingClientRect().left;
+	var $lastRight = $(".container-top li:last")[0].getBoundingClientRect().right;
+	var $box = $(".showBox")[0].getBoundingClientRect();
+
+	$('.leftBtn,.rightBtn').addClass('hide');
+	if ($firstLeft < $box.left) {
+		$('.leftBtn').removeClass('hide');
+	}
+	if ($lastRight > $box.right) {
+		$('.rightBtn').removeClass('hide');
+	}
+	if ($lastRight > $box.right) {
+		$('.rightBtn').removeClass('hide');
+	}
+}
+
+//检测并重置时间轴位置,防止按钮溢出
+function resetTimeBarPosition(){
+	var li = $("ul.clearfix .curr")[0].getBoundingClientRect();
+	var showBox = $(".showBox")[0].getBoundingClientRect();
+	var ul = $("ul.clearfix")[0].getBoundingClientRect();
+	var difference = li.right - showBox.right;
+
+	if (ul.right < showBox.right) {
+		var a = $("ul.clearfix").position().left + (showBox.right - ul.right);
+		$("ul.clearfix").css("left",a);
+	}else if (ul.left > showBox.left) {
+		var a = $("ul.clearfix").position().left + (showBox.left - ul.left);
+		$("ul.clearfix").css("left",a);
+	}else if(difference > 0){
+		var newOffset = Math.abs($("ul.clearfix").position().left)+difference;
+		$("ul.clearfix").css("left",-newOffset);
+	}
+}
+
+//需求:当日进入编辑状态  其余默认点击编辑进入编辑状态
+function changeOperation(){
+	for(var i = 0,vlen = days.length; i < vlen; i++){
+		if(days[i].isToday){
+			return i;
+		}
+	}
+}
+
+// 读取数据,写入列表(有参数:不是第一次; 没有参数:第一次)
+function getAndBackupTable(flag){
+
+	var sendTime = $("#monthsPicker").val()+"-"+$(".dateBox .curr").find("span").text();  //发送的日期
+	$.ajax({
+		url: getManMadeDataListUrl,
+		type: 'get',
+		dataType: 'json',
+		data: {
+			time: sendTime
+		},
+		success: function(result){
+			if (result.status === 0) {
+				var data = result.data;
+				data.forEach(function(val,i){  // 添加序号
+					val.xvhao = i+1;
+				});
+
+				var dataProperty = {  //ID + 禁用类frozen
+					station_name: {
+						"data-stationid": function(){
+							return this.sta_id;
+						}
+					},
+					rainFall: {
+						class: function(){
+							if (this.sta_type===2||this.sta_type===3) {
+								return "frozen";
+							}else{
+								return "";
+							}
+						},
+						"data-rainfallid": function(){
+							return this.rainfall_id;
+						}
+					},
+					river_waterLevel: {
+						class: function(){
+							if (this.sta_type===1||this.sta_type===2||this.sta_type===4) {
+								return "frozen";
+							}else {
+								return "";
+							}
+						},
+						"data-riverid": function(){
+							return this.river_id;
+						}
+					},
+					resvoir_waterLevel: {
+						class: function(){
+							if (this.sta_type===1||this.sta_type===3||this.sta_type===5) {
+								return "frozen";
+							}else {
+								return "";
+							}
+						},
+						"data-resid": function(){
+							return this.res_id;
+						}
+					}
+				};
+				$(".container-bottom-content-dataBind").render(data,dataProperty);
+
+				// 设置单元格状态+本地备份数据
+				var $inputs = $(".container-bottom-content").find("input");
+				if(flag === undefined){  //第一次点击
+					$("button.edit").addClass("hide").next().removeClass("hide");  //变为"保存键"+"取消键"
+					$(".container-bottom-content").addClass("active");  //表格是"填写"状态
+
+					$.each($inputs,function(i,input){  //有"forzon"的项补充"-";
+						var $input = $(input);
+						if ($input.hasClass("frozen")) {
+							$input.attr("type","text").val("—").attr("disabled","disabled");
+						}else{
+							$input.attr("type","number").removeAttr("disabled");
+						}
+						$input.attr("data-resetvalue",$input.val());
+					});
+				}else {  //不是第一次点击
+					$("button.edit").removeClass("hide").next().addClass("hide");  //变为"编辑键"
+					$(".container-bottom-content").removeClass("active");  //表格是"显示"状态
+					$.each($inputs,function(i,input){
+						var $input = $(input);
+						if ($input.hasClass("frozen")) {
+							$input.attr("type","text").val("—");  //有"forzon"的项补充"-";
+						}else{
+							$input.attr("type","number");
+						}
+						$input.attr("disabled","disabled").attr("data-resetvalue",$input.val());
+					});
+				}
+			}
+		}
+	});
+}
+
+//编辑表格
+function editTable(){
+	$(".container-bottom .edit").addClass("hide").next().removeClass("hide");
+	$(".container-bottom-content").addClass("active").find("input").not(".frozen").removeAttr("disabled");
+}
+// 保存表格内容
+function saveTable(){
+	// var param = {
+	// 	'reportTime': "2017-08-01",
+	// 	'manMadeData': [
+	// 		{'sta_id': 113,'rainfall_id': 82,'rainfall': 8.8},
+	// 		{'sta_id': 114,'res_id':22,'resvoirWaterLevel': 8.8},
+	// 		{'sta_id': 115,'rainfall_id': 89,'rainfall': 8.8,'res_id':30,'resvoirWaterLevel': 8.8},
+	// 		{'sta_id': 116,'rainfall_id': 96,'rainfall': 8.8,'river_id':28,'riverWaterLevel':8.8},
+	// 		{'sta_id': 117,'river_id':36,'riverWaterLevel':8.8}
+	// 	]
+	// };
+	var param = {
+		'reportTime': "2017-08-20",
+		'manMadeData': [
+			{'sta_id': 113,'rainfall_id': 82,'rainfall': 8.8,'river_id':null,'riverWaterLevel':null,'res_id':null,'resvoirWaterLevel': null},
+			{'sta_id': 114,'rainfall_id': null,'rainfall': null,'river_id':null,'riverWaterLevel':null,'res_id':22,'resvoirWaterLevel': 8.8},
+			{'sta_id': 115,'rainfall_id': 89,'rainfall': 8.8,'river_id':null,'riverWaterLevel':null,'res_id':30,'resvoirWaterLevel': 8.8},
+			{'sta_id': 116,'rainfall_id': 96,'rainfall': 8.8,'river_id':28,'riverWaterLevel':8.8,'res_id':null,'resvoirWaterLevel': null},
+			{'sta_id': 117,'rainfall_id': null,'rainfall': null,'river_id':36,'riverWaterLevel':8.8,'res_id':null,'resvoirWaterLevel': null}
+		]
+	};
+	console.log("开始上传了");
+	$.ajax({
+		url: manMadeReportDataUrl,
+		type: 'post',
+		traditional: true,
+		contentType : 'application/json;charset=utf-8',
+		dataType: 'json',
+		data: JSON.stringify(param),
+		// data: param,
+		success: function(result){
+			console.log(result);
+		},
+		error: function(err){	}
+	});
+	// 变为"已保存"状态 + 在本地保存数据
+    var $inputs = $(".container-bottom-content").removeClass("active").find("input");
+    $.each($inputs,function(i,input){
+        var value = $(input).val();
+		$(input).attr("disabled","disabled").attr("data-resetvalue",value);
+        $(input).attr("disabled","disabled");
+    });
+	$(".container-bottom .save").parents(".operation").addClass("hide").prev().removeClass("hide");
+}
+// 取消编辑表格
+function quitTable(){
+	var $inputs = $(".container-bottom-content").removeClass("active").find("input");
+	$.each($inputs,function(i,input){
+		var value = input.dataset.resetvalue;
+		$(input).attr("disabled","disabled").val(value);
+	});
+	$(".container-bottom .quit").parents(".operation").addClass("hide").prev().removeClass("hide");
+}
+
+
+$(function(){
+	// 初始化
+	$('#monthsPicker').val(DateToday('months'));
+	initTimeBar();
+
+	$(window).resize(function(){
+		setLeftAndRightStatus();
+		resetTimeBarPosition();
+	});
+	// [回到今天]
+	$('#gotoToday').on("click",function(){
+		$('#monthsPicker').val(DateToday("months"));
+		var today=DateToday('days');
+		todayYear=today.split('-')[0];
+		todayMonth=today.split('-')[1];
+		todayDays=today.split('-')[2];
+		$('#titleYear').html(todayYear);
+		$('#titleMonth').html(todayMonth);
+		$('#titleDay').html(todayDays);
+		initTimeBar();
+	 });
+	 //切换月份
+ 	$(".pickerBox").on("click",".prevButton.active,.nextButton.active",clickLeftOrRightMonth);
+	//切换日期(直接点击)
+	$(".clearfix").on("click","li",clickLis);
+	//切换日期(左右键)
+	$(".container-top").on("click",".leftBtn.active,.rightBtn.active",clickLeftOrRight);
+
+	//编辑表格
+	$(".container-bottom .edit").on("click",editTable);
+	// 保存表格
+	$(".container-bottom .save").on("click",saveTable);
+	// 取消编辑表格
+	$(".container-bottom .quit").on("click",quitTable);
+
+
+
+});

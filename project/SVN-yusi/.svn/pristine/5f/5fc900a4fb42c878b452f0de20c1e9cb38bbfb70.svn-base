@@ -1,0 +1,289 @@
+/**
+ * Created by EKuter-amu on 2017/7/10.
+ */
+
+window.onresize = function() {
+  mapResize();
+}
+function mapResize() {
+  /* 地图 */
+  setMapHeight();
+
+}
+mapResize();
+function setMapHeight(){
+  $('.mapBox').css('height',$('.contentRight').outerHeight(true)+'px');
+}
+function pointInfos(getRainfallStationCountInfo){
+
+  $.each(getRainfallStationCountInfo, function(i, ele) {
+
+    Map.addPoints([ele.x,ele.y], ele.station_name,ele.rainfall);
+    Map.setInfos([ele.x,ele.y],ele.station_name,ele.rainfall,ele.icon, i);
+  });
+}
+
+function tabsChange(){
+    $(this).addClass('active').siblings().removeClass('active');
+    $('.tab-pannel').eq($(this).index()).addClass('active').siblings().removeClass('active');
+
+    if($(this).hasClass('tabs1')){//实时水情
+      //清除点和信息 设置水情点和信息
+      removeNameAndPoint();
+      setMapHeight();
+      getReservoirInfo();//获取水库信息
+      getRiverwayInfo();//获取河道信息
+    }else if($(this).hasClass('tabs2')){//实时雨情
+        removeNameAndPoint();
+      getRainfallStationCountInfo();//雨量信息
+      getRainfallStatisticsList();//雨量统计
+     
+      $('.panelRow2-dataBind').off('click').on('click','ul',function(){
+        var x=parseInt($(this).find('li:first input[data-bind="x"]').val());
+        var y=parseInt($(this).find('li:first input[data-bind="y"]').val());
+        var view = map.getView();
+        var zoom = view.getZoom();        
+        view.setCenter([x,y]);//设置中心
+        view.setZoom(zoom + 3);//放大
+        $('.popup').css('color','white');
+        $('#popup'+$(this).index()).css('color','red');//高亮layer
+      });
+    }
+}
+// function rainInfoDetail(){
+ 
+//   $('#rainInfoDetailModal').modal('show');
+// }
+
+
+
+//水库信息
+function getReservoirInfo(){
+  //模拟数据
+var arr=[
+  
+{sys_code: "#001", station_name: "水位站1",waterLine:"14.00", storage:"400.00"},
+{sys_code: "#002", station_name: "水位站2",waterLine:"15.00", storage:"500.00"},
+{sys_code: "#003", station_name: "水位站3",waterLine:"16.00", storage:"500.00"},
+{sys_code: "#004", station_name: "水位站4",waterLine:"17.00", storage:"600.00"}
+];
+  $('.panelRow2 tbody').render(arr);
+
+}
+//河道信息
+function getRiverwayInfo(){
+    //模拟数据
+var arr=[
+  
+{sys_code: "#001", station_name: "水位站1",waterLine:"14.00", storage:"400.00"},
+{sys_code: "#002", station_name: "水位站2",waterLine:"15.00", storage:"500.00"},
+{sys_code: "#003", station_name: "水位站3",waterLine:"16.00", storage:"500.00"},
+{sys_code: "#004", station_name: "水位站4",waterLine:"17.00", storage:"600.00"}
+];
+  $('.panelRow3 tbody').render(arr);
+
+}
+
+
+/**雨量信息**/
+function getRainfallStationCountInfo(){
+  var beginTime=$('#starttime1').val();
+  var endTime=$('#endtime1').val();
+
+    $.ajax({
+    url: rainfallStationCountInfoUrl,
+    type: 'get',
+    data: {
+      begin_time: beginTime,
+      end_time: endTime
+    },
+    dataType: 'json',
+    success: function(result){
+        if(result.status==0){
+           var getRainfallStationCountInfo=result.data;
+
+           if(getRainfallStationCountInfo&&getRainfallStationCountInfo.length==0){
+                $('.tab-pannel2 .panelRow2 tbody').render('');
+                $('#errorBtn').modal('show');
+                $('#errorInfo').html('雨量信息无内容');
+           }else{
+              //console.log(getRainfallStationCountInfo);
+              $('.tab-pannel2 .panelRow2 .panelRow2-dataBind').render(getRainfallStationCountInfo);
+              pointInfos(getRainfallStationCountInfo);
+              setMapHeight();
+           }
+        }else{
+            $('#errorBtn').modal('show');
+            $('#errorInfo').html('数据加载异常');
+        }
+
+
+    },
+    error: function(err){
+      console.log(err);
+    }
+  });
+}
+
+/**雨量统计**/
+function getRainfallStatisticsList(){
+
+  var beginTime=$('#starttime1').val();
+  var endTime=$('#endtime1').val();
+  $.ajax({
+    url: areaAverageRainfallUrl,
+    type: 'get',
+    data: {
+      begin_time: beginTime,
+      end_time: endTime
+    },
+    dataType: 'json',
+    success: function(result){
+
+       var rainfallStatisticsList=result.data;
+       if(rainfallStatisticsList&&rainfallStatisticsList.length==0){
+                $('#errorBtn').modal('show');
+                $('#errorInfo').html('雨量统计无内容');
+       }else{
+
+        var arr=[];
+        var str='';
+        $.each(rainfallStatisticsList,function(idx,obj){
+          if(obj.area_name=="全库"){
+            rainfallStatisticsList.splice(idx,1); //把全库的项清除
+          }
+          if (null==obj.average_rainfall||null==obj.maxStation||null==obj.max_Rainfall) {
+            obj.average_rainfall=obj.maxStation=obj.max_Rainfall = "——";
+          }
+          arr.push(obj.station_info_list);
+        });
+        
+
+        // console.log(arr);
+        var aa={
+          rainfall:{
+              class: function() {
+
+                return arr.rainfall;
+              }
+          }
+        };
+
+        $('.panelRow3 .right-table-body-dataBind').render(rainfallStatisticsList);
+        $('#popInfoTr').render(rainfallStatisticsList,aa);
+        setMapHeight();
+       }
+
+    },
+    error: function(err){
+      console.log(err);
+    }
+  });
+}
+
+/*清除 站名 and 站点*/
+function removeNameAndPoint(){
+    var length =map.getLayers().a.length;
+    while(length>1){
+        map.removeLayer(map.getLayers().item(1));
+        length = map.getLayers().a.length;
+    }
+
+    $(".popup").remove();
+}
+
+//获取当前日期
+function DateToday(flag) {
+  var d = new Date();
+  var year = d.getFullYear();
+  var month = d.getMonth() + 1;
+  if (month < 10) {
+    month = '0' + month;
+
+  }
+  var day = d.getDate();
+  if (day < 10) {
+    day = '0' + day;
+  }
+  var hour = d.getHours();
+  var min = d.getMinutes();
+
+  var str = year + "-" + month + "-" + day + " " + hour + ":" + min;
+  return str;
+
+}
+//获取上月今日
+function prevMonthDateToday() {
+  var d = new Date();
+  var year = d.getFullYear();
+  var month = d.getMonth();
+  if (month < 10) {
+    month = '0' + month;
+
+  }
+  var day = d.getDate();
+  if (day < 10) {
+    day = '0' + day;
+  }
+  var str = year + "-" + month + "-" + day + " " + "00:00";
+  return str;
+}
+/*点击[详情],显示弹窗*/
+function showDetail() {
+  var popInfoStartTime=$('#starttime1').val();
+  var popInfoEndTime=$('#endtime1').val();
+  $('#popInfo').modal('show');
+
+  $('#popInfoStartTime').html(popInfoStartTime);//开始时间
+  $('#popInfoEndTime').html(popInfoEndTime);//结束时间
+
+}
+
+$(function() {
+  Map.init(false);
+  $('.tabs').click(tabsChange);
+  getReservoirInfo();//获取水库信息
+  getRiverwayInfo();//获取河道信息  
+  
+  $('#starttime,#starttime1').val(prevMonthDateToday);
+  $('#endtime,#endtime1').val(DateToday);
+
+  //点击保存切换列表数据
+  $('#rain_search_btn').click(function(){
+
+    getRainfallStationCountInfo();
+    getRainfallStatisticsList();
+  });
+
+  /*单击详情,显示弹窗*/
+  $(".pannel-title .detail").click(showDetail);
+
+  /**切换图例**/
+  $('.contentRightTabs .tabs1').click(function() {
+    $('#waterLengend').removeClass('hide').siblings('.lengendBox').addClass('hide');
+  });
+  $('.contentRightTabs .tabs2').click(function() {
+    $('#rainLengend').removeClass('hide').siblings('.lengendBox').addClass('hide');
+  });
+
+  /**切换图例按钮**/
+  $('.legendTitle').click(function() {
+    if ($('.legend-content').hasClass('in')) { //展开
+      $('.triangular').removeClass('rotate');
+    } else {
+      $('.triangular').addClass('rotate');
+    }
+  });
+})
+
+// document.getElementById('zoom-out').onclick = function() {
+//     var view = map.getView();
+//     var zoom = view.getZoom();
+//     view.setZoom(zoom - 1);
+// };
+
+// document.getElementById('zoom-in').onclick = function() {
+//     var view = map.getView();
+//     var zoom = view.getZoom();
+//     view.setZoom(zoom + 1);
+// };

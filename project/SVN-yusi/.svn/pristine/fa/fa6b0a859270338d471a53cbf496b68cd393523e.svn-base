@@ -1,0 +1,386 @@
+package ekuter.mvc.constants;
+
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * 瀹氫箟鐢ㄦ埛甯搁噺
+ * @author EKuter-si.yu
+ * @date 2016/8/15
+ * @version 1.0
+ * */
+public class Constants {
+	
+	public static Map<String, String> EXCEPTION_MAP = new HashMap<String, String>();
+	
+	public static final String CURRENT_USER = "user";
+	
+	//褰撳墠鐢ㄦ埛鏌ヨ鍑烘潵鐨勭敤鎴蜂俊鎭�
+	public static final String USER_INFO = "userInfo";
+	
+	//鏈嶅姟鍚堝悓淇℃伅
+	public static final String SERVICE_CONTRACT = "serviceContract";
+	
+	//鏈嶅姟鍟嗕俊鎭�
+	public static final String ENTERPRISE_SERVICE_INFO = "enterpriseServiceInfo";
+	
+	//渚涘簲鍟嗭紙绉佹湁淇℃伅锛�
+	public static final String ENTERPRISE_SUPPLIERS_INFO = "enterpriseSuppliersInfo";
+	
+	//鍝佺墝淇℃伅
+	public static final String BRAND_INFO = "brandInfo";
+	
+	//瑙掕壊鍒楄〃
+	public static final String ROLE_LIST = "roleList";
+	
+	//瑙掕壊淇℃伅
+	public static final String ROLE_INFO = "roleInfo";
+	
+	//鏉冮檺鍒楄〃
+	public static final String PROMISE_LIST = "promiseList";
+	
+	//鏅�氱敤鎴峰垪琛�
+	public static final String COMMONUSER_LIST = "commonUserList";
+	
+	//鏅�氱敤鎴蜂俊鎭�
+	public static final String COMMON_USER = "commonUserInfo";
+	
+	//閮ㄩ棬鍒楄〃
+	public static final String DEPT_LIST = "deptList";
+	
+	/**
+	 * 鏈嶅姟鍟嗙瓑绾�
+	 */
+	public static final String GRADE = "grade";
+	/**
+	 * 鏈嶅姟鍟嗗矖浣�
+	 */
+	public static final String POSITION = "position";
+	/**
+	 * id
+	 */
+  public static final String ID = "id";
+	/**
+	 * 缁勭粐鏈烘瀯淇℃伅锛堥儴闂級
+	 */
+	public static final String ORGANIZATION_STRUCTURE = "organizationStructure";
+	/**
+	 * 閮ㄧ讲淇℃伅
+	 */
+	public static final String RESOURCE_DEPLOY = "deploy";
+	/**
+	 * 椤圭洰淇℃伅
+	 */
+	public static final String ENTERPRISE_PROJECT = "project";
+	/**
+	 * 鏈嶅姟鍟�
+	 */
+	public static final String ENTERPRISE_SERVICE = "enterpriseService";
+	/**
+	 * 渚涘簲鍟嗘暣鍚堜俊鎭紙绉佹湁+鍏辨湁锛�
+	 */
+	public static final String ENTERPRISE_SUPPLIERS = "enterpriseSuppliers";
+	/**
+	 * 娉ㄥ唽鏁版嵁绫汇�備紶閫掓敞鍐屾祦绋嬩箣闂寸殑鏁版嵁
+	 */
+	public static final String REGISTER_FORM = "registerForm";
+	/**
+	 * 娉ㄥ唽鏃剁敤鍒扮殑user琛�
+	 */
+	public static final String USER = "rgisterUser";
+	
+	/**
+	 * 浼佷笟浜哄憳琛�
+	 */
+	public static final String BUSINES_PERSON = "businesPerson";
+	/**
+	 * 浼佷笟浜哄憳琛ㄥ崟
+	 */
+	public static final String BUSINES_PERSON_FORM = "businesPersonForm";
+	/**
+	 * 浼佷笟鍩烘湰淇℃伅
+	 */
+	public static final String ENTERPRISE_INFO = "enterprise";
+	/**
+	 * 浼佷笟璇︽儏淇℃伅
+	 */
+	public static final String ENTERPRISE_USER_INFO = "enterpriseUserInfo";
+	/**
+	 * 鍝佺墝鍨嬪彿淇℃伅
+	 */
+	public static final String BRAND_MODEL = "brandModel";
+	/**
+	 * 鍒嗙被淇℃伅
+	 */
+	public static final String CATEGORY_INFO = "categoryInfo";
+	/**
+	 * 瀛愬垎绫讳俊鎭�
+	 */
+	public static final String CATEGORY_SUB = "categorySub";
+	/**
+	 * 鏌愪釜浼佷笟鍏虫敞鐨勫垎绫�
+	 */
+	public static final String FAVORITE_CATEGORY = "favoriteCategory";
+	/**
+	 * 閲囪喘鍚堝悓
+	 */
+	public static final String PURCHASE_CONTRACT = "purchaseContract";
+	/**
+	 * 閲囪喘鍚堝悓琛ㄥ崟
+	 */
+	public static final String PURCHASE_CONTRACT_FORM = "purchaseContractForm";
+	/**
+	 * 璧勬簮
+	 */
+	public static final String RESOURCE = "resource";
+	/**
+	 * 閿欒淇℃伅闆嗗悎
+	 */
+	public static final String ERRORS = "errors";
+	/**
+	 * 鍗曚釜鐨勯敊璇俊鎭�
+	 */
+	public static final String ERROR =  "error";
+	
+	/**
+	 * 鐢ㄦ埛鐨勮鑹瞚d
+	 */
+	public static final String ROLE_ID = "1";
+	/**
+	 * 鐢ㄦ埛绫诲瀷 浼佷笟
+	 */
+	public static final Integer USER_TYPE_ENTERPRISE = 1;
+	/**
+	 * 鐢ㄦ埛绫诲瀷 鏈嶅姟鍟�
+	 */
+	public static final Integer USER_TYPE_SERVICE = 2;
+	
+	/**
+	 * NEW 璇锋眰鐘舵�侊細鎴愬姛
+	 */
+	public static final Integer LOAD_SUCCESS = 1;
+	/**
+	 * 璇锋眰澶辫触
+	 */
+	public static final Integer LOAD_FAIL = 2;
+	/**
+	 * 璇锋眰鐨勮〃鍗曚负null
+	 */
+	public static final Integer FORM_NULL = -2;
+	/**
+	 * 璇锋眰鐨勮〃鍗曚腑鏈夐敊璇俊鎭�
+	 */
+	public static final Integer FORM_ERROR = -1;
+	/**
+	 * 鍚湁閿欒淇℃伅
+	 */
+	public static final Integer LOAD_ERROR_MSG = 3;
+	/**
+	 * 澧炲姞鎺ュ彛杩斿洖0锛岃〃绀哄鍔犲け璐�
+	 */
+	public static final Long ADD_ID = 0L;
+	/**
+	 * 娉ㄥ唽鐨勭敤鎴锋爣蹇椾负1
+	 */
+	public static final Integer REGISER_USER = 1;
+	/**
+	 * 缁勭粐鏋舵瀯绫诲瀷  閮ㄩ棬
+	 */
+	public static final Integer ORGANIZATION = 36;
+	/**
+	 * 缁勭粐鏋舵瀯绫诲瀷 浜哄憳
+	 */
+	public static final Integer PERSON = 37;
+	/**
+	 * 鎯宠浼犲叆涓�涓�-1L鏃朵娇鐢�
+	 */
+	
+	public static final Long IS_NEGATIVE = -1L;
+	/**
+	 * 鎵�鏈夋湭璁ら璧勬簮(鎴栬�呮湇鍔″晢涓嶅悓鏌愪竴涓紒涓氳棰嗚璧勬簮)
+	 */
+	public static final Integer RESOURCE_WAIT_ALL = 0;
+	/**
+	 * 鏌愪紒涓氭湭璁ら 璧勬簮
+	 */
+//	public static final Integer RESOURCE_WAIT_ENTERPRISE = 2;
+	/**
+	 * 璧勬簮鍒濇璁ら
+	 */
+	public static final Integer RESOURCE_FIRST = 1;
+	/**
+	 * 璧勬簮璁ら瀹屾垚锛堟湇鍔″晢鍚屾剰璁ら锛�/浼佷笟鑷繁鐧昏鐨勮祫婧�
+	 */
+	public static final Integer RESOURCE_YES = 3;
+	/**
+	 * 鏈嶅姟鍟嗕笉鍚屾剰璁ら
+	 */
+	//杩欎釜鐘舵�佹槸闇�瑕佺殑锛屽洜涓轰紒涓氶渶瑕佺湅鍒板摢浜涜祫婧愯鏈嶅姟鍟嗘嫆缁濅簡
+	public static final Integer RESOURCE_NO = 4;
+	/**
+	 * 浼佷笟閫�杩樼殑璧勬簮
+	 */
+	public static final Integer RESOURCE_BACK = 6;
+	/**
+	 * 鏈嶅姟鍟嗗悓鎰忛��杩�
+	 */
+	public static final Integer RESOURCE_BACK_YES = 7;
+	/**
+	 * 鏈嶅姟鍟嗕笉鍚屾剰閫�杩�
+	 */
+	public static final Integer RESOURCE_BACK_NO = 8;
+	/*
+	 * 0L,褰撻渶瑕佷紶鍏ョ殑ID涓虹┖鏃讹紝浼犲叆0
+	 */
+	/**
+	 * 鎯宠浼犲叆涓�涓┖鐨刬d鏃朵娇鐢�,鍊间负0
+	 */
+	public static final Long IS_NULL = 0L;
+	/*
+	 *鏁版嵁搴撳鍒犺杩斿洖鍊�   0琛ㄧず鎿嶄綔澶辫触   1琛ㄧず鎿嶄綔鎴愬姛 
+	 */
+	/**
+	 * 鎵ц鏁版嵁搴撴搷浣� 鎴愬姛
+	 */
+	public static final int DATABASE_SUCCESS=1;
+	/**
+	 * 鎵ц鏁版嵁搴撴搷浣� 澶辫触
+	 */
+	public static final int DATABASE_FAIL=0;
+	
+	/*
+	 * 鍒嗙被绠＄悊鐨勫惎鐢ㄣ�佸仠鐢ㄧ姸鎬�  int  0鍋滅敤  1鍚敤
+	 */
+	/**
+	 * 鍚敤
+	 */
+	public static final int FLAG_ON=1;
+	/**
+	 * 鍋滅敤
+	 */
+	public static final int FLAG_OFF=0;
+	/*
+	 * 鐢ㄦ埛瑙掕壊锛岀洰鍓嶆湁涓や釜锛岃秴绾х鐞嗗憳/鏅�氱敤鎴�
+	 */
+	/**
+	 * 瓒呯骇绠＄悊鍛�
+	 */
+	public static final String SUPER_ROLE="1";
+	/**
+	 * 鏅�氱敤鎴�
+	 */
+	public static final String COMMON_ROLE="2";
+	/*
+	 * 浼佷笟瀹℃牳鐘舵��
+	 * 9  寰呭鏍�
+	 * 10 瀹℃牳涓�
+	 * 11 閫氳繃瀹℃牳
+	 * 12 鏈�氳繃瀹℃牳
+	 */
+	/**
+	 * 寰呭鏍�
+	 */
+	public static final Integer CHECK_WAIT=9;
+	/**
+	 * 瀹℃牳涓�
+	 */
+	public static final Integer CHECK_ING=10;
+	/**
+	 * 閫氳繃瀹℃牳
+	 */
+	public static final Integer CHECK_YES=11;
+	/**
+	 * 鏈�氳繃瀹℃牳
+	 */
+	public static final Integer CHECK_NO=12;
+	/**
+	 * 瀹℃牳浼佷笟缁撴灉
+	 */
+	public static final String CHECK_RESULT = "checkResult";
+	//浼佷笟淇℃伅鏄惁瀹屽杽
+	/**
+	 * 宸插畬鍠勪紒涓氫俊鎭�
+	 */
+	public static final Integer ENTERPRISE_INFO_FINISH=21;
+	/**
+	 * 鏈畬鍠勪紒涓氫俊鎭�
+	 */
+	public static final Integer ENTERPRISE_INFO_UNFINISH=20;
+	/*
+	 * 鍘傚晢绫诲瀷
+	 */
+	/**
+	 * 鐢熶骇鍘傚晢
+	 */
+	public static final Integer PRODUCE = 13;
+
+	/**
+	 * 閿�鍞巶鍟�
+	 */
+	public static final Integer SALE = 14;
+
+	/**
+	 * 绯荤粺闆嗘垚鍘傚晢
+	 */
+	public static final Integer SOC = 15;
+
+	/**
+	 * 杩愮淮鍘傚晢
+	 */
+	public static final Integer EOMS = 16;
+
+	/**
+	 * 鏈嶅姟鍟�
+	 */
+	public static final Integer SERVICE = 17;
+
+	/**
+	 * 渚涘簲鍟�
+	 */
+	public static final Integer SUPPLIERS = 18;
+
+	/**
+	 * 浼佷笟
+	 */
+	public static final Integer ENTERPRISE = 19;
+	/**
+	 * 浼氳瘽锛屼簨浠跺垱寤�
+	 */
+	public static final Integer CONVERSATION_1 = 1;
+	/**
+	 * 浼氳瘽锛屼簨浠跺彂甯�
+	 */
+	public static final Integer CONVERSATION_2 = 2;
+	/**
+	 * 浼氳瘽锛屽伐鍗曟帴鍗�
+	 */
+	public static final Integer CONVERSATION_3 = 3;
+	/**
+	 * 浼氳瘽锛屽伐鍗曟彁浜ょ粓瀹�
+	 */
+	public static final Integer CONVERSATION_4 = 4;
+	/**
+	 * 浼氳瘽锛屼簨浠跺叧闂�
+	 */
+	public static final Integer CONVERSATION_5 = 5;
+	/**
+	 * 浼氳瘽锛屽伐鍗曟嫆鎺�
+	 */
+	public static final Integer CONVERSATION_6 = 6;
+	/**
+	 * 浼氳瘽锛屼簨浠跺鏍镐笉閫氳繃
+	 */
+	public static final Integer CONVERSATION_7 = 7;
+	/**
+	 * 浼氳瘽锛屼簨浠朵复鏃朵細璇�
+	 */
+	public static final Integer CONVERSATION_8 = 8;
+	/**
+	 * 浼氳瘽锛屼簨浠跺悎骞�
+	 */
+	public static final Integer CONVERSATION_9 = 9;
+	/**
+	 * 浼氳瘽锛屽伐鍗曟彁浜ゅ唴瀹�
+	 */
+	public static final Integer CONVERSATION_10 = 10;
+}

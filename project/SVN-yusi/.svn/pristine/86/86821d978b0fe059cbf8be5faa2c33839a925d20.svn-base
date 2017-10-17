@@ -1,0 +1,118 @@
+/**
+ * Created by EKuter-amu on 2017/7/10.
+ */
+var map = new ol.Map({
+	logo:false,
+    layers: [
+        new ol.layer.Tile({
+            source: new ol.source.TileWMS({
+
+            	params:{
+            		'LAYERS':'topp:states',
+                    'VERSION':'1.1.0',
+                    'BBOX':[-124.73142200000001,24.955967,-66.969849,49.371735],
+                    'CRS':'EPSG:4326',
+                    'WIDTH':768,
+                    'HEIGHT':330
+            	},
+            	projection:"EPSG:4326",
+                url:'http://192.168.1.253:8080/geoserver/topp/wms'
+            })
+        })
+    ],
+    target: 'map',
+    controls: ol.control.defaults({
+        attributionOptions: /** @type {olx.control.AttributionOptions} */ ({
+            collapsible: false
+        })
+    }),
+    view: new ol.View({
+        center: [119, 38],
+        zoom: 3,
+        maxZoom:6,
+        minZoom:3
+    })
+});
+
+
+//获取当前日期
+function DateToday(){
+    var d = new Date();
+    var year= d.getFullYear();
+    var month=d.getMonth()+1;
+    if(month<10){
+        month='0'+month;
+
+    }
+    var day=d.getDate();
+    if(day<10){
+        day='0'+day;
+    }
+    var hour = d.getHours();
+    var min = d.getMinutes();
+    var str = year+"-"+month+"-"+day+" "+hour+":"+min;
+    return str;
+
+}
+//获取上月今日
+function prevMonthDateToday(){
+    var d = new Date();
+    var year= d.getFullYear();
+    var month=d.getMonth();
+    if(month<10){
+        month='0'+month;
+
+    }
+    var day=d.getDate();
+    if(day<10){
+        day='0'+day;
+    }
+    var str = year+"-"+month+"-"+day+" "+"00:00";
+    return str;
+}
+
+function showDetail(){
+	$('#popInfo').modal('show');
+}
+
+$(function(){
+    $('.tabs').click(function(){
+       $(this).addClass('active').siblings().removeClass('active');
+       $('.tab-pannel').eq($(this).index()).addClass('active').siblings().removeClass('active');
+    });
+    $('#starttime,#starttime1').val(prevMonthDateToday);
+    $('#endtime,#endtime1').val(DateToday);
+		
+	/*单击详情,显示弹窗*/
+    $(".pannel-title .detail").click(showDetail);
+
+    /**切换图例**/
+    $('.contentRightTabs .tabs1').click(function(){
+        $('#waterLengend').removeClass('hide').siblings('.lengendBox').addClass('hide');
+    });
+    $('.contentRightTabs .tabs2').click(function(){
+        $('#rainLengend').removeClass('hide').siblings('.lengendBox').addClass('hide');
+    });
+
+    $('.legendTitle').click(function(){
+          if($('.legend-content').hasClass('in')){//展开
+                $('.triangular').removeClass('rotate');
+          }else{
+            $('.triangular').addClass('rotate');
+          }
+    })
+  
+
+})
+
+// document.getElementById('zoom-out').onclick = function() {
+//     var view = map.getView();
+//     var zoom = view.getZoom();
+//     view.setZoom(zoom - 1);
+// };
+
+// document.getElementById('zoom-in').onclick = function() {
+//     var view = map.getView();
+//     var zoom = view.getZoom();
+//     view.setZoom(zoom + 1);
+// };

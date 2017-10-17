@@ -1,0 +1,32 @@
+.breadcrumb{
+	margin-bottom: 7%;
+}
+.panel-body{
+	max-width: 420px;
+	width: 100%;
+}
+.panel-body .mechanism-box{
+	display: block;
+	margin-bottom: 8%;
+	width: 100%;
+	height: 100%;
+}
+.panel-body .mechanism-box img{
+	width: 100%;
+	height: 100%;
+	cursor: pointer;
+}
+.panel-body p{
+	padding: 0 15% 4%;
+	width: 100%;
+	line-height: 1.5;
+	font-size: 16px;
+	box-sizing: border-box;
+}
+.button-group{
+	position: absolute;
+    bottom: 20px;
+    right: 0px;
+    font-size: 12px;
+    padding: 10px;
+}

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>歌曲赛</title>
+		<link rel="stylesheet" type="text/css" href="../css/base.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/themeMatch.css"/>
+	</head>
+	<body>
+		<header>
+			<div class="header-wrapper clear">
+				<span class="header-hotline">全国咨询热线：<b>400-9665-550</b></span>
+				<span class="header-login">登录&nbsp;|&nbsp;注册</span>
+			</div>
+		</header>
+		<nav class="w1000 clear">
+			<div class="logo fl"><img src="../images/xw_header_image_logo_2.png" /></div>
+			<ul class="clear">
+				<li class="home-page"><a href="index.html"><i class="homeIcon-01 fl"></i>OUTLOOK首页</a></li>
+				<li class="active">希望之星
+					<ul>
+						<li>
+							<a href="themeMatch.html">主体赛</a>
+						</li>
+						<li>
+							<a href="dramaMatch.html">戏剧赛</a>
+						</li>
+						<li>
+							<a href="musicMatch.html">歌曲赛</a>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<a href="starTour.html">星游学</a>
+				</li>
+				<li>
+					<a href="aboutUs.html">关于我们</a>
+				</li>
+				<li>
+					<a href="contactUs.html">联系我们</a>
+				</li>
+			</ul>
+		</nav>
+		<div class="banner"></div>
+		<div class="match-lead">
+			<div class="w1000 clear">
+				<div class="fl"><img src="../images/xw_match_img_1.png"/></div>
+				<div class="fr">
+					<div class="match-lead-text">
+						<h2>歌曲赛导语</h2>
+						<p>希望之星英语风采大赛(以下简称大赛)，大赛以培养兴趣、增强信心、展示风采、树立榜样为目 的，旨在为全国英语爱好者搭建一个激励英语学习、培养思辨能力、展现综合风采的舞台，为中西文化架起一座促进文化沟通、增强国际交流的桥梁。</p>
+						<p>大赛组织者希望能够通过比赛，让世界听到中国的声音了解中国的文化传统与民族精神，推动我国外语教学与学习的发展，展示我国英语教学的现状，培养和发现新时期国家发展所需要的高素质，为我国的经济、文化建设创造良好的语言环境。</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="event-info">
+			<div class="w1000 clear">
+				<div class="event-news fl">
+					<h2>赛务信息 </h2>
+					<ul>
+						<li><a href="">2017年度希望之星英语风采大赛报名入口</a></li>
+						<li><a href="">2017年度希望之星英语风采大赛报名入口</a></li>
+						<li><a href="">2017年度希望之星英语风采大赛报名入口</a></li>
+						<li><a href="">2017年度希望之星英语风采大赛报名入口</a></li>
+					</ul>
+					<a class="event-info-more" href="">查看更多<i class="eventIcon-01"></i></a>
+				</div>
+				<div class="event-outs fl">
+					<ul>
+						<li class="event-outs-text">精彩赛况</li>
+						<li><a href=""><img src="../images/images_01.png"/><span>超级宝宝来啦</span></a></li>
+						<li><a href=""><img src="../images/images_01.png"/><span>超级宝宝来啦</span></a></li>
+						<li><a href=""><img src="../images/images_01.png"/><span>超级宝宝来啦</span></a></li>
+						<li><a href=""><img src="../images/images_01.png"/><span>超级宝宝来啦</span></a></li>
+						<li><a href=""><img src="../images/images_01.png"/><span>超级宝宝来啦</span></a></li>
+						<li><a href=""><img src="../images/images_01.png"/><span>超级宝宝来啦</span></a></li>
+						<li class="event-outs-more"><a href="">查看更多<i class="eventIcon-02 fr"></i></a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="guest-judges">
+			<h2><span>嘉宾评委</span></h2>
+			<ul class="w1000 clear">
+				<li><a href=""><img src="../images/images_01.png"/></a></li>
+				<li><a href=""><img src="../images/images_01.png"/></a></li>
+				<li><a href=""><img src="../images/images_01.png"/></a></li>
+			</ul>
+			<a class="guest-judges-more" href="">查看更多</a>
+		</div>
+		<div class="star-player">
+			<h2><span>明星选手</span></h2>
+			<ul class="w1000 clear">
+				<li><a href=""><img src="../images/images_01.png"/></a></li>
+				<li><a href=""><img src="../images/images_01.png"/></a></li>
+				<li><a href=""><img src="../images/images_01.png"/></a></li>
+				<li><a href=""><img src="../images/images_01.png"/></a></li>
+				<li><a href=""><img src="../images/images_01.png"/></a></li>
+				<li><a href=""><img src="../images/images_01.png"/></a></li>
+			</ul>
+			<a class="star-player-more" href="">查看更多</a>
+		</div>
+		<div class="company">
+			<ul class="clear">
+				<li>
+					<h2>主办单位：</h2>
+					<p>中国中央电视台中央新影集团</p>
+				</li>
+				<li>
+					<h2>承办单位：</h2>
+					<p>中视童天（北京）文化传播有限公司</p>
+					<p>北京星路风采国际教育咨询有限公司</p>
+				</li>
+				<li>
+					<h2>支持单位：</h2>
+					<p>CCTV中学生频道</p>
+					<p>优酷视频&emsp;土豆网</p>
+				</li>
+			</ul>
+		</div>
+		<div class="contact-us">
+			<div class="w1000 clear">
+				<div class="fl">
+					<ul>
+						<li>
+							<i class="conIcon-01 fl"></i>
+							<h2>全国组委会总部：</h2>
+							<p>北京星路风采国际教育咨询有限公司</p>
+						</li>
+						<li>
+							<i class="conIcon-02 fl"></i>
+							<h2>联系电话：</h2>
+							<p>4009665550</p>
+						</li>
+						<li>
+							<i class="conIcon-03 fl"></i>
+							<h2>详细地址：</h2>
+							<p>北京市朝阳区朝阳门外大街乙12号昆泰国际大厦1702室</p>
+						</li>
+						<div class="qr-code">
+							<div class="code" style="margin-right: 10px;">
+								<img src="../images/xw_footer_image_code_public.png"/>
+								<h3>公众号二维码</h3>
+							</div>
+							<div class="code">
+								<img src="../images/xw_footer_image_code_app.png"/>
+								<h3>APP下载</h3>
+							</div>
+						</div>
+					</ul>
+				</div>
+				<div class="location fr"><img src="../images/xw_footer_image_map.png"/></div>
+			</div>
+		</div>
+		<footer>
+	        <p>此网站隶属于北京星路风采国际教育咨询有限公司</p>
+	        <p>Copyright © 2016 Beijing Star of Outlook Int’l Education Consultant Co., Ltd All Rights Reserved. 京ICP备16005203号-1</p>
+	    </footer>
+	</body>
+</html>

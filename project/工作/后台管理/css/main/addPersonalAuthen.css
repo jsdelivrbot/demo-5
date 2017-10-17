@@ -1,0 +1,22 @@
+.detail_tittle{
+	display: inline-block;
+	margin-bottom: 20px;
+}
+.hidden-xs{
+	margin-left: -5px;
+}
+#codeBtn{
+	width: 120px;
+}
+.check-error {
+	display: inline-block;
+	font-size: 12px;
+    height: 14px;
+    line-height: 14px;
+    color: #d71424;
+    margin-bottom: 10px;
+    text-indent: 20px;
+    background: url(../../images/train_icon_error.png) no-repeat;
+    margin-top: 14px;
+    margin-left: 10px;
+}

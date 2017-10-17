@@ -1,0 +1,113 @@
+body{
+	width: 100%;
+	height: 3104px;
+	background: url(../images/xw_aboutus_bg.jpg) no-repeat;
+	background-size: 100% 100%;
+}
+.company-history{
+}
+.company-history h2{
+	margin-top: 170px;
+	font-size: 72px;
+	text-align: center;
+}
+.company-history h2 span{
+	margin-top: 50px;
+	display: block;
+	font-size: 36px;
+	color: #ef6002;
+}
+.company-history-box{
+	margin: 370px auto 0;
+	padding-top: 130px;
+	width: 800px;
+	height: 1900px;
+	background: url(../images/xw_aboutus_image_line.png) no-repeat center;
+}
+.company-history-box ul li{
+	width: 400px;
+	margin-bottom: 85px;
+}
+.company-history-box ul li:nth-child(2n+1){
+	float: left;
+}
+.company-history-box ul li:nth-child(2n){
+	float: right;
+}
+.company-history-box li .history-time{
+	display: block;
+	margin-bottom: 30px;
+	font-size: 26px;
+}
+.company-history-box  ul li:nth-child(2n+1) .history-time{
+	padding-right: 70px;
+	background: url(../images/xw_aboutus_image_time_left.png) no-repeat right;
+	text-align: right;
+}
+.company-history-box  ul li:nth-child(2n) .history-time{
+	padding-left: 70px;
+	background: url(../images/xw_aboutus_image_time_right.png) no-repeat left;
+	text-align: left;
+}
+.company-history-box li .company-history-text{
+	overflow: hidden;
+}
+.company-history-box ul li:nth-child(2n) .company-history-text{
+	margin-left: 10px;
+}
+.company-history-text h3{
+	margin-top: 40px;
+	font-size: 26px;
+	text-align: center;
+}
+.company-history-text p{
+	padding: 40px 30px;
+	line-height: 2;
+	font-size: 14px;
+}
+.company-history-box ul li:nth-child(1) .company-history-text{
+	margin-left: 90px;
+	width: 300px;
+	height: 320px;
+	background: url(../images/xw_aboutus_bg_1.jpg) no-repeat;
+	background-size: 100% 100%;
+}
+.company-history-box ul li:nth-child(2){
+	margin-top: 85px;
+}
+.company-history-box ul li:nth-child(2) .company-history-text{
+	width: 390px;
+	height: 410px;
+	background: url(../images/xw_aboutus_bg_2.jpg) no-repeat;
+	background-size: 100% 100%;
+}
+.company-history-box ul li:nth-child(3) .company-history-text{
+	margin-left: 90px;
+	width: 300px;
+	height: 320px;
+	background: url(../images/xw_aboutus_bg_3.jpg) no-repeat;
+	background-size: 100% 100%;
+}
+.company-history-box ul li:nth-child(4) .company-history-text{
+	width: 300px;
+	height: 320px;
+	background: url(../images/xw_aboutus_bg_4.jpg) no-repeat;
+	background-size: 100% 100%;
+}
+.company-history-box ul li:nth-child(5) .company-history-text{
+	width: 390px;
+	height: 410px;
+	background: url(../images/xw_aboutus_bg_5.jpg) no-repeat;
+	background-size: 100% 100%;
+}
+.company-history-box ul li:nth-child(6) .company-history-text{
+	width: 334px;
+	height: 356px;
+	background: url(../images/xw_aboutus_bg_6.jpg) no-repeat;
+	background-size: 100% 100%;
+}
+
+.contact-us{
+	height: 500px;
+	background: rgba(19,19,19,0.7);
+}

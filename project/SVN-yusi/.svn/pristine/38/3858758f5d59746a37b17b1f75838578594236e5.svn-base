@@ -1,0 +1,185 @@
+package mybatisPro.mybatisService;
+
+import java.util.Date;
+import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
+
+import ekuter.mvc.constants.Constants;
+import ekuter.mvc.exception.BusinessException;
+import ekuter.mvc.util.ManMadeStationDataUtil;
+import mybatisPro.dataBase.SqlSessionHander;
+import mybatisPro.myBatisDao.ManMadeStationMapper;
+import mybatisPro.mybatisEntity.RainfallEntity;
+import mybatisPro.mybatisEntity.ReservoirWaterLevelEntity;
+import mybatisPro.mybatisEntity.RiverWaterLevelEntity;
+import mybatisPro.mybatisEntity.StationEntity;
+import mybatisPro.mybatisService.impl.ManMadeStaionService;
+import mybatisPro.mybatisService.impl.StationService;
+
+/**
+ * 人工报讯业务层接口实现类
+ * @author si.yu
+ * @date 2017/08/22
+ * @version 1.0
+ * */
+@Service
+public class ManMadeStationServiceImpl implements ManMadeStaionService{
+
+	private StationService stationService=new StationServiceImpl();
+	
+	private static final Logger logger = LoggerFactory.getLogger(ManMadeStationServiceImpl.class);
+	/**
+	 * 人工上报数据(雨量数据插入)
+	 * @param rainfallEntity
+	 * @return
+	 * */
+	@Override
+	public boolean ManMadeDataReport(List<ManMadeStationDataUtil> manMadeStationList) {
+		try {
+			
+			return SqlSessionHander.SqlExecute(sqlsession ->{
+				
+				ManMadeStationMapper madeStationMapper = sqlsession.getMapper(ManMadeStationMapper.class);
+				//插入数据记数
+				int count = 0;
+				//遍历人工站上报数据列表
+				for(ManMadeStationDataUtil stationDataUtil : manMadeStationList){
+					
+					RainfallEntity rainfallEntity = new RainfallEntity();
+					RiverWaterLevelEntity riverLevelEntity = new RiverWaterLevelEntity();
+					ReservoirWaterLevelEntity resLevelEntity = new ReservoirWaterLevelEntity();
+					
+					Long sta_id = stationDataUtil.getSta_id();
+					//根据测站ID查询测站类型
+					StationEntity entity = stationService.getStationInfoById(sta_id);
+					if(null != entity){
+						Long type = entity.getStation_type_id();
+						if(null != type){
+							Long manStaId = stationDataUtil.getSta_id();
+							//根据测站类型插入数据表数据
+							if(Constants.RAINFALL_STATION.longValue() == type.longValue()){//雨量站
+								//往雨量表中插入雨量数据
+								Float rainfall = stationDataUtil.getRainfall();
+								rainfallEntity.setSta_id(manStaId);
+								rainfallEntity.setTime(new Date());
+								rainfallEntity.setTime_rainfall(rainfall);
+								rainfallEntity.setCreatetime(new Date());
+								
+								int insertFlag = madeStationMapper.insertIntoRainFallData(rainfallEntity);
+								
+								if(0 != insertFlag){
+									count++;
+									continue;
+								}else{
+									return false;
+								}
+							}else if(Constants.WATER_LEVEL_STATION.longValue() == type.longValue()){//水库水位站
+								//往水库水位表中插入水位数据
+								Float resWaterLevel = stationDataUtil.getResvoirWaterLevel();
+								resLevelEntity.setSta_id(manStaId);
+								resLevelEntity.setTime(new Date());
+								resLevelEntity.setWaterLevel(resWaterLevel);
+								resLevelEntity.setCreatetime(new Date());
+								
+								int insertFlag = madeStationMapper.insertResvoirData(resLevelEntity);
+								if(0 != insertFlag){
+									count++;
+									continue;
+								}else{
+									return false;
+								}
+								
+							}else if(Constants.SOIL_MOISTURE_STATION.longValue() == type.longValue()){//河道水位站
+								//往河道水位表中插入水位数据
+								Float riverWaterLevel = stationDataUtil.getRiverWaterLevel();
+								riverLevelEntity.setSta_id(manStaId);
+								riverLevelEntity.setTime(new Date());
+								riverLevelEntity.setWaterLevel(riverWaterLevel);
+								riverLevelEntity.setCreatetime(new Date());
+								
+								int insertFlag = madeStationMapper.insertRiverData(riverLevelEntity);
+								if(0 != insertFlag){
+									count++;
+									continue;
+								}else{
+									return false;
+								}
+							}else if(Constants.WATER_RAINFALL_STATION.longValue() == type.longValue()){//水库水文站
+								//往雨量表和水库水位表中插入水位数据
+								//往雨量表中插入雨量数据
+								Float rainfall = stationDataUtil.getRainfall();
+								rainfallEntity.setSta_id(manStaId);
+								rainfallEntity.setTime(new Date());
+								rainfallEntity.setTime_rainfall(rainfall);
+								rainfallEntity.setCreatetime(new Date());
+								
+								int insertRainfallFlag = madeStationMapper.insertIntoRainFallData(rainfallEntity);
+								
+								//往水库水位表中插入水位数据
+								Float resWaterLevel = stationDataUtil.getResvoirWaterLevel();
+								resLevelEntity.setSta_id(manStaId);
+								resLevelEntity.setTime(new Date());
+								resLevelEntity.setWaterLevel(resWaterLevel);
+								resLevelEntity.setCreatetime(new Date());
+								
+								int insertResviorFlag = madeStationMapper.insertResvoirData(resLevelEntity);
+								if(0 != insertResviorFlag && 0 != insertRainfallFlag ){
+									count++;
+									continue;
+								}else{
+									return false;
+								}
+								
+							}else if(Constants.SOIL_RAINFALL_STATION.longValue() == type.longValue()){//河道水文站
+								//往雨量表和河道水位表中插入水位数据
+								//往雨量表中插入雨量数据
+								Float rainfall = stationDataUtil.getRainfall();
+								rainfallEntity.setSta_id(manStaId);
+								rainfallEntity.setTime(new Date());
+								rainfallEntity.setTime_rainfall(rainfall);
+								rainfallEntity.setCreatetime(new Date());
+								
+								int insertRainfallFlag = madeStationMapper.insertIntoRainFallData(rainfallEntity);
+								
+								//往河道水位表中插入水位数据
+								Float riverWaterLevel = stationDataUtil.getRiverWaterLevel();
+								riverLevelEntity.setSta_id(manStaId);
+								riverLevelEntity.setTime(new Date());
+								riverLevelEntity.setWaterLevel(riverWaterLevel);
+								riverLevelEntity.setCreatetime(new Date());
+								
+								int insertRiverFlag = madeStationMapper.insertRiverData(riverLevelEntity);
+								if(0 != insertRiverFlag && 0 != insertRainfallFlag){
+									count++;
+									continue;
+								}else{
+									return false;
+								}
+							}
+						}else{
+							logger.info(Constants.EXCEPTION_MAP.get("DATAERROR"));
+							throw new BusinessException(Constants.EXCEPTION_MAP.get("DATAERROR"));
+						}
+					}else{
+						logger.info(Constants.EXCEPTION_MAP.get("STATIONINFODETAIL"));
+						throw new BusinessException(Constants.EXCEPTION_MAP.get("STATIONINFODETAIL"));
+					}
+				}
+				//判断插入数据条数不为0时提交事务
+				if(count != 0){
+					sqlsession.commit();
+					return true;
+				}else{
+					return false;
+				}
+			});
+			
+		} catch (Exception e) {
+			logger.info(e.getMessage());
+			throw new BusinessException(Constants.EXCEPTION_MAP.get("REPORTFAIL"));
+		}
+	}
+}

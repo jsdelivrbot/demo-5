@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mybatisPro.myBatisDao.StationStatusMapper">
+	<cache type="mybatisPro.mybatisRedis.MybatisRedisCache" />
+	
+	<!-- 存储过程测站状态数据整编 -->
+	<insert id="dateStatistics" statementType="CALLABLE" >
+		{CALL rwdb.STD_STATION_TYPE(#{now_time})}
+	</insert>
+	
+	<!-- 测站状态查询（mouth） -->
+	<select id="getStationStatusList" resultType="map">
+	
+		SELECT
+			ST_BS_STBPRP_B.station_name,
+			station_status.*
+		FROM
+			rwdb.station_status
+		INNER JOIN rwdb.ST_BS_STBPRP_B ON (
+			station_status.sta_id = ST_BS_STBPRP_B.id
+		)
+		WHERE
+			station_status.date_time 
+		BETWEEN #{beginTime} AND #{endTime};
+	</select>
+	
+	<!-- 校验测站状态信息 -->
+	<select id="checkStatusInfo" resultType="int">
+		 SELECT COUNT(1) FROM station_status WHERE date_time=DATE_FORMAT(#{now_time},'%Y-%m-%d')
+	</select>
+	
+	<!-- 删除测站状态信息 -->
+	<delete id="deleteStatusInfo" >
+		  DELETE FROM station_status WHERE date_time=DATE_FORMAT(#{now_time},'%Y-%m-%d')
+	</delete>
+	
+</mapper>

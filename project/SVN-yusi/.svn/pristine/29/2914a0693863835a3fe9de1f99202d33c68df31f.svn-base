@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">  
+<meta name="viewport" content="width=device-width, initial-scale=1">  
+
+<title>测站状态</title>
+    <link rel="stylesheet" type="text/css" href="/pro_css/common/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/pro_css/common/ui.jqgrid-bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/pro_css/common/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" type="text/css" href="/pro_css/common/common.css">    
+    <link rel="stylesheet" type="text/css" href="/pro_css/header.css">
+    <link rel="stylesheet" type="text/css" href="/pro_css/popup.css">
+    <link rel="stylesheet" type="text/css" href="/pro_css/stationState.css">
+</head>
+<body>
+    <!-- 头部 -->
+    <div id="header">
+      <div class="header-top">
+        <div class="header-top-content">
+          <div class="header-top-content-left">
+            <img src="../imgs/common/logo.png" alt="">
+          </div>
+          <div class="header-top-content-right">
+            <span>94476455@qq.com</span>&nbsp;|&nbsp;<a href = "/logout">退出</a>
+          </div>
+        </div>
+      </div>
+      <div class="header-bottom">
+        <ul>
+          <li class="header-bottom-item header-bottom-item1"><span>实时信息查询</span></li>
+          <li class="header-bottom-item header-bottom-item2"><span>雨量统计</span></li>
+          <li class="header-bottom-item header-bottom-item3"><span>水位统计</span></li>
+          <li class="header-bottom-item header-bottom-item4 active"><span>测站状态</span></li>
+          <li class="header-bottom-item header-bottom-item5"><span>人工报讯</span></li>
+          <li class="header-bottom-item header-bottom-item6"><span>数据管理</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!--主体-->
+    <div id="wrap">
+        <div class="wrap-title clearfix">
+            <div class="wrap-title-third">
+                <!--日期控件-->
+                <div class="pickerBox">
+                    <i class="prevButton mr20"></i>
+                    <input type="text" id="monthsPicker" class="timePicker" readonly="readonly">
+                    <i class="nextButton ml20"></i>
+                </div>
+            </div>
+            <div class="wrap-title-forth fr">
+               <p class="d-ib mr20"><i class="circle green mr10"></i><span>正常</span></p>
+               <p class="d-ib mr20"><i class="circle yellow mr10"></i><span>异常</span></p>
+               <p class="d-ib mr15"><i class="circle red mr10"></i><span>损坏</span></p>
+            </div>
+           <!--  <button type="button" id="refreshBtn">刷新</button> -->
+        </div>
+        <div class="wrap-content">
+            <table id="rainfallTable"></table>
+            <div id="pager" ></div> 
+        </div>
+    </div>    
+
+    <!-- 500错误提示框 -->
+    <div class="modal fade" id="errorBtn" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" class="closeImg fr">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true" class=" closeImg fr">&times;</span><span class="sr-only">Close</span></button>
+                </div>
+                <div class="modal-body">
+                    <p class="modal-body-row"><span class="question-info" id="errorInfo"></span></p>
+                </div>
+                <div class="modal-footer">
+                    <!-- <button type="button" class="btn btn-delete">删除</button> -->
+                    <button type="button" class="btn btn-cancel" data-dismiss="modal">确定</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+  <script type="text/javascript" src="/pro_js/publicJs/jquery-3.1.1.min.js"></script>
+  <script type="text/javascript" src="/pro_js/publicJs/bootstrap.min.js"></script>
+  <script type="text/javascript" src="/pro_js/publicJs/bootstrap-datetimepicker.js"></script>
+  <script type="text/javascript" src="/pro_js/publicJs/bootstrap-datetimepicker.zh-CN.js"></script>
+  <script type="text/javascript" src="/pro_js/publicJs/jquery.jqGrid.js"></script>
+  <script type="text/javascript" src="/pro_js/publicJs/grid.locale-cn.js"></script>  
+  <script type="text/javascript" src="/pro_js/publicJs/transparency.min.js"></script>
+  <script type="text/javascript" src="/pro_js/publicJs/common.js"></script>
+  <script type="text/javascript" src="/pro_js/ajaxRequestUrls.js"></script>  
+  <script type="text/javascript" src="/pro_js/header.js"></script>
+  <script type="text/javascript" src="/pro_js/stationState.js"></script>
+  <script type="text/javascript">
+ //选择年月
+      $("#monthsPicker").datetimepicker({
+        bootcssVer:3,
+        language:  'zh-CN',
+        autoclose: true,
+        clearBtn:true,
+        pickerPosition: "bottom-left",
+        startView: 3,
+        minView: 3,
+        format: 'yyyy-mm',
+        endDate:new Date()
+      });    
+
+      $.jgrid.defaults.width = 780;
+      $.jgrid.defaults.responsive = false;
+      $.jgrid.defaults.styleUI = 'Bootstrap';
+
+      var arr1 = [];
+      for(var i=0;i<=31;i++){
+        arr1.push( { stationName: "北京站",time1: 0, time2:0,time3: 0, time4:0,time5:0,time6:0,time7:0,time8:0,time9:0,time10:0,time11:0,time12:0,time13:0,time14:0,time15:0,time16:0,time17:0,time18:0,time19:0,time20:0,time21:0,time22:0,time23:0,time24:0,time25:0,time26:0,time27:0,time28:0,time29:0,time30:0,time31:0})
+      }
+      
+      $(function(){
+          $("#rainfallTable").jqGrid({
+              // url: "jsonp.json",
+              // mtype: 'get',
+              datatype: 'local',
+              data: arr1,
+              // colNames: ["first","second",'third',"forth"],
+              colModel: [
+                  {label: '测站编码',name:'stationName',width:200,align:'center',sortable: false},
+                  {label: '1',name: 'time1',align:'center',sortable:false,formatter: function(value, options, row){
+                return "<i class='circle red'></i>";
+            }},
+                  {label: '2',name: 'time2',align:'center',sortable:false,formatter: function(value, options, row){
+                return "<i class='circle red'></i>";
+            }},
+                  {label: '3',name: 'time3',align:'center',sortable:false,formatter: function(value, options, row){
+                return "<i class='circle red'></i>";
+            }},
+                  {label: '4',name: 'time4',align:'center',sortable:false,formatter: function(value, options, row){
+                return "<i class='circle red'></i>";
+            }},
+                  {label: '5',name: 'time5',align:'center',sortable:false,formatter: function(value, options, row){
+                return "<i class='circle red'></i>";
+            }},
+                  {label: '6',name: 'time6',align:'center',sortable:false,formatter: function(value, options, row){
+                return "<i class='circle red'></i>";
+            }},
+                  {label: '7',name: 'time7',align:'center',sortable:false,formatter: function(value, options, row){
+                return "<i class='circle red'></i>";
+            }},
+                  {label: '8',name: 'time8',align:'center',sortable:false,formatter: function(value, options, row){
+                return "<i class='circle red'></i>";
+            }},
+                  {label: '9',name: 'time9',align:'center',sortable:false,formatter: function(value, options, row){
+                return "<i class='circle red'></i>";
+            }},
+                  {label: '10',name: 'time10',align:'center',sortable:false,formatter: function(value, options, row){
+                return "<i class='circle red'></i>";
+            }},
+                  {label: '11',name: 'time11',align:'center',sortable:false,formatter: function(value, options, row){
+                return "<i class='circle red'></i>";
+            }},
+                  {label: '12',name: 'time12',align:'center',sortable:false,formatter: function(value, options, row){
+                return "<i class='circle red'></i>";
+            }},
+                  {label: '13',name: 'time13',align:'center',sortable:false,formatter: function(value, options, row){
+                return "<i class='circle red'></i>";
+            }},
+                  {label: '14',name: 'time14',align:'center',sortable:false,formatter: function(value, options, row){
+                return "<i class='circle red'></i>";
+            }},
+                  {label: '15',name: 'time15',align:'center',sortable:false,formatter: function(value, options, row){
+                return "<i class='circle red'></i>";
+            }},
+                  {label: '16',name: 'time16',align:'center',sortable:false,formatter: function(value, options, row){
+                return "<i class='circle red'></i>";
+            }},
+                  {label: '17',name: 'time17',align:'center',sortable:false,formatter: function(value, options, row){
+                return "<i class='circle red'></i>";
+            }},
+                  {label: '18',name: 'time18',align:'center',sortable:false,formatter: function(value, options, row){
+                return "<i class='circle red'></i>";
+            }},
+                  {label: '19',name: 'time19',align:'center',sortable:false,formatter: function(value, options, row){
+                return "<i class='circle red'></i>";
+            }},
+                  {label: '20',name: 'time20',align:'center',sortable:false,formatter: function(value, options, row){
+                return "<i class='circle red'></i>";
+            }},
+                  {label: '21',name: 'time21',align:'center',sortable:false,formatter: function(value, options, row){
+                return "<i class='circle red'></i>";
+            }},
+                  {label: '22',name: 'time22',align:'center',sortable:false,formatter: function(value, options, row){
+                return "<i class='circle red'></i>";
+            }},
+                  {label: '23',name: 'time23',align:'center',sortable:false,formatter: function(value, options, row){
+                return "<i class='circle red'></i>";
+            }},
+                  {label: '24',name: 'time24',align:'center',sortable:false,formatter: function(value, options, row){
+                return "<i class='circle red'></i>";
+            }},
+                  {label: '25',name: 'time24',align:'center',sortable:false,formatter: function(value, options, row){
+                return "<i class='circle red'></i>";
+            }},
+                  {label: '26',name: 'time24',align:'center',sortable:false,formatter: function(value, options, row){
+                return "<i class='circle red'></i>";
+            }},
+                  {label: '27',name: 'time24',align:'center',sortable:false,formatter: function(value, options, row){
+                return "<i class='circle red'></i>";
+            }},
+                  {label: '28',name: 'time24',align:'center',sortable:false,formatter: function(value, options, row){
+                return "<i class='circle red'></i>";
+            }},
+                  {label: '29',name: 'time24',align:'center',sortable:false,formatter: function(value, options, row){
+                return "<i class='circle red'></i>";
+            }},
+                  {label: '30',name: 'time24',align:'center',sortable:false,formatter: function(value, options, row){
+                return "<i class='circle red'></i>";
+            }},
+                  {label: '31',name: 'time24',align:'center',sortable:false,formatter: function(value, options, row){
+                return "<i class='circle red'></i>";
+            }},
+              ],
+
+              autowidth: true,  //自适应宽度
+              shrinkToFit: true,
+              height: 'auto',
+              viewrecords: true,
+              altclass: '$(".grid1Line")',
+              emptyrecords: '空',
+              altRows:true,
+              altclass: "altclassitem1",
+              pager: 'pager', //分页工具栏    
+              rowNum:10, //每页显示记录数   
+              viewrecords: true, //是否显示行数   
+              rowList:[10,20,30], //可调整每页显示的记录数   
+          });
+          $('#refreshBtn').click(function(){
+            jQuery("#rainfallTable").trigger("reloadGrid");
+          })
+      });      
+  </script>
+</body>
+</html>

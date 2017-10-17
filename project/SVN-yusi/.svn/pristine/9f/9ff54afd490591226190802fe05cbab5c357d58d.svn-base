@@ -1,0 +1,311 @@
+package mybatisPro.mybatisEntity;
+
+import java.io.Serializable;
+import java.util.Date;
+
+/**
+ * 测站实体类
+ * @author si.yu
+ * @date 2017/7/14
+ * @version 1.0
+ * */
+public class StationEntity implements Serializable{
+
+	private static final long serialVersionUID = 1L;
+
+	
+	private Long id;//测站ID
+	private String sys_code;//测站系统编码
+	private String stcd;//国家标准码
+//	private String ostcd;//原系统编码
+	private String station_name;//测站名称
+//	private String river_name;//河流名称
+//	private String hydrographicNet_name;//水系名称
+	private Float latitude;//纬度
+	private Float longitude;//经度
+	private String station_location;//站址
+//	private String datum_name;//基位名称
+//	private Float datum_elevation;//基位高程
+//	private Float datum_correction;//基面修正值
+	private String station_type;//测站类型
+//	private String forecast_level;//报汛等级(1表示国家级，2表示省级，3表示市级，4表示县级)
+//	private String build_time;//建站时间
+//	private String firstForecast_time;//首报年月
+//	private String subordinate_unit;//隶属行政单位
+//	private String info_unit;//信息管理单位
+//	private String dataSearch_type;//数据查询类型（雨量站，墒情站，气象站,水位站等）
+//	private String station_bank;//测站岸别（0标示左岸，1右岸，不在河流上置为空值）
+//	private Float station_position;//测站方位（测站岸边面向测验断面所处的方位，单位（°）。正北为0°，逆时针按照45°步长取值）
+//	private Float distance_estuary;//至河口距离
+//	private Float drainage_area;//集水面积
+//	private String pinyin_code;//拼音码（用于快速输入测站名称的编码，采用测站名称的汉语拼音构成，不区分大小写）
+//	private String enable_flag;//启用标志（1标示启用，0标示停止该站）
+//	private Date moditime = new Date();//时间戳
+//	private String organization_name;//组织机构名称
+	private String administrative_code;//行程区划码
+//	private String unit_code;//来源单位编码
+//	private String road_name;//所属道路
+//	private Integer sort;//排序字段
+//	private Float angle;//角度
+	private String comments;//备注
+	private Date modify_time = new Date();
+	
+	
+	
+	@Override
+	public String toString(){
+		return "UserEntity[id="+id+",sys_code="+sys_code+",stcd="+stcd
+				+",station_name="+station_name+",latitude="+latitude+",longitude="+longitude
+				+",station_location="+station_location+",station_type="+station_type
+				+",administrative_code="+administrative_code
+				+",comments="+comments+",modify_time"+modify_time
+				+"]";
+	}
+	
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+	
+	public String getSys_code() {
+		return sys_code; 
+	}
+	public void setSys_code(String sys_code) {
+		this.sys_code = sys_code;
+	}
+	
+	public String getStcd() {
+		return stcd;
+	}
+	public void setStcd(String stcd) {
+		this.stcd = stcd;
+	}
+	
+//	public String getOstcd() {
+//		return ostcd;
+//	}
+//	public void setOstcd(String ostcd) {
+//		this.ostcd = ostcd;
+//	}
+	
+	public String getStation_name() {
+		return station_name;
+	}
+	public void setStation_name(String station_name) {
+		this.station_name = station_name;
+	}
+	
+//	public String getRiver_name() {
+//		return river_name;
+//	}
+//	public void setRiver_name(String river_name) {
+//		this.river_name = river_name;
+//	}
+//	
+//	public String getHydrographicNet_name() {
+//		return hydrographicNet_name;
+//	}
+//	public void setHydrographicNet_name(String hydrographicNet_name) {
+//		this.hydrographicNet_name = hydrographicNet_name;
+//	}
+	
+	public Float getLatitude() {
+		return latitude;
+	}
+	public void setLatitude(Float latitude) {
+		this.latitude = latitude;
+	}
+	
+	public Float getLongitude() {
+		return longitude;
+	}
+	public void setLongitude(Float longitude) {
+		this.longitude = longitude;
+	}
+	
+	public String getStation_location() {
+		return station_location;
+	}
+	public void setStation_location(String station_location) {
+		this.station_location = station_location;
+	}
+	
+//	public String getDatum_name() {
+//		return datum_name;
+//	}
+//	public void setDatum_name(String datum_name) {
+//		this.datum_name = datum_name;
+//	}
+//	
+//	public Float getDatum_elevation() {
+//		return datum_elevation;
+//	}
+//	public void setDatum_elevation(Float datum_elevation) {
+//		this.datum_elevation = datum_elevation;
+//	}
+//	
+//	public Float getDatum_correction() {
+//		return datum_correction;
+//	}
+//	public void setDatum_correction(Float datum_correction) {
+//		this.datum_correction = datum_correction;
+//	}
+	
+	public String getStation_type() {
+		return station_type;
+	}
+	public void setStation_type(String station_type) {
+		this.station_type = station_type;
+	}
+	
+//	public String getForecast_level() {
+//		return forecast_level;
+//	}
+//	public void setForecast_level(String forecast_level) {
+//		this.forecast_level = forecast_level;
+//	}
+//	
+//	public String getBuild_time() {
+//		return build_time;
+//	}
+//	public void setBuild_time(String build_time) {
+//		this.build_time = build_time;
+//	}
+//	
+//	public String getFirstForecast_time() {
+//		return firstForecast_time;
+//	}
+//	public void setFirstForecast_time(String firstForecast_time) {
+//		this.firstForecast_time = firstForecast_time;
+//	}
+//	
+//	public String getSubordinate_unit() {
+//		return subordinate_unit;
+//	}
+//	public void setSubordinate_unit(String subordinate_unit) {
+//		this.subordinate_unit = subordinate_unit;
+//	}
+//	
+//	public String getInfo_unit() {
+//		return info_unit;
+//	}
+//	public void setInfo_unit(String info_unit) {
+//		this.info_unit = info_unit;
+//	}
+//	
+//	public String getDataSearch_type() {
+//		return dataSearch_type;
+//	}
+//	public void setDataSearch_type(String dataSearch_type) {
+//		this.dataSearch_type = dataSearch_type;
+//	}
+//	
+//	public String getStation_bank() {
+//		return station_bank;
+//	}
+//	public void setStation_bank(String station_bank) {
+//		this.station_bank = station_bank;
+//	}
+//	
+//	public Float getStation_position() {
+//		return station_position;
+//	}
+//	public void setStation_position(Float station_position) {
+//		this.station_position = station_position;
+//	}
+//	
+//	public Float getDistance_estuary() {
+//		return distance_estuary;
+//	}
+//	public void setDistance_estuary(Float distance_estuary) {
+//		this.distance_estuary = distance_estuary;
+//	}
+//	
+//	public Float getDrainage_area() {
+//		return drainage_area;
+//	}
+//	public void setDrainage_area(Float drainage_area) {
+//		this.drainage_area = drainage_area;
+//	}
+//	
+//	public String getPinyin_code() {
+//		return pinyin_code;
+//	}
+//	public void setPinyin_code(String pinyin_code) {
+//		this.pinyin_code = pinyin_code;
+//	}
+//	
+//	public String getEnable_flag() {
+//		return enable_flag;
+//	}
+//	public void setEnable_flag(String enable_flag) {
+//		this.enable_flag = enable_flag;
+//	}
+//	
+//	public Date getModitime() {
+//		return moditime;
+//	}
+//
+//	public void setModitime(Date moditime) {
+//		this.moditime = moditime;
+//	}
+//
+//	public String getOrganization_name() {
+//		return organization_name;
+//	}
+//	public void setOrganization_name(String organization_name) {
+//		this.organization_name = organization_name;
+//	}
+	
+	public String getAdministrative_code() {
+		return administrative_code;
+	}
+	public void setAdministrative_code(String administrative_code) {
+		this.administrative_code = administrative_code;
+	}
+	
+//	public String getUnit_code() {
+//		return unit_code;
+//	}
+//	public void setUnit_code(String unit_code) {
+//		this.unit_code = unit_code;
+//	}
+//	
+//	public String getRoad_name() {
+//		return road_name;
+//	}
+//	public void setRoad_name(String road_name) {
+//		this.road_name = road_name;
+//	}
+//	
+//	public Integer getSort() {
+//		return sort;
+//	}
+//	public void setSort(Integer sort) {
+//		this.sort = sort;
+//	}
+//	
+//	public Float getAngle() {
+//		return angle;
+//	}
+//	public void setAngle(Float angle) {
+//		this.angle = angle;
+//	}
+
+	public String getComments() {
+		return comments;
+	}
+	public void setComments(String comments) {
+		this.comments = comments;
+	}
+	
+	public Date getModify_time() {
+		return modify_time;
+	}
+	public void setModify_time(Date modify_time) {
+		this.modify_time = modify_time;
+	}
+	
+}

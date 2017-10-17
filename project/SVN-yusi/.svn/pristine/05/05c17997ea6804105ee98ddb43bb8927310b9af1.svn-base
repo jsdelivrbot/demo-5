@@ -1,0 +1,59 @@
+var thisDate = new Date();
+var todayNumber = thisDate.getDate();
+var tomonthNumber = thisDate.getMonth()+1;
+var toyearNumber = thisDate.getFullYear();
+
+//切换月份
+function clickLeftOrRightMonth(){
+	if ($(this)[0].className.indexOf("prevButton")!==-1) {
+		datePrev();
+	}else {
+		dateNext();
+	}
+	initTable();
+	setLeftAndRightMonthStatus();
+}
+
+//设置月份左右按钮状态
+function setLeftAndRightMonthStatus(){
+	var arr = $('#monthsPicker').val().split("-");
+
+	$(".nextButton").removeClass("active");
+	if (Number(arr[0]) < Number(toyearNumber)) {
+		$(".nextButton").addClass("active");
+	}else if (Number(arr[0]) === Number(toyearNumber)) {
+		if (Number(arr[1]) < Number(tomonthNumber)) {
+			$(".nextButton").addClass("active");
+		}
+	}
+}
+
+// 查询测站状态
+function initTable(){
+	var yyyymmArr = $("#monthsPicker").val().split("-");
+	console.log($("#monthsPicker").val()+"-01"+" 到 "+$("#monthsPicker").val()+"-"+getLastDay(yyyymmArr[0],yyyymmArr[1]));
+
+	$.ajax({
+		url: getStatusInfoListUrl,
+		type: 'get',
+		data: {
+			begin_time: $("#monthsPicker").val()+"-01",
+			endTime: $("#monthsPicker").val()+"-"+getLastDay(yyyymmArr[0],yyyymmArr[1])
+		},
+		dataType: 'json',
+		success: function(result){
+			console.log(result);
+		},
+		error: function(err){
+			console.log(error);
+		}
+	});
+}
+
+
+$(function(){
+	$('#monthsPicker').val(DateToday('months'));
+	initTable();
+	//切换月份
+   $(".pickerBox").on("click",".prevButton.active,.nextButton.active",clickLeftOrRightMonth);
+});
