@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<link rel="stylesheet" href="">
+</head>
+<body>
+	<div class="text-container">
+	    <span class="text-static"></span>
+	    <span class="text"></span>
+	    <span class="cursor">|</span>
+	</div>
+	<script type="text/javascript" src="../jquery-3.1.1.min.js"></script>
+<script>
+        $(function() {
+            myPrint(["hello my word!"], 100);
+
+            function myPrint(arr, speed) {
+                var index = 0;
+                var str = arr[index];
+                var i = 0;
+                var add = true;
+                var mySetInterval = setInterval(function() {
+                    // 延时4个字符的时间
+                    if (i == str.length + 4) {
+
+                        add = false;
+                        // 如果是最后一个字符串则终止循环函数
+                        if (index + 1 >= arr.length) {
+                            clearInterval(mySetInterval);
+                        }
+                    } else if (i == -2) {
+                        // 删除后延时2个字符的时间
+
+                        add = true;
+                        str = arr[++index];
+                       
+                    }
+                    setTimeout(function() {
+                        if (add) {
+                            i++;
+                            $(".text").html(str.substring(0, i));
+                        } else {
+                            $(".text").html(str.substring(0, i - 1));
+                            i--;
+                        }
+                    })
+
+                }, speed)
+            }
+
+        })
+    </script>
+</body>
+</html>

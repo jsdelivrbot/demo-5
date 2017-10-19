@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div class="result"></div>
+		<script type="text/template" id="template">
+			<h2>
+				<a href="{{href}}">{{title}}</a>
+			</h2>
+			<img src="{{imgSrc}}" width="300" height="300"/>
+		</script>
+		<script>
+			var data = {
+				title:"百度",
+				href:"http://www.baidu.com",
+				imgSrc:"img/1.jpg"
+			},
+			doc = document,
+			temp = doc.querySelector('#template').innerHTML,
+			result = doc.querySelector('.result'),
+			replaceHtml = '';
+			replaceHtml =temp.replace(/\{\{title\}\}/, data.title)
+						       .replace(/\{\{href\}\}/, data.href)
+						       .replace(/\{\{imgSrc\}\}/, data.imgSrc)
+			result.innerHTML = replaceHtml
+		</script>
+	</body>
+</html>

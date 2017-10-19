@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>typing2</title>
+	<link rel="stylesheet" href="">
+</head>
+<body>
+	<div class="content">
+    <div class="content-div">
+        <span id="content-item"></span>
+    </div>
+</div>
+<input type="hidden" id="content" value="内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容" />
+<script src="../jquery-3.1.1.min.js"></script>
+<script src="typed.js"></script>
+<script>
+var string = $('#content').val();
+$('#content-item').typed({
+    strings: ["　　" + string],
+    typeSpeed: 50,
+    backDelay: 800,
+    loop: false,
+    loopCount: false
+});
+</script>
+</body>
+</html>
