@@ -1,9 +1,0 @@
-$(function(){
-	$('#monthsPicker').val(DateToday('months'));
-	$('.prevButton ').on('click',function(){
-		datePrev();
-	});
-	$('.nextButton ').on('click',function(){
-		dateNext();
-	});
-})
