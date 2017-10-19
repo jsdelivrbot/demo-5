@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>预约报名</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="../css/common.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/appointment.css"/>
+	</head>
+	<body>
+		<div class="match-container">
+			<ul>
+				<li>
+					<label for="enrollName">学员姓名：</label>
+					<input type="text" id="enrollName"/>
+				</li>
+				<li>
+					<label for="enrollPhone">联系电话：</label>
+					<input type="tel" maxlength="11" id="enrollPhone"/>
+				</li>
+				<li>
+					<label for="enrollEmail">联系邮箱：</label>
+					<input type="email" id="enrollEmail"/>
+				</li>
+				<li>
+					<label for="enrollRoute">线路选择：</label>
+					<select id="enrollRoute">
+						<option value="32">2017希望之星种子选手强化训练营</option>
+						<option value="31">【海外生存大作战】美国顶尖学府学习+小镇文化体验+野外生存能力考验+好莱坞+环球影城</option>
+					</select>
+				</li>
+				<li>
+					<label for="enrollGroup">出团选择：</label>
+					<select id="enrollGroup">
+						<option value="46" city="香港" selected="" departdate="2017-07-31">香港 2017-07-31</option>
+						<option value="47" city="北京" departdate="2017-07-31">北京 2017-07-31</option>
+						<option value="48" city="上海" departdate="2017-07-31">上海 2017-07-31</option>
+						<option value="49" city="北京" departdate="2018-01-01">北京 2018-01-01</option>
+					</select>
+				</li>
+			</ul>
+			<p>你所预约的线路，全国正在同步销售，名额有限，我们将以客户支付定金先后时间为准。 为确保您能顺利报名该团，建议您尽快生成订单，采用在线支付预交订金，锁定名额。请等待顾问与您联系，如有疑问请拨打电话<a href="tel:400-9665-550">400-9665-550</a></p>
+			<div id="submitBtn" disabled="disabled">确认信息</div>
+		</div>
+	</body>
+</html>
+<script src="../js/jquery-1.11.3.min.js"></script>
+<script src="../js/common.js"></script>
+<script src="../js/appointment.js"></script>

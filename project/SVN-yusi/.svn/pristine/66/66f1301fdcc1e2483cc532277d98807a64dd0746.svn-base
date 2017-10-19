@@ -1,0 +1,13 @@
+
+
+$(function(){
+    // 日统计&&月统计&&年统计
+    $(".wrap-title-first>button").on("click",function(){
+        $(this).addClass("active").siblings().removeClass("active");
+    });
+    // 人工站&&自动站
+    $(".wrap-title-second>button").on("click",function(){
+        $(this).addClass("active").siblings().removeClass("active");
+    });
+
+});

@@ -1,0 +1,35 @@
+package ekuter.mvc.constants;
+
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * 常量类
+ * @author EKuter-si.yu
+ * @date 2016/8/15
+ * @version 1.0
+ * */
+public class Constants {
+	
+	//异常存储常量
+	public static Map<String, String> EXCEPTION_MAP = new HashMap<String, String>();
+	
+	//系统用户常量
+	public static final String CURRENT_USER = "user";
+	
+	//用户信息存储常量
+	public static final String USER_INFO = "userInfo";
+	
+	/*测站类型*/
+	public static final Long RAINFALL_STATION = 1l;//雨量站
+	
+	public static final Long WATER_LEVEL_STATION = 2l;//水库水位站
+	
+	public static final Long SOIL_MOISTURE_STATION = 3l;//河道水位站
+
+	public static final Long WATER_RAINFALL_STATION = 4l;//水库水文站
+	
+	public static final Long SOIL_RAINFALL_STATION = 5l;//河道水文站
+	
+	
+}

@@ -1,0 +1,35 @@
+package mybatisPro.myBatisDao;
+
+import mybatisPro.mybatisEntity.RainfallEntity;
+import mybatisPro.mybatisEntity.ReservoirWaterLevelEntity;
+import mybatisPro.mybatisEntity.RiverWaterLevelEntity;
+
+/**
+ * 人工站人工报讯管理
+ * @author si.yu
+ * @date 2017/08/16
+ * @version 1.0
+ * */
+public interface ManMadeStationMapper {
+
+	/**
+	 * 人工上报数据(雨量数据插入)
+	 * @param rainfallEntity
+	 * @return
+	 * */
+	public int insertIntoRainFallData(RainfallEntity rainfallEntity);
+	
+	/**
+	 * 人工上报数据（水库水位数据插入）
+	 * @param reservoirWaterLevelEntity
+	 * @return
+	 * */
+	public int insertResvoirData(ReservoirWaterLevelEntity reservoirWaterLevelEntity);
+	
+	/**
+	 * 人工上报数据（河道水位数据插入）
+	 * @param riverWaterLevelEntity
+	 * @return
+	 * */
+	public int insertRiverData(RiverWaterLevelEntity riverWaterLevelEntity);
+}

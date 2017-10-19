@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>预约报名</title>
+		<link rel="stylesheet" type="text/css" href="../css/base.css" />
+		<link rel="stylesheet" type="text/css" href="../css/signUp.css" />
+	</head>
+
+	<body>
+		<header>
+			<div class="header-wrapper clear">
+				<span class="header-hotline">全国咨询热线：<b>400-9665-550</b></span>
+				<span class="header-login">登录&nbsp;|&nbsp;注册</span>
+			</div>
+		</header>
+		<nav class="w1100 clear">
+			<div class="logo fl"><img src="../images/xw_header_image_logo_2.png" /></div>
+			<ul class="clear">
+				<li class="home-page">
+					<a href="index.html"><i class="homeIcon-01 fl"></i>OUTLOOK首页</a>
+				</li>
+				<li>希望之星
+					<ul>
+						<li>
+							<a href="themeMatch.html">主体赛</a>
+						</li>
+						<li>
+							<a href="dramaMatch.html">戏剧赛</a>
+						</li>
+						<li>
+							<a href="musicMatch.html">歌曲赛</a>
+						</li>
+					</ul>
+				</li>
+				<li class="active">
+					<a href="starTour.html">星游学</a>
+				</li>
+				<li>
+					<a href="aboutUs.html">关于我们</a>
+				</li>
+				<li>
+					<a href="contactUs.html">联系我们</a>
+				</li>
+			</ul>
+		</nav>
+		<ol class="breadcrumb w1100 clear">
+			<span class="fl">当前位置：</span>
+			<li>
+				<a href="#">星游学</a><i class="crumbIcon"></i></li>
+			<li>
+				<a href="#">全部线路</a><i class="crumbIcon"></i></li>
+			<li>
+				<a href="starTourDetail.html">游学详情</a><i class="crumbIcon"></i></li>
+			<li>预约报名</li>
+		</ol>
+		<div class="tip shadow w1100">
+			<h2>温馨提示：</h2>
+			<p>你所预约的线路，全国正在同步销售，名额有限，我们将以客户支付定金先后时间为准。 为确保您能顺利报名该团，建议您尽快生成订单，采用在线支付预交订金，锁定名额。请等待顾问与您联系，如有疑问请拨打电话<span>400-9665-550</span></p>
+		</div>
+		<div class="signUp-wrapper shadow w1100">
+			<div class="clear">
+				<div class="info fl">
+					<h2 class="title">预约报名信息</h2>
+					<div>
+						<label for="name">学员姓名：</label><input type="text" id="name" value="" />
+						<span class="error"></span>
+					</div>
+					<div>
+						<label for="tel">联系电话：</label><input type="text" id="tel" value="" />
+						<span class="error"></span>
+					</div>
+					<div>
+						<label for="email">电子邮箱：</label><input type="text" id="email" value="" />
+						<span class="error"></span>
+					</div>
+					<div>
+						<label for="route">选择线路：</label>
+						<select id="route">
+							<option value="">澳大利亚国际课堂精英留学营</option>
+							<option value="">澳大利亚国际课堂精英留学营</option>
+							<option value="">澳大利亚国际课堂精英留学营</option>
+						</select>
+					</div>
+					<div>
+						<label for="date">出团选择：</label>
+						<select id="date">
+							<option value="">北京2017-08-02</option>
+							<option value="">北京2017-08-02</option>
+							<option value="">北京2017-08-02</option>
+						</select>
+					</div>
+				</div>
+				<div class="route fr">
+					<h2 class="title">已选择游学路线</h2>
+					<img src="../images/campinfo.png" alt="" />
+					<p>澳大利亚国际课堂精英游学营美国顶尖学府学习+小镇文 化体验+野外生存能力考验+好莱坞+环球</p>
+					<p><span>价格 (¥)：</span><i>39800／人</i></p>
+					<p><span>出发日期：</span><i>2017-08-02</i></p>
+					<p><span>出发城市：</span><i>北京</i></p>
+				</div>
+			</div>
+
+			<button id="submit" disabled="disabled">确认信息</button>
+		</div>
+		<footer  class="common-footer">
+			<p>此网站隶属于北京星路风采国际教育咨询有限公司</p>
+			<p>Copyright © 2016 Beijing Star of Outlook Int’l Education Consultant Co., Ltd All Rights Reserved. 京ICP备16005203号-1</p>
+		</footer>
+		<div class="success">
+			<p>您已成功报名!&nbsp;&nbsp;请等待顾问与您联系</p>
+		</div>
+		<script src="../js/lib/jquery.min.1.7.js"></script>
+		<script>
+			var nameval = "",telval = "",emailval = "";
+			var nameerror = $(".error").eq(0),
+				namereg = /^[a-zA-Z\u4e00-\u9fa5]{1,15}$/,
+				telerror = $(".error").eq(1),
+				telreg = /^1[34578]\d{9}$/,
+				emailerror = $(".error").eq(2),
+				emailreg = /^(\w)+(\.\w+)*@(\w)+((\.\w{2,3}){1,3})$/;
+
+			$("input").on('input propertychange', function() {
+				nameval = $("#name").val();
+				telval = $("#tel").val();
+				emailval = $("#email").val();
+				if(nameval != "" && telval != "" && emailval != "") {
+					$("#submit").addClass("available").removeAttr("disabled");
+				} else {
+					$("#submit").removeClass("available").attr("disabled", "disabled");
+				}
+			});
+			$("#submit").click(function() {
+				$(this).attr("disabled","disabled");
+				if(checkVal()) { // 提交信息
+					// 报名成功
+					$(".success").fadeIn();
+					setTimeout(function() {
+						$(".success").fadeOut();
+					}, 3000);
+				}else{
+					$(this).removeAttr("disabled");
+				}
+			})
+
+			function checkVal() {
+				namereg.test(nameval) == true ? nameerror.text(""):nameerror.text("姓名输入格式错误！");
+				telreg.test(telval) == true ? telerror.text(""):telerror.text("电话输入格式错误！");
+				emailreg.test(emailval) == true ? emailerror.text(""):emailerror.text("邮箱输入格式错误！");
+				if(nameerror.text() == "" && telerror.text() == "" && emailerror.text() == "") {
+					return true;
+				} else {
+					return false;
+				}
+			}
+		</script>
+	</body>
+
+</html>

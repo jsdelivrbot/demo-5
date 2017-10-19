@@ -1,0 +1,42 @@
+package mybatisPro.myBatisDao;
+
+import java.util.List;
+import java.util.Map;
+
+import mybatisPro.mybatisEntity.StationEntity;
+
+/**
+ * 测站信息数据服务层接口
+ * @author si.yu
+ * @date 2017/7/14
+ * @version 1.0
+ * */
+public interface StationMapper {
+
+	/**
+	 * 创建测站信息
+	 * @param stationEntity
+	 * @return
+	 * */
+	public int createStation(StationEntity stationEntity);
+	
+	/**
+	 * 查询测站列表
+	 * @return
+	 * */
+	public List<Map<String, Object>> getStationList();
+	
+	/**
+	 * 根据测站ID查询测站详细信息
+	 * @param stationId
+	 * @return
+	 * */
+	public StationEntity getStationInfoById(Long stationId);
+	
+	/**
+	 * 测站信息修改
+	 * @param stationEntity
+	 * @return
+	 * */
+	public int updateStationInfo(StationEntity stationEntity);
+}

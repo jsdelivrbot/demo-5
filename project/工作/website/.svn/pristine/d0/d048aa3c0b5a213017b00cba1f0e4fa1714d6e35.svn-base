@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>游学路线</title>
+		<link rel="stylesheet" type="text/css" href="../css/base.css"/>
+		<link rel="stylesheet" type="text/css" href="../js/lib/laypage/skin/laypage.css"/>
+		<style type="text/css">
+			.banner{
+				background: url(../images/xw_home_news_bg.png) no-repeat;
+				background-size: 100% 100%;
+			}
+		</style>
+	</head>
+	<body class="bg-pale">
+		<header>
+			<div class="header-wrapper clear">
+				<span class="header-hotline">全国咨询热线：<b>400-9665-550</b></span>
+				<span class="header-login">登录&nbsp;|&nbsp;注册</span>
+			</div>
+		</header>
+		<nav class="w1100 clear">
+			<div class="logo fl"><img src="../images/xw_header_image_logo_2.png" /></div>
+			<ul class="clear">
+				<li class="home-page"><a href="index.html"><i class="homeIcon-01 fl"></i>OUTLOOK首页</a></li>
+				<li>希望之星
+					<ul>
+						<li>
+							<a href="themeMatch.html">主体赛</a>
+						</li>
+						<li>
+							<a href="dramaMatch.html">戏剧赛</a>
+						</li>
+						<li>
+							<a href="musicMatch.html">歌曲赛</a>
+						</li>
+					</ul>
+				</li>
+				<li class="active">
+					<a href="starTour.html">星游学</a>
+				</li>
+				<li>
+					<a href="aboutUs.html">关于我们</a>
+				</li>
+				<li>
+					<a href="contactUs.html">联系我们</a>
+				</li>
+			</ul>
+		</nav>
+		<div class="banner second-banner">
+			<div class="w1100">
+				<h2>游学路线</h2>
+				<ol class="breadcrumb w1100 clear">
+					<span class="fl">当前位置：</span>
+					<li><a href="starTour.html">星游学</a><i class="crumbIcon"></i></li>
+					<li>游学路线</li>
+				</ol>
+			</div>
+		</div>
+		<div class="travel-box position-offset w1100">
+			<ul class="clear">
+				<li>
+					<a href="">
+						<img src="../images/tour.png">
+						<h3><span>【海外生存大作战】美国顶尖学府学习+小镇文化体验+野外生存能力考验+好莱坞+环球影城</span></h3>
+						<p class="deadline">报名已截止</p>
+						<p class="priceRemark">
+							<span>剩余名额<br /><i>9</i></span>
+							<span>价格/人<br /><i>￥45000</i></span>
+						</p>
+						
+					</a>
+				</li>
+				<li>
+					<a href="">
+						<img src="../images/tour.png">
+						<h3><span>【海外生存大作战】美国顶尖学府学习+小镇文化体验+野外生存能力考验+好莱坞+环球影城</span></h3>
+						<p>截止报名日期：<span>2017-05-31</span></p>
+						<p class="priceRemark">
+							<span>剩余名额<br /><i>9</i></span>
+							<span>价格/人<br /><i>￥45000</i></span>
+						</p>
+						
+					</a>
+				</li>
+				<li>
+					<a href="">
+						<img src="../images/tour.png">
+						<h3><span>【海外生存大作战】美国顶尖学府学习+小镇文化体验+野外生存能力考验+好莱坞+环球影城</span></h3>
+						<p>截止报名日期：<span>2017-05-31</span></p>
+						<p class="priceRemark">
+							<span>剩余名额<br /><i>9</i></span>
+							<span>价格/人<br /><i>￥45000</i></span>
+						</p>
+						
+					</a>
+				</li>
+				<li>
+					<a href="">
+						<img src="../images/tour.png">
+						<h3><span>【海外生存大作战】美国顶尖学府学习+小镇文化体验+野外生存能力考验+好莱坞+环球影城</span></h3>
+						<p>截止报名日期：<span>2017-05-31</span></p>
+						<p class="priceRemark">
+							<span>剩余名额<br /><i>9</i></span>
+							<span>价格/人<br /><i>￥45000</i></span>
+						</p>
+						
+					</a>
+				</li>
+				<li>
+					<a href="">
+						<img src="../images/tour.png">
+						<h3><span>【海外生存大作战】美国顶尖学府学习+小镇文化体验+野外生存能力考验+好莱坞+环球影城</span></h3>
+						<p>截止报名日期：<span>2017-05-31</span></p>
+						<p class="priceRemark">
+							<span>剩余名额<br /><i>9</i></span>
+							<span>价格/人<br /><i>￥45000</i></span>
+						</p>
+						
+					</a>
+				</li>
+				<li>
+					<a href="">
+						<img src="../images/tour.png">
+						<h3><span>【海外生存大作战】美国顶尖学府学习+小镇文化体验+野外生存能力考验+好莱坞+环球影城</span></h3>
+						<p class="deadline">报名已截止</p>
+						<p class="priceRemark">
+							<span>剩余名额<br /><i>9</i></span>
+							<span>价格/人<br /><i>￥45000</i></span>
+						</p>
+						
+					</a>
+				</li>
+				<li>
+					<a href="">
+						<img src="../images/tour.png">
+						<h3><span>【海外生存大作战】美国顶尖学府学习+小镇文化体验+野外生存能力考验+好莱坞+环球影城</span></h3>
+						<p>截止报名日期：<span>2017-05-31</span></p>
+						<p class="priceRemark">
+							<span>剩余名额<br /><i>9</i></span>
+							<span>价格/人<br /><i>￥45000</i></span>
+						</p>
+						
+					</a>
+				</li>
+				<li>
+					<a href="">
+						<img src="../images/tour.png">
+						<h3><span>【海外生存大作战】美国顶尖学府学习+小镇文化体验+野外生存能力考验+好莱坞+环球影城</span></h3>
+						<p>截止报名日期：<span>2017-05-31</span></p>
+						<p class="priceRemark">
+							<span>剩余名额<br /><i>9</i></span>
+							<span>价格/人<br /><i>￥45000</i></span>
+						</p>
+						
+					</a>
+				</li>
+				<li>
+					<a href="">
+						<img src="../images/tour.png">
+						<h3><span>【海外生存大作战】美国顶尖学府学习+小镇文化体验+野外生存能力考验+好莱坞+环球影城</span></h3>
+						<p class="deadline">报名已截止</p>
+						<p class="priceRemark">
+							<span>剩余名额<br /><i>9</i></span>
+							<span>价格/人<br /><i>￥45000</i></span>
+						</p>
+						
+					</a>
+				</li>
+				<li>
+					<a href="">
+						<img src="../images/tour.png">
+						<h3><span>【海外生存大作战】美国顶尖学府学习+小镇文化体验+野外生存能力考验+好莱坞+环球影城</span></h3>
+						<p>截止报名日期：<span>2017-05-31</span></p>
+						<p class="priceRemark">
+							<span>剩余名额<br /><i>9</i></span>
+							<span>价格/人<br /><i>￥45000</i></span>
+						</p>
+						
+					</a>
+				</li>
+				<li>
+					<a href="">
+						<img src="../images/tour.png">
+						<h3><span>【海外生存大作战】美国顶尖学府学习+小镇文化体验+野外生存能力考验+好莱坞+环球影城</span></h3>
+						<p class="deadline">报名已截止</p>
+						<p class="priceRemark">
+							<span>剩余名额<br /><i>9</i></span>
+							<span>价格/人<br /><i>￥45000</i></span>
+						</p>
+						
+					</a>
+				</li>
+				<li>
+					<a href="">
+						<img src="../images/tour.png">
+						<h3><span>【海外生存大作战】美国顶尖学府学习+小镇文化体验+野外生存能力考验+好莱坞+环球影城</span></h3>
+						<p>截止报名日期：<span>2017-05-31</span></p>
+						<p class="priceRemark">
+							<span>剩余名额<br /><i>9</i></span>
+							<span>价格/人<br /><i>￥45000</i></span>
+						</p>
+						
+					</a>
+				</li>
+			</ul>
+			<div class="page-box">
+				<div name="laypage1.3" class="laypage_main laypageskin_default" id="laypage_12">
+					<a href="" class="laypage_prev" data-page="1">上一页</a>
+					<a href="" data-page="1">1</a>
+					<span class="laypage_curr">2</span>
+					<a href="" data-page="3">3</a>
+					<a href="" data-page="4">4</a>
+					<a href="" data-page="5">5</a>
+					<a href="" class="laypage_last" title="尾页" data-page="66">尾页</a>
+					<a href="" class="laypage_next" data-page="3">下一页</a>
+				</div>
+			</div>
+		</div>
+		<div class="propaganda">
+			<h3>希望之星游学值得信赖</h3>
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. </p>
+			<p>Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis disparturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget.</p>
+		</div>
+		<footer class="common-footer">
+	        <p>此网站隶属于北京星路风采国际教育咨询有限公司</p>
+	        <p>Copyright © 2016 Beijing Star of Outlook Int’l Education Consultant Co., Ltd All Rights Reserved. 京ICP备16005203号-1</p>
+	    </footer>
+	    <script src="../js/lib/jquery.min.1.7.js" type="text/javascript" charset="utf-8"></script>
+	    <script src="../js/lib/laypage/laypage.js" type="text/javascript" charset="utf-8"></script>
+	</body>
+</html>

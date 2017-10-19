@@ -1,0 +1,17 @@
+package mybatisPro.mybatisService.impl;
+
+/**
+ * 平均降雨量测站系业务层接口
+ * @author si.yu
+ * @date 2017/07/26
+ * @version 1.0
+ * */
+public interface StationParamService {
+
+	/**
+	 * 根据测站ID查询该站的系数
+	 * @param sta_id
+	 * @return
+	 * */
+	public Float getStationParamByStaId(Long sta_id);
+}

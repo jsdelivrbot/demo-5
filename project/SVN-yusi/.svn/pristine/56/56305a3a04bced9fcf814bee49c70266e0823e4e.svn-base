@@ -1,0 +1,52 @@
+package ekuter.mvc.util;
+
+
+/**
+ * 人工报讯接收参数工具类
+ * @author si.yu
+ * @date 2017/08/18
+ * @version 1.0
+ * */
+public class ManMadeStationDataUtil {
+
+	private Long sta_id;//测站ID
+	private Float rainfall;//测站雨量
+	private Float resvoirWaterLevel;//水库水位
+	private Float riverWaterLevel;//河道水位
+	
+	@Override
+	public String toString(){
+		return "ManMadeStationDataUtil[sta_id="+sta_id+",rainfall="+rainfall
+				+",resvoirWaterLevel="+resvoirWaterLevel+",riverWaterLevel="+riverWaterLevel+"]";
+	}
+	
+	public Long getSta_id() {
+		return sta_id;
+	}
+	public void setSta_id(Long sta_id) {
+		this.sta_id = sta_id;
+	}
+	
+	public Float getRainfall() {
+		return rainfall;
+	}
+	public void setRainfall(Float rainfall) {
+		this.rainfall = rainfall;
+	}
+	
+	public Float getResvoirWaterLevel() {
+		return resvoirWaterLevel;
+	}
+	public void setResvoirWaterLevel(Float resvoirWaterLevel) {
+		this.resvoirWaterLevel = resvoirWaterLevel;
+	}
+	
+	public Float getRiverWaterLevel() {
+		return riverWaterLevel;
+	}
+	public void setRiverWaterLevel(Float riverWaterLevel) {
+		this.riverWaterLevel = riverWaterLevel;
+	}
+	
+	
+}

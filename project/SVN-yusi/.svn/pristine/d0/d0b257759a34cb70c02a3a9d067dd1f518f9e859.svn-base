@@ -1,0 +1,90 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "microsoft yahei";
+}
+ul{
+  list-style: none;
+}
+body{
+  background-color: #f5f5f5;
+}
+#header {
+  width: 100%;
+}
+#header .header-top{
+  background-color: #4791ea;
+}
+#header .header-top-content,#header .header-bottom>ul{
+  max-width: 1211px;
+  min-width: 1200px;
+  margin: 0 auto;
+}
+#header .header-top-content::after{
+  content: "";
+  display: block;
+  clear: both;
+}
+#header .header-top-content-left{
+  float: left;
+}
+#header .header-top-content-right{
+  float: right;
+}
+#header .header-top-content-left,#header .header-top-content-right{
+  height: 71px;
+  line-height: 71px;
+  vertical-align: middle;
+  color: white;
+}
+#header .header-top-content-left img{
+  margin-top:14px;
+}
+#header .header-top-content-right a{
+  color:#fff;
+}
+
+#header .header-bottom{
+  width: 100%;
+  background-color: white;
+  position:relative;
+}
+#header .header-bottom>ul{
+  font-size: 0;
+  width: 100%;
+}
+#header .header-bottom>ul>li{
+  display: inline-block;
+  font-size: 18px;
+  line-height: 64px;
+  height: 64px;
+  width: 185px;
+  text-align: center;
+  cursor: pointer;
+  position: relative;
+  cursor: pointer;
+}
+#header .header-bottom>ul>li.active{
+  color: #1f5097;
+}
+#header .header-bottom>ul>li:first-child{
+  padding-left: 0;
+}
+#header .moveWrap{
+    width: 1211px;
+    margin: -3px auto;
+    height: 3px;
+    position: relative;
+}
+#header .moveWrap .navMove {
+    width: 54px;
+    height: 3px;
+    background-color: #1f5097;
+    position: absolute;
+    bottom: 0;
+    left: 12px;
+}
+.indicator{
+ position:fixed;
+ transition: all 0.25s ease-in-out;
+}

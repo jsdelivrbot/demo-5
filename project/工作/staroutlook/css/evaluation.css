@@ -1,0 +1,276 @@
+/*听力部分*/
+
+.listening-num {
+	line-height: 2.1;
+}
+
+.listening-btn-audio {
+	display: inline-block;
+	width: .8rem;
+	height: .8rem;
+	margin-left: 0.3rem;
+	background: url(../images/voice_stop.png) no-repeat center bottom;
+	background-size: cover;
+}
+
+
+/*词汇*/
+
+.blank {
+	display: inline-block;
+	width: 0.8rem;
+	border-bottom: 1px solid #aaa;
+}
+
+.underline {
+	text-decoration: underline;
+	font-weight: bold;
+}
+
+.bold {
+	font-weight: 600;
+}
+
+
+/*阅读*/
+.mui-scroll-wrapper {
+    padding: 1.24rem 0.66rem 0 0.4rem;
+    background: #2b2938;
+}
+.ques-tittle {
+	margin-top: .19rem;
+	font-size: 0.34rem;
+	color: #f1f1f1;
+}
+
+.ques-tittle p{
+	margin-top: .19rem;
+	font-size: 0.34rem;
+	color: #f1f1f1;
+}
+
+.read-img {
+	margin: .4rem 0;
+	margin-left: -.21rem;
+	width: 106%;
+}
+
+.read-container {
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	padding: 0;
+	background: #2b2938;
+	border-top: .04rem solid rgba(255, 255, 255, 0.3);
+	z-index: 10;
+}
+
+.mui-scroll {
+	padding-right: .8rem;
+}
+.read-cont {
+	display: none;
+	padding: 0 0.4rem 0 0.4rem;
+}
+.read-active{
+	display: block;
+}
+.read-slip-btn {
+	position: relative;
+	top: -.45rem;
+	margin: 0 auto;
+	width: 1.38rem;
+	height: .42rem;
+	background: #65636c;
+	border-radius: .1rem .1rem 0 0;
+}
+
+.read-slip-btn img {
+	width: 100%;
+	height: 100%;
+}
+
+.read-cont .ques-stems {
+	margin: .3rem 0;
+	line-height: 1.2;
+	font-size: .32rem;
+	color: #d7d7d7;
+}
+
+.read-cont .ques-stems p{
+	margin: .3rem 0;
+	line-height: 1.2;
+	font-size: .32rem;
+	color: #d7d7d7;
+}
+
+.read-cont .option {
+	margin-top: 0.38rem;
+}
+/*图片放大*/
+.mui-preview-header,
+.mui-preview-footer,
+.mui-preview-loading {
+	display: none;
+}
+
+.mui-preview-image.mui-fullscreen {
+	position: fixed;
+	z-index: 20;
+	background-color: #000;
+}
+
+.mui-preview-image {
+	display: none;
+	-webkit-animation-duration: 0.5s;
+	animation-duration: 0.5s;
+	-webkit-animation-fill-mode: both;
+	animation-fill-mode: both;
+}
+
+.mui-preview-image.mui-preview-in {
+	-webkit-animation-name: fadeIn;
+	animation-name: fadeIn;
+}
+
+.mui-preview-image.mui-preview-out {
+	background: none;
+	-webkit-animation-name: fadeOut;
+	animation-name: fadeOut;
+}
+
+.mui-preview-image.mui-preview-out .mui-preview-header,
+.mui-preview-image.mui-preview-out .mui-preview-footer {
+	display: none;
+}
+
+.mui-zoom-scroller {
+	position: absolute;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	align-items: center;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	justify-content: center;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	-webkit-backface-visibility: hidden;
+}
+
+.mui-zoom {
+	-webkit-transform-style: preserve-3d;
+	transform-style: preserve-3d;
+}
+
+.mui-slider .mui-slider-group .mui-slider-item img {
+	width: auto;
+	height: auto;
+	max-width: 100%;
+	max-height: 100%;
+}
+
+.mui-android-4-1 .mui-slider .mui-slider-group .mui-slider-item img {
+	width: 100%;
+}
+
+.mui-android-4-1 .mui-slider.mui-preview-image .mui-slider-group .mui-slider-item {
+	display: inline-table;
+}
+
+.mui-android-4-1 .mui-slider.mui-preview-image .mui-zoom-scroller img {
+	display: table-cell;
+	vertical-align: middle;
+}
+
+.mui-preview-image img.mui-transitioning {
+	-webkit-transition: -webkit-transform 0.5s ease, opacity 0.5s ease;
+	transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+@-webkit-keyframes fadeIn {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+@keyframes fadeIn {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+@-webkit-keyframes fadeOut {
+	0% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+	}
+}
+
+@keyframes fadeOut {
+	0% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+	}
+}
+
+
+/*完型*/
+
+.brackets {
+	font-size: 0.38rem;
+}
+
+.blank_area {
+	width: 1.6rem;
+	height: 0.01rem;
+	display: inline-block;
+}
+
+.blank_area input {
+	font-size: 0.32rem;
+	color: #4ec49c;
+	background: transparent;
+	border: 0;
+	border-bottom: 1px dashed #d7d7d7;
+	text-align: center;
+}
+input[type=text]{height:.35rem;padding: 0;margin:0;}
+.ques-stems {
+	font-size: 0.32rem;
+}
+
+.ques-stems p{
+	font-size: 0.32rem;
+	color:#d7d7d7;
+	line-height: 0.5rem;
+    margin: 0.2rem auto;
+}
+
+.layermcont img{
+	margin-top: .2rem;
+	width: .64rem;
+	height: .64rem;
+}
+
+.layermbtn span:first-child{
+	width: 100%!important;
+ 	border-right: none!important;
+}

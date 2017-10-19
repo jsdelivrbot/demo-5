@@ -1,0 +1,61 @@
+package mybatisPro.myBatisDao;
+
+import java.util.List;
+import java.util.Map;
+
+import org.apache.ibatis.annotations.Param;
+
+/**
+ * 
+ *
+ * @date 2017年8月11日
+ *
+ * @version 1.0
+ */
+public interface RainfallStatisticsMapper {
+
+	/**
+	 * 雨量统计（小时）
+	 */
+	public void statisticsByHour();
+
+	/**
+	 * 雨量统计（天）
+	 */
+	public void statisticsByDays();
+
+	/**
+	 * 雨量统计（月）
+	 */
+	public void statisticsByMonths();
+
+	/**
+	 * 年雨量统计（查询）
+	 * 
+	 * @return
+	 */
+	public List<Map<String, Object>> statisticsByYear(@Param("year") String year, @Param("type") Integer type);
+
+	/**
+	 * 天雨量统计（查询）
+	 * 
+	 * @param days
+	 * @param type
+	 * @param hour_list
+	 * @return
+	 */
+	public List<Map<String, Object>> statisticsByDay(@Param("start_time") String start_time,
+			@Param("end_time") String end_time, @Param("hour_list") List<String> hour_list);
+
+	/**
+	 * 月雨量统计（查询）
+	 * 
+	 * @param months
+	 * @param type
+	 * @param month_list
+	 * @return
+	 */
+	public List<Map<String, Object>> statisticsByMonth(@Param("months") String months, @Param("type") Integer type,
+			@Param("month_list") List<String> month_list);
+
+}

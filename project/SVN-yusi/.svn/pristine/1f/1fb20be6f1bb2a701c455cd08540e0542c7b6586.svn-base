@@ -1,0 +1,19 @@
+package mybatisPro.mybatisService.impl;
+
+import mybatisPro.mybatisEntity.ReservoirEntity;
+
+/**
+ * 水库信息管理业务层接口
+ * @author si.yu
+ * @date 2017/6/27
+ * @version 1.0
+ * */
+public interface ReservoirManagerService {
+
+	/**
+	 * 创建水库
+	 * @param reservoirEntity
+	 * @return boolean
+	 * */
+	public boolean createReservoir(ReservoirEntity reservoirEntity);
+}

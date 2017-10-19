@@ -1,0 +1,88 @@
+.small {
+	width: 120px;
+	height: 120px;
+	margin: 0!important;
+}
+#picModal{
+	z-index: 1060;
+}
+#picModal .modal-body{
+	padding: 10px;
+}
+#picModal .modal-body img{
+	margin: 0;
+}
+
+@media (min-width: 768px){
+	#picModal .modal-dialog{
+		width: auto!important;
+	}
+}
+.form-control-static {
+	text-align: left;
+}
+
+#knowBtn {
+	width: 202px;
+	height: 45px;
+	line-height: 45px;
+	padding: 0;
+	margin-top: 40px;
+	font-size: 16px;
+}
+
+.modal-header {
+	font-size: 16px;
+	border-bottom: 0;
+	padding: 26px;
+	line-height: 80px;
+}
+
+.modal-body {
+	padding: 10px 40px 40px 40px;
+}
+
+.modal-footer {
+	display: none;
+}
+
+.form-horizontal .control-label {
+	line-height: 25px;
+}
+
+.form-group {
+	margin-bottom: 10px!important;
+}
+
+.model {
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	bottom: 0px;
+	right: 0px;
+	z-index: 11111;
+	display: none;
+	background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modelContent {
+	width: 500px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin: 0!important;
+	transform: translate(-50%, -50%);
+}
+
+.myClose {
+	position: absolute;
+	top: -10px;
+	right: -10px;
+	width: 20px;
+	height: 20px;
+	color: #fff;
+	background: #000;
+	border-radius: 50%;
+	cursor: pointer;
+	text-align: center;
+}

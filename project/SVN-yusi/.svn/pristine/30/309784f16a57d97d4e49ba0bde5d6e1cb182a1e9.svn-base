@@ -1,0 +1,118 @@
+#wrap{
+    width: 100%;
+    margin: 11px 0;
+    padding: 0 78px;
+    background-color: white;
+}
+
+/*wrap中top内容*/
+.wrap-title{
+    padding: 25px 0;
+    text-align: center;
+}
+.wrap-title>div{
+    font-size: 0;
+}
+.wrap-title>div>*{
+    font-size: 12px;
+}
+.wrap-title-first,
+.wrap-title-second{
+    float: left;
+}
+.wrap-title-first{
+    margin-right: 40px;
+}
+.wrap-title-third{
+    display: inline-block;
+}
+.wrap-title-forth{
+    float: right;
+}
+.wrap-content{
+    padding-bottom: 30px;
+}
+.wrap-title button{
+    padding: 9px 17px;
+    background-color: white;
+    border: 1px solid #ccc;
+    color: #999;
+}
+.wrap-title button.active,.wrap-title-forth button{
+    color: white;
+    background-color: #5db75d;
+    border: 1px solid #5db75d;
+}
+.wrap-title-forth button{
+    width: 90px;
+}
+.wrap-title .wrap-title-first button.active{
+    background-color: #4791ea;
+    border: 1px solid #4791ea;
+}
+.wrap-title-first button:first-child,
+.wrap-title-second button:first-child,
+.wrap-title-forth button:first-child{
+    border-top-left-radius: 2px;
+    border-bottom-left-radius: 2px;
+}
+.wrap-title-first button:last-child,
+.wrap-title-second button:last-child,
+.wrap-title-forth button:last-child{
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;
+}
+
+
+/*修正jqGrid的样式*/
+.ui-jqgrid .ui-jqgrid-bdiv{
+    /*width: auto !important;*/
+}
+.table-responsive{
+    /*overflow-x: hidden;*/
+}
+.ui-jqgrid-bdiv>div{
+    overflow: hidden !important;
+    width: calc(100% - 2px);
+}
+.ui-jqgrid .ui-jqgrid-htable .ui-th-div{
+    height: 24px;
+}
+.ui-jqgrid{
+    /*border-right: none;*/
+    border-bottom: none;
+}
+table{
+    font-size: 12px;
+}
+.table>thead>tr>th,.table>tbody>tr>td{
+    padding:8px 0;
+}
+.ui-jqgrid .ui-jqgrid-htable thead th,.ui-jqgrid .ui-jqgrid-btable tbody tr.jqgrow td{
+    padding-right: 0;
+}
+table>thead>tr{
+    background-color: #f2f2f2;
+}
+table>thead>tr .ui-th-div{
+    font-weight: bold;
+}
+
+/**时间控件样式**/
+/*.wrap-title-third{
+    float:left;
+    margin-left:360px;
+}*/
+
+.timePicker {
+    width: 121px;
+    height: 38px;
+    text-align: center;
+    text-indent: 5px;
+    font-size:16px;
+    font-weight:bold;
+    color:#4991EA;
+    border:none;
+    outline: none;
+    cursor: pointer;
+}

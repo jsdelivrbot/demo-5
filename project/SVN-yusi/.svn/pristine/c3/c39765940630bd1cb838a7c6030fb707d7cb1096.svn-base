@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mybatisPro.myBatisDao.ReservoirMapper">
+ 	<cache type="mybatisPro.mybatisRedis.MybatisRedisCache" />
+ 	
+ 	<insert id="createReservoir" parameterType="mybatisPro.mybatisEntity.ReservoirEntity"
+ 	keyProperty="id" useGeneratedKeys="true">
+	INSERT INTO
+		DC_BS_RESERVOIR_B(
+			cnnmcd,resnm,restp,addvcd,adumnm,damsite,esstym,encl
+			,lvbslv,rscci,schdep,saflev,rsdasi,vlar,comments,Sort
+		)VALUES(
+			#{cnnmcd},#{resnm},#{restp},#{addvcd},#{adumnm},#{damsite},#{esstym},#{encl}
+			,#{lvbslv},#{rscci},#{schdep},#{saflev},#{rsdasi},#{vlar},#{comments},#{Sort}
+		)
+ 	</insert>
+</mapper>

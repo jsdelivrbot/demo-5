@@ -1,0 +1,22 @@
+
+
+$(function(){
+    // 日统计&&月统计&&年统计
+    $(".wrap-title-first>button").on("click",function(){
+        $(this).addClass("active").siblings().removeClass("active");
+        var idx=$(this).index();
+        
+        $('.pickerBox .timePicker').eq($(this).index()).removeClass('hide').siblings('.timePicker').addClass('hide');
+    });
+    // 人工站&&自动站
+    $(".wrap-title-second>button").on("click",function(){
+        $(this).addClass("active").siblings().removeClass("active");
+    });
+
+    // 导出到excel文件
+    $(".wrap-title-forth>button").on("click",function(){
+        ExportToExcel('#rainfallTable','Report Title',true);
+        console.log("导出");
+    });
+
+});

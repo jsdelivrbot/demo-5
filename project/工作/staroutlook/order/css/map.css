@@ -1,0 +1,112 @@
+/*地图列表*/
+.shows-list ul{
+	margin: .4rem .34rem;
+}
+.shows-list ul li {
+	position: relative;
+	margin-bottom: .3rem;
+}
+.shows-img {
+	width: 100%;
+	height: 3.82rem;
+	border-radius: .08rem;
+}
+.shows-img img{
+	border-radius: .08rem;
+}
+.shows-place {
+	padding: 0 .3rem 0 .7rem;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	height: 1.92rem;
+	line-height: 3.15rem;
+	background: url(../images/my_guidebook_map_bg_address.png) no-repeat center;
+	font-size: .28rem;
+	color: #fff;
+	box-sizing: border-box;
+	text-overflow:ellipsis;
+	white-space: nowrap;
+    overflow: hidden;
+}
+.shows-place:before {
+    content: "";
+    position: absolute;
+    bottom: .14rem;
+    left: .24rem;
+    display: inline-block;
+    width: .3rem;
+    height: .44rem;
+    background: url(../images/my_guidebook_map_icon_address.png) no-repeat;
+    background-size: 100% 100%;
+}
+/*地图详情*/
+.map-details{
+}
+.map-details h1{
+	margin-top: .48rem;
+	text-align: center;
+}
+.map-details .details-img{
+	margin-top: 3rem;
+	margin-left: -2.92rem;
+	width: 13.34rem;
+	height: 7.5rem;
+	transform:rotate(90deg);
+	-ms-transform:rotate(90deg); 	/* IE 9 */
+	-moz-transform:rotate(90deg); 	/* Firefox */
+	-webkit-transform:rotate(90deg); /* Safari 和 Chrome */
+	-o-transform:rotate(90deg); 	/* Opera */
+}
+.map-details .details-img img{
+	width: 100%;
+	height: 100%;
+}
+.map-details .details-list{
+	padding: 0 .34rem 0 .04rem;
+}
+.map-details .details-list li{
+	margin-bottom: .4rem;
+}
+.map-details .details-list i{
+	display: block;
+	float: left;
+	width: .32rem;
+	height: .46rem;
+}
+.map-details .details-list h2{
+	padding-left: .44rem;
+	margin-bottom: .18rem;
+	line-height: 1.5;
+	font-size: .28rem;
+	color: #38312C;
+}
+.map-details .details-list p{
+	padding-left: .44rem;
+	line-height: 1.5;
+	font-size: .24rem;
+	color: #56514f;
+}
+/*弹框样式*/
+.imgzoom_pack{
+	width:100%;
+	height:100%;
+	position:fixed;
+	left:0;
+	top:0;
+	background:rgba(0,0,0,.7);
+	display:none;
+}
+.imgzoom_pack .details-img{
+	width:100%;
+	height:100%;
+	position:absolute;
+	left:0;
+	top:0;
+	overflow:hidden;
+}
+.imgzoom_pack .details-img img{
+	width:100%;
+	position:absolute;
+	top:50%;
+}

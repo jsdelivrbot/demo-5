@@ -1,0 +1,174 @@
+
+
+/*--header--*/
+.header {
+  max-width: 1200px;
+  /*margin: 22px 357px;*/
+  height: 88px;
+  margin: 0 auto;
+}
+.headerLogo {
+  display: inline-block;
+  height: 100%;
+}
+.headerLogo>img{
+  margin-top: 21px;
+}
+
+/*--banner--*/
+.banner {
+  /*width: 100%;*/
+  position: relative;
+  height: calc(100vh - 202px);
+  width: 100%;
+  overflow: hidden;
+  background: url(../imgs/login/log-in-6.png) no-repeat center 0;
+  background-size: cover;
+}
+
+/**登陆框**/
+.login-aside {
+  position: absolute;
+  width: 372px;
+  height: 416px;
+  z-index: 1;
+  border-radius: 5px;
+  /*right: 20%;*/
+  top: 92px;
+  margin-left: calc(50% + 230px);
+}
+
+/**错误提示框**/
+.error-box {
+  color: #f7ccc8;
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+
+/**登陆文字**/
+.fm-item span {
+  display: block;
+  line-height: 12px;
+  text-align: left;
+  font-size: 14px;
+  color: #555;
+  font-weight: bold;
+  /*text-shadow:1px 1px 1px #4e6877;*/
+  /*-o-text-shadow:1px 1px 1px #4e6877;
+    -o-moz-shadow:1px 1px 1px #4e6877;
+    -o-mis-shadow:1px 1px 1px #4e6877;
+    -o-webkit-shadow:1px 1px 1px #4e6877;*/
+  margin-top: 16px;
+  margin-bottom: 16px;
+  cursor: default;
+}
+
+/**登陆背景层**/
+#o-box-up {
+  border-radius: 5px;
+  background-color: #fff;
+  filter: alpha(opacity:80);
+  opacity: 0.88;
+}
+#o-box-down {
+  padding: 40px 28px;
+}
+#o-box-up, #o-box-down {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+/**输入框**/
+.i-text {
+  width: 100%;
+  height: 51px;
+  line-height: 54px;
+  border: 1px solid #dedede;
+  background: #fff;
+  color: #333;
+  font-size: 14px;
+  text-indent: 49px;
+  /*box-shadow:1px 1px 1px #dfe4e8 inset;
+  -moz-box-shadow:1px 1px 1px #dfe4e8 inset;
+  -webkit-box-shadow:1px 1px 1px #dfe4e8 inset;
+  -o-box-shadow:1px 1px 1px #dfe4e8 inset;
+  -mis-box-shadow:1px 1px 1px #dfe4e8 inset;*/
+}
+.i-text:focus{
+  border-color: #4791ea;
+}
+
+/*用户名和密码的头像*/
+#user,#password{
+  position: relative;
+}
+#user>i,#password>i{
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  bottom: 15px;
+  left: 9px;
+  background: url(../imgs/login/login.png) no-repeat;
+}
+#user>i{
+  background-position: -10px -6px;
+}
+#password>i{
+  background-position: -52px -7px;
+}
+
+/**输入按钮**/
+.btn-login {
+  width: 100%;
+  height: 54px;
+  line-height: 54px;
+  border: none;
+  margin-top: 22px;
+  margin-bottom: 10px;
+  padding: 0;
+  background: #4A91EA;
+  color: #fff;
+  font-size: 17px;
+}
+.rememberMeP {
+  color: #999;
+}
+.rememberMeP span,.rememberMeP a{
+  font-size: 12px;
+  vertical-align: top;
+  cursor: pointer;
+}
+.rememberMeP .fl{
+  cursor: pointer;
+}
+.h-light {
+  border: 1px solid #80acd9;
+  background: #fff;
+  color: #9cb5cd;
+  font-size: 14px;
+  text-indent: 12px;
+  border-color: #0787be;
+  box-shadow: 0 1px 4px rgba(11, 122, 179, 0.65) inset, 0 0 14px rgba(11, 122, 179, 0.45);
+}
+.rememberMeText{
+  vertical-align:inherit;
+}
+
+/*--footer--*/
+.footer {
+  height: 113px;
+  line-height: 113px;
+  text-align: center;
+  font-size: 12px;
+  color: #999999;
+}
+
+@media screen and (max-width: 1200px) {
+    .login-aside {
+    margin-left: calc(100% - 370px);
+  }
+}

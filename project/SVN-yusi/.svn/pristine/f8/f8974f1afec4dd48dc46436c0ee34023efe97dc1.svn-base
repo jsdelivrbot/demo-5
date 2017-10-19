@@ -1,0 +1,125 @@
+#wrap {
+    width: 100%;
+    height: calc(100vh - 105px);
+    min-width:1200px;
+    margin-top: 9px;
+    padding: 0 42px 40px;
+    background-color: white;
+}
+.wrap-title {
+    padding: 22px 0;
+    text-align: center;
+    position: relative;
+}
+.wrap-title-third {
+    display: inline-block;
+}
+.wrap-title-forth{
+    position:absolute;
+    top:36px;
+    right:0;
+}
+.wrap-content{
+    font-size: 14px;
+}
+
+.prevButton, .nextButton {
+    display: inline-block;
+    vertical-align: middle;
+    width: 10px;
+    height: 10px;
+    background: url(../imgs/common/common.png) no-repeat;
+    margin: 0 0 2px 0;
+    background-clip: content-box;
+    box-sizing: content-box;
+    padding: 15px 15px;
+}
+
+.prevButton {
+    margin-right: -8px;
+    background-position: -98px -126px;
+}
+.nextButton {
+    background-position: -119px -126px;
+}
+.prevButton.active {
+    background-position: -64px -126px;
+    cursor: pointer;
+}
+.nextButton.active {
+    background-position: -81px -126px;
+    cursor: pointer;
+}
+.timePicker {
+    width: 121px;
+    height: 38px;
+    text-align: center;
+    text-indent: 5px;
+    font-size:16px;
+    font-weight:bold;
+    color:#4991EA;
+    border:none;
+    outline: none;
+    cursor: pointer;
+}
+
+
+.circle{
+	display:inline-block;
+	border-radius: 50%;
+	width:8px;
+	height:8px;
+}
+/*测站状态图标:正常 异常*/
+.circle.normal{
+	background:#01CF62;
+}
+.circle.abnormal{
+	background:#FEDD01;
+}
+/*.circle.bad{
+	background:#E7211B;
+}*/
+
+
+
+
+/*限制grid高度*/
+.ui-jqgrid-bdiv{
+    max-height: calc(100vh - 300px) !important;
+}
+/*解决grid高度错乱问题*/
+div.frozen-bdiv{
+    /*height: auto !important;*/
+}
+/*文字过多添加省略号*/
+.ui-jqgrid-btable tr.jqgrow td:nth-child(1){
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow : ellipsis;
+    /*font-weight: bolder;*/
+    text-align: left !important;
+}
+/*设置grid滚动条*/
+.ui-jqgrid-bdiv::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+    border-radius: 10px;
+    background-color: rgba(0,0,0,0.1);
+    box-shadow: inset 1px 0 1px rgba(0,0,0,0.1);
+}
+
+.ui-jqgrid-bdiv::-webkit-scrollbar-thumb{
+    background-color: #ced5e3;
+    border-radius: 10px;
+}
+.ui-jqgrid-bdiv::-webkit-scrollbar-thumb:hover{
+    /*background-color: rgba(0,0,0,.6);*/
+}
+
+
+@media only screen and (max-width:1400px){
+    .ui-jqgrid-bdiv{
+        max-height: calc(100vh - 269px) !important;
+    }
+}

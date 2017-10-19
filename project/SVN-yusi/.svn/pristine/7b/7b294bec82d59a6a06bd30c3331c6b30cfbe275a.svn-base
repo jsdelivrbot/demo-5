@@ -1,0 +1,109 @@
+package mybatisPro.mybatisService;
+
+import java.util.List;
+import java.util.Map;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
+
+import ekuter.mvc.constants.Constants;
+import ekuter.mvc.exception.BusinessException;
+import mybatisPro.dataBase.SqlSessionHander;
+import mybatisPro.myBatisDao.DataSupplementMapper;
+import mybatisPro.mybatisService.impl.DataSupplementService;
+
+/**
+ * 自动站数据增补业务层实现
+ * @author si.yu
+ * @date 2017/09/01
+ * @version 1.0
+ * */
+@Service
+public class DataSupplementServiceImpl implements DataSupplementService{
+	
+	private static final Logger logger=LoggerFactory.getLogger(DataSupplementServiceImpl.class); 
+
+	/**
+	 * 查询雨量测站数据
+	 * @param sta_id
+	 * @param begin_time
+	 * @param end_time
+	 * @return
+	 * */
+	@Override
+	public List<Map<String, Object>> getRainfallStationData(Long sta_id, String begin_time, String end_time) {
+		try {
+			return SqlSessionHander.SqlExecute(sqlsession->{
+				DataSupplementMapper supplementMapper = sqlsession.getMapper(DataSupplementMapper.class);
+				List<Map<String,Object>> rainfallStationData = 
+						supplementMapper.getRainfallStationData(sta_id, begin_time, end_time);
+				
+				if(null != rainfallStationData){
+					return rainfallStationData;
+				}else{
+					logger.info(Constants.EXCEPTION_MAP.get("EX_RAIN_DATA"));
+					throw new BusinessException(Constants.EXCEPTION_MAP.get("EX_RAIN_DATA"));
+				}
+			});
+		} catch (Exception e) {
+			logger.info(e.getMessage());
+			throw new BusinessException(Constants.EXCEPTION_MAP.get("EX_RAIN_DATA"));
+		}
+	}
+
+	/**
+	 * 查询水库水位站测站数据
+	 * @param sta_id
+	 * @param begin_time
+	 * @param end_time
+	 * @return
+	 * */
+	@Override
+	public List<Map<String, Object>> getResvoirStationData(Long sta_id, String begin_time, String end_time) {
+		try {
+			return SqlSessionHander.SqlExecute(sqlsession->{
+				DataSupplementMapper supplementMapper = sqlsession.getMapper(DataSupplementMapper.class);
+				List<Map<String,Object>> reserviorStationData = 
+						supplementMapper.getResvoirStationData(sta_id, begin_time, end_time);
+				if(null != reserviorStationData){
+					return reserviorStationData;
+				}else{
+					logger.info(Constants.EXCEPTION_MAP.get("EX_RESERVOIR_DATA"));
+					throw new BusinessException(Constants.EXCEPTION_MAP.get("EX_RESERVOIR_DATA"));
+				}
+			});
+		} catch (Exception e) {
+			logger.info(e.getMessage());
+			throw new BusinessException(Constants.EXCEPTION_MAP.get("EX_RESERVOIR_DATA"));
+		}
+	}
+
+	/**
+	 * 查询河道水位站测站数据
+	 * @param sta_id
+	 * @param begin_time
+	 * @param end_time
+	 * @return
+	 * */
+	@Override
+	public List<Map<String, Object>> getRiverStationData(Long sta_id, String begin_time, String end_time) {
+		try {
+			return SqlSessionHander.SqlExecute(sqlsession->{
+				DataSupplementMapper supplementMapper = sqlsession.getMapper(DataSupplementMapper.class);
+				List<Map<String,Object>> riverStationData = 
+						supplementMapper.getRiverStationData(sta_id, begin_time, end_time);
+				if(null != riverStationData){
+					return riverStationData;
+				}else{
+					logger.info(Constants.EXCEPTION_MAP.get("EX_RIVER_DATA"));
+					throw new BusinessException(Constants.EXCEPTION_MAP.get("EX_RIVER_DATA"));
+				}
+			});
+		} catch (Exception e) {
+			logger.info(e.getMessage());
+			throw new BusinessException(Constants.EXCEPTION_MAP.get("EX_RIVER_DATA"));
+		}
+	}
+
+}

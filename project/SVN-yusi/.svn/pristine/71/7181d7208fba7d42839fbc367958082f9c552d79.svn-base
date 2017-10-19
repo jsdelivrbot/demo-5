@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>雨量统计</title>
+    <link rel="stylesheet" type="text/css" href="/pro_css/common/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/pro_css/common/ui.jqgrid-bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/pro_css/common/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" type="text/css" href="/pro_css/common/common.css">
+    <link rel="stylesheet" type="text/css" href="/pro_css/header.css">
+    <link rel="stylesheet" type="text/css" href="/pro_css/popup.css">
+    <link rel="stylesheet" type="text/css" href="/pro_css/rainfallStatistical.css">
+</head>
+<body>
+    <!--头部-->
+    <div id="header">
+        <div class="header-top">
+          <div class="header-top-content">
+            <div class="header-top-content-left">
+              <img src="../imgs/common/logo.png" alt="">
+            </div>
+            <div class="header-top-content-right">
+              <span>94476455@qq.com</span>&nbsp;|&nbsp;<a href = "/logout">退出</a>
+            </div>
+          </div>
+        </div>
+        <div class="header-bottom">
+          <ul>
+            <li class="header-bottom-item header-bottom-item1"><span>实时信息查询</span></li>
+            <li class="header-bottom-item header-bottom-item2 active"><span>雨量统计</span></li>
+            <li class="header-bottom-item header-bottom-item3"><span>水位统计</span></li>
+            <li class="header-bottom-item header-bottom-item4"><span>测站状态</span></li>
+            <li class="header-bottom-item header-bottom-item5"><span>人工报讯</span></li>
+            <li class="header-bottom-item header-bottom-item6"><span>数据管理</span></li>
+          </ul>
+        </div>
+    </div>
+    <!-- 内容 -->
+    <div id="wrap">
+        <div class="wrap-title clearfix">
+            <div class="wrap-title-first">
+                <button type="button" name="button" class="active" id="days">日统计</button>
+                <button type="button" name="button" id="months">月统计</button>
+                <button type="button" name="button" id="years">年统计</button>
+            </div>
+            <div class="wrap-title-second hide">
+                <button type="button" name="button">人工站</button>
+                <button type="button" name="button" class="active">自动站</button>
+            </div>
+            <div class="wrap-title-third">
+                <!--日期控件-->
+                <div class="pickerBox">
+                    <i class="prevButton active mr20"></i>
+                    <input type="text" id="daysPicker" class="timePicker timePicker1" readonly="readonly">
+                    <input type="text" id="monthsPicker" class="timePicker timePicker2 hide" readonly="readonly">
+                    <input type="text" id="yearsPicker" class="timePicker timePicker3 hide" readonly="readonly">
+                    <i class="nextButton ml20"></i>
+                </div>
+            </div>
+            <div class="wrap-title-forth">
+                <button type="button" name="button" data-table="#rainfallTable">导出</button>
+            </div>
+        </div>
+        <div class="wrap-content">
+            <table id="rainfallTable"></table>
+        </div>
+    </div>
+
+
+    <!-- 500错误提示框 -->
+    <div class="modal fade" id="errorBtn" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" class="closeImg fr">
+      <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true" class=" closeImg fr">&times;</span><span class="sr-only">Close</span></button>
+              </div>
+              <div class="modal-body">
+                  <p class="modal-body-row"><span class="question-info" id="errorInfo"></span></p>
+              </div>
+              <div class="modal-footer">
+                  <!-- <button type="button" class="btn btn-delete">删除</button> -->
+                  <button type="button" class="btn btn-cancel" data-dismiss="modal">确定</button>
+              </div>
+          </div>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="/pro_js/publicJs/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="/pro_js/publicJs/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/pro_js/publicJs/bootstrap-datetimepicker.js"></script>
+    <script type="text/javascript" src="/pro_js/publicJs/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script type="text/javascript" src="/pro_js/publicJs/jquery.jqGrid.js"></script>
+    <script type="text/javascript" src="/pro_js/publicJs/grid.locale-cn.js"></script>
+    <script type="text/javascript" src="/pro_js/publicJs/jszip.min.js"></script>
+    <script type="text/javascript" src="/pro_js/publicJs/transparency.min.js"></script>
+
+    <script type="text/javascript" src="/pro_js/publicJs/common.js"></script>
+    <script type="text/javascript" src="/pro_js/ajaxRequestUrls.js"></script>
+    <script type="text/javascript" src="/pro_js/header.js"></script>
+    <script type="text/javascript" src="/pro_js/rainfallStatistical.js"></script>
+    <script type="text/javascript">
+
+      //选择年月日
+      $("#daysPicker").datetimepicker({
+        bootcssVer:3,
+        language:  'zh-CN',
+        autoclose: true,
+        clearBtn:true,
+        pickerPosition: "bottom-left",
+        startView: 2,
+        minView: 2,
+        format: 'yyyy-mm-dd',
+        endDate:new Date()
+      });
+      //选择年月
+      $("#monthsPicker").datetimepicker({
+        bootcssVer:3,
+        language:  'zh-CN',
+        autoclose: true,
+        clearBtn:true,
+        pickerPosition: "bottom-left",
+        startView: 3,
+        minView: 3,
+        format: 'yyyy-mm',
+        endDate:new Date()
+      });
+
+      //选择年
+      $("#yearsPicker").datetimepicker({
+        bootcssVer:3,
+        language:  'zh-CN',
+        autoclose: true,
+        clearBtn:true,
+        pickerPosition: "bottom-left",
+        startView: 4,
+        minView: 4,
+        format: 'yyyy',
+        endDate:new Date()
+      });
+
+        // $.jgrid.defaults.width = 780;
+        $.jgrid.defaults.responsive = false;
+        $.jgrid.defaults.styleUI = 'Bootstrap';
+
+        var arr1 = [
+            {stationCode: "1", stationName: "名字1", addAll: "数量", time1: 6.5, time2: 12.1,time3: 3.7,time4: 16.5,time5: 5.4,time6: 26.1,time7: 7.3,time8: 4.7,time9: 21.0, time10: 7.7,time11: 2.7,time12: 14.4,time13: 8.3,time14: 19.9,time15: 9.1,time16: 13.2,time17: 4.5,time18: 5.6,time19: 16.9,time20: 3.1,time21: 0.1,time22: 2.0,time23: 0.5,time24: 0.0},
+            {stationCode: "2", stationName: "名字2", addAll: "数量", time1: 6.5, time2: 12.1,time3: 3.7,time4: 16.5,time5: 5.4,time6: 26.1,time7: 7.3,time8: 4.7,time9: 21.0, time10: 7.7,time11: 2.7,time12: 14.4,time13: 8.3,time14: 19.9,time15: 9.1,time16: 13.2,time17: 4.5,time18: 5.6,time19: 16.9,time20: 3.1,time21: 0.1,time22: 2.0,time23: 0.5,time24: 0.0},
+            {stationCode: "3", stationName: "某某某", addAll: "数量", time1: 6.5,time2: 12.1,time3: 3.7,time4: 16.5,time5: 5.4,time6: 26.1,time7: 7.3,time8: 4.7,time9: 21.0, time10: 7.7,time11: 2.7,time12: 14.4,time13: 8.3,time14: 19.9,time15: 9.1,time16: 13.2,time17: 4.5,time18: 5.6,time19: 16.9,time20: 3.1,time21: 0.1,time22: 2.0,time23: 0.5,time24: 0.0},
+            {stationCode: "4", stationName: "就我字多就我字多", addAll: "数量", time1: 6.5, time2: 12.1,time3: 3.7,time4: 16.5,time5: 5.4,time6: 26.1,time7: 7.3,time8: 4.7,time9: 21.0, time10: 7.7,time11: 2.7,time12: 14.4,time13: 8.3,time14: 19.9,time15: 9.1,time16: 13.2,time17: 4.5,time18: 5.6,time19: 16.9,time20: 3.1,time21: 0.1,time22: 2.0,time23: 0.5,time24: 0.0},
+            {stationCode: "5", stationName: "某某某", addAll: "数量", time1: 6.5, time2: 12.1,time3: 3.7,time4: 16.5,time5: 5.4,time6: 26.1,time7: 7.3,time8: 4.7,time9: 21.0, time10: 7.7,time11: 2.7,time12: 14.4,time13: 8.3,time14: 19.9,time15: 9.1,time16: 13.2,time17: 4.5,time18: 5.6,time19: 16.9,time20: 3.1,time21: 0.1,time22: 2.0,time23: 0.5,time24: 0.0},
+            {stationCode: "6", stationName: "某某某", addAll: "数量", time1: 6.5, time2: 12.1,time3: 3.7,time4: 16.5,time5: 5.4,time6: 26.1,time7: 7.3,time8: 4.7,time9: 21.0, time10: 7.7,time11: 2.7,time12: 14.4,time13: 8.3,time14: 19.9,time15: 9.1,time16: 13.2,time17: 4.5,time18: 5.6,time19: 16.9,time20: 3.1,time21: 0.1,time22: 2.0,time23: 0.5,time24: 0.0},
+            {stationCode: "7", stationName: "某某某", addAll: "数量", time1: 6.5, time2: 12.1,time3: 3.7,time4: 16.5,time5: 5.4,time6: 26.1,time7: 7.3,time8: 4.7,time9: 21.0, time10: 7.7,time11: 2.7,time12: 14.4,time13: 8.3,time14: 19.9,time15: 9.1,time16: 13.2,time17: 4.5,time18: 5.6,time19: 16.9,time20: 3.1,time21: 0.1,time22: 2.0,time23: 0.5,time24: 0.0},
+            {stationCode: "8", stationName: "某某某", addAll: "数量", time1: 6.5, time2: 12.1,time3: 3.7,time4: 16.5,time5: 5.4,time6: 26.1,time7: 7.3,time8: 4.7,time9: 21.0, time10: 7.7,time11: 2.7,time12: 14.4,time13: 8.3,time14: 19.9,time15: 9.1,time16: 13.2,time17: 4.5,time18: 5.6,time19: 16.9,time20: 3.1,time21: 0.1,time22: 2.0,time23: 0.5,time24: 0.0},
+            {stationCode: "9", stationName: "某某某", addAll: "数量", time1: 6.5, time2: 12.1,time3: 3.7,time4: 16.5,time5: 5.4,time6: 26.1,time7: 7.3,time8: 4.7,time9: 21.0, time10: 7.7,time11: 2.7,time12: 14.4,time13: 8.3,time14: 19.9,time15: 9.1,time16: 13.2,time17: 4.5,time18: 5.6,time19: 16.9,time20: 3.1,time21: 0.1,time22: 2.0,time23: 0.5,time24: 0.0},
+            {stationCode: "10", stationName: "某某某", addAll: "数量", time1: 6.5, time2: 12.1,time3: 3.7,time4: 16.5,time5: 5.4,time6: 26.1,time7: 7.3,time8: 4.7,time9: 21.0, time10: 7.7,time11: 2.7,time12: 14.4,time13: 8.3,time14: 19.9,time15: 9.1,time16: 13.2,time17: 4.5,time18: 5.6,time19: 16.9,time20: 3.1,time21: 0.1,time22: 2.0,time23: 0.5,time24: 0.0},
+            {stationCode: "11", stationName: "某某某", addAll: "数量", time1: 6.5, time2: 12.1,time3: 3.7,time4: 16.5,time5: 5.4,time6: 26.1,time7: 7.3,time8: 4.7,time9: 21.0, time10: 7.7,time11: 2.7,time12: 14.4,time13: 8.3,time14: 19.9,time15: 9.1,time16: 13.2,time17: 4.5,time18: 5.6,time19: 16.9,time20: 3.1,time21: 0.1,time22: 2.0,time23: 0.5,time24: 0.0},
+            {stationCode: "12", stationName: "某某某", addAll: "数量", time1: 6.5, time2: 12.1,time3: 3.7,time4: 16.5,time5: 5.4,time6: 26.1,time7: 7.3,time8: 4.7,time9: 21.0, time10: 7.7,time11: 2.7,time12: 14.4,time13: 8.3,time14: 19.9,time15: 9.1,time16: 13.2,time17: 4.5,time18: 5.6,time19: 16.9,time20: 3.1,time21: 0.1,time22: 2.0,time23: 0.5,time24: 0.0},
+        ];
+        $(function(){
+            $("#rainfallTable").jqGrid({
+                // url: "jsonp.json",
+                // mtype: 'get',
+                datatype: 'local',
+                data: arr1,
+                // colNames: ["first","second",'third',"forth"],
+                colModel: [
+                    {label: '测站编码',name: 'stationCode',align:'center',sortable: false},
+                    {label: '测站名称',name: 'stationName',align:'center',width:260,sortable:false},
+                    {label: '合计',name: 'addAll',align:'center',sortable:false},
+                    {label: '8:00',name: 'time1',align:'center',sortable:false},
+                    {label: '9:00',name: 'time2',align:'center',sortable:false},
+                    {label: '10:00',name: 'time3',align:'center',sortable:false},
+                    {label: '12:00',name: 'time4',align:'center',sortable:false},
+                    {label: '11:00',name: 'time5',align:'center',sortable:false},
+                    {label: '13:00',name: 'time6',align:'center',sortable:false},
+                    {label: '14:00',name: 'time7',align:'center',sortable:false},
+                    {label: '15:00',name: 'time8',align:'center',sortable:false},
+                    {label: '16:00',name: 'time9',align:'center',sortable:false},
+                    {label: '17:00',name: 'time10',align:'center',sortable:false},
+                    {label: '18:00',name: 'time11',align:'center',sortable:false},
+                    {label: '19:00',name: 'time12',align:'center',sortable:false},
+                    {label: '20:00',name: 'time13',align:'center',sortable:false},
+                    {label: '21:00',name: 'time14',align:'center',sortable:false},
+                    {label: '22:00',name: 'time15',align:'center',sortable:false},
+                    {label: '23:00',name: 'time16',align:'center',sortable:false},
+                    {label: '00:00',name: 'time17',align:'center',sortable:false},
+                    {label: '01:00',name: 'time18',align:'center',sortable:false},
+                    {label: '02:00',name: 'time19',align:'center',sortable:false},
+                    {label: '03:00',name: 'time20',align:'center',sortable:false},
+                    {label: '04:00',name: 'time21',align:'center',sortable:false},
+                    {label: '05:00',name: 'time22',align:'center',sortable:false},
+                    {label: '06:00',name: 'time23',align:'center',sortable:false},
+                    {label: '07:00',name: 'time24',align:'center',sortable:false}
+                ],
+                autowidth: true,  //自适应宽度
+                shrinkToFit: true,
+                height: 'auto',
+                viewrecords: true,
+                altclass: '$(".grid1Line")',
+                emptyrecords: '空',
+                altRows:true,
+                altclass: "altclassitem1",
+            });
+        });
+
+    </script>
+</body>
+</html>

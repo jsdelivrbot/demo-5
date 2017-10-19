@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>头部</title>
+    <link rel="stylesheet" href="../pro_css/header.css">
+  </head>
+  <body>
+    <div id="header">
+      <div class="header-top">
+        <div class="header-top-content">
+          <div class="header-top-content-left">
+            <i></i>
+            <span>kuter</span>
+            <span>库特科技</span>
+          </div>
+          <div class="header-top-content-right">
+            <span>94476455@qq.com</span>&nbsp;|&nbsp;<span>退出</span>
+          </div>
+        </div>
+      </div>
+      <div class="header-bottom">
+        <ul>
+          <li><span>实时信息查询</span></li>
+          <li><span>雨量统计</span></li>
+          <li><span>水位统计</span></li>
+          <li><span>测站状态</span></li>
+          <li><span>人工上报</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <script src="../pro_js/header.js"></script>
+  </body>
+</html>

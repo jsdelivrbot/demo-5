@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>地图详情</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="../css/common.css" />
+		<link rel="stylesheet" type="text/css" href="../css/map.css"/>
+		<style>
+			img {
+			    height: initial;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="map-details">
+			<h1 class="f32 color-fe741a">九华山庄16区一层</h1>
+			<div class="details-img list floor-one">
+				<img src="../images/my_guidebook_map_image_1.png"/>
+			</div>
+			<div class="details-img list floor-two">
+				<div class="match-one"><!--主体赛-->
+					<img src="../images/my_guidebook_map_image_main_1.png"/>
+				</div>
+				<div class="match-two"><!--戏剧赛-->
+					<img src="../images/my_guidebook_map_image_theatre_2.png"/>
+				</div>
+				<div class="match-three"><!--歌曲赛-->
+					<img src="../images/my_guidebook_map_image_song_2.png"/>
+				</div>
+				<div class="match-four"><!--幼儿组-->
+					<img src="../images/my_guidebook_map_image_baby_2.png"/>
+				</div>
+			</div>
+			<div class="details-img list floor-three">
+				<img src="../images/my_guidebook_map_image_theatre_3.png"/>
+			</div>
+		</div>
+		<section class="imgzoom_pack">
+    		<div class="details-img"><img src="" /></div>
+    	</section>
+		<script src="../js/jquery-1.11.3.min.js"></script>
+		<script src="../js/common.js"></script>
+		<script src="../js/scale.js"></script>
+		<script type="text/javascript">
+			function GetQueryString(name) {
+				var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+				var r = window.location.search.substr(1).match(reg);
+				if(r != null) return unescape(r[2]);
+				return null;
+			}
+			var id = GetQueryString("id");
+			showMatchMap(id);
+			function showMatchMap(id){
+				if(id == 3){
+					$('.floor-three').show().siblings(".list").hide();
+					$('h1').text("九华山庄16区会议楼三层平面图");
+				}else if(id == 2){
+					var matchId = GetQueryString("matchId");
+					console.log(matchId);
+					$('.floor-two').show().siblings(".list").hide();
+					if(matchId == 4){
+						$('.match-four').show().siblings().hide();
+					}else if(matchId == 3){
+						$('.match-three').show().siblings().hide();
+					}else if(matchId == 2){
+						$('.match-two').show().siblings().hide();
+					}else{
+						$('.match-one').show().siblings().hide();
+					}
+					$('h1').text("九华山庄16区会议楼二层平面图");
+				}else{
+					$('.floor-one').show().siblings(".list").hide();
+					$('h1').text("九华山庄16区会议楼一层平面图");
+				}
+			}
+		</script>
+	</body>
+
+</html>

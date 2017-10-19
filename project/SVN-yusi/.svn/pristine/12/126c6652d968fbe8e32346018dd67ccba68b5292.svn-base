@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+    <link rel="stylesheet" href="https://openlayers.org/en/v4.2.0/css/ol.css" type="text/css">
+    <!-- The line below is only needed for old environments like Internet Explorer and Android 4.x -->
+    <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=requestAnimationFrame,Element.prototype.classList,URL"></script>
+    <script src="https://openlayers.org/en/v4.2.0/build/ol.js"></script>
+
+    <style>
+        a.skiplink {
+            position: absolute;
+            clip: rect(1px, 1px, 1px, 1px);
+            padding: 0;
+            border: 0;
+            height: 1px;
+            width: 1px;
+            overflow: hidden;
+        }
+        a.skiplink:focus {
+            clip: auto;
+            height: auto;
+            width: auto;
+            background-color: #fff;
+            padding: 0.3em;
+        }
+        #map:focus {
+            outline: #4A74A8 solid 0.15em;
+        }
+    </style>
+</head>
+<body>
+<a class="skiplink" href="#map">Go to map</a>
+<div id="map" class="map" tabindex="0"></div>
+<button id="zoom-out">Zoom out</button>
+<button id="zoom-in">Zoom in</button>
+<a href = "/logout">退出</a>
+
+
+<script type="text/javascript" src="pro_js/publicJs/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="pro_js/publicJs/bootstrap.min.js"></script>
+<script type="text/javascript" src="pro_js/publicJs/jquery.form.js"></script>
+<script type="text/javascript" src="pro_js/proIndex.js"></script>
+</body>
+</html>

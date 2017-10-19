@@ -1,0 +1,271 @@
+body {
+	
+}
+.s-skin-container {
+				background-image:url(../../images/train_bg_2.png);
+				position: fixed;
+				_position: absolute;
+				top: 0;
+				left: 0;
+				height: 100%;
+				width: 100%;
+				min-width: 1000px;
+				z-index: -10;
+				background-position: center 0;
+				background-repeat: no-repeat;
+				background-size: cover;
+				-webkit-background-size: cover;
+				-o-background-size: cover;
+				zoom: 1;
+			}
+
+@media (min-width: 768px) {
+	.col-sm-4 {
+		max-width: 260px;
+	}
+	.col-sm-offset-4 {
+		margin-left: 260px;
+	}
+}
+.container {
+	padding-top: 8%;
+	padding-bottom: 3%;
+	max-width: 900px;
+	margin: 0 auto;
+}
+
+.title {
+	margin-bottom: 42px;
+	font-size: 40px;
+	color: #ffffff;
+	font-weight: bold;
+	text-align: center;
+}
+
+.step1,
+.step2,
+.step3 {
+	margin: 0 auto;
+	padding-top: 60px;
+	width: 100%;
+}
+
+.mainWrapper {
+	position: relative;
+	margin: 0 auto;
+	width: 100%;
+	height: 492px;
+	background: #f9f9f9;
+}
+.btn-primary {
+	position: absolute;
+	left: 50%;
+	margin-left: -150px;
+	bottom: 50px;
+	width: 300px;
+}
+a,a:hover, a:focus{
+	color: #d71424;
+}
+
+/*进度条*/
+
+.stepBarWrapper {
+	width: 100%;
+	height: 90px;
+	padding: 0 100px;
+	background: #f9f9f9;
+	margin-bottom: 20px;
+}
+
+.stepBar {
+	position: relative;
+	top: 24px;
+	width: 100%;
+	height: 50px;
+}
+
+.ui-stepBar {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	width: 100%;
+	height: 4px;
+	background: #4790fb;
+}
+
+.ui-stepProcess {
+	position: relative;
+	height: 50px;
+	padding: 10px 0;
+}
+
+.ui-stepProcess li {
+	display: inline-block;
+	width: 49%;
+	text-align: center;
+	color: #aeb9cd;
+}
+
+.ui-stepProcess li span {
+	display: inline-block;
+	width: 30px;
+	height: 30px;
+	line-height: 30px;
+	border-radius: 50%;
+	background: #aeb9cd;
+	color: #ffffff;
+	text-align: center;
+}
+
+.ui-stepProcess .ui-active {
+	transition: all 1s;
+	color: #0F0F0F;
+}
+
+.ui-stepProcess .ui-active span {
+	background: #4790fb;
+}
+
+
+/*1基本信息*/
+
+.checkbox label {
+	padding-left: 0;
+}
+
+.form-group {
+	margin-bottom: 20px;
+}
+
+.form-control {
+	display: inline-block;
+	padding-right: 40px;
+	width: 400px;
+	height: 40px;
+}
+
+.fillIn {
+	position: relative;
+	display: inline-block;
+	max-width: 400px;
+}
+
+.icon-password {
+	right: 10px;
+}
+
+.code {
+	width: 100px;
+	height: 30px;
+	vertical-align: middle;
+}
+
+.form-horizontal .help-block{
+	margin-top: 0;
+	margin-bottom: 10px;
+}
+.agreement {
+	color: #929DAC;
+}
+
+.agreement a {
+	text-decoration: underline;
+	color: #354252;
+}
+
+#verification {
+	width: 180px;
+}
+
+.errorTip {
+	vertical-align: middle;
+}
+
+
+/*验证错误提示*/
+
+.icon_error {
+	display: inline-block;
+	width: 14px;
+	height: 14px;
+	background: url(../../images/train_icon_error.png);
+}
+
+.Ischecked{
+	display: inline-block;
+	width: 12px;
+	height: 12px;
+	margin-right: 4px;
+	background: url(../../images/train_butten_remember_defaule.png) no-repeat;
+}
+
+.Ischecked.selected {
+	background: url(../../images/train_butten_remember_pressed.png) no-repeat;
+}
+
+
+/*2激活邮箱*/
+
+.step2 {
+	display: none;
+	padding-left: 140px;
+	padding-right: 140px;
+	color: #354252;
+	font-size: 14px;
+}
+
+.step2 h3 {
+	font-size: 22px;
+	color: #384454;
+	font-weight: bold;
+}
+
+.instructions {
+	margin: 58px 0 38px;
+}
+
+.help {
+	margin-bottom: 20px;
+}
+
+.step2 li {
+	margin-bottom: 10px;
+}
+
+.step2 a {
+	font-weight: 600;
+}
+
+#registered,
+#loginEmail {
+	color: #fcfafa;
+}
+
+#loginEmail {
+	margin-top: 80px;
+}
+
+
+/*3完成注册*/
+
+.step3 {
+	display: none;
+	margin: 0 auto;
+	padding: 24% 0;
+	width: 40%;
+	font-size: 22px;
+}
+
+.step3 div {
+	margin-top: 10px;
+}
+
+.step3 img {
+	margin-right: 10px;
+}
+
+.step3 .jump {
+	margin-top: 14px;
+	font-size: 14px;
+}

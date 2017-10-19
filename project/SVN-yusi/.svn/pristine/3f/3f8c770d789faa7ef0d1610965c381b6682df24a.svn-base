@@ -1,0 +1,196 @@
+//近7天的水位,流量折线图
+//
+var saveChartData = {};
+
+function lienChart() {
+    var myChart = echarts.init(document.getElementById("echartContent"));
+    option = {
+        color:['#FF5581','#2DC0E9'],
+        // title: { //标题组件
+
+        //     text: "近7天的水位,流量折线图",
+        //     x: 'center',
+        //     y: 'top',
+        //     textStyle: { //标题样式
+        //         fontSize: 14, //字体大小
+        //         fontFamily: 'Arial', //字体系列
+        //         fontWeight: 'normal' //粗细，可选为：'normal' | 'bold' | 'bolder' | 'lighter' | 100 | 200 |...
+        //     },
+        //     subtextStyle: { //副标题样式
+        //         fontSize: 18,
+        //         fontFamily: 'Arial',
+        //         color: "#1a4eb0"
+        //     },
+        //     align: 'center'
+        // },
+        grid: {
+            bottom: 80
+        },
+
+        tooltip: { //提示框，鼠标悬浮交互时的信息提示
+            trigger: 'axis'
+        },
+        //右上角工具条
+        // toolbox: {
+        //     show: true,
+        //     feature: {
+        //         mark: {
+        //             show: true
+        //         },
+        //         dataView: {
+        //             show: true,
+        //             readOnly: false
+        //         },
+        //         magicType: {
+        //             show: true,
+        //             type: ['line', 'bar']
+        //         },
+        //         restore: {
+        //             show: true
+        //         },
+        //         saveAsImage: {
+        //             show: true
+        //         }
+        //     }
+        // },
+        legend: { //图例组件
+            show:true,
+            orient:'horizontal',
+            data:[
+                {
+                    name:'水位',
+                    textStyle:{
+                        fontSize:12,
+                        // fontWeight:'bolder',
+                        // color:'#cccccc'
+                    },
+                    icon:'stack'
+                },
+                {
+                    name:'流量',
+                    textStyle:{
+                        fontSize:12,
+                        // fontWeight:'bolder',
+                        // color:'#df3434'
+                    },
+                    icon:'stack'
+                }
+             ],  
+            right:70,
+            y:'top'
+        },
+        // grid: {       //直角坐标系内绘图网格
+        //     left: '3%',
+        //     right: '4%',
+        //     bottom: '3%',
+        //     containLabel: true
+        // },
+
+        // toolbox: {     //工具栏
+        //     feature: {
+        //         saveAsImage: {}
+        //     }
+        // },
+        dataZoom: [ //数据区域缩放，仅对直角坐标系适用
+            {
+                show: true,
+                realtime: true, //缩放变化是否实时显示
+                start: 0,
+                end: 100,
+                // orient: 'horizontal', //布局方式，可选为：'horizontal' ,'vertical'
+                //x: 0,//水平安放位置，默认为根据grid参数适配px
+                //y : 330, //垂直安放
+                //width: 400,//指定宽度
+                //height : 20,//指定高度
+                //backgroundColor : '#cccccc',//  背景颜色
+                //dataBackgroundColor : '#cccccc',//数据缩略背景颜色
+                //fillerColor : '#99ccff',  //选择区域填充颜色
+                //handleColor : '#0099cc', //控制手柄颜色
+            },
+            {
+                type: 'inside',
+                realtime: true,
+                start: 0,
+                end: 100,
+                // orient: 'horizontal', //布局方式，可选为：'horizontal' ,'vertical'
+                //x: 0,//水平安放位置，默认为根据grid参数适配px
+                //y : 330, //垂直安放
+                //width: 400,//指定宽度
+                // height : 20,//指定高度
+                //backgroundColor : '#cccccc',//  背景颜色
+                //dataBackgroundColor : '#cccccc',//数据缩略背景颜色
+                //fillerColor : '#99ccff',  //选择区域填充颜色
+                //handleColor : '#0099cc', //控制手柄颜色
+            }
+        ],
+        xAxis: [ //直角坐标系 grid 中的 x 轴
+            {
+                type: 'category', //类目型
+                boundaryGap: false, //两端空白
+
+                data: saveChartData.xAxisData
+
+            }
+        ],
+        yAxis: [ //直角坐标系 grid 中的 y 轴
+            {
+                name: "水位/m",
+                type: 'value',
+                min:'dataMin',
+                max:'dataMax'
+            },
+            {
+                name: '流量(m^3/s)',
+                nameLocation: 'end',
+                type: 'value',
+                inverse: false
+            }
+        ],
+        series: [ //系列列表
+            {
+                name: '水位',
+                type: 'line',
+                data: saveChartData.waterData,
+                lineStyle: {
+                    normal: {
+                        width: 1
+                    }
+                },
+                // markPoint : {//选中线上点时显示内容
+                //     data : [
+                //         {type : 'max', name: '最大值'},
+                //         {type : 'min', name: '最小值'}
+                //     ]
+                // },
+                // markLine : {//选中线上虚线时显示内容
+                //     data : [
+                //         {type : 'average', name: '平均值'}
+                //     ]
+                // }
+            },
+            {
+                name: '流量',
+                type: 'line',
+                data: saveChartData.storageData,
+                yAxisIndex: 1,
+                lineStyle: {
+                    normal: {
+                        width: 1
+                    }
+                },
+                //             markPoint : {
+                //                 data : [
+                // //                        {name : '周最低', value : -2, xAxis: 1, yAxis: -1.5}
+                //                     {type : 'min', name: '周最低'}
+                //                 ]
+                //             },
+                // markLine : {
+                //     data : [
+                //         {type : 'average', name : '平均值'}
+                //     ]
+                // }
+            }
+        ]
+    };
+    myChart.setOption(option);
+}

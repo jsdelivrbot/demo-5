@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mybatisPro.myBatisDao.AreaMapper">
+	<cache type="mybatisPro.mybatisRedis.MybatisRedisCache" />
+	
+	<!-- 查询区域列表 -->
+	<select id="findListOfArea" resultType="mybatisPro.mybatisEntity.AreaEntity">
+		select * from AREA;
+	</select>
+	
+	<!-- 根据区域名称查询区域信息 -->
+	<select id="findAreaInfoByName" resultType="mybatisPro.mybatisEntity.AreaEntity">
+		select * from AREA where area_name=#{areaName}
+	</select>
+	
+	<!-- 根据ID查询区域详情信息 -->
+	<select id="getAreaInfoDetail" resultType="mybatisPro.mybatisEntity.AreaEntity">
+		select * from AREA where area_id=#{area_id}
+	</select>
+	
+	<!-- 修改区域信息 -->
+	<update id="updateAreaInfo" parameterType="mybatisPro.mybatisEntity.AreaEntity">
+		UPDATE AREA
+		<set>
+			<if test="area_name!=null">
+				area_name=#{area_name},
+			</if>
+			<if test="algorithmType!=null">
+				algorithmType=#{algorithmType},
+			</if>
+			<if test="comment!=null">
+				comment=#{comment},
+			</if>
+			<if test="modify_time!=null">
+				modify_time=#{modify_time}
+			</if>
+			where area_id=#{area_id}
+		</set>
+	</update>
+	
+	<!-- 创建区域 -->
+	<insert id="createArea" parameterType="mybatisPro.mybatisEntity.AreaEntity"
+	keyProperty="area_id" useGeneratedKeys="true">
+		INSERT INTO AREA(
+			area_name,algorithmType,comment
+		)VALUES(
+			#{area_name},#{algorithmType},#{comment}
+		);
+	</insert>
+	
+	<!-- 查询区域对应的测站 -->
+	<select id="findAreaStationsInfo" resultType="map">
+	SELECT
+		AREA.area_id,
+		AREA.area_name,
+		AREA.algorithmType,
+		ST_BS_STBPRP_B.station_name,
+		ST_BS_STBPRP_B.id AS station_id,
+		(SELECT SUM(time_rainfall) 
+			FROM ST_RP_PPTN_R 
+			WHERE ST_RP_PPTN_R.sta_id=ST_BS_STBPRP_B.id 
+			AND ST_RP_PPTN_R.time 
+			BETWEEN #{begin} AND #{end}) 
+			AS rainfall
+		
+	FROM
+		rwdb.ST_BS_STBPRP_B
+	INNER JOIN rwdb.ST_BS_STTYPE_B ON (
+		ST_BS_STBPRP_B.station_type_id = ST_BS_STTYPE_B.sta_type_id
+	)
+	INNER JOIN rwdb.AREA ON (
+		ST_BS_STBPRP_B.area_id = AREA.area_id
+	
+	)
+	WHERE
+		ST_BS_STTYPE_B.sta_type_id = #{typeId} ;
+	</select>
+	
+	<!-- 根据区域ID查询测站信息 -->
+	<select id="getAreaStationsInfoByAreaId" resultType="mybatisPro.mybatisEntity.StationInfoEntityUtil">	
+		SELECT
+			ST_BS_STBPRP_B.id,
+			ST_BS_STBPRP_B.station_name,
+			SUM(ST_RP_PPTN_R.time_rainfall) AS rainfall
+		FROM
+			rwdb.ST_BS_STBPRP_B
+		INNER JOIN rwdb.ST_BS_STTYPE_B ON (
+			ST_BS_STBPRP_B.station_type_id = ST_BS_STTYPE_B.sta_type_id
+		)
+		INNER JOIN rwdb.AREA ON (
+			ST_BS_STBPRP_B.area_id = AREA.area_id
+		)
+		INNER JOIN rwdb.ST_RP_PPTN_R ON (
+			ST_RP_PPTN_R.sta_id=ST_BS_STBPRP_B.id 
+		)
+		WHERE
+			ST_BS_STTYPE_B.sta_type_id = #{typeId}
+		AND 
+			AREA.area_id = #{areaId} 
+		and 
+			ST_RP_PPTN_R.time 
+			BETWEEN #{begin} AND #{end} 
+		 GROUP BY ST_BS_STBPRP_B.id;
+	</select>
+	
+	<select id="getStationsParamByAreaId" resultType="map">
+		SELECT
+			AREA.area_id,
+			AREA.area_name,
+			ST_BS_STBPRP_B.id AS sta_id,
+			ST_BS_STBPRP_B.station_name,
+			paramTable.param
+		FROM
+			rwdb.ST_BS_STBPRP_B
+		INNER JOIN rwdb.ST_BS_STTYPE_B ON (
+			ST_BS_STBPRP_B.station_type_id = ST_BS_STTYPE_B.sta_type_id
+		)
+		INNER JOIN rwdb.AREA ON (
+			ST_BS_STBPRP_B.area_id = AREA.area_id
+		)
+		LEFT JOIN rwdb.paramTable ON (
+			ST_BS_STBPRP_B.id = paramTable.sta_id
+		)
+		WHERE
+			ST_BS_STTYPE_B.sta_type_id = #{typeId}
+		AND 
+			AREA.area_id = #{areaId} 
+		GROUP BY ST_BS_STBPRP_B.id
+	</select>
+</mapper>

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>弹出框</title>
+		<link rel="stylesheet" type="text/css" href="/pro_css/common/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="/pro_css/common/bootstrap-select.css">
+		<link rel="stylesheet" type="text/css" href="/pro_css/common/bootstrap-datetimepicker.min.css">
+		<link rel="stylesheet" type="text/css" href="/pro_css/common/jquery.mCustomScrollbar.css">
+		<link rel="stylesheet" type="text/css" href="/pro_css/common/common.css" >
+		<link rel="stylesheet" type="text/css" href="/pro_css/popUp.css">
+	</head>
+
+	<body>
+		<button type="button" class="btn btn-primary btn-lg btn1" data-toggle="modal" data-target="#augmentModal">
+	  	增补-测试数据
+		</button>
+		<!--增补-->
+		<div class="modal fade" id="augmentModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" class="closeImg fr">
+	      <div class="modal-dialog">
+	        <div class="modal-content">
+	          <div class="modal-header">增补-测试数据
+	            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true" class=" closeImg fr">&times;</span><span class="sr-only">Close</span></button>
+	          </div>
+	          <form id="userData">
+		          <div class="modal-body">
+		            <div class="d-ib modal-body-item">
+						<p class="d-ib modal-body-item-name">测站名称</p>
+						<span>雨量站</span>
+		            </div>
+		            <div class="d-ib modal-body-item">
+		              <p class="d-ib modal-body-item-name">采集时间</p>
+					  <input type="text">
+		            </div>
+		            <div class="modal-body-item">
+		         		<p class="d-ib modal-body-item-name">测报数据</p>
+						<input type="text">
+		            </div>
+		          </div>
+	          </form>
+	
+	          <div class="modal-footer">
+	            <button type="button" class="btn btn-keep addNewUser">保存</button>
+	            <button type="button" class="btn btn-cancel" data-dismiss="modal">取消</button>
+	          </div>
+	        </div>
+	      </div>
+    	</div>
+		
+        <button type="button" class="btn btn-primary btn-lg btn1" data-toggle="modal" data-target="#createStation">
+        新建测站
+        </button>        
+
+        
+        <!-- 新建测站 -->
+        <div class="modal fade" id="createStation" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" class="closeImg fr">
+           <div class="modal-dialog">
+             <div class="modal-content">
+               <div class="modal-header">新建测站
+                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true" class=" closeImg fr">&times;</span><span class="sr-only">Close</span></button>
+               </div>
+               <div class="modal-body">
+                    <form class="" action="index.html" method="post">
+                        <p>
+                            <span>测站名称</span>
+                            <input type="text" name="" value="">
+                        </p>
+                        <p>
+                            <span>测站名系统编码</span>
+                            <input type="text" name="" value="">
+                        </p>
+                        <p>
+                            <span>国家标准码</span>
+                            <input type="text" name="" value="">
+                        </p>
+                        <p>
+                            <span>经度</span>
+                            <input type="text" name="" value="">
+                        </p>
+                        <p>
+                            <span>纬度</span>
+                            <input type="text" name="" value="">
+                        </p>
+                        <p>
+                            <span>站址</span>
+                            <input type="text" name="" value="">
+                        </p>
+                        <p>
+                            <span>测站类型</span>
+                            <select class="select-picker" name="">
+                                <option value="">1</option>
+                                <option value="">2</option>
+                                <option value="">3</option>
+                            </select>
+                        </p>
+                        <p>
+                            <span>区域码</span>
+                            <select class="select-picker" name="">
+                                <option value="">13</option>
+                                <option value="">23</option>
+                                <option value="">33</option>
+                            </select>
+                        </p>
+                        <p>
+                            <span>备注</span>
+                            <textarea name="name" rows="4" cols="30"></textarea>
+                        </p>
+
+                        <p class="saveAndQuit">
+                            <input type="submit" name="" value="保存">
+                            <input type="button" name="" value="取消">
+                        </p>
+                    </form>
+               </div>
+
+             </div>
+           </div>
+         </div>
+
+        <button type="button" class="btn btn-primary btn-lg btn1" data-toggle="modal" data-target="#createStation">
+        区域平均降雨算法管理
+        </button>              
+
+        <!-- 区域平均降雨弹窗 -->
+        <div class="modal fade" id="createStation" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" class="closeImg fr">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">区域平均降雨算法管理
+                  <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true" class=" closeImg fr">&times;</span><span class="sr-only">Close</span></button>
+                </div>
+                <div class="modal-body">
+                     <form class="" action="index.html" method="post">
+                         <p>
+                             <span>测站名称</span>
+                             <input type="text" name="" value="">
+                         </p>
+                         <p>
+                             <span>测站名系统编码</span>
+                             <input type="text" name="" value="">
+                         </p>
+                         <p>
+                             <span>国家标准码</span>
+                             <input type="text" name="" value="">
+                         </p>
+                         <p>
+                             <span>经度</span>
+                             <input type="text" name="" value="">
+                         </p>
+                         <p>
+                             <span>纬度</span>
+                             <input type="text" name="" value="">
+                         </p>
+                         <p>
+                             <span>站址</span>
+                             <input type="text" name="" value="">
+                         </p>
+                         <p>
+                             <span>测站类型</span>
+                             <select class="select-picker" name="">
+                                 <option value="">1</option>
+                                 <option value="">2</option>
+                                 <option value="">3</option>
+                             </select>
+                         </p>
+                         <p>
+                             <span>区域码</span>
+                             <select class="select-picker" name="">
+                                 <option value="">13</option>
+                                 <option value="">23</option>
+                                 <option value="">33</option>
+                             </select>
+                         </p>
+                         <p>
+                             <span>备注</span>
+                             <textarea name="name" rows="4" cols="30"></textarea>
+                         </p>
+
+                         <p class="saveAndQuit">
+                             <input type="submit" name="" value="保存">
+                             <input type="button" name="" value="取消">
+                         </p>
+                     </form>
+                </div>
+
+              </div>
+            </div>
+        </div>		
+
+	  <script type="text/javascript" src="/pro_js/publicJs/jquery-3.1.1.min.js"></script>
+      <script type="text/javascript" src="/pro_js/publicJs/bootstrap.min.js"></script>
+      <script type="text/javascript" src="/pro_js/publicJs/bootstrap-select.min.js"></script>
+      <script type="text/javascript" src="/pro_js/publicJs/bootstrap-datetimepicker.js"></script>
+      <script type="text/javascript" src="/pro_js/publicJs/bootstrap-datetimepicker.zh-CN.js"></script>
+	  <script type="text/javascript" src="/pro_js/publicJs/jquery.mCustomScrollbar.js"></script>
+	
+	</body>
+
+</html>

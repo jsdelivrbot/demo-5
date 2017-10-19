@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>pullPage</title>
+	<link rel="stylesheet" href="css/jquery.fullPage.css">
+	<style>
+		/*.section1{
+			background: url('img/bg1.jpg') 50%;
+		}
+		.section2{
+			background: url('img/bg2.jpg') 50%;
+		}		
+		.section3{
+			background: url('img/bg3.jpg') 50%;
+		}		
+		.section4{
+			background: url('img/bg4.jpg') 50%;
+		}	*/
+		.section1 p{
+			font-size: 20px;
+			color: #fff;
+			margin-left: -200%;
+			transition:0.5s 0.7s;
+		}
+		.section1.active p{
+			margin-left: 0;
+			
+		}
+		.section3 p{
+			font-size: 20px;
+			color: #fff;
+			margin-top: -200%;	
+			transition:0.5s 0.7s;			
+		}
+		.section3.active p{
+			margin-top: 0;
+					
+		}
+		
+		.slide{
+			text-align: center;color: #fff;
+			font-size: 50px;font-family: "Microsoft Yahei";
+		}
+		.menu{margin: 0;padding: 0;position:fixed;left:10px;top: 10px;list-style: none;z-index:70;}
+		.menu li{float: left;margin:0 10px 0 0;font-size: 14px;}
+		.menu a {float: left;padding: 10px 20px;background:#fff;color: #333;text-decoration: none;}
+		.menu .active a{color: #fff;background-color: #333;}
+		.section{text-align: center;color: #fff;font-size:50px;font-family: "Microsoft Yahei"}	
+		
+	</style>
+</head>
+<body>
+	<ul class="menu">
+		<li data-menuanchor="page1" class="active">
+			<a href="#page1">菜单1</a>
+		</li>
+		<li data-menuanchor="page2">
+			<a href="#page2">菜单2</a>
+		</li>		
+		<li data-menuanchor="page3">
+			<a href="#page3">菜单3</a>
+		</li>		
+		<li data-menuanchor="page4">
+			<a href="#page4">菜单4</a>
+		</li>		
+	</ul>
+	<div id="main">
+	    <div class="section section1 active">
+	       <h1>第一屏</h1>
+	       <p>第一屏测试文字</p>
+	    </div>
+	    <div class="section section2">
+	    	 
+	        <div class="slide"><h1>第二屏</h1></div>
+	        <div class="slide"><h1>第二屏</h1></div>
+	        <div class="slide"><h1>第二屏</h1></div>
+	    </div>
+	    <div class="section section3">
+	         <h1>第三屏</h1>
+	         <p>第三屏测试文字</p>
+	    </div>
+	    <div class="section section4">
+	         <h1>第四屏</h1>
+	         <p>第四屏测试文字</p>
+	    </div>
+	</div>
+	<script src="js/jquery-3.1.1.min.js"></script>
+	<script src="js/jquery.fullPage.js"></script>
+	<script>
+		$(function(){
+    		$('#main').fullpage({
+    			sectionsColor:["purple","blue","pink","orange"],//页数背景颜色
+    			continuousVertical:true,//页面循环
+    			navigation:true,//楼层导航,默认右侧现实
+    			navigationTooltips:['1','2','3','4'],//楼层导航文字提示
+    			anchors:['page1','page2','page3','page4'],//锚点
+    			menu:'.menu',
+    	// 		afterLoad:function(anchorLink,index){
+    	// 			if(index==1){
+    	// 				$('.section1 p').delay(500).animate({
+    	// 					'left':'0'
+    	// 				},1500,'linear');
+    	// 			}
+    	// 			if(index==3){
+					// 	$('.section3 p').delay(500).animate({
+    	// 					'bottom':'0'
+    	// 				},1500,'linear');
+    	// 			}
+    	// 			if(index==4){
+					// 	$('.section4 p').fadeIn('300');
+    	// 			}
+
+    	// 		},
+    	// 		onLeave:function(index,direction){
+					// if(index==1){
+    	// 				$('.section1 p').delay(500).animate({
+    	// 					'left':'-120%'
+    	// 				},1500,'linear');
+    	// 			}
+    	// 			if(index==3){
+					// 	$('.section3 p').delay(500).animate({
+    	// 					'bottom':'-120%'
+    	// 				},1500,'linear');
+    	// 			}
+    	// 			if(index==4){
+					// 	$('.section4 p').fadeOut();
+    	// 			}
+    	// 		}
+    		});
+    		setInterval(function(){
+    			// $.fn.fullpage.moveSectionDown();
+    			$.fn.fullpage.moveSlideRight();
+    		},3000);
+		});
+	</script>
+</body>
+</html>

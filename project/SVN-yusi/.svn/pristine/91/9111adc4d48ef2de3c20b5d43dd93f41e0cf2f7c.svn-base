@@ -1,0 +1,105 @@
+package pro_mybatis;
+
+import java.util.List;
+
+import org.junit.Before;
+import org.junit.Test;
+
+import mybatisPro.mybatisEntity.StationEntity;
+import mybatisPro.mybatisService.StationServiceImpl;
+import mybatisPro.mybatisService.impl.StationService;
+
+/**
+ * 测站信息管理测试类
+ * @author si.yu
+ * @date 2017/7/17
+ * @version 1.0
+ * */
+public class StationTest {
+
+	private StationService stationService;
+	
+	@Before
+	public void setUp(){
+		
+		stationService = new StationServiceImpl();
+	}
+	
+	@Test
+	public void createStation(){
+		
+		StationEntity stationEntity = new StationEntity();
+		
+		stationEntity.setSys_code("#001");
+//		stationEntity.setStcd("7342110");
+		stationEntity.setStcd("O-7301");
+		stationEntity.setStation_name("大兴水库段莘河水位站");
+//		stationEntity.setRiver_name("北洋河");
+//		stationEntity.setHydrographicNet_name("大兴北洋水系");
+		stationEntity.setLongitude(2231.744558F);
+		stationEntity.setLatitude(1111.238956F);
+		stationEntity.setStation_location("大兴水库");
+//		stationEntity.setDatum_name("北洋坝基面");
+//		stationEntity.setDatum_elevation(1234.789F);
+//		stationEntity.setDatum_correction(3214.124F);
+		stationEntity.setStation_type("ZZ");
+//		stationEntity.setForecast_level("H");
+//		stationEntity.setBuild_time("2000-11");
+//		stationEntity.setFirstForecast_time("2001-01");
+//		stationEntity.setSubordinate_unit("大兴区水利局");
+//		stationEntity.setInfo_unit("大兴区水利局水文办公室");
+//		stationEntity.setDataSearch_type("雨量站");
+//		stationEntity.setStation_bank("0");
+//		stationEntity.setStation_position(100F);
+//		stationEntity.setDistance_estuary(12345.1F);
+//		stationEntity.setDrainage_area(6543213F);
+//		stationEntity.setPinyin_code("BYZ");
+//		stationEntity.setEnable_flag("1");
+//		stationEntity.setModitime(new Date());
+//		stationEntity.setOrganization_name("北洋坝水库水文管理局");
+		stationEntity.setAdministrative_code("#003");
+//		stationEntity.setUnit_code("96");
+//		stationEntity.setRoad_name("2");
+//		stationEntity.setSort(1);
+		stationEntity.setComments("承德水库最重要的水位检测站");
+//		stationEntity.setAngle(60F);
+		
+		boolean flag = 
+				stationService.createStation(stationEntity);
+		
+		System.out.println(flag);
+		
+	}
+	
+	@Test
+	public void getStationList(){
+		
+		List<StationEntity> stationEntities = 
+				stationService.getStationList();
+		
+		System.out.println(stationEntities);
+	}
+	
+	@Test
+	public void getStationInfoById(){
+		
+		StationEntity stationEntity = 
+				stationService.getStationInfoById(4L);
+		
+		System.out.println(stationEntity);
+	}
+	
+	@Test
+	public void updateStationInfo(){
+		
+		StationEntity stationEntity = new StationEntity();
+		stationEntity.setId(9l);
+		stationEntity.setLatitude(5564.123345F);
+		stationEntity.setLongitude(7848.45321F);
+		
+		boolean updateFlag = 
+				stationService.updateStationInfo(stationEntity);
+		
+		System.out.println(updateFlag);
+	}
+}

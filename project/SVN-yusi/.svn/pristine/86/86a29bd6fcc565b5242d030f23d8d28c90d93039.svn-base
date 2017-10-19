@@ -1,0 +1,54 @@
+
+/*页面3 - 显示更多信息*/
+function showAreaCard(event){
+	var position = $(this).position();
+	var left = position.left-27;
+	var top = position.top+28 ;
+
+	$("#right .rightContent3 .areaCard").css({
+		"left":left,
+		"top":top
+	}).removeClass("hide");
+	event.stopPropagation();
+}
+/*页面3 - 隐藏更多信息*/
+function hideAreaCard(evt){
+	if($(evt.target).parents(".areaCard").length==0){
+		$('.areaCard').addClass('hide');
+	}
+}
+
+function setLeftHeight(){
+	var heightLeft= $("#left").outerHeight(true);
+	var heightRight= $("#right").outerHeight(true);
+	if (heightLeft > heightRight) {
+		$("#right").height(heightLeft);
+	}else{
+		$("#left").height(heightRight);
+	}
+}
+
+$(function(){
+	setLeftHeight();
+
+	$('.left-item').click(function(){
+		$(this).addClass('active').siblings().removeClass('active');
+		$('.rightContent').eq($(this).index()).removeClass('hide').siblings().addClass('hide');
+		setLeftHeight();
+	});
+	/**自动测报数据修补tabs切换**/
+	$('.rightContent1 .btn-tabs button').click(function(){
+		$(this).addClass('active').siblings().removeClass('active');
+	})
+
+	/**测站信息管理**/
+	$('#create,#editBox').click(function(){
+		 $("#createStation").modal("show");
+
+	});
+	/* 页面3 - 显示更多信息 */
+	$("#right .rightContent3 .right-table-row-item i").click(showAreaCard);
+	/* 页面3 - 隐藏更多信息 */
+	$(document).click(hideAreaCard);
+
+});

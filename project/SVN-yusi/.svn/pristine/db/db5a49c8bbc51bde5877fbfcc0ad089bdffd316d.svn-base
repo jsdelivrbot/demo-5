@@ -1,0 +1,172 @@
+/**
+ * Created by EKuter-amu on 2017/7/10.
+ */
+
+$(function() {
+  Map.init(false);
+  //  模拟数据
+  var data = [{
+      position: [-82, 35],
+      title: '第一水库',
+      icon: 1
+    },
+    {
+      position: [-79, 31],
+      title: '第二就我字多字多水库',
+      icon: 2
+    },
+    {
+      position: [-89, 34],
+      title: '第三水库',
+      icon: 3
+    },
+    {
+      position: [-101, 34],
+      title: '第4444水库',
+      icon: 4
+    },
+    {
+      position: [-85, 29],
+      title: '第55553434水库',
+      icon: 5
+    },
+  ];
+
+  $.each(data, function(i, ele) {
+    Map.addPoints(ele.position, ele.title);
+    Map.setInfos(ele.position, ele.title, ele.icon, i);
+
+  });
+});
+
+function tabsChange(){
+    $(this).addClass('active').siblings().removeClass('active');
+    $('.tab-pannel').eq($(this).index()).addClass('active').siblings().removeClass('active');
+    if($(this).hasClass('tabs1')){//实时水情
+
+    }else if($(this).hasClass('tabs2')){//实时雨情
+      getRainfallStatisticsList();
+    }
+}
+
+function getRainfallStatisticsList(){
+  var beginTime=$('#starttime1').val();
+  var endTime=$('#endtime1').val();
+  $.ajax({
+    url: areaAverageRainfallUrl,
+    type: 'get',
+    data: {
+      begin_time: beginTime,
+      end_time: endTime
+    },
+    dataType: 'json',
+    success: function(result){
+       
+       var rainfallStatisticsList=result.data;
+       if(rainfallStatisticsList&&rainfallStatisticsList.length==0){
+
+       }else{
+        var arr=[];
+        console.log(rainfallStatisticsList);
+        $.each(rainfallStatisticsList,function(idx,obj){
+            
+           $.each(obj.station_info_list,function(i,o){
+              o.area_name = obj.area_name;
+              o.average_rainfall = obj.average_rainfall;
+
+              arr.push(o);
+           });
+        });
+       
+        $('.panelRow3 .right-table-body-dataBind').render(arr);
+         
+       }
+      
+    },
+    error: function(err){
+      console.log(err);
+    }
+  });
+}
+//获取当前日期
+function DateToday() {
+  var d = new Date();
+  var year = d.getFullYear();
+  var month = d.getMonth() + 1;
+  if (month < 10) {
+    month = '0' + month;
+
+  }
+  var day = d.getDate();
+  if (day < 10) {
+    day = '0' + day;
+  }
+  var hour = d.getHours();
+  var min = d.getMinutes();
+  var str = year + "-" + month + "-" + day + " " + hour + ":" + min;
+  return str;
+
+}
+//获取上月今日
+function prevMonthDateToday() {
+  var d = new Date();
+  var year = d.getFullYear();
+  var month = d.getMonth();
+  if (month < 10) {
+    month = '0' + month;
+
+  }
+  var day = d.getDate();
+  if (day < 10) {
+    day = '0' + day;
+  }
+  var str = year + "-" + month + "-" + day + " " + "00:00";
+  return str;
+}
+/*点击[详情],显示弹窗*/
+function showDetail() {
+  $('#popInfo').modal('show');
+}
+
+$(function() {
+  $('.tabs').click(tabsChange);
+  $('#starttime,#starttime1').val(prevMonthDateToday);
+  $('#endtime,#endtime1').val(DateToday);
+
+  /*单击详情,显示弹窗*/
+  $(".pannel-title .detail").click(showDetail);
+
+  /**切换图例**/
+  $('.contentRightTabs .tabs1').click(function() {
+    $('#waterLengend').removeClass('hide').siblings('.lengendBox').addClass('hide');
+  });
+  $('.contentRightTabs .tabs2').click(function() {
+    $('#rainLengend').removeClass('hide').siblings('.lengendBox').addClass('hide');
+  });
+
+  /**切换图例按钮**/
+  $('.legendTitle').click(function() {
+    if ($('.legend-content').hasClass('in')) { //展开
+      $('.triangular').removeClass('rotate');
+    } else {
+      $('.triangular').addClass('rotate');
+    }
+  });
+
+  //获取实时雨情
+  
+
+
+})
+
+// document.getElementById('zoom-out').onclick = function() {
+//     var view = map.getView();
+//     var zoom = view.getZoom();
+//     view.setZoom(zoom - 1);
+// };
+
+// document.getElementById('zoom-in').onclick = function() {
+//     var view = map.getView();
+//     var zoom = view.getZoom();
+//     view.setZoom(zoom + 1);
+// };

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>注册</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="../css/lib/bootstrap.min.css">
+		<link rel="stylesheet" href="../css/main/global.css">
+		<link rel="stylesheet" href="../css/main/register.css">
+		<!--[if lt IE 9]>
+			<script src="../js/lib/html5shiv.min.js"></script>
+			<script src="../js/lib/respond.min.js"></script>
+	    <![endif]-->
+	</head>
+
+	<body>
+		<div class="s-skin-container s-isindex-wrap">
+		</div>
+		<div class="container">
+			<h2 class="title">注册</h2>
+			<!--进度条-->
+			<div class="stepBarWrapper">
+				<div class="stepBar">
+					<p class="ui-stepBar"></p>
+					<ul class="ui-stepProcess">
+						<li class="ui-active">
+							<span>1</span>
+							<p>基本信息</p>
+						</li>
+						<li>
+							<span>2</span>
+							<p>激活邮箱</p>
+						</li>
+						<!--<li>
+							<span>3</span>
+							<p>进入管理系统</p>
+						</li>-->
+					</ul>
+				</div>
+			</div>
+
+			<div class="mainWrapper">
+				<div class="step1">
+					<form class="form-horizontal" role="form">
+						<div class="form-group">
+							<label for="email" class="col-sm-4 control-label text-left">邮箱：</label>
+							<div class="col-sm-5">
+								<input type="email" class="form-control" id="email" placeholder="请输入邮箱地址">
+							</div>
+							<div class="col-sm-2">
+								<p class='warnText'></p>
+							</div>
+						</div>
+						<div class="form-group" style="margin: 0;">
+							<label for="password" class="col-sm-4 control-label text-left">密码：</label>
+							<div class="col-sm-8">
+								<p class="fillIn">
+									<input type="password" class="form-control" id="password" placeholder="请输入密码">
+									<i class="icon-password password-default"></i>
+								</p>
+							</div>
+						</div>
+						<p class="col-sm-offset-4 help-block">字母、数字或者英文符号，最短8位，区分大小写</p>
+						<div class="form-group">
+							<label for="confirmpassword" class="col-sm-4 control-label text-left">确认密码：</label>
+							<div class="col-sm-8">
+								<p class="fillIn">
+									<input type="password" class="form-control" id="confirmpassword">
+									<i class="icon-password password-default"></i>
+								</p>
+								<span class="errorTip"></span>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="verification" class="col-sm-4 control-label text-left">验证码：</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" id="verification" maxlength="4">
+								<img class="code" src="" />
+								<span>看不清,<a class="changeCode tip-red" href="javascript:void(0);">换一个</a></span>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-offset-4">
+								<div class="checkbox agreement">
+									<input type="checkbox" id="agreementCheck" name="agreementCheck" style="display: none;">
+									<label for="agreementCheck"><i class="Ischecked"></i>同意遵守<a href="">《希望之星公众平台服务协议》</a></label>
+								</div>
+							</div>
+						</div>
+						<div class="text-center">
+							<button id="registered" type="button" class="btn btn-primary">立即注册</button>
+						</div>
+
+					</form>
+				</div>
+				<div class="step2">
+					<h3>激活平台账号</h3>
+					<p class="instructions">感谢注册！确认邮件已发送至你的注册邮箱<span class='userEmail'></span>。请进入邮箱查看邮件，并激活平台账号。</p>
+					<p class="help">没有收到邮件？</p>
+					<ul>
+						<li>1.请检查邮箱地址是否正确，你可以返回
+							<a id="returnStep1" href="javascript:void(0);">重新填写</a>
+						</li>
+						<li>2.检查你的邮件垃圾箱</li>
+						<li>3.若仍未收到确认，请尝试
+							<a id='sendAgain' href='javascript:toRegister()'>重新发送</a>
+						</li>
+					</ul>
+					<div class="text-center">
+						<button id="loginEmail" type="button" class="btn btn-primary">登录邮箱</button>
+					</div>
+				</div>
+
+				<div class="step3 clearfix">
+					<img class="fl" src="../images/train_image_mail_success.png">
+					<div class="fl">
+						<p class="color-354252">恭喜您已经成功激活账号</p>
+						<p class="jump">
+							<span class='countTime'>5</span>秒后自动跳转，如未跳转点击
+							<a class="tip-red" href="login.html"> 立即跳转</a>
+						</p>
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="../js/lib/jquery-1.11.0.js"></script>
+		<script src="../js/lib/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/main/register.js" type="text/javascript" charset="utf-8"></script>
+	</body>
+
+</html>

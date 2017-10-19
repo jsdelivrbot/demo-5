@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>数据管理</title>
+    <link rel="stylesheet" type="text/css" href="/pro_css/common/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/pro_css/common/bootstrap-select.css">
+    <link rel="stylesheet" type="text/css" href="pro_css/common/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" type="text/css" href="pro_css/common/ol.css">
+    <link rel="stylesheet" type="text/css" href="/pro_css/common/common.css">
+    <link rel="stylesheet" type="text/css" href="/pro_css/header.css">
+    <link rel="stylesheet" type="text/css" href="/pro_css/popup.css">
+    <link rel="stylesheet" type="text/css" href="/pro_css/dataManagement.css">
+</head>
+
+<body>
+    <!-- 头部 -->
+    <div id="header">
+        <div class="header-top">
+            <div class="header-top-content">
+                <div class="header-top-content-left">
+                    <img src="../imgs/common/logo.png" alt="">
+                </div>
+                <div class="header-top-content-right">
+                    <span>94476455@qq.com</span>&nbsp;|&nbsp;<a href="/logout">退出</a>
+                </div>
+            </div>
+        </div>
+        <div class="header-bottom">
+            <ul>
+                <li class="header-bottom-item header-bottom-item1"><span>实时信息查询</span></li>
+                <li class="header-bottom-item header-bottom-item2"><span>雨量统计</span></li>
+                <li class="header-bottom-item header-bottom-item3"><span>水位统计</span></li>
+                <li class="header-bottom-item header-bottom-item4"><span>测站状态</span></li>
+                <li class="header-bottom-item header-bottom-item5"><span>人工报讯</span></li>
+                <li class="header-bottom-item header-bottom-item6 active"><span>数据管理</span></li>
+            </ul>
+        </div>
+    </div>
+
+    <!--主体-->
+    <div id="container" class="clearfix">
+        <ul id="left">
+            <li class="left-item left-item1 active">自动测报数据修补</li>
+            <li class="left-item left-item2">测站信息管理</li>
+            <li class="left-item left-item3">区域平均降雨</li>
+            <li class="left-item left-item4">区域信息管理</li>
+        </ul>
+        <div id="right">
+    			<div class="rightContent rightContent1">
+    				<div class="right-title">
+    					<div class="btn-tabs">
+    						<button type="button" class="btn1 mr20 active">雨量站</button>
+    						<button type="button" class="btn2 mr20">河道水位站</button>
+    						<button type="button" class="btn3 mr20">水库水位站</button>
+    					</div>
+    					<div class="pannel-content clearfix">
+    						<div class="fl pannel-content-left">
+ 								<div class="d-ib selectpickerBox">
+		    					  	<span>测站雨量：</span><select name="" class="selectpicker">
+		    					  		<option value="">1</option>
+		    					  		<option value="">2</option>
+		    					  		<option value="">3</option>
+		    					  	</select>
+                            </div>
+                            <div class="pickerBox"><span>时间范围：</span><input type="text" id="content1Starttime" class="timePicker" readonly="readonly" placeholder="开始时间"></div><span class="mar8">¯¯</span>
+                            <div class="pickerBox"><input type="text" id="content1Endtime" class="timePicker" readonly="readonly" placeholder="结束时间"></div>
+
+                            <button type="button" id="rightContent1_search_btn" class="confirm">查询</button>
+                        </div>
+                        <button id="augment" class="create fr">增补</button>
+                    </div>
+                </div>
+
+                <div class="right-body-table">
+                    <ul class="right-table-title clearfix"><!--
+						 --><li class="right-table-title-item">测站名称</li><!--
+    					 --><li class="right-table-title-item">采集时间</li><!--
+						 --><li class="right-table-title-item">雨量</li><!--
+						 --><li class="right-table-title-item">接收时间/增补时间</li><!--
+						 --><li class="right-table-title-item">数据类型</li><!--
+						 --><li class="right-table-title-item">增补</li>
+                    </ul>
+                    <div class="right-table-body">
+                        <div class="right-table-body-dataBind">
+                            <ul class="right-table-row clearfix"><!--
+                            --><li class="right-table-row-item">雨量1
+                                   <input type="hidden" data-bind="id"/>
+                               </li><!--
+							--><li class="right-table-row-item">2017.07.01 08：00：12</li><!--
+							--><li class="right-table-row-item">0.5</li><!--
+							--><li class="right-table-row-item">2017.07.01 08：03：39</li><!--
+							--><li class="right-table-row-item">自动</li><!--
+							--><li class="right-table-row-item"><!--
+                            --><p class="editBox d-ib"><i class="editPic mr5"></i><span>修改</span></p><!--
+                            --><!--<p class="deleteBox d-ib"><i class="deletePic mr5"></i><span>删除</span></p>-->
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="notContent hide">
+                            无数据
+                        </div>
+                    </div>
+
+                    <!--页脚-->
+                    <div class="pageChange">
+                        <span class="pageChange-span1 pageChange-span d-ib" data-bind="prevPageDis">
+								<span class="pageChange-span-up"></span>上一页
+                        </span>
+                        <span class="pageChange-span2 pageChange-span d-ib" data-bind="currentPage"></span>
+
+                        <span class="pageChange-span3 pageChange-span d-ib" data-bind="nextPageDis">
+							下一页<span class="pageChange-span-down"></span>
+                        </span>
+                        <span class="txt">共<span data-bind="totalPage"></span>页
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="rightContent rightContent2 hide">
+                <div class="right-title">测站信息管理
+                    <button id="create" class="create fr">新建测站</button>
+                </div>
+                <div class="right-body-table">
+                    <ul class="right-table-title clearfix">
+                        <li class="right-table-title-item">测站名称</li>
+                        <li class="right-table-title-item">测站系统编码</li>
+                        <li class="right-table-title-item">国家标准码</li>
+                        <li class="right-table-title-item">横坐标</li>
+                        <li class="right-table-title-item">纵坐标</li>
+                        <li class="right-table-title-item">站址</li>
+                        <li class="right-table-title-item">测站类型</li>
+                        <li class="right-table-title-item">所属区域</li>
+                        <li class="right-table-title-item">管理</li>
+                    </ul>
+                    <div class="right-table-body">
+                        <div class="right-table-body-dataBind">
+                            <ul class="right-table-row clearfix">
+                                <li class="right-table-row-item" data-bind="station_name">
+                                    <input type="hidden" data-bind="id" class="content2RowId"/>
+                                </li>
+                                <li class="right-table-row-item" data-bind="sys_code"></li>
+                                <li class="right-table-row-item" data-bind="stcd"></li>
+                                <li class="right-table-row-item" data-bind="x"></li>
+                                <li class="right-table-row-item" data-bind="y"></li>
+                                <li class="right-table-row-item" data-bind="station_location"><span></span></li>
+                                <li class="right-table-row-item" data-bind="type_name"></li>
+                                <li class="right-table-row-item" data-bind="area_name"></li>
+                                <li class="right-table-row-item">
+                                    <p class="editBox" class="d-ib editBox"><i class="editPic mr5"></i><span class="edit">修改</span></p>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="notContent hide">
+                            无数据
+                        </div>
+                    </div>
+
+                    <!--页脚-->
+                    <div class="pageChange">
+                        <span class="pageChange-span1 pageChange-span d-ib" data-bind="prevPageDis">
+								<span class="pageChange-span-up"></span>上一页
+                        </span>
+                        <span class="pageChange-span2 pageChange-span d-ib" data-bind="currentPage"></span>
+
+                        <span class="pageChange-span3 pageChange-span d-ib" data-bind="nextPageDis">
+							下一页<span class="pageChange-span-down"></span>
+                        </span>
+                        <span class="txt">共<span data-bind="totalPage"></span>页
+                    </div>
+
+                </div>
+            </div>
+
+			<div class="rightContent rightContent3 hide">
+                <div class="right-title">
+                    <div class="pannel-content">
+                          <div class="pickerBox"><input type="text" id="content3Starttime" class="timePicker" readonly="readonly"/></div><span class="mar8">&macr;&macr;</span><div class="pickerBox"><input type="text" id="content3Endtime" class="timePicker" readonly="readonly"/></div>
+
+                        <button type="button" id="rightContent3_search_btn" class="confirm">确定</button>
+                        <button class="create fr">算法管理</button>
+                    </div>
+
+                </div>
+
+                <div class="right-body-table">
+                    <ul class="right-table-title clearfix">
+                        <li class="right-table-title-item">区域</li>
+                        <li class="right-table-title-item">降雨历时</li>
+                        <li class="right-table-title-item">平均雨量(mm)</li>
+                        <li class="right-table-title-item">
+                            <span>最大雨量</span><!--
+                         --><span>最大雨量站</span><!--
+						 --><span>最大雨量(mm)</span>
+                        </li>
+                    </ul>
+                    <div class="right-table-body">
+                        <div class="right-table-body-dataBind">
+                            <ul class="right-table-row clearfix">
+                                <li class="right-table-row-item"><i class="introself"></i><span data-bind="area_name"></span><input type="hidden" data-bind="area_id" /></li><!--
+    						 --><li class="right-table-row-item">[占位符]</li><!--
+    						 --><li class="right-table-row-item" data-bind="average_rainfall"></li><!--
+    						 --><li class="right-table-row-item" data-bind="maxStation"></li><!--
+    						 --><li class="right-table-row-item" data-bind="max_Rainfall"></li>
+                            </ul>
+                        </div>
+
+                        <div class="notContent hide">
+                            无数据
+                        </div>
+                    </div>
+
+                    <!--页脚-->
+                    <div class="pageChange">
+                        <span class="pageChange-span1 pageChange-span d-ib" data-bind="prevPageDis">
+								<span class="pageChange-span-up"></span>上一页
+                        </span>
+                        <span class="pageChange-span2 pageChange-span d-ib" data-bind="currentPage"></span>
+
+                        <span class="pageChange-span3 pageChange-span d-ib" data-bind="nextPageDis">
+							下一页<span class="pageChange-span-down"></span>
+                        </span>
+                        <span class="txt">共<span data-bind="totalPage"></span>页
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="rightContent rightContent4 hide">
+            	<div class="right-title">区域信息管理
+            		<button class="create fr">新建区域</button>
+            	</div>
+
+            	<div class="right-body-table">
+            		<ul class="right-table-title clearfix">
+            			<li class="right-table-title-item">区域</li>
+            			<li class="right-table-title-item">描述</li>
+            			<li class="right-table-title-item">管理</li>
+            		</ul>
+            		<div class="right-table-body">
+                        <div class="right-table-body-dataBind">
+                            <ul class="right-table-row clearfix">
+            					<li class="right-table-row-item">
+                                    <i class="introself"></i>
+                                    <span data-bind="area_name"></span>
+                                    <input type="hidden" data-bind="area_id" />
+                                </li>
+            					<li class="right-table-row-item">
+                                    <span data-bind="comment"></span>
+                                </li>
+            					<li class="right-table-row-item">
+                                    <div class="modify">
+                                        <i></i>
+                                        <span>修改</span>
+                                    </div><!--
+                                    --><!--<div class="delete">
+                                        <i></i>
+                                        <span>删除</span>
+                                    </div>-->
+            					</li>
+            				</ul>
+                        </div>
+            				<div class="notContent hide">
+            				无数据
+            			</div>
+            		</div>
+
+                    <!--页脚-->
+                    <div class="pageChange">
+            			<span class="pageChange-span1 pageChange-span d-ib" data-bind="prevPageDis">
+            				<span class="pageChange-span-up"></span>上一页
+            			</span>
+            			<span class="pageChange-span2 pageChange-span d-ib" data-bind="currentPage"></span>
+
+            			<span class="pageChange-span3 pageChange-span d-ib" data-bind="nextPageDis">
+            			下一页<span class="pageChange-span-down"></span>
+            			</span>
+            			<span class="txt">共<span data-bind="totalPage"></span>页
+            		</div>
+            	</div>
+            </div>
+
+            <!-- 更多信息(页面3和页面4) -->
+            <div id="areaCard" class="areaCard hide">
+                <div class="arrow"></div>
+                <h6>说明：</h6>
+                <p>1. 区域A共包括3个雨量站: 雨量1、雨量2、雨量3；</p>
+                <p></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 以下是弹窗 -->
+    <!--增补-->
+    <div class="modal fade" id="augmentModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" class="closeImg fr">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">增补-测试数据
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true" class=" closeImg fr">&times;</span><span class="sr-only">Close</span></button>
+                </div>
+                <form id="userData">
+                    <div class="modal-body">
+                        <div class="d-ib modal-body-item">
+                            <p class="d-ib modal-body-item-name">测站名称</p>
+                            <span>雨量站</span>
+                        </div>
+                        <div class="d-ib modal-body-item">
+                            <p class="d-ib modal-body-item-name">采集时间</p>
+                            <input type="text">
+                        </div>
+                        <div class="modal-body-item">
+                            <p class="d-ib modal-body-item-name">测报数据</p>
+                            <input type="text">
+                        </div>
+                    </div>
+                </form>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-keep save">保存</button>
+                    <button type="button" class="btn btn-cancel" data-dismiss="modal">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 创建站 -->
+    <div class="modal fade" id="createStation" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" class="closeImg fr">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">新建测站
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true" class=" closeImg fr">&times;</span><span class="sr-only">Close</span></button>
+                </div>
+                <div class="modal-body">
+                    <div class="d-ib mapBox map" id="map"  tabindex="0"></div>
+                    <!--新建-->
+                    <form id="createStationForm" class="d-ib" action="" method="post">
+                        <p>
+                            <span class="formLeft">测站名称</span>
+                            <span class="d-ib">
+                                <input type="text" name="station_name" value="" ><br>
+                                <span class="errorB stationNameError"></span>
+                            </span>
+                        </p>
+                        <p>
+                            <span class="formLeft">测站名系统编码</span>
+                            <span class="d-ib">
+                                 <input type="text" name="sys_code" value="" ><br>
+                                  <span class="errorB sysCodeError"></span>
+                            </span>
+
+                        </p>
+                        <p>
+                            <span class="formLeft">国家标准码</span>
+                            <span class="d-ib">
+                                 <input type="text" name="stcd" value=""><br>
+                                 <span class="errorB stcdError"></span>
+                            </span>
+
+                        </p>
+                        <p>
+                            <span class="formLeft">横坐标</span>
+                            <span class="d-ib">
+                                  <input type="text" name="x" value="" readonly="true"><br>
+                                  <span class="errorB xError"></span>
+                            </span>
+
+                        </p>
+                       <p>
+                            <span class="formLeft">纵坐标</span>
+                            <span class="d-ib">
+                                 <input type="text" name="y" value="" readonly="true"><br>
+                                  <span class="errorB yError"></span>
+                            </span>
+
+                        </p>
+                        <p>
+                            <span class="formLeft">站址</span>
+                            <span class="d-ib">
+                                 <input type="text" name="station_location" value=""><br>
+                                 <span class="errorB stationLocationError"></span>
+                            </span>
+                        </p>
+                        <p>
+                            <span class="formLeft">测站类型</span>
+                            <span class="d-ib">
+                                <select class="select-picker station-type-picker" id="createStation-type-picker" name="station_type_id" >
+                                    <option value="" data-bind="type_name"></option>
+                                </select><br>
+                                <span class="errorB stationTypeError"></span>
+                            </span>
+
+                        </p>
+                        <p>
+                            <span class="formLeft">区域</span>
+                            <span class="d-ib">
+                                <select class="select-picker area-picker" id="createArea-picker" name="area_id">
+                                    <option  value="" data-bind="area_name"></option>
+
+                                </select><br>
+                                <span class="errorB areaError"></span>
+                            </span>
+
+                        </p>
+                        <p>
+                            <span class="formLeft">备注</span>
+                            <span class="d-ib">
+                                 <textarea name="comments" rows="4" cols="30"></textarea><br>
+                                 <span class="errorB commentsError"></span>
+                            </span>
+
+                        </p>
+
+                        <p class="saveAndQuit">
+                            <input type="button" name="" value="保存" id="createStationSave">
+                            <input type="button" data-dismiss="modal" name="" value="取消">
+                        </p>
+                    </form>
+                    <!--修改-->
+                    <form id="editStationForm" class="d-ib hide" action="" method="post">
+                        <p>
+                            <span class="formLeft">测站名称</span>
+                            <span class="d-ib">
+                                <input type="text" name="station_name" value="" data-bind="station_name"><br>
+                                <span class="errorB stationNameError"></span>
+                            </span>
+
+                        </p>
+                        <p>
+                            <span class="formLeft">测站名系统编码</span>
+                            <span class="d-ib">
+                                 <input type="text" name="sys_code" value="" data-bind="sys_code"><br>
+                                  <span class="errorB sysCodeError"></span>
+                            </span>
+
+                        </p>
+                        <p>
+                            <span class="formLeft">国家标准码</span>
+                            <span class="d-ib">
+                                 <input type="text" name="stcd" value="" data-bind="stcd"><br>
+                                  <span class="errorB stcdError"></span>
+                            </span>
+
+                        </p>
+                        <p>
+                            <span class="formLeft">横坐标</span>
+                            <span class="d-ib">
+                                <input type="text" name="x" value="" data-bind="x" readonly="true"><br>
+                                 <span class="errorB xError"></span>
+                            </span>
+
+                        </p>
+                       <p>
+                            <span class="formLeft">纵坐标</span>
+                            <span class="d-ib">
+                                <input type="text" name="y" value="" data-bind="y" readonly="true"><br>
+                                <span class="errorB yError"></span>
+                            </span>
+
+                        </p>
+                        <p>
+                            <span class="formLeft">站址</span>
+                            <span class="d-ib">
+                                 <input type="text" name="station_location" value="" data-bind="station_location"><br>
+                                  <span class="errorB stationLocationError"></span>
+                            </span>
+
+                        </p>
+                        <p>
+                            <span class="formLeft">测站类型</span>
+                            <span class="d-ib">
+                                <select class="select-picker station-type-picker" id="editStation-type-picker" name="station_type_id" >
+                                    <option value="" data-bind="type_name"></option>
+                                </select><br>
+                                 <span class="errorB stationTypeError"></span>
+                            </span>
+
+
+                        </p>
+                        <p>
+                            <span class="formLeft">区域</span>
+                            <span class="d-ib">
+                                <select class="select-picker area-picker" id="editArea-picker" name="area_id">
+                                    <option  value="" data-bind="area_name"></option>
+
+                                </select><br>
+                                 <span class="errorB areaError"></span>
+                            </span>
+
+                        </p>
+                        <p>
+                            <span class="formLeft">备注</span>
+                            <span class="d-ib">
+                                 <textarea name="comments" rows="4" cols="30" data-bind="comments"></textarea><br>
+                                <span class="errorB commentsError"></span>
+                            </span>
+
+
+                        </p>
+
+                        <p class="saveAndQuit">
+                            <input type="button" name="" value="保存" id="editStationSave">
+                            <input type="button" data-dismiss="modal" name="" value="取消">
+                        </p>
+                    </form>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+     <p class="successTip" id="tipMsg"></p>
+    <!-- 区域平均降雨弹窗 -->
+    <div class="modal fade" id="averageRainfall" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" class="closeImg fr">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">区域平均降雨算法管理
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true" class=" closeImg fr">&times;</span><span class="sr-only">Close</span></button>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-body-content">
+                        <ul><!--
+                        --><li>
+                                <div><span>流域A</span></div>
+                                <input type="hidden" data-bind="id">
+                            </li><!--
+                        --><li>
+                                <div><span>算术平均法</span></div>
+                            </li><!--
+                        --><li>
+                                <div><span>雨量的规范</span><span class="hide"></span></div>
+                            </li><!--
+                        --><li>
+                                <div><span>算术平均法</span><span class="hide"></span></div>
+                            </li><!--
+                        --><li>
+                                <div><span>算术平均法</span><span class="hide"></span></div>
+                            </li><!--
+                        --><li class="modify"><i></i><span>修改</span></li><!--
+                        --><li class="delete"><i></i><span>删除</span></li>
+                        </ul>
+                        <ul><!--
+                        --><li>
+                                <div><span>流域A</span></div>
+                                <input type="hidden" data-bind="id">
+                            </li><!--
+                        --><li>
+                                <div><span>算术平均法</span></div>
+                            </li><!--
+                        --><li>
+                                <div><span>雨量的规范</span><span class="mt5">0.5</span></div>
+                            </li><!--
+                        --><li>
+                                <div><span>算术平均法</span><span class="mt5">0.2</span></div>
+                            </li><!--
+                        --><li>
+                                <div><span>算术平均法</span><span class="mt5">0.6</span></div>
+                            </li><!--
+                        --><li class="modify"><i></i><span>修改</span></li><!--
+                        --><li class="delete"><i></i><span>删除</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 区域平均降雨弹窗 - 修改 -->
+    <div class="modal fade" id="averageRainfallModify" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" class="closeImg fr">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">修改
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true" class=" closeImg fr">&times;</span><span class="sr-only">Close</span></button>
+                </div>
+                <div class="modal-body">
+                    <form action="" method="post">
+                        <div class="rainfall-item1">
+                            <div class="rainfall-left">区域名称：</div>
+                            <div class="rainfall-right">区域A</div>
+                        </div>
+                        <div class="rainfall-item2">
+                            <div class="rainfall-left">所辖测站：</div>
+                            <div class="rainfall-right">
+                                <span>辽宁大连站点;</span>
+                                <span>就我字多就我字多就我字多就我字多就我字多</span>
+                                <span>辽宁大连站点;</span>
+                                <span>辽宁大连站点;</span>
+                            </div>
+                        </div>
+                        <div class="rainfall-item3">
+                            <div class="rainfall-left">所辖测站：</div>
+                            <div class="rainfall-right">
+                                <div>
+                                    <i></i><span>算术平均法</span>
+                                </div><!--
+                             --><div>
+                                    <i></i><span>系数平均法</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="rainfall-item4">
+                            <div class="rainfall-left">测站系数：</div>
+                            <div class="rainfall-right">
+                                <input type="text" name="" value="">
+                                <p>注意：多个系数以横短线分割；系数总和必须等于1</p>
+                            </div>
+                        </div>
+                        <div class="saveAndQuit">
+                            <input type="button" name="" value="保存">
+                            <input type="button" name="" data-dismiss="modal" value="取消">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--新建and修改区域弹窗-->
+    <div class="modal fade" id="createField" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" class="closeImg fr">
+        <div class="modal-dialog">
+            <div class="modal-content" data-type="0">
+                <div class="modal-header">
+                    <span>增补-测报数据</span>
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true" class=" closeImg fr">&times;</span><span class="sr-only">Close</span></button>
+                </div>
+                <form>
+                    <div class="modal-body">
+                        <div class="d-ib modal-body-item">
+                            <p class="d-ib modal-body-item-name">区域名称</p>
+                            <input type="text" name="area_name" value="">
+                        </div>
+                        <div class="modal-body-item">
+                            <p class="d-ib modal-body-item-name">区域描述</p>
+                            <textarea name="comment" rows="4" cols="30"></textarea>
+                        </div>
+                    </div>
+                </form>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-keep save">保存</button>
+                    <button type="button" class="btn btn-cancel" data-dismiss="modal">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 500错误提示框 -->
+	<div class="modal fade" id="errorBtn" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" class="closeImg fr">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true" class=" closeImg fr">&times;</span><span class="sr-only">Close</span></button>
+				</div>
+				<div class="modal-body">
+					<p class="modal-body-row"><span class="question-info" id="errorInfo"></span></p>
+				</div>
+				<div class="modal-footer">
+					<!-- <button type="button" class="btn btn-delete">删除</button> -->
+					<button type="button" class="btn btn-cancel" data-dismiss="modal">确定</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+      <script type="text/javascript" src="/pro_js/publicJs/jquery-3.1.1.min.js"></script>
+      <script type="text/javascript" src="/pro_js/publicJs/bootstrap.min.js"></script>
+      <script type="text/javascript" src="/pro_js/publicJs/bootstrap-select.min.js"></script>
+      <script type="text/javascript" src="/pro_js/publicJs/bootstrap-datetimepicker.js"></script>
+      <script type="text/javascript" src="/pro_js/publicJs/bootstrap-datetimepicker.zh-CN.js"></script>
+      <script type="text/javascript" src="/pro_js/publicJs/common.js"></script>
+      <script type="text/javascript" src="/pro_js/publicJs/transparency.min.js"></script>
+      <script type="text/javascript" src="/pro_js/header.js"></script>
+      <script type="text/javascript" src="/pro_js/publicJs/ol.js"></script>
+      <script type="text/javascript" src="/pro_js/ajaxRequestUrls.js"></script>
+      <script type="text/javascript" src="/pro_js/publicJs/mapInit.js"></script>
+      <script type="text/javascript" src="/pro_js/dataManagement.js"></script>
+      <script type="text/javascript">
+
+            $('.select-picker').selectpicker({
+                noneSelectedText:'请选择',
+            	size: 6
+            });
+            $(".timePicker").datetimepicker({
+              bootcssVer:3,
+              language:  'zh-CN',
+              format: 'yyyy-mm-dd hh:ii',
+              autoclose: true,
+              todayBtn: true,
+              pickerPosition: "bottom-right",
+              defaultDate:'2011-03-10',
+            });
+
+
+
+
+
+
+      </script>
+</body>
+
+
+
+</html>

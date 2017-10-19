@@ -1,0 +1,309 @@
+.title {
+	font-size: .28rem;
+	font-weight: bold;
+}
+
+.border {
+	width: 7rem;
+	margin: 0 auto;
+	padding: 0 .1rem;
+	border-top: 4px solid #fe741a;
+	border-bottom: 4px solid #fe741a;
+}
+
+.border-container {
+	background: #fff;
+	padding: .24rem .2rem;
+}
+
+.match-container {
+	padding: .4rem 0;
+	font-size: .26rem;
+}
+
+h2 {
+	margin: 0 auto;
+	padding: .44rem .3rem .4rem;
+	width: 5.6rem;
+	font-size: .38rem;
+	font-weight: bold;
+	text-align: center;
+	border-bottom: 1px solid #fe741a;
+}
+
+
+/*游学简介*/
+
+.match-intro .title {
+	font-size: .2rem;
+}
+
+.num {
+	font-size: .24rem;
+	color: #fe741a;
+}
+
+.match-intro ul {
+	width: 6rem;
+	margin: 0 auto;
+	padding: .3rem 0 .46rem;
+}
+
+.match-intro li {
+	width: 1.5rem;
+	border-right: 1px solid rgba(254, 116, 26, .3);
+	float: left;
+	text-align: center;
+	box-sizing: border-box;
+}
+
+.match-intro li:last-child {
+	border-right: none;
+}
+
+
+/*出团*/
+
+.underline-title {
+	margin-bottom: .1rem;
+	font-size: .28rem;
+	font-weight: bold;
+}
+
+.underline-title  .underline {
+	padding-bottom: 2px;
+	border-bottom: 2px solid #675e58;
+}
+
+.info .outregiment {
+	margin-bottom: .2rem;
+}
+
+.info .outregiment span {
+	display: inline-block;
+	margin-right: .4rem;
+	margin-bottom: .2rem;
+	width: 2.3rem;
+	height: .5rem;
+	line-height: .5rem;
+	color: #fff;
+	text-align: center;
+	background: rgba(254, 116, 26, .36);
+	border-radius: 6px;
+}
+
+.info .outregiment span.active {
+	background: rgba(254, 116, 26, .56);
+}
+
+
+/*路线*/
+
+.route {
+	padding: .3rem .32rem 0;
+}
+
+.route .title {
+	position: relative;
+	border-left: 1px solid #ef741a;
+	line-height: 2;
+}
+
+.route .title:before {
+	content: "";
+	position: absolute;
+	top: -.04rem;
+	left: -.04rem;
+	display: inline-block;
+	width: .08rem;
+	height: .08rem;
+	background: url(../images/my_guidebook_derive_image_day_3.png) no-repeat;
+	background-size: 100% 100%;
+}
+
+.route .title i {
+	display: inline-block;
+	width: .44rem;
+	height: .24rem;
+	background: url(../images/my_guidebook_derive_image_flag.png) no-repeat;
+	background-size: 100% 100%;
+}
+
+.route-container {
+	padding-bottom: .2rem;
+	border-left: 1px solid #fe741a;
+}
+
+.route-section {
+	margin-bottom: .2rem;
+	background: #fff;
+}
+
+.route-section-title {
+	position: relative;
+	display: inline-block;
+	padding: 0 .2rem;
+	color: #fe741a;
+	border-bottom: 1px solid #fe741a;
+}
+
+.route-section-title:before {
+	content: "";
+	position: absolute;
+	bottom: -.07rem;
+	left: -.07rem;
+	display: inline-block;
+	width: .14rem;
+	height: .14rem;
+	background: url(../images/my_guidebook_derive_image_day_1.png) no-repeat;
+	background-size: 100% 100%;
+}
+
+.route-section-title:after {
+	content: "";
+	position: absolute;
+	bottom: -.03rem;
+	right: -.03rem;
+	display: inline-block;
+	width: .06rem;
+	height: .06rem;
+	background: url(../images/my_guidebook_derive_image_day_2.png) no-repeat;
+	background-size: 100% 100%;
+}
+
+.route-description {
+	padding: .2rem;
+}
+.route-description .clear:first-child .fl:first-child{
+	width: 1.3rem;
+}
+.route-description .clear:first-child .fl:last-child{
+	width: 4.94rem;
+}
+
+.route-img {
+	margin: .2rem 0;
+	width: 6.4rem;
+	height: 4rem;
+}
+
+.description p {
+	color: #56514f;
+}
+
+
+/*轮播图*/
+
+.mask {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: rgba(252, 245, 241, .5);
+}
+
+.slide {
+	width: 100%;
+	height: 3.3rem;
+	overflow: hidden;
+	position: relative;
+}
+
+.slide .img {
+	overflow: hidden;
+	position: absolute;
+	border-radius: 6px;
+	transition: width 0.4s, height 0.4s, top 0.4s, left 0.4s, z-index 0.4s;
+}
+
+.slide .img1 {
+	width: 40%;
+	height: 40%;
+	top: 30%;
+	left: -50%;
+	z-index: 1;
+}
+
+.slide .img2 {
+	width: 60%;
+	height: 2.8rem;
+	top: 8%;
+	left: -52%;
+	z-index: 2;
+}
+
+.slide .img3 {
+	width: 80%;
+	height: 100%;
+	top: 0;
+	left: 10%;
+	z-index: 3;
+}
+
+.slide .img4 {
+	width: 60%;
+	height: 2.8rem;
+	top: 8%;
+	left: 92%;
+	z-index: 2;
+}
+
+.slide .img5 {
+	width: 40%;
+	height: 40%;
+	top: 30%;
+	left: 110%;
+	z-index: 1;
+}
+
+.slide-bt {
+	position: absolute;
+	left: 50%;
+	bottom: 13%;
+	z-index: 10;
+}
+
+.slide-bt span {
+	width: 24px;
+	height: 8px;
+	background: #c9caca;
+	float: left;
+	margin: 5px;
+	border-radius: 4px;
+}
+
+.slide .slide-bt .on {
+	background: #ffd200;
+}
+/*费用包含不包含*/
+.cost-includes{
+	padding: .24rem .2rem;
+	width: 6.8rem;
+	margin: 0 auto;
+	background: #fff;
+	border-top: .06rem solid #fe741a;
+    border-bottom: .06rem solid #fe741a;
+}
+.cost-includes h3{
+	font-size: .26rem;
+	color: #38312C;
+}
+.tip-text{
+	margin: .5rem .8rem;
+	line-height: 1.5;
+	font-size: .24rem;
+	color: #FE741A;
+	text-align: center;
+}
+.tip-text a{
+	color: #FE741A;
+}
+@media only screen and (max-device-width: 320px) {
+	.route-description .clear:first-child .fl:first-child{
+		width: 1.45rem;
+	}
+	.tip-text {
+	    margin: .5rem .37rem;
+	}
+}
