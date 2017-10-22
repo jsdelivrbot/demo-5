@@ -1,9 +1,0 @@
-#异常信息定义文件
-	#用户管理异常
-	ex_userinfo_1=查询用户列表信息异常！
-	ex_userinfo_2=根据用户名查询用户信息异常！
-	ex_userinfo_2=修改用户信息异常！
-
-	#水库管理异常
-	ex_reservoir_1=创建水库信息异常！
-	createreservoirfail=创建水库信息失败！

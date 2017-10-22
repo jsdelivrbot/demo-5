@@ -1,6 +1,0 @@
-/**
- * 所有前台数据请求跳转后台接口URL Created by EKuter-amu on 2017/6/20.
- */
-
-/* 登录 */
-var submitLoginFormUrl = "loginController/login";
