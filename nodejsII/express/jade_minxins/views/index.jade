@@ -1,0 +1,14 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+  mixin users(users)
+    ul
+      each user in users
+        li= user
+  - users=['tom','mary','jack']
+  mixin users(users)
+  - more_users = ['Mark','Elena','Pete','king']
+  mixin users(more_users)
+ 
