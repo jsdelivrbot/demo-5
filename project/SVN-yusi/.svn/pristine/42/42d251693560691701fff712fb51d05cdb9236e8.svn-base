@@ -1,0 +1,120 @@
+"use strict";
+var $ = jQuery;
+
+var lis='';
+var thisDate = new Date();
+thisDate.setDate(0);
+
+// 获取月份天数,不传值代表当月
+function getMonthAllDays(yueNumber){
+	var someDate = new Date();
+	if (arguments.length === 0) {
+		yueNumber = someDate.getMonth()+1;
+		// console.log("yueNumber:"+yueNumber);
+	}
+	someDate.setMonth(yueNumber);
+	someDate.setDate(0);
+	// console.log("月份"+(someDate.getMonth()+1));
+	return someDate.getDate();
+}
+function createTimeBlock(time){
+	var thisDate;
+	if (time) {
+		thisDate = new Object(time);
+	}else {
+		thisDate = new Object();
+	}
+}
+for(var i=1;i<=getMonthAllDays();i++){
+	var item = {};
+	item.dateDayTip = i;
+}
+var days = [
+	{dateDayTip: 1,weekDayTip: '今天'},{dateDayTip: 2,weekDayTip: '三'},{dateDayTip: 3,weekDayTip: '四'},
+	{dateDayTip: 4,weekDayTip: '五'},{dateDayTip: 5,weekDayTip: '六'},{dateDayTip: 6,weekDayTip: '日'},
+	{dateDayTip: 7,weekDayTip: '一'},{dateDayTip: 8,weekDayTip: '二'},{dateDayTip: 9,weekDayTip: '三'},
+	{dateDayTip: 10,weekDayTip: '四'},{dateDayTip: 11,weekDayTip: '五'},{dateDayTip: 12,weekDayTip: '六'},
+	{dateDayTip: 13,weekDayTip: '日'},{dateDayTip: 14,weekDayTip: '一'},{dateDayTip: 15,weekDayTip: '二'},
+	{dateDayTip: 16,weekDayTip: '三'},{dateDayTip: 17,weekDayTip: '四'},{dateDayTip: 18,weekDayTip: '五'},
+	{dateDayTip: 19,weekDayTip: '六'},{dateDayTip: 20,weekDayTip: '日'},{dateDayTip: 21,weekDayTip: '一'},
+	{dateDayTip: 22,weekDayTip: '二'},{dateDayTip: 23,weekDayTip: '三'},{dateDayTip: 24,weekDayTip: '四'},
+	{dateDayTip: 25,weekDayTip: '五'},{dateDayTip: 26,weekDayTip: '六'},{dateDayTip: 27,weekDayTip: '日'},
+	{dateDayTip: 28,weekDayTip: '一'},{dateDayTip: 29,weekDayTip: '二'},{dateDayTip: 30,weekDayTip: '三'},
+	// {dateDayTip: 31,weekDayTip: '四'},
+];
+var daysProperty = {
+	weekDayTip: {
+		class: function(){
+			return ("一二三四五".indexOf(this.weekDayTip)===-1)?"weekend":"";
+		}
+	}
+};
+$('#slider-index ul').render(days,daysProperty);
+// $('#slider-index>ul').render(days);
+$('.lis:eq(1)').addClass('active');
+
+    //向左按钮点击事件
+    var index = 0;
+    var liLen=$(".container-top ul li").length;
+
+function clickLeft(){
+	if (!$(".container-top ul li.active").prev().length) {
+		console.log("到第一个元素了");
+	}else{
+		$(".container-top ul li.active").prev().addClass("active").siblings().removeClass("active");
+	}
+	testLeftAndRightBtn();
+}
+
+
+//向右按钮点击事件
+function clickRight(){
+	if (!$(".container-top ul li.active").next().length) {
+		console.log("到最后一个元素了");
+	}else {
+		$(".container-top ul li.active").next().addClass("active").siblings().removeClass("active");
+	}
+	testLeftAndRightBtn();
+}
+
+function testLeftAndRightBtn(){
+	if ($(".clearfix>li:first").hasClass("active")) {console.log(1);
+		$(".leftBtn").removeClass("active");
+	}else if($(".clearfix>li:last").hasClass("active")){console.log(2);
+		$(".rightBtn").removeClass("active");
+	}else {
+		$(".leftBtn,.rightBtn").addClass("active");console.log(3);
+	}
+}
+function testLeftAndRightPosition(){
+	
+}
+
+
+
+$(function(){
+	$("#slider-index li").each(function(){
+		$(this).click(function(){
+			$(this).addClass('active').siblings().removeClass('active');
+			index=$(this).index();
+			testLeftAndRightBtn();
+
+
+		});
+
+	});
+	$('.leftBtn.active').click(clickLeft);
+	$('.rightBtn.active').click(clickRight);
+
+
+
+    //日期切换
+    $('#monthsPicker').val(DateToday('months'));
+    $('.prevButton ').on('click',function(){
+        datePrev();
+    });
+    $('.nextButton ').on('click',function(){
+        dateNext();
+    });
+
+});

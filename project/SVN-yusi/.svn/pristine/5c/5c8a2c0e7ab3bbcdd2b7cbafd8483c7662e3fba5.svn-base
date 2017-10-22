@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>实时信息查询</title>
+    <link rel="stylesheet" href="pro_css/common/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="pro_css/common/bootstrap-datepicker.min.css">
+    <link rel="stylesheet" href="https://openlayers.org/en/v4.2.0/css/ol.css" type="text/css">
+    <link rel="stylesheet" type="text/css" href="pro_css/common/common.css">
+    <link rel="stylesheet" type="text/css" href="pro_css/header.css">
+    <link rel="stylesheet" type="text/css" href="pro_css/proindex.css">
+   
+
+   <!--  <style>
+        a.skiplink {
+            position: absolute;
+            clip: rect(1px, 1px, 1px, 1px);
+            padding: 0;
+            border: 0;
+            height: 1px;
+            width: 1px;
+            overflow: hidden;
+        }
+        a.skiplink:focus {
+            clip: auto;
+            height: auto;
+            width: auto;
+            background-color: #fff;
+            padding: 0.3em;
+        }
+        #map:focus {
+            outline: #4A74A8 solid 0.15em;
+        }
+    </style> -->
+</head>
+<body>
+    <!--头部-->
+    <div id="header">
+      <div class="header-top">
+        <div class="header-top-content">
+          <div class="header-top-content-left">
+            <img src="../imgs/common/logo.png" alt="">
+          </div>
+          <div class="header-top-content-right">
+            <span>94476455@qq.com</span>&nbsp;|&nbsp;<a href = "/logout">退出</a>
+          </div>
+        </div>
+      </div>
+      <div class="header-bottom">
+        <ul>
+          <li class="header-bottom-item header-bottom-item1 active"><span>实时信息查询</span></li>
+          <li class="header-bottom-item header-bottom-item2"><span>雨量统计</span></li>
+          <li class="header-bottom-item header-bottom-item3"><span>水位统计</span></li>
+          <li class="header-bottom-item header-bottom-item4"><span>测站状态</span></li>
+          <li class="header-bottom-item header-bottom-item5"><span>人工上报</span></li>
+        </ul>
+        <!--  <div class="moveWrap"><i class="navMove" style="left: 26px; width: 124px;"></i></div> -->
+      </div>
+
+    </div>
+
+
+    <!-- <a class="skiplink" href="#map">Go to map</a> -->
+    <!--地图-->
+    <div id="map" class="map" tabindex="0"></div>
+    <div class="contentRight">
+        <!-- <div class="contentRighthomei" id="rightPanelHideBtn" title="隐藏面板"><img src="m2m_v4.0/images/right_arrow.png"></div> -->
+        <div class="contentRightTabs">
+          <div class="tabs tabs1 active">实时水情</div> 
+          <div class="tabs tabs2">实时雨情</div> 
+         
+         
+        </div>
+        <div class="tab-content">
+          <div class="tab-pannel tab-pannel1 active">实时水情</div> 
+          <div class="tab-pannel tab-pannel2">实时雨情
+            <input type="text" id="starttime" class="timePicker" style="background:none;" readonly="readonly" placeholder="开始时间" value="2013-11-12 00:00:00">
+             <input type="text" id="endtime" class="timePicker" style="background:none;" readonly="readonly" placeholder="结束时间" value="2014-11-13 10:00:00"  />
+             <button type="button" id="grid_search_btn" style="margin-left:7px; height:35px;line-height:35px;padding-top:0px;" class="btn">确认</button>
+          </div> 
+         
+         
+        </div>        
+
+
+      </div>
+    </div>
+  
+    <!-- <button id="zoom-out">Zoom out</button>
+    <button id="zoom-in">Zoom in</button> -->
+
+
+
+<script type="text/javascript" src="pro_js/publicJs/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="pro_js/publicJs/jquery.form.js"></script>
+<script type="text/javascript" src="pro_js/publicJs/bootstrap.min.js"></script>
+<script type="text/javascript" src="pro_js/publicJs/bootstrap-datepicker.min.js"></script>
+<script type="text/javascript" src="pro_js/publicJs/bootstrap-datepicker.zh-CN.js"></script>
+
+<script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=requestAnimationFrame,Element.prototype.classList,URL"></script>
+<script src="https://openlayers.org/en/v4.2.0/build/ol.js"></script>
+
+<script src="/pro_js/header.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" src="pro_js/proIndex.js"></script>
+<script type="text/javascript" charset="utf-8" >
+  $(".timePicker").datepicker({
+    language: 'zh-CN',
+//                todayBtn: true,
+    todayHighlight:1,
+    autoclose: 1,
+    minView: 2,
+    format: "yyyy-mm-dd",
+    orientation:'bottom',
+    clearBtn:true
+  });
+</script>
+</body>
+</html>

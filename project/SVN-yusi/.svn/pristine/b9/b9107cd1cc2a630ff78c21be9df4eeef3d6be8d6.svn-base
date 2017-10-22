@@ -1,0 +1,148 @@
+var Map={
+    //地图初始化
+    init:function(flag){
+      // 设置地图限制区域
+      var arr = ol.proj.fromLonLat([-110, 12]);
+      var arr1 = ol.proj.fromLonLat([-40, 60]);
+      arr = arr.concat(arr1);
+      // 实例化地图
+      map = new ol.Map({
+        logo: false,
+        layers: [
+          new ol.layer.Tile({
+            source: new ol.source.TileWMS({
+              params: {
+                'LAYERS': 'topp:states',
+                'VERSION': '1.1.0',
+                'BBOX': [-124.73142200000001, 24.955967, -66.969849, 49.371735],
+                'CRS': 'EPSG:4326',
+                'WIDTH': 768,
+                'HEIGHT': 330
+              },
+              projection: "EPSG:4326",
+              url: 'http://192.168.1.253:8080/geoserver/topp/wms'
+            })
+          })
+        ],
+        target: 'map',
+        controls: ol.control.defaults({
+          attributionOptions: /** @type {olx.control.AttributionOptions} */ ({
+            collapsible: false
+          })
+        }),
+        view: new ol.View({
+          extent: arr,
+          center: ol.proj.fromLonLat([-82, 35]),
+          zoom: 3,
+          maxZoom: 6,
+          minZoom: 3
+        })
+      });
+      var _this=this;
+
+      if(flag){
+        //交互：获取鼠标点击当前经纬度
+         map.on('click',function(evt){
+          console.log(evt);
+           _this.mapClick(evt);
+         });
+          //绘制点
+         this.clickAddPoints();
+      }
+
+    },
+    setInfos:function(position, title, icon, i){ /*读取添加站名框*/
+      $('body').append('<div class="popup" id="popup' + i + '">' + title + '</div>');
+
+        var popup = new ol.Overlay({
+          element: document.getElementById('popup' + i),
+          autoPan: true,
+          autoPanAnimation: {
+            duration: 250
+          }
+        });
+        popup.setOffset([0, -32]);
+        var pos = ol.proj.fromLonLat(position);
+        popup.setPosition(pos);
+        map.addOverlay(popup);
+
+    },
+    addPoints:function(position, title){ /*自动读取添加站点*/
+
+        var pointPos = ol.proj.fromLonLat(position);
+        var iconFeature = new ol.Feature({
+          geometry: new ol.geom.Point(pointPos),
+          name: title,
+          population: 4000,
+          rainfall: 500
+        });
+        var vectorSource = new ol.source.Vector({
+          features: [iconFeature]
+        });
+        var vectorLayer = new ol.layer.Vector({
+          source: vectorSource
+        });
+        var iconStyle = new ol.style.Style({
+          image: new ol.style.Icon( /** @type {olx.style.IconOptions} */ ({
+            color: 'pink',
+            crossOrigin: 'anonymous',
+            src: 'https://openlayers.org/en/v4.2.0/examples/data/dot.png'
+          }))
+        });
+        iconFeature.setStyle(iconStyle);
+        map.addLayer(vectorLayer);
+
+    },
+    mapClick:function(evt){//获取经纬度
+      var coordinate = evt.coordinate;
+      // 坐标转经纬度
+      var pos = ol.proj.transform(coordinate, 'EPSG:3857', 'EPSG:4326');
+      // 处理坐标点的保留位数
+      pos = ol.coordinate.toStringXY(pos, 2);
+      console.log(pos);
+
+
+
+    },
+    clickAddPoints:function(){//交互部分：点击图层加点
+        // 绘制点及样式
+        var vector = new ol.layer.Vector({
+          source: new ol.source.Vector(),
+          style: new ol.style.Style({
+            fill: new ol.style.Fill({
+              color: 'rgba(255, 255, 255, 0.2)'
+            }),
+            stroke: new ol.style.Stroke({
+              color: '#ffcc33',
+              width: 2
+            }),
+            image: new ol.style.Circle({
+              radius: 7,
+              fill: new ol.style.Fill({
+                color: '#ffcc33'
+              })
+            })
+          })
+        });
+        map.addLayer(vector);
+          // 绘制方法
+        var Draw = {
+          init: function() {
+            map.addInteraction(this.Point);
+          },
+          Point: new ol.interaction.Draw({
+            source: vector.getSource(),
+            type: /** @type {ol.geom.GeometryType} */ ('Point')
+          })
+        };
+        Draw.init();
+
+        // 添加交互
+        var snap = new ol.interaction.Snap({
+          source: vector.getSource()
+        });
+        map.addInteraction(snap);
+
+    }
+};
+// Map.init();

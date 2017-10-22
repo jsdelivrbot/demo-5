@@ -1,0 +1,127 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "microsoft yahei";
+}
+ul{
+  list-style: none;
+}
+body{
+  background-color: #EFF6F6;
+  font-size:16px;
+  min-width:1200px;
+}
+#header {
+  width: 100%;
+  height:128px;
+}
+#header .header-top{
+  background-color: #4791ea;
+}
+#header .header-top-content,#header .header-bottom>ul{
+  max-width: 100%;
+  min-width: 1200px;
+  margin: 0 auto;
+}
+#header .header-top-content{
+    padding: 0 43px;
+}
+#header .header-top-content::after{
+  content: "";
+  display: block;
+  clear: both;
+}
+#header .header-top-content-left{
+  float: left;
+  /*background: url(../imgs/common/logo.png) -10px -10px;*/
+}
+#header .header-top-content-right{
+  float: right;
+}
+#header .header-top-content-left,#header .header-top-content-right{
+  height: 71px;
+  line-height: 71px;
+  vertical-align: middle;
+  color: white;
+}
+#header .header-top-content-left img:first-child{
+    margin-top:14px;
+    vertical-align: top;
+}
+#header .header-top-content-left img:last-child{
+    display: none;
+    margin-top:8px;
+    vertical-align: top;
+}
+#header .header-top-content-right span{
+    cursor: default;
+}
+#header .header-top-content-right a{
+  color:#fff;
+}
+
+#header .header-bottom{
+  width: 100%;
+  background-color: white;
+  position:relative;
+}
+#header .header-bottom>ul{
+  font-size: 0;
+  width: 100%;
+  position:relative;
+}
+#header .header-bottom>ul>li{
+  display: inline-block;
+  font-size: 16px;
+  line-height: 56px;
+  height: 56px;
+  width: 185px;
+  text-align: center;
+  cursor: pointer;
+  position: relative;
+  color:#696969;
+}
+#header .header-bottom>ul>li.active{
+  color: #4791EA;
+  font-weight: bold;
+}
+#header .header-bottom>ul>li:first-child{
+  padding-left: 0;
+}
+.indicator{
+    position:absolute;
+    transition: all 0.25s ease-in-out;
+    width: 98px !important;
+    margin-left: 44px;
+}
+
+
+
+@media only screen and (max-width: 1400px){
+    #header{
+        height: 97px;
+    }
+    #header .header-top-content-left, #header .header-top-content-right{
+        height: 48px;
+        line-height: 48px;
+    }
+    #header .header-top-content-left img:first-child{
+        display: none;
+    }
+    #header .header-top-content-left img:last-child{
+        display: block;
+    }
+    #header .header-bottom>ul>li{
+        height: 48px;
+        line-height: 48px;
+        width: 127px;
+        font-size: 14px;
+    }
+    .indicator{
+        margin-left: 19px;
+        width: 90px !important;
+    }
+    #header .header-bottom>ul{
+        padding: 0 14px;
+    }
+}

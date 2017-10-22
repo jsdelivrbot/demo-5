@@ -1,0 +1,209 @@
+package ekuter.mvc.controller;
+
+import java.util.List;
+import java.util.Map;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import ekuter.mvc.constants.Constants;
+import ekuter.mvc.exception.BusinessException;
+import ekuter.mvc.util.ResultMessageUtil;
+import mybatisPro.mybatisEntity.StationEntity;
+import mybatisPro.mybatisService.impl.StationService;
+
+/**
+ * 测站信息管理
+ * @author si.yu
+ * @date 2017/7/17
+ * @version 1.0
+ * */
+@RestController
+@RequestMapping("station")
+public class StationManagerController {
+	
+	private static final Logger logger=LoggerFactory.getLogger(StationManagerController.class);
+	
+	@Autowired
+	private StationService stationService;
+	
+	/**
+	 * 创建测站
+	 * @param stationEntity
+	 * @return
+	 * */
+	@RequestMapping("createStation")
+	public ResultMessageUtil createStation(StationEntity stationEntity){
+		
+		ResultMessageUtil resultMsg = new ResultMessageUtil();
+		
+		String error = null;
+		
+		error = checkStationForm(stationEntity);
+		
+		if(null != error){
+			resultMsg.setStatus(1);
+			resultMsg.setMsg(error);
+			return resultMsg;
+		}else{
+			
+			String sta_name = stationEntity.getStation_name();
+			boolean findByName = 
+					stationService.findStationInfoByStaName(sta_name);
+			if(findByName){
+				resultMsg.setStatus(1);
+				resultMsg.setMsg("测站名称已存在");
+				return resultMsg;
+			}else{
+				boolean createFlag = 
+						stationService.createStation(stationEntity);
+				
+				if(createFlag){
+					resultMsg.setStatus(0);
+					resultMsg.setMsg("Create success!");
+					return resultMsg;
+				}else{
+					logger.info(Constants.EXCEPTION_MAP.get("CREATESTATIONFAIL"));
+					throw new BusinessException(Constants.EXCEPTION_MAP.get("CREATESTATIONFAIL"));
+				}
+			}
+		}
+	}
+	
+	/**
+	 * 查询测站列表
+	 * @return
+	 * */
+	@RequestMapping("getStationList")
+	public ResultMessageUtil getStationList(){
+		
+		ResultMessageUtil resultMsg = new ResultMessageUtil();
+		
+		List<Map<String, Object>> stationEntities = 
+				stationService.getStationList();
+		
+		if(null != stationEntities){
+			resultMsg.setStatus(0);
+			resultMsg.setData(stationEntities);
+			return resultMsg;
+		}else{
+			logger.info(Constants.EXCEPTION_MAP.get("GETSTATIONLIST"));
+			throw new BusinessException(Constants.EXCEPTION_MAP.get("GETSTATIONLIST"));
+		}
+	}
+	
+	/**
+	 * 查询测站信息详情
+	 * @param stationId
+	 * @return stationEntity
+	 * */
+	@RequestMapping("getStationInfoDetail")
+	public ResultMessageUtil findStationInfoById(Long stationId){
+		
+		ResultMessageUtil resultMsg = new ResultMessageUtil();
+		
+		if(null != stationId){
+			StationEntity stationEntity = 
+					stationService.getStationInfoById(stationId);
+			if(null != stationEntity){
+				resultMsg.setStatus(0);
+				resultMsg.setData(stationEntity);
+				return resultMsg;
+			}else{
+				logger.info(Constants.EXCEPTION_MAP.get("STATIONINFODETAIL"));
+				throw new BusinessException(Constants.EXCEPTION_MAP.get("STATIONINFODETAIL"));
+			}
+		}else{
+			logger.info(Constants.EXCEPTION_MAP.get("PARAMERROR"));
+			throw new BusinessException(Constants.EXCEPTION_MAP.get("PARAMERROR"));
+		}
+	}
+	
+	/**
+	 * 测站信息修改
+	 * @param stationEntity
+	 * @return
+	 * */
+	@RequestMapping("updateStationInfo")
+	public ResultMessageUtil updateStationInfo(StationEntity stationEntity){
+		
+		ResultMessageUtil resultMsg = new ResultMessageUtil();
+		//定义表单检测错误信息
+		String error = null;
+		//检测修改测站ID参数的合法性
+		Long stationId = stationEntity.getId();
+		
+		if(null != stationId){
+			
+			error = checkStationForm(stationEntity);
+			
+			if(null == error){
+				//提交修改测站信息请求
+				boolean updateFlag = 
+						stationService.updateStationInfo(stationEntity);
+				
+				if(updateFlag){
+					resultMsg.setStatus(0);
+					resultMsg.setMsg("update success!");
+					return resultMsg;
+				}else{
+					logger.info(Constants.EXCEPTION_MAP.get("UPDATESTATIONINFO"));
+					throw new BusinessException(Constants.EXCEPTION_MAP.get("UPDATESTATIONINFO"));
+				}
+			}else{
+				resultMsg.setStatus(1);
+				resultMsg.setMsg(error);
+				return resultMsg;
+			}
+		}else{
+			logger.info(Constants.EXCEPTION_MAP.get("PARAMERROR"));
+			throw new BusinessException(Constants.EXCEPTION_MAP.get("PARAMERROR"));
+		}
+	}
+
+	/**
+	 * 测站信息表单验证
+	 * @param stationEntity
+	 * @return error
+	 * */
+	private String checkStationForm(StationEntity stationEntity) {
+		
+		String error = null;
+		
+		//测站码
+		String sys_code = stationEntity.getSys_code();
+		//国家标准码
+		String stcd = stationEntity.getStcd();
+		//测站名称
+		String station_name = stationEntity.getStation_name();
+		//横坐标
+		Float x = stationEntity.getX();
+		//纵坐标
+		Float y = stationEntity.getY();
+		//测站类型
+		Long stationType = stationEntity.getStation_type_id();
+		//区域码
+		Long area_id = stationEntity.getArea_id();
+		
+		if("".equals(station_name) || null == station_name){
+			error = "请输入测站名称";
+		}else if(sys_code.length() > 8){
+			error = "请输入8位测站标准码";
+		}else if(stcd.length() > 12){
+			error = "请输入12位国家标准码";
+		}else if(null == x){
+			error = "横坐标不能为空";
+		}else if(null == y){
+			error = "纵坐标不能为空";
+		}else if(null == stationType){
+			error = "请选择测站类型";
+		}else if(null == area_id){
+			error = "请选择区域";
+		}
+		
+		return error;
+	} 
+}

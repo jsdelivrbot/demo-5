@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>水位统计</title>
+    <link rel="stylesheet" type="text/css" href="/pro_css/common/common.css">
+    <link rel="stylesheet" type="text/css" href="/pro_css/header.css">
+    <link rel="stylesheet" type="text/css" href="/pro_css/waterLevelStatistical.css">
+</head>
+<body>
+<!-- 头部 -->
+<div id="header">
+  <div class="header-top">
+    <div class="header-top-content">
+      <div class="header-top-content-left">
+        <img src="../imgs/common/logo.png" alt="">
+      </div>
+      <div class="header-top-content-right">
+        <span>94476455@qq.com</span>&nbsp;|&nbsp;<a href = "/logout">退出</a>
+      </div>
+    </div>
+  </div>
+  <div class="header-bottom">
+    <ul>
+      <li class="header-bottom-item header-bottom-item1"><span>实时信息查询</span></li>
+      <li class="header-bottom-item header-bottom-item2"><span>雨量统计</span></li>
+      <li class="header-bottom-item header-bottom-item3 active"><span>水位统计</span></li>
+      <li class="header-bottom-item header-bottom-item4"><span>测站状态</span></li>
+      <li class="header-bottom-item header-bottom-item5"><span>人工上报</span></li>
+    </ul>
+  </div>
+</div>
+
+
+  <script type="text/javascript" src="/pro_js/publicJs/jquery-3.1.1.min.js"></script>
+  <script type="text/javascript" src="/pro_js/publicJs/bootstrap.min.js"></script>
+  <script type="text/javascript" src="/pro_js/header.js"></script>
+  <script type="text/javascript" src="/pro_js/waterLevelStatistical.js"></script>
+</body>
+</html>

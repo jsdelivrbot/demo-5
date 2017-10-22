@@ -1,0 +1,527 @@
+#container {
+    background: #F0F6F6;
+    width:100%;
+}
+#left {
+    width: 210px;
+    height: calc(100% - 135px);
+    background-color: #374050;
+    float: left;
+}
+#left .left-item{
+	height: 81px;
+	line-height:81px ;
+	color: #A9ACB1;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+}
+#left .left-item.active{
+	color:#fff;
+	background:#5D6371;
+}
+
+#right {
+	padding:0px 110px 20px 90px;
+  	margin-top:10px;
+    width: calc(100% - 220px);
+    height: calc(100% - 135px);
+    float: right;
+    background:#fff;
+
+}
+#right .right-title .create{
+    width:100px;
+    height:32px;
+    line-height:32px;
+    color: #fff;
+    background-color: #4991EA;
+    border-radius: 3px;
+    border: none;
+    font-size: 14px;
+}
+.pannel-content,.right-body-table,.right-title{
+    max-width:1325.5px;
+    font-size:14px;
+}
+/**第一页面**/
+.selectpickerBox{
+    margin-right:56px;
+}
+.bootstrap-select:not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn){
+    width:180px;
+    height:32px;
+}
+.btn-group>.btn:first-child{
+    height:100%;
+}
+.bootstrap-select.btn-group .dropdown-toggle .filter-option{
+    text-indent:10px;
+}
+/**修改bootstrap-select的下三角样式**/
+.caret {
+    display: inline-block;
+    width: 14px;
+    height: 8px;
+    background: url(../imgs/common/common.png) no-repeat -5px -117px;
+    border: none;
+}
+.dropup .caret, .navbar-fixed-bottom .dropdown .caret{
+    border-bottom:none;
+}
+#right .rightContent1 .right-title .btn-tabs{
+    margin-top:24px;
+
+}
+#right .rightContent1 .right-title .btn-tabs button{
+    height:32px;
+    color: #fff;
+    background-color: #fff;
+    border-radius: 3px;
+    border: 1px solid #4991EA;
+    color:#4991EA;
+
+}
+#right .rightContent1 .right-title .btn-tabs .btn1{
+    width:70px;
+
+}
+#right .rightContent1 .right-title .btn-tabs .btn2,
+#right .rightContent1 .right-title .btn-tabs .btn3{
+    width:98px;
+
+}
+#right .rightContent1 .right-title .btn-tabs button.active{
+     background-color: #4991EA;
+     color:#fff;
+}
+#right  .rightContent1 .right-title  .pannel-content{
+    display:block;
+    margin:30px 0;
+    color:#696969;
+}
+
+
+#right .rightContent1 .right-title .create{
+    margin-top:0;
+}
+#right .rightContent1 .right-table-title-item, #right .rightContent1 .right-table-row-item{
+    width:16.66%;
+}
+
+/**第二页面**/
+#right .rightContent2 .right-title{
+	height:82px;
+	line-height:82px;
+	text-align:center;
+    font-size: 18px;
+}
+
+#right .rightContent2 .right-title .create{
+    margin-top:22px;
+}
+#right .right-body-table{
+    font-size: 14px;
+}
+#right .right-body-table .right-table-title{
+    line-height: 48px;
+    background:#F2F2F2;
+}
+#right .right-body-table .right-table-title li{
+    float: left;
+    text-align: center;
+    color: #696969;
+    border-top: 1px solid #e5e5e5;
+    border-left: 1px solid #e5e5e5;
+    border-bottom: 1px solid #e5e5e5;
+}
+#right .right-body-table .right-table-title li:last-child,
+#right .right-body-table .right-table-body li:last-child{
+	border-right:1px solid #e5e5e5;
+}
+#right .right-table-body{
+    color: #696969;
+}
+#right .right-body-table .right-table-body li{
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    float: left;
+    border-bottom: 1px solid #e5e5e5;
+    border-left: 1px solid #e5e5e5;
+}
+#container #right .right-body-table .right-table-body li:nth-child(9) span{
+    cursor:pointer;
+}
+#container #right .right-body-table .right-table-body li:nth-child(9) .editBox{
+    line-height:normal;
+    cursor:pointer;
+}
+#container #right .right-body-table .right-table-body li:nth-child(9) i.editPic{
+    display:inline-block;
+    width:20px;
+    height:20px;
+    background:url(../imgs/dataManagement/dataManagement.png) no-repeat -5px -5px;
+    cursor:pointer;
+    vertical-align:text-bottom;
+
+}
+#right .rightContent2 .right-table-title-item:nth-child(1),
+#right .rightContent2 .right-table-row-item:nth-child(1){
+    width: 15.8%;
+}
+#right .rightContent2 .right-table-title-item:nth-child(2),
+#right .rightContent2 .right-table-row-item:nth-child(2){
+    width: 12.5%;
+}
+#right .rightContent2 .right-table-title-item:nth-child(3),
+#right .rightContent2 .right-table-row-item:nth-child(3){
+    width: 8.5%;
+}
+#right .rightContent2 .right-table-title-item:nth-child(4),
+#right .rightContent2 .right-table-row-item:nth-child(4){
+    width: 8.5%;
+}
+#right .rightContent2 .right-table-title-item:nth-child(5),
+#right .rightContent2 .right-table-row-item:nth-child(5){
+    width: 8.5%;
+}
+#right .rightContent2 .right-table-title-item:nth-child(6),
+#right .rightContent2 .right-table-row-item:nth-child(6){
+    width: 18%;
+}
+#right .rightContent2 .right-table-title-item:nth-child(7),
+#right .rightContent2 .right-table-row-item:nth-child(7){
+    width: 8.5%;
+}
+#right .rightContent2 .right-table-title-item:nth-child(8),
+#right .rightContent2 .right-table-row-item:nth-child(8){
+    width: 8.5%;
+}
+#right .rightContent2 .right-table-title-item:nth-child(9),
+#right .rightContent2 .right-table-row-item:nth-child(9){
+    width: 11.2%;
+    color: #4891ea;
+}
+#right .rightContent2 .right-table-row-item:nth-child(6){
+    position: relative;
+}
+#right .rightContent2 .right-table-row-item:nth-child(6) span{
+    position: absolute;
+   top: 0;
+   right: 0;
+   bottom: 0;
+   left: 0;
+   width: 100%;
+   margin: auto;
+   display: table;
+   text-align: center;
+   line-height: initial;
+}
+
+/*页面3*/
+#right .rightContent3 .right-title{
+    height: 118px;
+    line-height: 118px;
+}
+#right  .rightContent3 .right-title .create{
+    margin-top: 43px;
+}
+.pannel-content{
+    display: inline-block;
+    width: 100%;
+}
+
+
+.pannel-content>*{
+    vertical-align: middle;
+}
+.pannel-content .mar8{
+    margin:0 8px;
+    position: relative;
+    top: 8px;
+    color: #7a7a7a;
+}
+.timePicker{
+    background:url('../imgs/common/Real-time-3.png') 154px center no-repeat;
+}
+// .pannel-content .timePickerCaret{
+//     position:absolute;
+//     right:10px;
+//     top:13px;
+//     width:14px;
+//     height:12px;
+//     background:url(../imgs/common/common.png) no-repeat -5px -117px;
+// }
+.pickerBox {
+    display: inline-block;
+    position: relative;
+    line-height: normal;
+}
+.confirm {
+    width: 100px;
+    height: 32px;
+    line-height: 32px;
+    margin-left: 15px;
+    border: none;
+    border-radius: 3px;
+    text-align: center;
+    color: #fff;
+    background: #5cb85c;
+    cursor: pointer;
+}
+.timePicker {
+    width: 180px;
+    height: 32px;
+    border: 1px solid #e5e5e5;
+    text-indent: 5px;
+    border-radius: 3px;
+    outline: none;
+    cursor: pointer;
+}
+#right .rightContent3 .right-title{
+    text-align: left;
+}
+#right .rightContent3 .right-title .create{
+    margin-right: 0;
+}
+#right .rightContent3 .right-table-title{
+    background-color: #f2f2f2;
+    height: 85px;
+}
+#right .rightContent3 .right-table-title-item,
+#right .rightContent3 .right-table-row-item{
+    width: 20%;
+    height: 100%;
+    line-height: 85px;
+    cursor: default;
+}
+#right .rightContent3 .right-table-row-item:nth-child(1)>i{
+    display: inline-block;
+    width: 29px;
+    height: 26px;
+    background: url(../imgs/dataManagement/dataManagement.png) no-repeat -59px -1px;
+    cursor: pointer;
+    vertical-align: middle;
+    margin-right: 0px;
+}
+#right .rightContent3 .right-table-title-item:nth-child(4){
+    width: 40%;
+}
+#right .rightContent3 .right-table-title-item:nth-child(4)>span{
+    display: inline-block;
+    height: 47px;
+    line-height: 47px;
+    width: 50%;
+    vertical-align: top;
+}
+#right .rightContent3 .right-table-title-item:nth-child(4)>span:nth-child(1){
+    width: 100%;
+    height: 36px;
+    line-height: 36px;
+    display: block;
+    border-bottom: 1px solid #e5e5e5;
+}
+#right .rightContent3 .right-table-title-item:nth-child(4)>span:nth-child(2){
+    border-right: 1px solid #e5e5e5;
+}
+
+#right .rightContent3 .right-body-table{
+    position: relative;
+}
+#right .rightContent3 .areaCard{
+    display: inline-block;
+    width: 438px;
+    padding: 0px 19px 25px;
+    position: absolute;
+    background-color: #c5dfff;
+    cursor: default;
+}
+#right .rightContent3 .areaCard>.arrow{
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    transform: translate(14px,-8px) rotate(45deg);
+    background-color: #c5dfff;
+}
+#right .rightContent3 .areaCard>p{
+    text-indent: 36px;
+}
+
+/*页面4*/
+#right .rightContent4 .right-title{
+	height:114px;
+	line-height:114px;
+	text-align:center;
+    font-size: 18px;
+}
+#right .rightContent4 .right-title .create{
+    margin-top: 42px;
+}
+#right .rightContent4 .right-body-table{
+    /*border: 1px solid #e1e1e1;*/
+}
+#right .rightContent4 .right-table-row{
+    /*border-top:  1px solid #e1e1e1;*/
+}
+#right .rightContent4 .right-table-title>li:first-child,
+#right .rightContent4 .right-table-row>li:first-child{
+    width: 377px;
+}
+#right .rightContent4 .right-table-title>li:last-child,
+#right .rightContent4 .right-table-row>li:last-child{
+    width: 285px;
+    padding: 0 71px;
+}
+#right .rightContent4 .right-table-title>li:nth-child(2),
+#right .rightContent4 .right-table-row>li:nth-child(2){
+    width: calc(100% - 377px - 285px);
+    position: relative;
+}
+
+#right .rightContent4 .right-table-row>li:nth-child(2) span{
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    margin: auto;
+    display: table;
+    text-align: center;
+    line-height: normal;
+}
+#right .rightContent4 .right-table-row>li:first-child i{
+    display: inline-block;
+    width: 27px;
+    height: 23px;
+    vertical-align: middle;
+    cursor: pointer;
+    background: url(../imgs/dataManagement/dataManagement.png) no-repeat -59px -3px;
+}
+#right .rightContent4 div.modify,
+#right .rightContent4 div.delete{
+    display: inline-block;
+    width: 50%;
+    color: #599bec;
+    margin: 0;
+    cursor: pointer;
+}
+#right .rightContent4 div.modify i,
+#right .rightContent4 div.delete i{
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+    cursor: pointer;
+}
+#right .rightContent4 div.modify i{
+    background: url(../imgs/dataManagement/dataManagement.png) no-repeat -5px -5px;
+}
+#right .rightContent4 div.delete i{
+    background: url(../imgs/dataManagement/dataManagement.png) no-repeat -35px -5px;
+}
+
+
+/**页脚**/
+.notContent{padding: 15px 0;text-align: center;}
+.pageChange {
+    text-align: center;
+    margin-top: 18px;
+}
+.pageChange .pageChange-span {
+    border: 1px solid #bfbfbf;
+    height: 25px;
+    line-height: 25px;
+    text-align: center;
+    vertical-align: top;
+}
+.pageChange .pageChange-span2{
+    width: 25px;
+    cursor: default;
+}
+
+.pageChange .pageChange-span1, .pageChange .pageChange-span2 {
+    margin-right: 17px;
+}
+
+.pageChange .pageChange-span1, .pageChange .pageChange-span3 {
+    width: 60px;
+    cursor: pointer;
+}
+/**按钮样式**/
+
+.pageChange .pageChange-span-up,.pageChange .pageChange-span-up.active,
+.pageChange .pageChange-span-down,.pageChange .pageChange-span-down.active{
+    display: inline-block;
+    width: 8px;
+    height: 10px;
+    background: url(../imgs/dataManagement/dataManagement.png) no-repeat ;
+}
+.pageChange .pageChange-span-up{
+    margin-right:4px
+}
+.pageChange .pageChange-span-down{
+    margin-left:4px
+}
+/**左侧按钮禁用**/
+.pageChange .pageChange-span-up{
+    background-position:-41px -35px;
+}
+/**左侧按钮激活**/
+.pageChange-span1.active .pageChange-span-up{
+    background-position: -23px -35px;
+}
+
+/**右侧按钮禁用**/
+.pageChange .pageChange-span-down{
+    background-position:-59px -35px;
+}
+/**右侧按钮激活**/
+.pageChange-span3.active .pageChange-span-down{
+    background-position: -5px -35px;
+}
+.pageChange-span1.disabled,.pageChange-span3.disabled{
+    color:#d2d2d2;
+    cursor:not-allowed;
+}
+
+
+.pageChange .txt {
+    margin: 0 8px;
+    cursor: default;
+    vertical-align:sub;
+}
+
+/*若浏览器宽度小于1420px时*/
+@media only screen and (max-width: 1420px) {
+    #right{
+        padding: 0px 60px 20px 40px;
+    }
+    /*第1页处理*/
+    #right .rightContent1 .right-title .create,
+    #right .rightContent1 .right-title .confirm{
+        width: 75px;
+    }
+    #right .rightContent1 .timePicker{
+        width: 160px;
+        background-position: 136px center;
+    }
+    #right .rightContent1 .bootstrap-select > .dropdown-toggle.bs-placeholder{
+        width: 160px;
+    }
+    #right .rightContent1 .selectpickerBox {
+        margin-right: 26px;
+    }
+    #right .rightContent1 .right-table-title-item,
+    #right .rightContent1 .right-table-row-item {
+        width: calc((100% - 340px) / 4);
+    }
+    #right .rightContent1 .right-table-title-item:nth-child(2),
+    #right .rightContent1 .right-table-title-item:nth-child(4),
+    #right .rightContent1 .right-table-row-item:nth-child(2),
+    #right .rightContent1 .right-table-row-item:nth-child(4){
+        width: 170px;
+    }
+
+}

@@ -1,0 +1,84 @@
+//获取当前日期
+function DateToday(flag) {
+  var d = new Date();
+  var year = d.getFullYear();
+  var month = d.getMonth() + 1;
+  if (month < 10) {
+    month = '0' + month;
+
+  }
+  var day = d.getDate();
+  if (day < 10) {
+    day = '0' + day;
+  }
+  var hour = d.getHours();
+  if (hour < 10) {
+    hour = '0' + hour;
+  }
+  var min = d.getMinutes();
+ if (min < 10) {
+    min = '0' + min;
+  }
+  var str;
+  if(flag=="years"){
+	str = year;
+	return str;
+  }else if(flag=="months"){
+	str = year + "-" + month ;
+	return str;
+  }else if(flag=="days"){
+  	str = year + "-" + month + "-" + day;
+  	return str;
+  }
+
+}
+
+function datePrev(){
+
+  var year= $('#monthsPicker').val().split("-")[0];
+  var month = $('#monthsPicker').val().split("-")[1];
+  month--;
+ if(month<1){
+    month=12;
+    year-=1;
+ }
+
+  if(month<10){
+      month='0'+month;
+  }
+  $('#monthsPicker').val(year+'-'+month);
+  
+
+}
+function dateNext(){
+  var d=new Date();
+  var year= $('#monthsPicker').val().split("-")[0];
+  var month = $('#monthsPicker').val().split("-")[1];
+  month++;
+  if(month<10){
+    month='0'+month;
+  }
+
+  if(month>12){
+    year++;
+    month-=12;
+    if(month<10){
+      month='0'+month;
+    }
+  }
+  if(year==d.getFullYear()&&month>d.getMonth()+1){
+      return ;
+  }
+  $('#monthsPicker').val(year+'-'+month);
+}
+
+
+$(function(){
+	$('#monthsPicker').val(DateToday('months'));
+	$('.prevButton ').on('click',function(){
+		datePrev();
+	});
+	$('.nextButton ').on('click',function(){
+		dateNext();
+	});
+})

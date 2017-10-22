@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8"/>
+        <title>kuter雨水情监测管理系统</title>
+        <link rel="stylesheet" type="text/css" href="pro_css/common/common.css">
+        <link rel="stylesheet" type="text/css" href="pro_css/login.css">
+    </head>
+
+    <body onkeydown="keyDownLogin()">
+        <!--头部-->
+        <div class="header">
+            <div class="headerLogo"><img src="../imgs/login/log-in-7.png"></div>
+        </div>
+
+        <!--主体banner-->
+        <div class="banner">
+            <div class="login-aside">
+                <div id="o-box-up"></div>
+                <div id="o-box-down"  style="table-layout:fixed;"> 
+                    <div id="loginContainer">
+                        <div id="login-con">
+                            <form action="" method="post" id="login_form">
+                                <p id="user" class="fm-item">
+                                    <span>用户名：</span>
+                                    <input type="text" placeholder="用户名" name="account" autocomplete="off" class="i-text" />
+                                </p>
+                                <span class="userError"></span>
+                                <p id="password"  class="fm-item">
+                                    <span>密码：</span>
+                                    <input type="password" placeholder="密码" name="password" autocomplete="off"  class="i-text"  />
+                                </p>
+                                
+                            </form>
+                            <p id="submitLogin"><input type="button" value="登陆" id="loginId" class="btn-login"/></p>
+                            <p id="rememberMeP" class="rememberMeP">
+                                <span class="fl">
+                                    <input type="checkbox" name="rememberMe" value="true" />
+                                    <span>自动登录</span>                                        
+                                </span>
+                                <span class="fr">
+                                    <a class="forgetPassword">忘记密码?</a>
+                                </span>
+                                    
+                            </p>                            
+                        </div>
+                    </div>                          
+                </div>             
+            </div>
+        </div>
+
+        <!--底部-->
+        <div class="footer">
+            <p>Copyright &copy; 2017 vp.cn&nbsp;&nbsp;&nbsp;&nbsp;京ICP备05028127号-21</p>
+        </div>
+
+
+        <script type="text/javascript" src="pro_js/publicJs/jquery-3.1.1.min.js"></script>
+        <script type="text/javascript" src="pro_js/publicJs/bootstrap.min.js"></script>
+        <script type="text/javascript" src="pro_js/publicJs/jquery.form.js"></script>
+        <script type="text/javascript" src="pro_js/ajaxRequestUrls.js"></script>
+        <script type="text/javascript" src="pro_js/login.js"></script>
+
+    </body>
+</html>

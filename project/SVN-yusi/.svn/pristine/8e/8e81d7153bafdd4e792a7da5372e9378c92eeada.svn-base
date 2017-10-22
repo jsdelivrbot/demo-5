@@ -1,0 +1,17 @@
+package mybatisPro.myBatisDao;
+
+/**
+ * 测站状态数据管理
+ * 
+ * @author feng.gao
+ * @date 2017年8月18日
+ * @version 1.0
+ */
+public interface StationStatusMapper {
+
+	/**
+	 * 测站状态数据整编
+	 */
+	public void dateStatistics();
+
+}

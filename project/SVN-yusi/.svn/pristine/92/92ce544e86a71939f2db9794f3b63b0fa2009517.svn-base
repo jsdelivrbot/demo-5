@@ -1,0 +1,658 @@
+.btn {
+    padding: 0;
+    margin: 0;
+}
+.modal-dialog {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%)!important;
+    z-index: 1;
+}
+/*弹窗- 增补-测报数据*/
+ #augmentModal .modal-dialog {
+    width: 502px;
+}
+#augmentModal .modal-header {
+    min-height: 16.43px;
+    padding: 0;
+    padding-left: 30px;
+    height: 40px;
+    line-height: 40px;
+    color: #696969;
+    font-size: 14px;
+    border-bottom: 1px dashed #bfbfbf;
+}
+#augmentModal .modal-header .closeImg {
+    margin-right: 10px;
+    margin-top: 6px;
+    outline: none;
+}
+#augmentModal .modal-body {
+    padding: 0;
+    margin: 25px 92px 25px 72px;
+    font-size: 14px;
+}
+#augmentModal .modal-body-item {
+    line-height: 26px;
+    margin-bottom: 23px;
+    color:#999;
+}
+#augmentModal .modal-body-item .modal-body-item-name {
+    width: 83px;
+
+}
+#augmentModal .modal-body-item input {
+    width: 248px;
+    height: 26px;
+    border: 1px solid #E1E1E1;
+    border-radius: 3px;
+    text-indent:10px;
+}
+
+#augmentModal .modal-footer {
+    padding:0;
+    padding-bottom: 15px;
+    border-top: none;
+    text-align: center;
+}
+#augmentModal .modal-footer .btn-keep,
+#augmentModal .modal-footer .btn-delete{
+    background-color: #4A91EA;
+    border: none;
+    color: #fff;
+    padding: 0 10px!important;
+    height: 22px;
+    line-height: 22px;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 12px;
+}
+
+#augmentModal .modal-footer .btn-keep:hover,
+#augmentModal .modal-footer .btn-keep:active{
+	outline:none;
+	cursor:pointer;
+	background:#4385d5;
+
+}
+#augmentModal .modal-footer .btn-cancel {
+    padding: 0 10px!important;
+    height: 22px;
+    line-height: 21px;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 12px;
+    background-color: #eeeeee;
+    border: 1px solid #bfbfbf;
+    margin-left:5px;
+}
+/*弹窗- 自动测站信息*/
+#createStation .modal-dialog{
+    width: 1375px;
+}
+#createStation .modal-content{
+    border-radius: 3px;
+    margin: 0 auto;
+    font-size: 14px;
+}
+#createStation .modal-header{
+    padding: 9px 15px;
+    border-bottom: 1px dashed #e5e5e5;
+}
+#createStation .modal-body{
+    padding: 18px;
+    color: #4e697c;
+}
+#createStation .modal-body .mapBox{
+    width:calc(100% - 460px);
+    height:544px;
+    border:1px solid;
+}
+#createStation .modal-body form{
+    vertical-align:top;
+}
+#createStation form>p{
+    margin-bottom: 7px;
+}
+#createStation form>p.telegraphSection{
+    margin-bottom:20px;
+}
+#createStation form>p>span.formLeft{
+    display: inline-block;
+    width: 126px;
+    text-align: right;
+    padding-right: 16px;
+    vertical-align:top;
+    padding-top:6px;
+
+}
+#createStation form>p input[type="text"],
+#createStation form>p .select-picker{
+    width: 258px;
+    height: 26px;
+    border: 1px solid #e1e1e1;
+    border-radius: 3px;
+    text-indent: 10px;
+    outline: none;
+}
+#createStation form>p .select-picker button{
+    height: 24px;
+    padding: 0;
+    border: none;
+}
+#createStation form>p .select-picker button .filter-option{
+    text-indent: 10px;
+}
+.bootstrap-select.btn-group .dropdown-menu li a span.text{
+    display: block;
+}
+#createStation form>p textarea{
+    width: 257px;
+    height: 79px;
+    vertical-align: top;
+    border: 1px solid #e1e1e1;
+    border-radius: 3px;
+    padding: 10px;
+}
+/*#createStation form>p .select-picker{
+    width: 258px;
+    height:
+}*/
+#createStation .saveAndQuit{
+    text-align: center;
+}
+#createStation p.saveAndQuit>input{
+    border: none;
+    padding: 0 10px!important;
+    width: 64px;
+    height: 24px;
+    line-height: 24px;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 12px;
+}
+#createStation .saveAndQuit>input:first-child{
+   background-color: #4A91EA;
+    color: #fff;
+}
+#createStation .saveAndQuit>input:first-child:hover,
+#createStation .saveAndQuit>input:first-child:active{
+	outline:none;
+	cursor:pointer;
+	background:#4385d5;
+
+}
+#createStation .saveAndQuit>input:last-child{
+    background-color: #eeeeee;
+    border: 1px solid #bfbfbf;
+    margin-left: 5px;
+}
+
+/*弹窗- 人工测站信息*/
+#createWmsStation .modal-dialog{
+    width: 1375px;
+}
+#createWmsStation .modal-content{
+    border-radius: 3px;
+    margin: 0 auto;
+    font-size: 14px;
+}
+#createWmsStation .modal-header{
+    padding: 9px 15px;
+    border-bottom: 1px dashed #e5e5e5;
+}
+#createWmsStation .modal-body{
+    padding: 18px;
+    color: #4e697c;
+}
+#createWmsStation .modal-body .mapBox{
+    width:calc(100% - 460px);
+    height:544px;
+    border:1px solid;
+}
+#createWmsStation .modal-body form{
+    vertical-align:top;
+}
+#createWmsStation form>p{
+    margin-bottom: 7px;
+}
+#createWmsStation form>p.telegraphSection{
+    margin-bottom:20px;
+}
+#createWmsStation form>p>span.formLeft{
+    display: inline-block;
+    width: 126px;
+    text-align: right;
+    padding-right: 16px;
+    vertical-align:top;
+    padding-top:6px;
+
+}
+#createWmsStation form>p input[type="text"],
+#createWmsStation form>p .select-picker{
+    width: 258px;
+    height: 26px;
+    border: 1px solid #e1e1e1;
+    border-radius: 3px;
+    text-indent: 10px;
+    outline: none;
+}
+#createWmsStation form>p .select-picker button{
+    height: 24px;
+    padding: 0;
+    border: none;
+}
+#createWmsStation form>p .select-picker button .filter-option{
+    text-indent: 10px;
+}
+
+#createWmsStation form>p textarea{
+    width: 257px;
+    height: 79px;
+    vertical-align: top;
+    border: 1px solid #e1e1e1;
+    border-radius: 3px;
+    padding: 10px;
+}
+/*#createStation form>p .select-picker{
+    width: 258px;
+    height:
+}*/
+#createWmsStation .saveAndQuit{
+    text-align: center;
+}
+#createWmsStation p.saveAndQuit>input{
+    border: none;
+    padding: 0 10px!important;
+    width: 64px;
+    height: 24px;
+    line-height: 24px;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 12px;
+}
+#createWmsStation .saveAndQuit>input:first-child{
+   background-color: #4A91EA;
+    color: #fff;
+}
+#createWmsStation .saveAndQuit>input:first-child:hover,
+#createWmsStation .saveAndQuit>input:first-child:active{
+	outline:none;
+	cursor:pointer;
+	background:#4385d5;
+
+}
+#createWmsStation .saveAndQuit>input:last-child{
+    background-color: #eeeeee;
+    border: 1px solid #bfbfbf;
+    margin-left: 5px;
+}
+
+
+/*弹窗-区域平均降雨弹窗*/
+.modal-backdrop.in{
+    opacity: .3;
+}
+#averageRainfall .modal-content,
+#averageRainfallModify .modal-content{
+    border: 1px solid rgba(0,0,0,0);
+    border-radius: 3px;
+    color: #50697a;
+    font-size: 14px;
+    width: 800px;
+    margin-left: 5px;
+    margin-top: 88px;
+    text-align: center;
+    box-shadow: 0 0px 10px rgba(0,0,0,.3);
+}
+#averageRainfall .modal-header,
+#averageRainfallModify .modal-header{
+    padding: 8px 15px;
+    border-bottom: 1px dotted #bfbfbf;
+}
+#averageRainfall .modal-body{
+    border: 18px 28px;
+    height: 530px;
+    overflow: auto;
+}
+#averageRainfall .modal-body-content{
+    border: 1px solid #e1e1e1;
+}
+#averageRainfall .modal-body-content>ul{
+    border-bottom: 1px solid #e1e1e1;
+}
+#averageRainfall .modal-body-content>ul:last-child{
+    border-bottom: none;
+}
+#averageRainfall .modal-body-content>ul>li{
+    display: inline-block;
+    width: 13%;
+    height: 86px;
+    margin: 0 8px;
+    line-height: 86px;
+    vertical-align: top;
+}
+#averageRainfall .modal-body-content div.verticalHalf{
+    display: inline-block;
+    width: 50%;
+    line-height: 86px;
+    vertical-align: top;
+    text-align: left;
+}
+#averageRainfall .modal-body-content div.verticalHalf li{
+    width: 24%;
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+}
+#averageRainfall .modal-body-content div.verticalHalf li>span{
+    display: block;
+    line-height: normal;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+#averageRainfall .modal-body-content>ul>li span{
+    display: inline-block;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+#averageRainfall .modal-body-content>ul>li.modify,
+#averageRainfall .modal-body-content>ul>li.delete{
+    width: 10%;
+    color: #599bec;
+    margin: 0 8px 0 30px;
+}
+#averageRainfall .modal-body-content>ul>li.modify div,
+#averageRainfall .modal-body-content>ul>li.delete div{
+    cursor: pointer;
+    height: 20px;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+#averageRainfall .modal-body-content>ul>li.delete{
+    margin-right: 8px;
+}
+#averageRainfall .modal-body-content>ul>li.modify i,
+#averageRainfall .modal-body-content>ul>li.delete i{
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    vertical-align: top;
+    line-height: 20px;
+    margin-right: 5px;
+}
+#averageRainfall .modal-body-content>ul>li.modify span,
+#averageRainfall .modal-body-content>ul>li.delete span{
+    display: inline-block;
+    width: calc(100% - 25px);
+    line-height: normal;
+    vertical-align: top;
+    text-align: left;
+}
+#averageRainfall .modal-body-content>ul>li.modify i{
+    background: url(../imgs/dataManagement/dataManagement.png) no-repeat -5px -5px;
+}
+
+#averageRainfall .modal-body-content>ul>li.delete i{
+    background: url(../imgs/dataManagement/dataManagement.png) no-repeat -35px -5px;
+}
+
+
+
+/*弹窗-区域平均降雨弹窗-修改*/
+#averageRainfallModify .modal-content{
+    width: 383px;
+    margin-left: 214px;
+    margin-top: 56px;
+}
+#averageRainfallModify form{
+    text-align: left;
+    cursor: default;
+}
+#averageRainfallModify form>div{
+    width: 100%;
+    padding: 3px 0 15px;
+}
+#averageRainfallModify form .rainfall-item4{
+    padding: 3px 0;
+}
+#averageRainfallModify form .rainfall-left{
+    display: inline-block;
+    width: 94px;
+    text-align: right;
+    vertical-align: top;
+    color: #999;
+}
+#averageRainfallModify form .rainfall-right{
+    display: inline-block;
+    width: 240px;
+    text-align: left;
+    vertical-align: top;
+}
+#averageRainfallModify .rainfall-item2 .rainfall-right span{
+    display: inline-block;
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+#averageRainfallModify .rainfall-item3 .rainfall-right>div{
+    display: inline-block;
+    width: 40%;
+    margin-right: 10px;
+    cursor: pointer;
+}
+#averageRainfallModify .rainfall-item3 .rainfall-right>div>i,
+#averageRainfallModify .rainfall-item3 .rainfall-right>div>span,
+#createStation .telegraphSection .radioBtn,
+#createWmsStation .telegraphSection .radioBtn{
+    display: inline-block;
+    vertical-align: middle;
+}
+#averageRainfallModify .rainfall-item3 .rainfall-right i,
+#createStation .telegraphSection .radioBtn,
+#createWmsStation .telegraphSection .radioBtn{
+    width: 20px;
+    height: 20px;
+    background: url(../imgs/dataManagement/dataManagement.png) no-repeat -5px -58px;
+}
+#averageRainfallModify .rainfall-item3 .rainfall-right>div.active>i,
+#createStation .telegraphSection .sectionItem.active i,
+#createWmsStation .telegraphSection .sectionItem.active i{
+    background-position: -76px -30px;
+}
+
+#averageRainfallModify .rainfall-item4 .rainfall-right input{
+    width: 225px;
+    height: 26px;
+    border: 1px solid #e1e1e1;
+    border-radius: 3px;
+    text-indent: 10px;
+    outline: none;
+}
+#averageRainfallModify .rainfall-item4 .rainfall-right p{
+    color: #4891ea;
+    font-size: 12px;
+    width: 225px;
+}
+#averageRainfallModify .rainfall-item4 .rainfall-right .errorInfo{
+    color: red;
+}
+#averageRainfallModify .saveAndQuit{
+    text-align: center;
+    padding: 15px 0;
+}
+#averageRainfallModify .saveAndQuit>input{
+    width: 64px;
+    height: 24px;
+    border-radius: 4px;
+    text-align: center;
+    text-indent: 0;
+    font-size: 12px;
+    margin: 0 3px;
+    border: none;
+}
+#averageRainfallModify .saveAndQuit>input:first-child{
+    background-color: #4b90ed;
+    color: white;
+}
+#averageRainfallModify .saveAndQuit>input:first-child:hover,
+#averageRainfallModify .saveAndQuit>input:first-child:active{
+	outline:none;
+	cursor:pointer;
+	background:#4385d5;
+
+}
+#averageRainfallModify .saveAndQuit>input:last-child{
+    background-color: #eee;
+    color: #696969;
+}
+
+/*新建区域弹窗*/
+#createField .modal-dialog {
+   width: 502px;
+}
+#createField .modal-header {
+   min-height: 16.43px;
+   padding: 0;
+   padding-left: 30px;
+   height: 40px;
+   line-height: 40px;
+   color: #696969;
+   font-size: 14px;
+   border-bottom: 1px dashed #bfbfbf;
+}
+#createField .modal-header .closeImg {
+   margin-right: 10px;
+   margin-top: 6px;
+   outline: none;
+}
+#createField .modal-body {
+   padding: 0;
+   margin: 25px 62px 20px 62px;
+   font-size: 14px;
+}
+#createField .modal-body-item {
+   line-height: 26px;
+   margin-bottom: 23px;
+   color:#999;
+}
+#createField .modal-body-item:last-child{
+    margin-bottom:0;
+}
+#createField .modal-body-item .modal-body-item-name {
+   width: 83px;
+    vertical-align: top;
+}
+#createField .modal-body-item input {
+   width: 258px;
+   height: 26px;
+   border: 1px solid #E1E1E1;
+   border-radius: 3px;
+   text-indent:10px;
+   color: #333;
+}
+#createField .modal-body-item textarea{
+    width: 258px;
+    height: 100px;
+    border: 1px solid #E1E1E1;
+    border-radius: 3px;
+    padding: 5px;
+    overflow: hidden;
+    color: #333;
+}
+#createField .modal-footer {
+   padding:0;
+   padding-bottom: 20px;
+   border-top: none;
+   text-align: center;
+}
+#createField .modal-footer .btn-keep, 
+#createField .btn-delete,
+#createField .btn-delete:hover,
+#createField .btn-delete:active{
+   background-color: #4A91EA;
+   border: none;
+   color: #fff;
+   padding: 0 10px!important;
+   width: 64px;
+   height: 24px;
+   line-height: 24px;
+   text-align: center;
+   border-radius: 5px;
+   font-size: 12px;
+}
+#createField .btn-keep:hover,
+#createField .btn-keep:active{
+	outline: none;
+    cursor: pointer;
+    background: #4385d5;
+} 
+
+#createField .modal-footer .btn-cancel {
+   padding: 0 10px!important;
+   width: 64px;
+   height: 24px;
+   line-height: 24px;
+   text-align: center;
+   border-radius: 5px;
+   font-size: 12px;
+   background-color: #eeeeee;
+   border: 1px solid #bfbfbf;
+   margin-left:5px;
+}
+
+/*500错误提示框*/
+#errorBtn .modal-dialog{
+	width:386px;
+	margin-top:-79px;
+}
+#errorBtn .modal-header{
+	height: 34px;
+	border-bottom: none;
+}
+#errorBtn .modal-body {
+	height: 42px;
+	text-align: center;
+	font-size: 12px;
+	color: #696969;
+}
+#errorBtn .modal-body .question{
+	display: inline-block;
+	width: 18px;
+	height: 18px;
+	vertical-align: middle;
+	margin-right: 10px;
+	background: url(../imgs/delete.jpg) no-repeat;
+}
+#errorBtn .modal-footer{
+	padding:25px  56px 30px 0px;
+	text-align: right;
+	border-top: none;
+	padding-right: 55px;
+}
+
+#errorBtn .btn-cancel {
+    background-color: #eeeeee;
+    color: #696969;
+    border: 1px solid #bfbfbf;
+
+    padding: 0 10px!important;
+    height: 22px;
+    line-height: 21px;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 12px;
+}
+.errorB{
+    color:#ff585f;
+    margin-left:10px;
+}

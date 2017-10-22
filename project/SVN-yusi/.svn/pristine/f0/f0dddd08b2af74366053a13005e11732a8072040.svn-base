@@ -1,0 +1,32 @@
+/**
+ * 所有前台数据请求跳转后台接口URL Created by EKuter-amu on 2017/6/20.
+ */
+
+/* 登录 */
+var submitLoginFormUrl = "loginController/login";
+
+/* 测站信息管理 */
+var createStationUrl = "station/createStation";//创建测站
+var getStationListUrl = "station/getStationList";//查询测站列表
+var getStationInfoDetailUrl = "station/getStationInfoDetail";//根据测站ID查询测站信息
+var updateStationInfoUrl = "station/updateStationInfo";//修改测站信息
+/* 测站类型管理 */
+var getTypeListUrl = "stationType/getTypeList";//查询测站类型列表
+/* 区域管理 */
+var createAreaUrl = "areaController/createArea";//新建区域
+var getListOfAreaUrl = "areaController/getListOfArea";//查询区域列表
+var getAreaDetailInfoUrl = "areaController/getAreaDetailInfo";//根据区域ID查询区域信息
+var updateAreaInfoUrl = "areaController/updateAreaInfo";//修改区域信息
+/* 区域平均降雨量查询 */
+var areaAverageRainfallUrl = "areaRainfall/areaAverageRainfall";
+/* 所有含雨量测站数据信息 */
+var rainfallStationCountInfoUrl = "station/rainfallStationList";
+/* 根据区域ID查询测站系数列表 */
+var getAreaStationParamListUrl = "areaRainfall/getAreaStationParamList";
+/* 区域算法管理 */
+var analysisManagerUrl = "areaRainfall/analysisManager";
+/* 实时信息查询：水库信息查询接口 */
+var getWaterLevelInfoUrl = "waterLevel/getWaterLevelInfo";
+/* 实时信息查询：河道信息查询接口 */
+var getRiverWaterLevelInfoUrl = "waterLevel/getRiverWaterLevelInfo";
+

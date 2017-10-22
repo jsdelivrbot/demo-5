@@ -1,0 +1,51 @@
+package mybatisPro.myBatisDao;
+
+import java.util.List;
+import java.util.Map;
+
+import org.apache.ibatis.annotations.Param;
+
+import mybatisPro.mybatisEntity.AreaEntity;
+
+/**
+ * 区域管理数据服务层接口
+ * @author si.yu
+ * @date 2017/7/19
+ * @version 1.0
+ * */
+public interface AreaMapper {
+
+	/**
+	 * 查询区域列表
+	 * @return
+	 * */
+	public List<AreaEntity> findListOfArea();
+	
+	/**
+	 * 查询区域详情信息
+	 * @param area_id
+	 * @return
+	 * */
+	public AreaEntity getAreaInfoDetail(Long area_id);
+	
+	/**
+	 * 修改区域信息
+	 * @param areaEntity
+	 * @return
+	 * */
+	public int updateAreaInfo(AreaEntity areaEntity);
+	
+	/**
+	 * 创建区域
+	 * @param areaEntity
+	 * @return
+	 * */
+	public int createArea(AreaEntity areaEntity);
+	
+	/**
+	 * 查询区域对应的测站
+	 * @param sta_type_id 
+	 * @return
+	 * */
+	public List<Map<String, Object>> findAreaStationsInfo(@Param("typeId")Long sta_type_id,@Param("begin")String begin_time,@Param("end")String end_time);
+}

@@ -1,0 +1,83 @@
+#异常信息定义文件
+
+	#参数异常
+	paramerror=参数异常！
+	dataerror=数据异常！
+	#用户管理异常
+	ex_userinfo_1=查询用户列表信息异常！
+	ex_userinfo_2=根据用户名查询用户信息异常！
+	ex_userinfo_2=修改用户信息异常！
+
+	#水库管理异常
+	ex_reservoir_1=创建水库信息异常！
+	ex_reservoir_2=查询水库信息列表异常！
+	ex_reservoir_3=查询水库信息异常！
+	ex_reservoir_4=修改水库信息异常！
+	createreservoirfail=创建水库信息失败！
+	ex_reservoir_param=参数错误异常！
+	
+	#测站信息管理异常
+	ex_station_create=创建测站信息异常！
+	ex_station_list=查询测站列表异常！
+	ex_station_info=查询测站详情信息异常！
+	ex_station_name=根据测站名称查询测站信息异常！
+	ex_station_update=修改测站信息异常！
+	ex_staid_list=根据测站类型查询测站列表异常！
+	ex_param_code=插入参数编码数据异常！
+	wateridlist=查询水位站ID列表失败！
+	rainidlist=查询雨量站ID列表失败！
+	createstationfail=创建测站信息失败！
+	getstationlist=查询列表信息失败！
+	stationinfodetail=查询测站信息详情失败！
+	updatestationinfo=修改测站信息失败！
+	ex_typestation_1=查询测站类型列表异常！
+	gettypelist=查询测站类型列表失败！
+	ex_starainfall_list=查询测站雨量信息列表异常！
+	rainfallstation=查找测站雨量信息失败！
+	manmadeids=区分自动站和人工站查询测站ID列表失败！
+	ex_sys_code=根据测站编码查询测站信息异常！
+	ex_param_code=根据测站ID查询参数编码数据异常！
+	delete_failed=删除测站异常！
+	
+	#区域管理异常
+	ex_area_1=查询区域列表异常！
+	ex_area_2=查询区域详情异常！
+	ex_area_3=修改区域信息异常！
+	ex_area_4=创建区域异常！
+	ex_area_5=查询区域测站信息异常！
+	ex_area_6=根据区域名称查找区域信息异常！
+	ex_area_7=根据区域ID查询测站系数列表异常！
+	ex_area_8=根据区域查询测站ID列表异常！
+	createarea=创建区域失败！
+	getlistarea=查询区域列表失败！
+	detailarea=查询区域信息详情失败！
+	stationrainfall=区域内测站列表信息查询失败！
+	updateareainfo=修改区域信息失败！
+	
+	#系数管理
+	stationparam=根据测站ID查询测站系数异常！
+	paramlist=根据区域ID查询算法系数列表异常！
+	paramlistdel=根据区域ID删除算法系数列表异常！
+	paramlistadd=增加算法系数数据异常！
+	paramlistupdate=修改算法系数数据异常！
+	
+	#水位管理异常
+	ex_waterlevel_1=根据测站ID查询水库水位数据异常！
+	ex_waterlevel_2=根据测站ID查询河道水位数据异常！
+	ex_waterlevel_3=查询水库水位数据信息列表异常！
+	ex_waterlevel_4=查询河道水位数据信息列表异常！
+	ex_waterlevel_5=根据水库水位数据查询库容异常！
+	
+	#人工报讯异常
+	reportfail=人工报讯异常！
+	reportstatus_exe=查询上报状态异常！
+	reportstatus_exe2=插入上报状态异常！
+	reportstatus_exe3=查询上报状态列表数据异常！
+	
+	#测站状态异常
+	ex_stationstatus=查询测站状态列表异常！
+	
+	#自动站数据增补
+	ex_adddatasupplement=自动站增补数据异常！
+	ex_updatedatasupplement=自动站修改数据异常！
+	

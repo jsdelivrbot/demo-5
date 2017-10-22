@@ -1,0 +1,376 @@
+#container{
+    min-width: 1260px;
+    position: absolute;
+    top: 146px;
+    left: 0;
+    right:0;
+    bottom: 0;
+}
+
+.container-top {
+    background: #fff;
+    margin-top: 10px;
+    padding-top: 32px;
+    box-shadow: 1px 10px 16px #E5EFFB;
+	text-align: center;
+}
+
+.container-top p {
+    margin-bottom: 19px;
+}
+
+.container-top .title {
+    margin-left: 28px;
+}
+.wrap-title-third {
+    display:inline-block;
+}
+.prevButton, .nextButton {
+    display: inline-block;
+    vertical-align: middle;
+    width: 10px;
+    height: 10px;
+    background: url(../imgs/common/common.png) no-repeat;
+    margin: 0 0 3px 0;
+    background-clip: content-box;
+    box-sizing: content-box;
+    padding: 8px 14px;
+}
+.prevButton.active {
+    background-position: -64px -133px;
+    cursor: pointer;
+}
+.nextButton.active {
+    background-position: -81px -133px;
+    cursor: pointer;
+}
+.prevButton {
+    background-position: -98px -133px;
+}
+.nextButton {
+    background-position: -119px -133px;
+}
+.timePicker {
+    width: 121px;
+    height: 38px;
+    text-align: center;
+    font-size:16px;
+    font-weight:bold;
+    color:#4791EA;
+    border:none;
+    outline: none;
+    cursor: pointer;
+}
+
+.container-top .circle {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    line-height: 12px;
+    text-align: center;
+    border-radius: 50%;
+    margin-right: 8px;
+    vertical-align: middle;
+}
+
+.container-top .circle.red {
+    background: #E7211E;
+}
+
+.container-top .circle.green {
+    background: #01CF60;
+}
+
+.container-top .circle.yellow {
+    background: #FFDE01;
+}
+
+.container-top .circle.gray {
+    background: #ccc;
+}
+
+.top-right-last {
+    margin-right: 42px;
+}
+
+.container-top button {
+    width: 90px;
+    height: 32px;
+    line-height: 32px;
+    text-align: center;
+    color: #fff;
+    background-color: #4991EA;
+    border-radius: 3px;
+    border: none;
+    font-size: 14px;
+    margin-left: 28px;
+}
+
+.left, .right {
+    display: inline-block;
+    width: 51px;
+    vertical-align: middle;
+    margin: 0 10px;
+}
+
+.left span, .right span {
+    display: inline-block;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: url('../imgs/common/common.png') no-repeat;
+}
+
+.left span.leftBtn.active {
+    background-position: -171px -56px;
+    cursor: pointer;
+}
+
+.left span.leftBtn {
+    background-position: -171px -107px;
+}
+
+.right span.rightBtn.active {
+    background-position: -233px -56px;
+    cursor: pointer;
+}
+
+.right span.rightBtn {
+    background-position: -233px -107px;
+}
+
+.sliderBar {
+    display: inline-block;
+    vertical-align: middle;
+    /*width: calc(100% - 102px);*/
+	max-width: 1600px;
+	height: 110px;
+	overflow: hidden;
+	text-align: center;
+    position: relative;
+}
+.sliderBar .showBox{
+    overflow: hidden;
+    text-align: center;
+    height: 100%;
+    display: inline-block;
+    position: relative;
+}
+.sliderBar ul{
+	text-align: left;
+    height: 100%;
+    width: calc(50px * 31);
+    position: relative;
+    left: 0px;
+}
+
+.sliderBar li {
+	font-size: 0;
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 100%;
+    text-align: center;
+    cursor: pointer;
+	padding: 28px 5px 14px;
+}
+.sliderBar li.curr{/*当前选中*/
+    background:#d2d2d2;
+}
+.sliderBar li.active {/*当前日期*/
+    background-color: #4791ea;
+    cursor: pointer;
+    color: #fff;
+}
+
+
+.sliderBar li .dateDay{  /*正常报*/
+	font-size: 14px;
+	width: 100%;
+    height: 0;
+	border-radius: 50%;
+    padding-bottom: 100%;
+    background: #00cf63;
+    position: relative;
+}
+
+.sliderBar li.lateReport .dateDay{/*迟报*/
+    background-color: #ffde00;
+}
+.sliderBar li.leakReport .dateDay{/*漏报*/
+    background-color: #e7211e;
+}
+.sliderBar li.notReport .dateDay{/*未报*/
+    background-color: #ccc;
+}
+.sliderBar li.notReport .dateDay span{
+    color:#999;
+}
+
+.sliderBar li.active .dateDay{
+    background-color: #fff;
+}
+.sliderBar li>div:last-child{
+	font-size: 14px;
+    margin-top: 5px;
+}
+.sliderBar li.notReport>div:last-child{
+    color:#ccc;
+}
+
+.sliderBar li>div.weekend{
+	color: #8f9ca5;
+}
+
+.sliderBar li span {
+	width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -10px;
+    margin-left: -10px;
+	color: white;
+}
+
+.sliderBar li.active span {
+    color: #4791ea;
+}
+
+.sliderBar li.active div[data-bind=weekDayTip]{
+    color: white;
+}
+
+.container-bottom{
+    padding:60px 170px 20px 170px;
+    margin-top:14px;
+    background:#fff;
+    height:calc(100% -  198px);
+}
+.container-bottom-title{
+    margin-bottom:26px;
+    height: 32px;
+}
+.container-bottom-title>p{
+    vertical-align: sub;
+}
+.container-bottom-title button{
+    color: #fff;
+    background-color: #fff;
+    border-radius: 3px;
+    border: 1px solid #4991EA;
+    color: #4991EA;
+    font-size: 14px;
+    width: 88px;
+    height: 32px;
+    line-height: 32px;
+}
+.container-bottom-title button.save,
+.container-bottom-title button.edit{
+    background-color: #4991EA;
+    color: white;
+    margin-right: 10px;
+}
+.ui-jqgrid-labels{
+    background:#f2f2f2;
+}
+
+/*重置jqGrid表格样式*/
+/*#mainTable tbody>tr>td{
+    padding: 20px 0;
+}
+#mainTable tbody>tr.jqgfirstrow>td{
+    padding: 0;
+}*/
+
+/*表格样式*/
+.container-bottom-content{
+    border: 1px solid #e1e1e1;
+}
+.container-bottom-content ul{
+    font-size: 0px;
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+
+}
+.container-bottom-content>ul{
+    background-color: #f2f2f2;
+}
+.container-bottom-content ul li{
+    display: inline-block;
+    font-size: 14px;
+    text-align: center;
+    height: 100%;
+    width: calc((100% - 69px) / 6);
+    border-right: 1px solid #e1e1e1;
+    border-bottom: 1px solid #e1e1e1;
+    vertical-align: middle;
+}
+.container-bottom-content ul li:last-child{
+    border-right: none;
+}
+.container-bottom-content ul li:first-child{
+    width: 69px;
+}
+.container-bottom-content div ul{
+    height: 56px;
+}
+.container-bottom-content div ul li{
+    padding: 3px 5px;
+}
+.container-bottom-content div ul:last-child li{
+    border-bottom: none;
+}
+.container-bottom-content input{
+    width: 100%;
+    height: 46px;
+    line-height: 46px;
+    text-align: center;
+    border: 1px dashed transparent;
+    background-color: #fff;
+}
+.container-bottom-content.active input{
+    border: 1px dashed #4b93e8;
+    background-color: #f0f7ff;
+}
+.container-bottom-content.active input::-ms-clear{display:none;}
+
+#scrollBox{
+    max-height: 400px;
+}
+.mCSB_inside > .mCSB_container{
+    margin-right: 0;
+}
+
+
+/*顶部日期条的宽度*/
+@media screen and (max-width:1366px){
+    .container-top p{
+        margin-bottom: 20px;
+    }
+    .sliderBar{
+        height:90px;
+    }
+    .sliderBar .showBox{
+        max-width: calc(50px * 22);
+    }
+    .sliderBar li{
+        padding: 18px 5px 14px;
+    }
+}
+@media screen and (min-width:1360px) and (max-width:1600px){
+    .sliderBar .showBox{
+        max-width: calc(50px * 24);
+    }
+}
+@media screen and (min-width:1600px) and (max-width:1800px){
+    .sliderBar .showBox{
+        max-width: calc(50px * 28);
+    }
+}
+@media screen and (min-width:1800px) and (max-width:1920px){
+    .sliderBar .showBox{
+        max-width: calc(50px * 31);
+    }
+}

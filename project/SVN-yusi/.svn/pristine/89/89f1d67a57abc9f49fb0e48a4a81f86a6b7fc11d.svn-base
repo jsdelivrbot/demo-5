@@ -1,0 +1,91 @@
+"use strict";
+
+var lis='';
+var thisDate = new Date();
+thisDate.setDate(0);
+
+// 获取月份天数,不传值代表当月
+function getMonthAllDays(yueNumber){
+	var someDate = new Date();
+	if (arguments.length === 0) {
+		yueNumber = someDate.getMonth()+1;
+		console.log("yueNumber:"+yueNumber);
+	}
+	someDate.setMonth(yueNumber);
+	someDate.setDate(0);
+	console.log("月份"+(someDate.getMonth()+1));
+	return someDate.getDate();
+}
+
+console.log("天数"+getMonthAllDays());
+var days = [
+	{dateDayTip: 1,weekDayTip: '二'},{dateDayTip: 1,weekDayTip: '三'},{dateDayTip: 1,weekDayTip: '四'},
+	{dateDayTip: 1,weekDayTip: '五'},{dateDayTip: 1,weekDayTip: '六'},{dateDayTip: 1,weekDayTip: '日'},
+	{dateDayTip: 1,weekDayTip: '一'},{dateDayTip: 1,weekDayTip: '二'},{dateDayTip: 1,weekDayTip: '三'},
+	{dateDayTip: 1,weekDayTip: '四'},{dateDayTip: 1,weekDayTip: '五'},{dateDayTip: 1,weekDayTip: '六'},
+	{dateDayTip: 1,weekDayTip: '日'},{dateDayTip: 1,weekDayTip: '一'},{dateDayTip: 1,weekDayTip: '二'},
+	{dateDayTip: 1,weekDayTip: '三'},{dateDayTip: 1,weekDayTip: '四'},{dateDayTip: 1,weekDayTip: '五'},
+	{dateDayTip: 1,weekDayTip: '六'},{dateDayTip: 1,weekDayTip: '日'},{dateDayTip: 1,weekDayTip: '一'},
+	{dateDayTip: 1,weekDayTip: '二'},{dateDayTip: 1,weekDayTip: '三'},{dateDayTip: 1,weekDayTip: '四'},
+];
+var daysProperty = {
+	weekDayTip: {
+		class: function(){
+			return this.weekDayTip=="六"||this.weekDayTip=="日"?"weekend":"";
+		}
+	}
+};
+$('#slider-index>ul').render(days,daysProperty);
+// $('#slider-index>ul').render(days);
+$('.lis:first').addClass('active');
+
+    //向左按钮点击事件
+    var index = 0;
+    var liLen=$(".container-top ul li").length;
+    function clickLeft(){
+ 		index--;
+        if(index <= 0){
+        	index=0;
+        	alert("这是第一页，不能再往点击了！");
+            $(".container-top ul li").eq(index).addClass('active').siblings().removeClass('active');
+        }else{
+             $(".container-top ul li").eq(index).addClass('active').siblings().removeClass('active');
+        }
+    }
+
+
+    //向右按钮点击事件
+    function clickRight(){
+    	index++;
+ 		if(index >=liLen){
+ 			alert("已经到达最后一页，不能再往点击了！");
+            index = liLen-1;
+        }else{
+               $(".container-top ul li").eq(index).addClass('active').siblings().removeClass('active');
+        }
+    }
+
+
+
+$(function(){
+	$("#slider-index li").each(function(){
+		$(this).click(function(){
+			$(this).addClass('active').siblings().removeClass('active');
+			index=$(this).index();
+
+
+		});
+	});
+	$('.leftBtn').click(clickLeft);
+	$('.rightBtn').click(clickRight);
+
+    //日期切换
+    $('#monthsPicker').val(DateToday('months'));
+    $('.prevButton ').on('click',function(){
+        datePrev();
+    });
+    $('.nextButton ').on('click',function(){
+        dateNext();
+    });
+
+});

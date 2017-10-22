@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+    <link rel="stylesheet" href="https://openlayers.org/en/v4.2.0/css/ol.css" type="text/css">
+    <link rel="stylesheet" type="text/css" href="pro_css/common/common.css">
+    <link rel="stylesheet" type="text/css" href="pro_css/header.css">
+    <link rel="stylesheet" type="text/css" href="pro_css/proindex.css">
+    <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=requestAnimationFrame,Element.prototype.classList,URL"></script>
+    <script src="https://openlayers.org/en/v4.2.0/build/ol.js"></script>
+    
+   <!--  <style>
+        a.skiplink {
+            position: absolute;
+            clip: rect(1px, 1px, 1px, 1px);
+            padding: 0;
+            border: 0;
+            height: 1px;
+            width: 1px;
+            overflow: hidden;
+        }
+        a.skiplink:focus {
+            clip: auto;
+            height: auto;
+            width: auto;
+            background-color: #fff;
+            padding: 0.3em;
+        }
+        #map:focus {
+            outline: #4A74A8 solid 0.15em;
+        }
+    </style> -->
+</head>
+<body>
+    <!--头部-->
+    <div id="header">
+      <div class="header-top">
+        <div class="header-top-content">
+          <div class="header-top-content-left">
+            <i></i>
+            <span>kuter</span>
+            <span>库特科技</span>
+          </div>
+          <div class="header-top-content-right">
+            <span>94476455@qq.com</span>&nbsp;|&nbsp;<a href = "/logout">退出</a>
+          </div>
+        </div>
+      </div>
+      <div class="header-bottom">
+        <ul>
+          <li class="active"><span>实时信息查询</span></li>
+          <li><span>雨量统计</span></li>
+          <li><span>水位统计</span></li>
+          <li><span>测站状态</span></li>
+          <li><span>人工上报</span></li>
+        </ul>
+        <!--  <div class="moveWrap"><i class="navMove" style="left: 26px; width: 124px;"></i></div> -->
+      </div>
+
+    </div>
+
+    
+    <!-- <a class="skiplink" href="#map">Go to map</a> -->
+    <!--地图-->
+    <div id="map" class="map" tabindex="0"></div>
+    <!-- <button id="zoom-out">Zoom out</button>
+    <button id="zoom-in">Zoom in</button> -->
+    
+
+
+<script type="text/javascript" src="pro_js/publicJs/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="pro_js/publicJs/bootstrap.min.js"></script>
+<script type="text/javascript" src="pro_js/publicJs/jquery.form.js"></script>
+<script src="/pro_js/header.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" src="pro_js/proIndex.js"></script>
+</body>
+</html>

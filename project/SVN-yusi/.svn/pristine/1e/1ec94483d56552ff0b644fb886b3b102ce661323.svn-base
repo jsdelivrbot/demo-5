@@ -1,0 +1,144 @@
+var successReturn=1;
+//左侧导航栏切换
+function changeLeftNav(){
+		$(this).addClass('active').siblings().removeClass('active');
+		$('.rightContent').eq($(this).index()).removeClass('hide').siblings().addClass('hide');
+		if($(this).hasClass('left-item1')){
+			console.log('第一页面');
+		}else if($(this).hasClass('left-item2')){
+			getStationList();
+		}else if($(this).hasClass('left-item3')){
+			console.log('第三页面');
+		}else if($(this).hasClass('left-item4')){
+			console.log('第四页面');
+		}
+		 setLeftHeight();
+}
+
+/**测站信息管理列表**/
+function getStationList(){
+var stationListNoContent=$('.rightContent2 .notContent');
+var stationList=$('.rightContent2 .right-table-body');
+	$.ajax({
+		url:getStationListUrl,
+		type:"post",
+		data:{},
+		dataType:"json",
+		success:function(result){
+			if(successReturn == result.status){	
+				var stationAjaxList=result.data;
+				if(null != stationAjaxList && stationAjaxList.length == 0){
+					stationListNoContent.removeClass('hide');
+					stationList.addClass('hide');
+				}else if(null != stationAjaxList){
+					stationList.removeClass('hide');
+					stationListNoContent.addClass('hide');
+					console.log(stationAjaxList);
+					stationList.render(stationAjaxList);
+					setLeftHeight();
+				}	
+			}else{
+				outBoxClose(result.msg);
+			}
+					
+		},
+		error:function(XMLHttpRequest){
+			// error_500(XMLHttpRequest.responseText);
+		}
+	});
+}
+
+
+/*页面3 - 显示更多信息*/
+function showAreaCard(event){
+	var position = $(this).position();
+	var left = position.left-27;
+	var top = position.top+28 ;
+
+	$("#right .rightContent3 .areaCard").css({
+		"left":left,
+		"top":top
+	}).removeClass("hide");
+	event.stopPropagation();
+}
+/*页面3 - 隐藏更多信息*/
+function hideAreaCard(evt){
+	if($(evt.target).parents(".areaCard").length==0){
+		$('.areaCard').addClass('hide');
+	}
+}
+
+/* 页面3 - 算法管理 */
+function showAverageRainfall(){
+	$("#averageRainfall").modal("show");
+	$(".modify").click(function(){
+		$("#averageRainfallModify").modal("show");
+		//仅保留一个背景颜色
+		$(".modal-backdrop").css("opacity",0);
+		$(".modal-backdrop")[0].style.opacity = 0.3;
+	});
+}
+/* 页面3 - 算法管理: 修改 */
+function showAverageRainfallModify(){
+	$("#averageRainfallModify").modal("show");
+	//仅保留一个背景颜色
+	$(".modal-backdrop").css("opacity",0);
+	$(".modal-backdrop")[0].style.opacity = 0.3;
+}
+
+function setLeftHeight(){
+	var heightLeft= $("#left").outerHeight(true);
+	var heightRight= $("#right").outerHeight(true);
+	if (heightLeft > heightRight) {
+		$("#right").height(heightLeft);
+	}else{
+		$("#left").height(heightRight);
+	}
+}
+
+$(function(){
+	setLeftHeight();
+
+	$('.left-item').click(changeLeftNav);
+	/**自动测报数据修补tabs切换**/
+	$('.rightContent1 .btn-tabs button').click(function(){
+		$(this).addClass('active').siblings().removeClass('active');
+	});
+	/**增补**/
+	$('#augment').click(function(){
+ 		$("#augmentModal").modal("show");
+	})
+  	var isFirst = true;  
+	/**测站信息管理**/
+	$('#create,#editBox').click(function(){
+		 $("#createStation").modal("show");
+		  
+		 $('#createStation').on('shown.bs.modal',
+		    function() {
+		    	if(isFirst){
+		    		 Map.init(true);
+		    		 isFirst=false;
+		    	}
+		      
+		 });
+	});
+	/* 页面3 - 显示更多信息 */
+	$("#right .rightContent3 .right-table-row-item i").click(showAreaCard);
+	/* 页面3 - 隐藏更多信息 */
+	$(document).click(hideAreaCard);
+
+	/* 页面3 - 算法管理 */
+	$(".rightContent3 .create").click(showAverageRainfall);
+	/* 页面3 - 算法管理: 修改 */
+	$("#averageRainfall li.modify").click(showAverageRainfallModify);
+	/* 页面3 - 算法管理 - 修改: 切换测站 */
+	$("#averageRainfallModify .rainfall-item3 .rainfall-right>div").click(function(){
+		$(this).toggleClass("active");
+	});
+
+	/* 页面4 - 新建区域 */
+	$(".rightContent4 .create").click(function(){
+		console.log(88);
+		$("#createField").modal("show");
+	});
+});

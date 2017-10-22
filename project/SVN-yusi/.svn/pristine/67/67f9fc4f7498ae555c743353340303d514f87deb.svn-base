@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>雨量统计</title>
+    <link rel="stylesheet" type="text/css" href="/pro_css/common/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/pro_css/common/common.css">
+    <link rel="stylesheet" type="text/css" href="/pro_css/header.css">
+    <link rel="stylesheet" type="text/css" href="/pro_css/popup.css">
+    <link rel="stylesheet" type="text/css" href="/pro_css/rainfallStatistical.css">
+</head>
+<body>
+    <!--头部-->
+    <div id="header">
+    <div class="header-top">
+      <div class="header-top-content">
+        <div class="header-top-content-left">
+          <img src="../imgs/common/logo.png" alt="">
+        </div>
+        <div class="header-top-content-right">
+          <span>94476455@qq.com</span>&nbsp;|&nbsp;<a href = "/logout">退出</a>
+        </div>
+      </div>
+    </div>
+    <div class="header-bottom">
+      <ul>
+        <li class="header-bottom-item header-bottom-item1"><span>实时信息查询</span></li>
+        <li class="header-bottom-item header-bottom-item2 active"><span>雨量统计</span></li>
+        <li class="header-bottom-item header-bottom-item3"><span>水位统计</span></li>
+        <li class="header-bottom-item header-bottom-item4"><span>测站状态</span></li>
+        <li class="header-bottom-item header-bottom-item5"><span>人工报讯</span></li>
+        <li class="header-bottom-item header-bottom-item6"><span>数据管理</span></li>
+      </ul>
+    </div>
+    </div>
+
+
+    <!-- 500错误提示框 -->
+    <div class="modal fade" id="errorBtn" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" class="closeImg fr">
+      <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true" class=" closeImg fr">&times;</span><span class="sr-only">Close</span></button>
+              </div>
+              <div class="modal-body">
+                  <p class="modal-body-row"><span class="question-info" id="errorInfo"></span></p>
+              </div>
+              <div class="modal-footer">
+                  <!-- <button type="button" class="btn btn-delete">删除</button> -->
+                  <button type="button" class="btn btn-cancel" data-dismiss="modal">确定</button>
+              </div>
+          </div>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="/pro_js/publicJs/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="/pro_js/publicJs/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/pro_js/header.js"></script>
+    <script type="text/javascript" src="/pro_js/rainfallStatistical.js"></script>
+</body>
+</html>

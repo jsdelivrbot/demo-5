@@ -1,0 +1,452 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemadesigner version="6.5">
+<source>
+<database charset="utf8" collation="utf8_general_ci">rwdb</database>
+</source>
+<canvas zoom="100">
+<tables>
+<table name="ST_BS_STBPRP_B" view="colnames">
+<left>282</left>
+<top>912</top>
+<width>151</width>
+<height>367</height>
+<sql_create_table>CREATE TABLE `ST_BS_STBPRP_B` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '测站ID',
+  `sys_code` varchar(8) DEFAULT NULL COMMENT '测站系统编码',
+  `stcd` varchar(12) DEFAULT NULL COMMENT '国家标准码',
+  `station_name` varchar(30) NOT NULL COMMENT '测站名称',
+  `x` float(20,8) NOT NULL COMMENT '横坐标',
+  `y` float(20,8) NOT NULL COMMENT '纵坐标',
+  `longitude` decimal(10,6) DEFAULT NULL COMMENT '经度',
+  `latitude` decimal(10,6) DEFAULT NULL COMMENT '纬度',
+  `station_location` varchar(100) DEFAULT NULL COMMENT '站址',
+  `station_type` int(11) NOT NULL COMMENT '测站区分（自动站/人工站）',
+  `time_off` int(11) NOT NULL DEFAULT '1' COMMENT '拍报段次',
+  `station_type_id` bigint(20) NOT NULL COMMENT '测站类型ID',
+  `area_id` bigint(20) NOT NULL COMMENT '区域ID',
+  `contract` varchar(20) DEFAULT NULL COMMENT '联系人（人工站）',
+  `telephone` varchar(20) DEFAULT NULL COMMENT '联系电话（人工站）',
+  `comments` varchar(200) DEFAULT NULL COMMENT '备注',
+  `modify_time` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `stcd` (`stcd`),
+  KEY `id` (`id`),
+  KEY `FK_ST_BS_STBPRP_B` (`area_id`),
+  KEY `station_type_id` (`station_type_id`),
+  CONSTRAINT `FK_ST_BS_STBPRP_B` FOREIGN KEY (`area_id`) REFERENCES `AREA` (`area_id`),
+  CONSTRAINT `ST_BS_STBPRP_B_ibfk_1` FOREIGN KEY (`station_type_id`) REFERENCES `ST_BS_STTYPE_B` (`sta_type_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=119 DEFAULT CHARSET=utf8</sql_create_table>
+</table>
+<table name="ST_BS_ZVARL_B" view="colnames">
+<left>10</left>
+<top>1216</top>
+<width>134</width>
+<height>194</height>
+<sql_create_table>CREATE TABLE `ST_BS_ZVARL_B` (
+  `sta_id` bigint(20) NOT NULL COMMENT '测站ID',
+  `measuringTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '施测时间',
+  `pointNum` decimal(4,0) NOT NULL COMMENT '点序号',
+  `reservoirWater` decimal(7,3) NOT NULL COMMENT '库水位',
+  `waterDemand` decimal(9,3) DEFAULT NULL COMMENT '蓄水量',
+  `waterArea` decimal(7,0) DEFAULT NULL COMMENT '水面面积',
+  `moditime` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '时间戳',
+  PRIMARY KEY (`sta_id`,`pointNum`),
+  CONSTRAINT `FK_ST_BS_ZVARL_B` FOREIGN KEY (`sta_id`) REFERENCES `ST_BS_STBPRP_B` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8</sql_create_table>
+</table>
+<table name="ST_BS_STTYPE_B" view="colnames">
+<left>63</left>
+<top>1485</top>
+<width>116</width>
+<height>126</height>
+<sql_create_table>CREATE TABLE `ST_BS_STTYPE_B` (
+  `sta_type_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '测站类型ID',
+  `station_type` varchar(4) NOT NULL COMMENT '测站类型编码',
+  `type_name` varchar(30) NOT NULL COMMENT '测站类型名称',
+  PRIMARY KEY (`sta_type_id`),
+  KEY `station_type` (`station_type`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8</sql_create_table>
+</table>
+<table name="ST_RP_PPTN_R" view="colnames">
+<left>876</left>
+<top>936</top>
+<width>121</width>
+<height>160</height>
+<sql_create_table>CREATE TABLE `ST_RP_PPTN_R` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `sta_id` bigint(20) NOT NULL COMMENT '测站ID',
+  `time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '降水量记录的时间',
+  `time_rainfall` decimal(5,1) NOT NULL DEFAULT '0.0' COMMENT '时段降水量（单位：mm）',
+  `time_interval` varchar(8) DEFAULT NULL COMMENT '时段长(单位：分钟)',
+  `createtime` datetime NOT NULL COMMENT '创建时间',
+  PRIMARY KEY (`id`),
+  KEY `FK_ST_RP_PPTN_R` (`sta_id`),
+  CONSTRAINT `FK_ST_RP_PPTN_R` FOREIGN KEY (`sta_id`) REFERENCES `ST_BS_STBPRP_B` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=108 DEFAULT CHARSET=utf8</sql_create_table>
+</table>
+<table name="ST_RP_PPTN1M_R" view="colnames">
+<left>456</left>
+<top>457</top>
+<width>147</width>
+<height>208</height>
+<sql_create_table>CREATE TABLE `ST_RP_PPTN1M_R` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `sta_id` bigint(20) DEFAULT NULL COMMENT '测站ID',
+  `time` date DEFAULT NULL COMMENT '降水量记录的时间',
+  `time_rainfall` decimal(5,1) NOT NULL DEFAULT '0.0' COMMENT '时段降水量',
+  `resdflag` int(11) DEFAULT '0' COMMENT '存异标志(0:表示数据正常，1表示数据异常)',
+  `corvalue` decimal(5,1) DEFAULT NULL COMMENT '修正值',
+  `type` enum('自动','人工') NOT NULL DEFAULT '自动',
+  `createtime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '创建时间',
+  PRIMARY KEY (`id`),
+  KEY `sta_id` (`sta_id`),
+  CONSTRAINT `ST_RP_PPTN1M_R_ibfk_1` FOREIGN KEY (`sta_id`) REFERENCES `ST_BS_STBPRP_B` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=248 DEFAULT CHARSET=utf8</sql_create_table>
+</table>
+<table name="ST_RP_PPTN1H_R" view="colnames">
+<left>789</left>
+<top>720</top>
+<width>148</width>
+<height>192</height>
+<sql_create_table>CREATE TABLE `ST_RP_PPTN1H_R` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `sta_id` bigint(20) NOT NULL COMMENT '测站ID',
+  `time` datetime NOT NULL COMMENT '降水量记录的时间',
+  `time_rainfall` decimal(5,1) DEFAULT NULL COMMENT '时段降水量',
+  `resdflag` int(11) DEFAULT '0' COMMENT '存异标志(0:表示数据正常，1表示数据异常)',
+  `corvalue` decimal(5,1) DEFAULT NULL COMMENT '修正值',
+  `type` enum('自动','人工') NOT NULL DEFAULT '自动',
+  `createtime` timestamp NULL DEFAULT NULL COMMENT '创建时间',
+  PRIMARY KEY (`id`),
+  KEY `sta_id` (`sta_id`),
+  CONSTRAINT `ST_RP_PPTN1H_R_ibfk_1` FOREIGN KEY (`sta_id`) REFERENCES `ST_BS_STBPRP_B` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=243 DEFAULT CHARSET=utf8</sql_create_table>
+</table>
+<table name="ST_RP_PPTN1D_R" view="colnames">
+<left>623</left>
+<top>586</top>
+<width>145</width>
+<height>203</height>
+<sql_create_table>CREATE TABLE `ST_RP_PPTN1D_R` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `sta_id` bigint(20) NOT NULL COMMENT '测站ID',
+  `time` date NOT NULL COMMENT '降水量记录的时间',
+  `time_rainfall` decimal(5,1) NOT NULL DEFAULT '0.0' COMMENT '时段降水量',
+  `resdflag` int(11) DEFAULT '0' COMMENT '存异标志(0:表示数据正常，1表示数据异常)',
+  `corvalue` decimal(5,1) DEFAULT NULL COMMENT '修正值',
+  `type` enum('自动') NOT NULL DEFAULT '自动',
+  `createtime` timestamp NULL DEFAULT NULL COMMENT '创建时间',
+  PRIMARY KEY (`id`),
+  KEY `sta_id` (`sta_id`),
+  CONSTRAINT `ST_RP_PPTN1D_R_ibfk_1` FOREIGN KEY (`sta_id`) REFERENCES `ST_BS_STBPRP_B` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=119 DEFAULT CHARSET=utf8</sql_create_table>
+</table>
+<table name="ST_BS_ZQRL_B" view="colnames">
+<left>843</left>
+<top>1782</top>
+<width>144</width>
+<height>247</height>
+<sql_create_table>CREATE TABLE `ST_BS_ZQRL_B` (
+  `sysid` varchar(8) NOT NULL COMMENT '测站系统编码',
+  `bgtm` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '启用时间',
+  `ptno` decimal(4,0) NOT NULL COMMENT '点序号',
+  `z` decimal(7,3) NOT NULL COMMENT '水位',
+  `q` decimal(9,3) NOT NULL COMMENT '流量',
+  `moditime` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '时间戳',
+  `comments` varchar(200) DEFAULT NULL COMMENT '备注',
+  PRIMARY KEY (`sysid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8</sql_create_table>
+</table>
+<table name="ST_BS_INSTCD_B" view="colnames">
+<left>1394</left>
+<top>1593</top>
+<width>99</width>
+<height>143</height>
+<sql_create_table>CREATE TABLE `ST_BS_INSTCD_B` (
+  `instcd` varchar(10) NOT NULL COMMENT '水文系统单位编码',
+  `instnm` varchar(60) DEFAULT NULL COMMENT '单位名称',
+  `locality` varchar(10) DEFAULT NULL COMMENT '交换管理单位',
+  `moditime` datetime DEFAULT NULL COMMENT '时间戳',
+  PRIMARY KEY (`instcd`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8</sql_create_table>
+</table>
+<table name="ST_BS_CAINFO_B" view="colnames">
+<left>975</left>
+<top>1583</top>
+<width>85</width>
+<height>160</height>
+<sql_create_table>CREATE TABLE `ST_BS_CAINFO_B` (
+  `bscd` varchar(20) NOT NULL COMMENT '流域编码',
+  `rvnm` varchar(30) NOT NULL COMMENT '流域名称',
+  `caarea` decimal(7,2) DEFAULT NULL COMMENT '面积',
+  `lgtd` decimal(10,2) DEFAULT NULL COMMENT '经度',
+  `lttd` decimal(10,2) DEFAULT NULL COMMENT '纬度',
+  PRIMARY KEY (`bscd`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8</sql_create_table>
+</table>
+<table name="ST_BS_CACD_B" view="colnames">
+<left>1371</left>
+<top>1793</top>
+<width>135</width>
+<height>227</height>
+<sql_create_table>CREATE TABLE `ST_BS_CACD_B` (
+  `bscd` varchar(20) NOT NULL COMMENT '流域编码',
+  `bsnm` varchar(30) NOT NULL COMMENT '流域名称',
+  PRIMARY KEY (`bscd`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8</sql_create_table>
+</table>
+<table name="DC_BS_RIVFOU_B" view="colnames">
+<left>1002</left>
+<top>1779</top>
+<width>126</width>
+<height>328</height>
+<sql_create_table>CREATE TABLE `DC_BS_RIVFOU_B` (
+  `rivcd` varchar(8) NOT NULL COMMENT '河流代码',
+  `rivnm` varchar(30) DEFAULT NULL COMMENT '河流名称',
+  `addvcd` varchar(6) DEFAULT NULL COMMENT '行政区划码',
+  `addvnm` varchar(30) DEFAULT NULL COMMENT '行政区划分名称',
+  `adumnm` varchar(80) DEFAULT NULL COMMENT '管理单位',
+  `rivfun` varchar(50) DEFAULT NULL COMMENT '河流功能',
+  `levels` varchar(20) DEFAULT NULL COMMENT '级别',
+  `rivsou` varchar(30) DEFAULT NULL COMMENT '来源',
+  `reasta` varchar(30) DEFAULT NULL COMMENT '河段起源',
+  `reaend` varchar(30) DEFAULT NULL COMMENT '河段终点',
+  `rivlen` decimal(6,2) DEFAULT NULL COMMENT '河长',
+  `vlar` decimal(6,0) DEFAULT NULL COMMENT '河道流域面积',
+  `rivavgsl` decimal(8,6) DEFAULT NULL COMMENT '河道平均比降',
+  `risecvie` varchar(200) DEFAULT NULL COMMENT '河道断面图',
+  `riplans` varchar(200) DEFAULT NULL COMMENT '河道平面图',
+  PRIMARY KEY (`rivcd`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8</sql_create_table>
+</table>
+<table name="TBL_STTYPEINFO" view="colnames">
+<left>747</left>
+<top>1588</top>
+<width>92</width>
+<height>143</height>
+<sql_create_table>CREATE TABLE `TBL_STTYPEINFO` (
+  `stcd` varchar(8) NOT NULL COMMENT '测站编码',
+  `area` varchar(20) NOT NULL COMMENT '区域（流域）编码',
+  `oareacd` varchar(20) DEFAULT NULL COMMENT '原有区域编码',
+  `name` varchar(30) DEFAULT NULL COMMENT '名称',
+  PRIMARY KEY (`stcd`,`area`),
+  KEY `area` (`area`),
+  CONSTRAINT `TBL_STTYPEINFO_ibfk_1` FOREIGN KEY (`area`) REFERENCES `ST_BS_CAINFO_B` (`bscd`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8</sql_create_table>
+</table>
+<table name="ST_WZ_SOIL_R" view="colnames">
+<left>1177</left>
+<top>1777</top>
+<width>144</width>
+<height>354</height>
+<sql_create_table>CREATE TABLE `ST_WZ_SOIL_R` (
+  `sysid` varchar(8) NOT NULL COMMENT '测站编码',
+  `tm` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '时间',
+  `exkey` char(1) NOT NULL COMMENT '扩展关键字',
+  `vtavslm` decimal(4,1) DEFAULT NULL COMMENT '垂线平均含水量',
+  `srlslm` decimal(4,1) DEFAULT NULL COMMENT '表层含水量',
+  `slm10` decimal(4,1) DEFAULT NULL COMMENT '10cm深度含水量',
+  `slm20` decimal(4,1) DEFAULT NULL COMMENT '20cm深度含水量',
+  `slm30` decimal(4,1) DEFAULT NULL COMMENT '30cm深度含水量',
+  `slm40` decimal(4,1) DEFAULT NULL COMMENT '40cm深度含水量',
+  `slm60` decimal(4,1) DEFAULT NULL COMMENT '60cm深度含水量',
+  `slm80` decimal(4,1) DEFAULT NULL COMMENT '80cm深度含水量',
+  `slm100` decimal(4,1) DEFAULT NULL COMMENT '100cm深度含水量',
+  `crpty` char(1) DEFAULT NULL COMMENT '作物种类',
+  `crpgrwprd` char(1) DEFAULT NULL COMMENT '作物生长期',
+  `hitrsn` char(1) DEFAULT NULL COMMENT '作物水分状态',
+  `slmmmt` char(1) DEFAULT NULL COMMENT '土壤含水量测法',
+  `createtime` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '创建时间',
+  PRIMARY KEY (`sysid`,`tm`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8</sql_create_table>
+</table>
+<table name="ST_WZ_RSVR_R" view="colnames">
+<left>6</left>
+<top>950</top>
+<width>139</width>
+<height>160</height>
+<sql_create_table>CREATE TABLE `ST_WZ_RSVR_R` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `sta_id` bigint(20) NOT NULL COMMENT '测站ID',
+  `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '时间',
+  `waterLevel` decimal(7,3) DEFAULT NULL COMMENT '库水位',
+  `storageCapacity` decimal(9,3) DEFAULT NULL COMMENT '蓄水量',
+  `createtime` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `sta_id` (`sta_id`),
+  CONSTRAINT `ST_WZ_RSVR_R_ibfk_1` FOREIGN KEY (`sta_id`) REFERENCES `ST_BS_STBPRP_B` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8</sql_create_table>
+</table>
+<table name="ST_WZ_RIVER_R" view="colnames">
+<left>2</left>
+<top>753</top>
+<width>174</width>
+<height>160</height>
+<sql_create_table>CREATE TABLE `ST_WZ_RIVER_R` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `sta_id` bigint(20) NOT NULL COMMENT '测站ID',
+  `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '水情发生的时间',
+  `waterLevel` decimal(7,3) DEFAULT NULL COMMENT '水位',
+  `rateOfFlow` decimal(9,3) DEFAULT NULL COMMENT '流量',
+  `createtime` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `sta_id` (`sta_id`),
+  CONSTRAINT `ST_WZ_RIVER_R_ibfk_1` FOREIGN KEY (`sta_id`) REFERENCES `ST_BS_STBPRP_B` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8</sql_create_table>
+</table>
+<table name="DC_BS_RDWDEPT_C" view="colnames">
+<left>1174</left>
+<top>1587</top>
+<width>84</width>
+<height>126</height>
+<sql_create_table>CREATE TABLE `DC_BS_RDWDEPT_C` (
+  `id` int(11) NOT NULL COMMENT '流水号',
+  `stcd` varchar(8) NOT NULL COMMENT '测站编码',
+  `deptcd` varchar(10) NOT NULL COMMENT '责任单位编码',
+  PRIMARY KEY (`id`),
+  KEY `deptcd` (`deptcd`),
+  KEY `stcd` (`stcd`),
+  CONSTRAINT `DC_BS_RDWDEPT_C_ibfk_1` FOREIGN KEY (`deptcd`) REFERENCES `ST_BS_INSTCD_B` (`instcd`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8</sql_create_table>
+</table>
+<table name="DC_BS_STANDRES_B" view="colnames">
+<left>757</left>
+<top>1151</top>
+<width>90</width>
+<height>109</height>
+<sql_create_table>CREATE TABLE `DC_BS_STANDRES_B` (
+  `sta_id` bigint(20) NOT NULL COMMENT '测站ID',
+  `cnnmcd` varchar(11) NOT NULL COMMENT '水库编码',
+  PRIMARY KEY (`sta_id`,`cnnmcd`),
+  KEY `cnnmcd` (`cnnmcd`),
+  CONSTRAINT `DC_BS_STANDRES_B_ibfk_1` FOREIGN KEY (`cnnmcd`) REFERENCES `DC_BS_RESERVOIR_B` (`cnnmcd`),
+  CONSTRAINT `FK_DC_BS_STANDRES_B` FOREIGN KEY (`sta_id`) REFERENCES `ST_BS_STBPRP_B` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8</sql_create_table>
+</table>
+<table name="DC_BS_RESERVOIR_B" view="colnames">
+<left>1194</left>
+<top>1049</top>
+<width>149</width>
+<height>383</height>
+<sql_create_table>CREATE TABLE `DC_BS_RESERVOIR_B` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `cnnmcd` varchar(11) NOT NULL COMMENT '水库代码',
+  `resnm` varchar(30) NOT NULL COMMENT '水库名称',
+  `restp` varchar(30) NOT NULL COMMENT '水库类型',
+  `addvcd` varchar(12) DEFAULT NULL COMMENT '行政区划码',
+  `adumnm` varchar(100) DEFAULT NULL COMMENT '管理单位',
+  `damsite` varchar(100) DEFAULT NULL COMMENT '坝址所在地点',
+  `esstym` varchar(8) DEFAULT NULL COMMENT '建成日期',
+  `encl` varchar(10) DEFAULT NULL COMMENT '工程等别',
+  `lvbslv` char(40) DEFAULT NULL COMMENT '水准基面',
+  `rscci` varchar(200) DEFAULT NULL COMMENT '水库枢纽建筑物组成',
+  `schdep` varchar(40) DEFAULT NULL COMMENT '调度主管部门',
+  `saflev` char(2) DEFAULT NULL COMMENT '安全类别',
+  `rsdasi` varchar(200) DEFAULT NULL COMMENT '水库病险情况',
+  `vlar` float(8,2) DEFAULT NULL COMMENT '流域面积(:平方公里)',
+  `comments` varchar(2000) DEFAULT NULL COMMENT '备注',
+  `Sort` varchar(3) DEFAULT NULL COMMENT '水库排序',
+  `modify_time` datetime DEFAULT NULL,
+  PRIMARY KEY (`cnnmcd`,`resnm`,`id`),
+  KEY `id` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8</sql_create_table>
+</table>
+<table name="user" view="colnames">
+<left>5</left>
+<top>39</top>
+<width>138</width>
+<height>211</height>
+<sql_create_table>CREATE TABLE `user` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '用户ID',
+  `username` varchar(20) NOT NULL COMMENT '用户名',
+  `role_id` varchar(256) DEFAULT NULL COMMENT '用户角色',
+  `password` varchar(64) NOT NULL COMMENT '用户密码',
+  `salt` varchar(128) NOT NULL COMMENT '盐',
+  `telephone` varchar(128) DEFAULT NULL COMMENT '联系电话',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `modify_time` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8</sql_create_table>
+</table>
+<table name="paramTable" view="colnames">
+<left>580</left>
+<top>1436</top>
+<width>89</width>
+<height>143</height>
+<sql_create_table>CREATE TABLE `paramTable` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '系数表ID',
+  `area_id` bigint(20) NOT NULL COMMENT '区域ID',
+  `sta_id` bigint(20) NOT NULL COMMENT '测站ID',
+  `param` float(3,2) DEFAULT NULL COMMENT '系数',
+  PRIMARY KEY (`id`),
+  KEY `FK_paramTable` (`area_id`),
+  KEY `sta_id` (`sta_id`),
+  CONSTRAINT `FK_paramTable` FOREIGN KEY (`area_id`) REFERENCES `AREA` (`area_id`),
+  CONSTRAINT `paramTable_ibfk_1` FOREIGN KEY (`sta_id`) REFERENCES `ST_BS_STBPRP_B` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=utf8</sql_create_table>
+</table>
+<table name="AREA" view="colnames">
+<left>847</left>
+<top>1333</top>
+<width>181</width>
+<height>156</height>
+<sql_create_table>CREATE TABLE `AREA` (
+  `area_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '区域码',
+  `area_name` varchar(100) NOT NULL COMMENT '行政区域名称',
+  `algorithmType` int(11) NOT NULL DEFAULT '0' COMMENT '算法类型',
+  `comment` varchar(256) DEFAULT NULL COMMENT '说明',
+  `modify_time` datetime DEFAULT NULL,
+  PRIMARY KEY (`area_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8</sql_create_table>
+</table>
+<table name="data_dictionary" view="colnames">
+<left>3</left>
+<top>273</top>
+<width>153</width>
+<height>118</height>
+<sql_create_table>CREATE TABLE `data_dictionary` (
+  `id` bigint(20) NOT NULL,
+  `name` varchar(30) DEFAULT NULL,
+  `description` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8</sql_create_table>
+</table>
+<table name="waterStorageRelastionship" view="colnames">
+<left>187</left>
+<top>275</top>
+<width>201</width>
+<height>109</height>
+<sql_create_table>CREATE TABLE `waterStorageRelastionship` (
+  `waterLevel` decimal(10,2) NOT NULL COMMENT '水位',
+  `storageCapacity` decimal(10,1) NOT NULL COMMENT '库容'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8</sql_create_table>
+</table>
+<table name="ManMadeReportStatus" view="colnames">
+<left>418</left>
+<top>275</top>
+<width>155</width>
+<height>126</height>
+<sql_create_table>CREATE TABLE `ManMadeReportStatus` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT 'ID',
+  `reportTime` varchar(20) NOT NULL COMMENT '上报时间',
+  `reportStatus` int(11) NOT NULL COMMENT '上报状态',
+  `modify_time` datetime DEFAULT NULL COMMENT '创建/修改时间',
+  UNIQUE KEY `id` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8</sql_create_table>
+</table>
+<table name="ParamId_StationId" view="colnames">
+<left>5</left>
+<top>545</top>
+<width>166</width>
+<height>126</height>
+<sql_create_table>CREATE TABLE `ParamId_StationId` (
+  `sta_id` bigint(20) NOT NULL COMMENT '测站ID',
+  `paraid` varchar(50) NOT NULL COMMENT '参数编码',
+  `corvalue` decimal(5,1) DEFAULT NULL COMMENT '修正值（仅限水位站）',
+  KEY `FK_ParamId_StationId` (`sta_id`),
+  CONSTRAINT `FK_ParamId_StationId` FOREIGN KEY (`sta_id`) REFERENCES `ST_BS_STBPRP_B` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8</sql_create_table>
+</table>
+</tables>
+</canvas>
+</schemadesigner>

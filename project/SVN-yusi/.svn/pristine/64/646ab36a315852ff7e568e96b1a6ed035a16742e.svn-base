@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>实时信息查询</title>
+
+    <link rel="stylesheet" type="text/css" href="/pro_css/common/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/pro_css/common/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" type="text/css" href="/pro_css/common/jquery.mCustomScrollbar.css">
+    <link rel="stylesheet" type="text/css" href="/pro_css/common/ol.css">
+    <link rel="stylesheet" type="text/css" href="/pro_css/common/common.css">
+    <link rel="stylesheet" type="text/css" href="/pro_css/header.css">
+    <link rel="stylesheet" type="text/css" href="/pro_css/popup.css">
+    <link rel="stylesheet" type="text/css" href="/pro_css/proIndex.css">
+
+
+   <!--  <style>
+        a.skiplink {
+            position: absolute;
+            clip: rect(1px, 1px, 1px, 1px);
+            padding: 0;
+            border: 0;
+            height: 1px;
+            width: 1px;
+            overflow: hidden;
+        }
+        a.skiplink:focus {
+            clip: auto;
+            height: auto;
+            width: auto;
+            background-color: #fff;
+            padding: 0.3em;
+        }
+        #map:focus {
+            outline: #4A74A8 solid 0.15em;
+        }
+    </style> -->
+</head>
+<body>
+    <!--头部-->
+    <div id="header">
+      <div class="header-top">
+        <div class="header-top-content">
+          <div class="header-top-content-left">
+            <img src="../imgs/common/logo.png" alt="">
+          </div>
+          <div class="header-top-content-right">
+            <span>94476455@qq.com</span>&nbsp;|&nbsp;<a href = "/logout">退出</a>
+          </div>
+        </div>
+      </div>
+      <div class="header-bottom">
+        <ul>
+          <li class="header-bottom-item header-bottom-item1 active"><span>实时信息查询</span></li>
+          <li class="header-bottom-item header-bottom-item2"><span>雨量统计</span></li>
+          <li class="header-bottom-item header-bottom-item3"><span>水位统计</span></li>
+          <li class="header-bottom-item header-bottom-item4"><span>测站状态</span></li>
+          <li class="header-bottom-item header-bottom-item5"><span>人工报讯</span></li>
+          <li class="header-bottom-item header-bottom-item6"><span>数据管理</span></li>
+        </ul>
+        <!--  <div class="moveWrap"><i class="navMove" style="left: 26px; width: 124px;"></i></div> -->
+      </div>
+
+    </div>
+
+
+    <!-- <a class="skiplink" href="#map">Go to map</a> -->
+    <!--地图-->
+    <div class="mapBox">
+        <div id="map" class="map" tabindex="0"></div>
+
+          <!--水情图例-->
+          <div class="lengendBox" id="waterLengend">
+            <div class="legendTitle" data-toggle="collapse" data-parent="#accordion1" href="#collapseOne">
+                <span class="mr5">图例</span><i class="triangular"></i>
+            </div>
+
+            <ul class="legend-content legend-content1 collapse" id="collapseOne">
+                  <li><i class="legendCircle library"></i><span>库水位</span></li>
+                  <li><i class="legendCircle runway"></i><span>河道水位</span></li>
+            </ul>
+          </div>
+
+         <!--雨情图例-->
+          <div class="lengendBox hide" id="rainLengend">
+            <div class="legendTitle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
+                <span class="mr5">图例</span><i class="triangular"></i>
+            </div>
+
+           <div class="legend-content legend-content2 collapse " id="collapseTwo">
+               <ul>
+                 <li><i class="legendCircle gray"></i><span>无降雨</span></li>
+                  <li><i class="legendCircle white"></i><span>0</span></li>
+                  <li><i class="legendCircle cyan"></i><span>0.1-10</span></li>
+                  <li><i class="legendCircle atrovirens"></i><span>10-25</span></li>
+               </ul><ul>
+                    <li><i class="legendCircle wathet"></i><span>25-50</span></li>
+                    <li><i class="legendCircle darkBlue"></i><span>50-100</span></li>
+                    <li><i class="legendCircle croci"></i><span>100-250</span></li>
+                    <li><i class="legendCircle red"></i><span>250以上</span></li>
+                </ul>
+
+            </div>
+          </div>
+    </div>
+
+
+    <!--右侧部分-->
+    <div class="contentRight">
+        <!-- <div class="contentRighthomei" id="rightPanelHideBtn" title="隐藏面板"><img src="m2m_v4.0/images/right_arrow.png"></div> -->
+        <div class="contentRightTabs">
+          <div class="tabs tabs1 active">实时水情</div>
+          <div class="tabs tabs2">实时雨情</div>
+        </div>
+        <div class="tab-content">
+          <div class="tab-pannel tab-pannel1 active">
+            <div class="panelRow1">
+              <div class="pannel-title"><span class="pannel-titleText">条件选择</span></div>
+              <div class="pannel-content">
+                <div class="pickerBox"><input type="text" id="starttime" class="timePicker starttime" readonly="readonly" placeholder="开始时间"/></div><span class="mar8">到</span><div class="pickerBox"><input type="text" id="endtime" class="timePicker endtime" readonly="readonly" placeholder="结束时间"/></div>
+
+                 <button type="button" id="water_search_btn" class="confirm">确定</button>
+              </div>
+            </div>
+             <!--水库信息-->
+            <div class="panelRow2">
+              <div class="pannel-title"><span class="pannel-titleText">水库信息</span></div>
+              <div class="table-responsive">
+                <table class="table">
+                  <thead>
+                    <tr>
+                       <th>编号</th>
+                       <th>站名</th>
+                       <th>水位(m)</th>
+                       <th>库容(10<sup>6</sup>m<sup>2</sup>)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>17456890</td>
+                      <td>北洋坝</td>
+                      <td>14.00</td>
+                      <td>300.00</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!--河道信息-->
+            <div class="panelRow3">
+              <div class="pannel-title"><span class="pannel-titleText">河道信息</span></div>
+              <div class="table-responsive">
+                <table class="table">
+                  <thead>
+                    <tr>
+                       <th>编号</th>
+                       <th>站名</th>
+                       <th>水位(m)</th>
+                       <th>流量(m<sup>3</sup>/s)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>17456890</td>
+                      <td>北洋坝</td>
+                      <td>14.00</td>
+                      <td>3000.00</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+          </div>
+          <div class="tab-pannel tab-pannel2">
+            <div class="panelRow1">
+              <div class="pannel-title"><span class="pannel-titleText">条件选择</span></div>
+              <div class="pannel-content">
+                <div class="pickerBox"><input type="text" id="starttime1" class="timePicker starttime" readonly="readonly" placeholder="开始时间"/></div><span class="mar8">到</span><div class="pickerBox"><input type="text" id="endtime1" class="timePicker endtime" readonly="readonly" placeholder="结束时间"/></div>
+
+                 <button type="button" id="rain_search_btn" class="confirm">确定</button>
+              </div>
+            </div>
+            <!--雨量统计-->
+            <div class="panelRow2">
+              <div class="pannel-title"><span class="pannel-titleText">雨量信息</span><span class="fr detail">详情</span></div>
+              <div class="table-responsive">
+                <!-- <table class="table">
+                  <thead>
+                    <tr>
+                       <th>编号</th>
+                       <th>站名</th>
+                       <th>雨量</th>
+                       <th>站址</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td data-bind="sys_code"></td>
+                      <td data-bind="station_name"></td>
+                      <td data-bind="rainfall"></td>
+                      <td data-bind="station_location"></td>
+                    </tr>
+                  </tbody>
+                </table> -->
+                <ul>
+                    <li>编号</li>
+                    <li>站名</li>
+                    <li>雨量</li>
+                    <li>站址</li>
+                </ul>
+                <div class="">
+                    <div class="panelRow2-dataBind">
+                        <ul>
+                            <li data-bind="sys_code"></li>
+                            <li data-bind="station_name"></li>
+                            <li data-bind="rainfall"></li>
+                            <li data-bind="station_location"></li>
+                        </ul>
+                    </div>
+                </div>
+
+              </div>
+            </div>
+          <!--雨量统计-->
+          <div class="panelRow3">
+              <div class="pannel-title"><span class="pannel-titleText">雨量统计</span><span class="fr detail">详情</span></div>
+              <div class="table-responsive">
+                <!-- <table class="table">
+                  <thead>
+                    <tr>
+                      <th rowspan="2">区域</th>
+                      <th rowspan="2">平均雨量</th>
+                      <th colspan="2">雨量情况</th>
+                    </tr>
+                    <tr>
+                      <th >站名</th>
+                      <th >雨量</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td data-bind="area_name"></td>
+                      <td data-bind="average_rainfall"></td>
+
+                         <td data-bind="station_name"></td>
+                         <td data-bind="rainfall"></td>
+
+                    </tr>
+                  </tbody>
+                </table> -->
+            <div class="right-body-table">
+              <ul class="right-table-title clearfix">
+                        <li class="right-table-title-item">区域</li>
+                        <li class="right-table-title-item">平均雨量</li>
+                        <li class="right-table-title-item">
+                            <span>区域最大雨量</span><!--
+                         --><span>站名</span><!--
+             --><span>雨量</span>
+                        </li>
+                </ul>
+                <div class="right-table-body">
+                    <div class="right-table-body-dataBind">
+                        <ul class="right-table-row clearfix">
+                            <li class="right-table-row-item" data-bind="area_name"></li><!--
+                         --><li class="right-table-row-item" data-bind="average_rainfall"></li><!--
+                         --><li class="right-table-row-item" data-bind="maxStation"></li><!--
+                         --><li class="right-table-row-item" data-bind="max_Rainfall"></li>
+                        </ul>
+                    </div>
+                    <div class="notContent hide">
+                            无数据
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+    <!-- <button id="zoom-out">Zoom out</button>
+    <button id="zoom-in">Zoom in</button> -->
+
+    <div class="modal fade" id="pupDelete2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" class="closeImg fr">
+       <div class="modal-dialog">
+         <div class="modal-content">
+           <div class="modal-header">
+             <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true" class=" closeImg fr">&times;</span><span class="sr-only">Close</span></button>
+           </div>
+           <div class="modal-body">
+                                  您未选择要打印的项
+           </div>
+           <div class="modal-footer">
+             <button type="button" class="btn btn-cancel" data-dismiss="modal">取消</button>
+           </div>
+         </div>
+       </div>
+    </div>
+    <!-- 以下是弹窗 -->
+    <!-- 信息 -->
+    <div class="modal fade" id="popInfo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" class="closeImg fr">
+       <div class="modal-dialog">
+         <div class="modal-content">
+           <div class="modal-header">时段雨量详情
+             <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true" class=" closeImg fr">&times;</span><span class="sr-only">Close</span></button>
+           </div>
+           <div class="modal-body">
+             <p class="popInfo-title"><span>时间：</span><span id="popInfoStartTime"></span> - <span id="popInfoEndTime"></span></p>
+             <div class="popInfo-content">
+                <table border="1">
+                 <thead>
+                   <tr>
+                     <th>总体情况</th>
+                     <th colspan="8">今年以来累计降水量全市平均80.4米, 比常年同期64.6多15.8%; 比去年同期50.0多30.4%. 其中市区87.5,平阴80.3,历程95,1章丘74.8,济阳82.3,商河66.1</th>
+                   </tr>
+                   <tr class="tr2">
+                     <th>说明</th>
+                     <th colspan="8">  &ge;250.0mm <span class="item-color item-color1"></span> &ge;100.0mm <span class="item-color item-color2"></span> &ge; 50.0mm <span class="item-color item-color3"></span> &ge;25.0mm <span class="item-color item-color4"></span> &ge;10.0mm <span class="item-color item-color5"></span> </th>
+                   </tr>
+
+                 </thead>
+                 <tbody>
+                   <tr>
+                     <td>全库平均</td>
+                     <td class="popInfoRow ">
+                       <table class="fulltable">
+                          <tr class="fulltableTr">
+                              <td data-bind="area_name"></td>
+                          </tr>
+                      </table>                       
+                     </td>   
+                   </tr>
+                  <tr class="">
+                     <td>1</td>
+                      <td class="popInfoRow ">
+                       <table class="fulltable">
+                          <tr class="fulltableTr">
+                              <td data-bind="average_rainfall" style="width:33%;"></td>
+                          </tr>
+                      </table>                       
+                     </td>   
+                    
+                   </tr>                   
+                    <tr class="" data-bind="station_info_list">
+                     <td>雨量站点</td>
+                     <td><div class="d-ib row5Left" data-bind="station_name"></div><div class="d-ib row5Right" data-bind="rainfall"></div></td>
+                   </tr>                   
+                   
+                 </tbody>
+               </table> 
+
+          <!-- 
+               <ul class="line line1">
+                 <li>总体情况</li>
+                 <li><span>今年以来累计降水量全市平均80.4米, 比常年同期64.6多15.8%; 比去年同期50.0多30.4%. 其中市区87.5,平阴80.3,历程95,1章丘74.8,济阳82.3,商河66.1</span></li>
+               </ul>
+               <ul class="line line2">
+                 <li>说明</li>
+                 <li class="legend"> &ge;250.0mm <span></span> &ge;100.0mm <span></span> &ge; 50.0mm <span></span> &ge;25.0mm <span></span> &ge;10.0mm <span></span></li>
+               </ul>
+               <div id="popInfoLine3" class="line3 clearfix">
+                 <ul>
+                   <li>全库平均</li>
+                   <li id="averageBase"></li>
+                   <li id="condition">全库情况</li>
+                 </ul>
+                 <ul id="popInfoLine3Info" class="d-ib">
+                    <ul class="item city clearfix">
+                     <li data-bind="area_name"></li>
+                     <li data-bind="average_rainfall"></li>
+                     <ul id="lastLi" data-bind="station_info_list" class="clearfix"><li data-bind="station_name"></li><li data-bind="rainfall"></li></ul>
+                   </ul>                   
+                 </ul>
+                 -->
+                 
+              
+               </div>
+               
+           </div>
+           <!-- <div class="modal-footer">
+             <button type="button" class="btn btn-cancel" data-dismiss="modal">取消</button>
+           </div> -->
+         </div>
+       </div>
+     </div>
+
+     <!-- 500错误提示框 -->
+ 	<div class="modal fade" id="errorBtn" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" class="closeImg fr">
+ 		<div class="modal-dialog">
+ 			<div class="modal-content">
+ 				<div class="modal-header">
+ 					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true" class=" closeImg fr">&times;</span><span class="sr-only">Close</span></button>
+ 				</div>
+ 				<div class="modal-body">
+ 					<p class="modal-body-row"><span class="question-info" id="errorInfo"></span></p>
+ 				</div>
+ 				<div class="modal-footer">
+ 					<!-- <button type="button" class="btn btn-delete">删除</button> -->
+ 					<button type="button" class="btn btn-cancel" data-dismiss="modal">确定</button>
+ 				</div>
+ 			</div>
+ 		</div>
+ 	</div>
+
+    <script type="text/javascript" src="/pro_js/publicJs/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="/pro_js/publicJs/jquery.form.js"></script>
+    <script type="text/javascript" src="/pro_js/publicJs/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/pro_js/publicJs/ol.js"></script>
+    <script type="text/javascript" src="/pro_js/publicJs/polyfill.min.js"></script>
+    <script type="text/javascript" src="/pro_js/publicJs/bootstrap-datetimepicker.js"></script>
+    <script type="text/javascript" src="/pro_js/publicJs/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script type="text/javascript" src="/pro_js/publicJs/jquery.mCustomScrollbar.js"></script>
+    <script type="text/javascript" src="/pro_js/publicJs/transparency.min.js"></script>
+    <script type="text/javascript" src="/pro_js/publicJs/mapInit.js"></script>
+    <script type="text/javascript" src="/pro_js/publicJs/common.js"></script>
+    <script type="text/javascript" src="/pro_js/ajaxRequestUrls.js"></script>
+    <script type="text/javascript" src="/pro_js/header.js"></script>
+    <script type="text/javascript" src="/pro_js/proIndex.js"></script>
+    <script type="text/javascript" charset="utf-8" >
+        $(".panelRow2 .table-responsive>div,.panelRow3 .right-table-body").mCustomScrollbar({
+            theme:"3d-dark"
+        });
+      $(".timePicker").datetimepicker({
+        bootcssVer:3,
+        language:  'zh-CN',
+        format: 'yyyy-mm-dd hh:ii',
+        autoclose: true,
+        clearBtn:true,
+        pickerPosition: "bottom-right"
+      });
+
+      //开始时间 开始时间不能大于结束时间
+      $('#starttime').datetimepicker({
+        endDate : new Date()
+    }).on('changeDate',function(e){
+        var startTime = e.date;
+        console.log(startTime);
+        if(null!==startTime){
+          $('#endtime').datetimepicker('setStartDate', setStartTime(startTime));
+
+        }
+    });
+    $('.starttime').datetimepicker('setEndDate', DateToday());
+    $('.endtime').datetimepicker('setEndDate', DateToday());
+
+    //结束时间： 结束时间不能小于开始时间
+    $('#endtime').datetimepicker({
+        endDate : new Date()
+    }).on('changeDate',function(e){
+        var endtime = e.date;
+          if(null!==endtime){
+            $('#starttime').datetimepicker('setEndDate',setEndTime(endtime));
+          }
+
+    });
+
+    /**雨请**/
+     $('#starttime1').datetimepicker({
+        endDate : new Date()
+    }).on('changeDate',function(e){
+        var startTime = e.date;
+        if(null!==startTime){
+            $('#endtime1').datetimepicker('setStartDate', setStartTime(startTime));
+        }
+
+
+    });
+    $('#endtime1').datetimepicker({
+        endDate : new Date()
+    }).on('changeDate',function(e){
+        var endtime = e.date;
+          if(null!==endtime){
+             $('#starttime1').datetimepicker('setEndDate',setEndTime(endtime));
+          }
+
+    });
+
+   function setStartTime(endtime){
+
+        var iM = endtime.getTime()+(5*60*1000);   //得到毫秒数-5分钟
+        var endtime = new Date(iM);   //重新转为日期对象
+       var year=endtime.getFullYear();//年份
+
+       var month=endtime.getMonth()+1;//月份
+       var date=endtime.getDate();//日期
+       var hour=endtime.getHours();//小时
+       var minute=endtime.getMinutes();//分钟
+        month= month < 10 ? "0" + month : month;
+        date = date < 10 ? "0" + date : date;
+        hour = hour < 10 ? "0" + hour : hour;
+        minute =minute < 10 ? "0" + minute: minute;
+        return year + "-" + month + "-" + date + " " + hour + ":" + minute;
+    }
+
+    function setEndTime(endtime){
+       var iM = endtime.getTime()-(5*60*1000);   //得到毫秒数-5分钟
+       var endtime = new Date(iM);   //重新转为日期对象
+       var year=endtime.getFullYear();//年份
+
+       var month=endtime.getMonth()+1;//月份
+       var date=endtime.getDate();//日期
+       var hour=endtime.getHours();//小时
+       var minute=endtime.getMinutes();//分钟
+        month= month < 10 ? "0" + month : month;
+        date = date < 10 ? "0" + date : date;
+        hour = hour < 10 ? "0" + hour : hour;
+        minute =minute < 10 ? "0" + minute: minute;
+        return year + "-" + month + "-" + date + " " + hour + ":" + minute;
+    }
+
+
+    </script>
+</body>
+</html>

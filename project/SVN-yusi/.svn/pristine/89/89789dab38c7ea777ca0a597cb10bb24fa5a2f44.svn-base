@@ -1,0 +1,20 @@
+package mybatisPro.mybatisService.impl;
+
+import java.util.List;
+
+import ekuter.mvc.util.ManMadeStationDataUtil;
+
+/**
+ * 人工报讯业务层接口
+ * @author si.yu
+ * @date 2017/08/22
+ * @version 1.0
+ * */
+public interface ManMadeStaionService {
+
+	/**
+	 * 人工上报数据
+	 * @return
+	 * */
+	public boolean ManMadeDataReport(List<ManMadeStationDataUtil> manMadeStationList);
+}
