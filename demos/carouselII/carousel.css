@@ -1,0 +1,81 @@
+*{
+    margin:0;
+    padding:0;
+}
+ul,li{
+    list-style: none;
+}
+.out{
+    width:790px;
+    height:340px;
+    margin:0 auto;
+    margin-top:200px;
+    position: relative;
+}
+.out:hover .btn{
+    display:block;
+}
+.out .img{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+.out .img li{
+    display: none;
+    position: absolute;
+    top:0;
+    left:0;
+    right: 0;
+    bottom: 0;
+}
+.out .img li a{
+    display: inline-block;
+    width:100%;
+    height:100%;
+}
+.out .num{
+    position: absolute;
+    bottom:20px;
+    left:0;
+    font-size: 0px;
+    text-align: center;
+    width:100%;
+}
+.out .num li{
+    display: inline-block;
+    margin:0 3px;
+    width:20px;
+    height:20px;
+    line-height:20px;
+    border-radius: 50%;
+    text-align: center;
+    font-size:16px;
+    background: #666;
+    color: #fff;
+    cursor: pointer;
+}
+.out .num li.active{
+    background:red;
+}
+.out .left,.out .right{
+    display: none;
+    position: absolute;
+    top:50%;
+    margin-top:-30px;
+    width:30px;
+    height:60px;
+    line-height:60px;
+    text-align: center;
+    font-size:16px;
+    cursor: pointer;
+    background: rgba(0,0,0,.5);
+    color: #fff;
+}
+.out .left{
+    left:0px;
+
+}
+.out .right{
+    right:0px;
+}
+

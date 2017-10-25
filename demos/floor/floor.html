@@ -1,0 +1,227 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>please enter your title</title>
+		<meta charset="utf-8">
+		<meta name="Author" content="">
+		<style type='text/css'>
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			
+			div {
+				font-size: 30px;
+				font-family: 'Microsoft yahei';
+				font-weight: bold;
+			}
+			
+			li {
+				list-style: none;
+			}
+			
+			#header,
+			#footer {
+				width: 1300px;
+				height: 800px;
+				background: #ffcccc;
+				margin: 0 auto;
+				line-height: 500px;
+				text-align: center;
+			}
+			
+			#content {
+				width: 1300px;
+				margin: 0 auto;
+				position: relative;
+			}
+			
+			#content div.nav {
+				width: 1300px;
+				height: 500px;
+			}
+			
+			#slide {
+				width: 50px;
+				height: 500px;
+				border: 1px solid #ddd;
+				border-radius: 3px;
+				background: #e6f7f7;
+				float: right;
+				position: fixed;
+				top: 230px;
+			}
+			
+			#slide ul li.control {
+				width: 50px;
+				height: 32px;
+				line-height: 32px;
+				text-align: center;
+				font-size: 12px;
+				color: #000;
+				font-weight: normal;
+				cursor: pointer;
+				transition: 0.2s;
+				position: relative;
+				z-index: 2;
+			}
+			
+			#slide ul li.blue {
+				background: #00A1D6;
+				width: 50px;
+				height: 32px;
+				position: absolute;
+				top: 0px;
+				z-index: 1;
+				display: none;
+			}
+			
+			#slide ul li:hover {
+				background: #00A1D6;
+				color: #fff;
+			}
+			
+			#slide ul li.on {
+				background: #00A1D6;
+				color: #fff;
+			}
+			
+			#slide_wrap {
+				position: absolute;
+				right: 60px;
+				top: 30px;
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<div id="header">header</div>
+
+		<div id='content'>
+			<div class='nav' style="background-color:#33ffff">动画</div>
+			<div class='nav' style="background-color:#ff0066">音乐</div>
+			<div class='nav' style="background-color:#990099">舞蹈</div>
+			<div class='nav' style="background-color:#00ffff">番剧</div>
+			<div class='nav' style="background-color:#00ff33">科技</div>
+			<div class='nav' style="background-color:#66ff66">娱乐</div>
+			<div class='nav' style="background-color:#ff9966">鬼畜</div>
+			<div class='nav' style="background-color:#999966">电影</div>
+			<div class='nav' style="background-color:#cc9966">TV剧</div>
+			<div class='nav' style="background-color:#0000cc">直播</div>
+			<div class='nav' style="background-color:#330033">时尚</div>
+			<div class='nav' style="background-color:#cc00ff">游戏</div>
+		</div>
+
+		<div id="slide_wrap">
+			<div id='slide'>
+				<ul>
+					<li class="control">动画</li>
+					<li class="control">音乐</li>
+					<li class="control">舞蹈</li>
+					<li class="control">番剧</li>
+					<li class="control">科技</li>
+					<li class="control">娱乐</li>
+					<li class="control">鬼畜</li>
+					<li class="control">电影</li>
+					<li class="control">TV剧</li>
+					<li class="control">直播</li>
+					<li class="control">时尚</li>
+					<li class="control">游戏</li>
+					<li class="blue"></li>
+				</ul>
+			</div>
+		</div>
+
+		<div id="footer">footer</div>
+
+		<script src="http://apps.bdimg.com/libs/jquery/1.6.4/jquery.js"></script>
+		<script type="text/javascript">
+			// 解决导航条定位问题
+			(function() {
+				var $content = $('#content');
+				var $slide = $('#slide');
+				var slideH = $slide.height();
+				var cOffsetTop = $content.offset().top;
+				var minus = ($(window).height() - slideH) / 2;
+
+				$(window).resize(function() {
+					minus = ($(window).height() - slideH) / 2;
+					$slide.css("top", minus + "px")
+				}).scroll(function() {
+					var scrollTop = $(document).scrollTop();
+					if(scrollTop > 100) {
+						$slide.css("top", minus + "px")
+					} else {
+						$slide.css("top", "230px")
+					}
+				})
+
+			})();
+			(function() {
+				var $slideLi = $('#slide ul li.control');
+				var $blue = $('#slide ul li.blue');
+				var $nav = $('#content .nav');
+				var length = $nav.length;
+				var index = 0;
+				//点击的时候不能让文档触发滚动  ,点击动画完后再打开
+				var onOff = true;
+
+				//点击侧边 index对应content里div的index	
+				$slideLi.click(function() {
+					onOff = false;
+					index = $(this).index();
+					$(this).addClass('on').siblings().removeClass('on')
+					var This = this;
+					var navOffsetTop = $nav.eq(index).offset().top;
+
+					$('body,html').animate({
+						scrollTop: navOffsetTop
+					}, 500, function() {
+						onOff = true;
+					})
+
+					$blue.show().animate({
+						top: $(This).position().top + 'px'
+					}, 500, function() {
+						$(this).hide();
+					})
+					//console.log(This)   <li class="control">动画</li>
+					//console.log(index)   0	
+				})
+
+				$(window).scroll(function() {
+						if(onOff) { //判断开关是否打开（即点击动画是否完成，才执行下一步）
+							//文档滚动时
+							var scrollTop = $(document).scrollTop();
+							//	console.log(scrollTop);
+							//	console.log($nav.eq(11).offset().top)
+							//不断检测
+							for(var i = 0; i < length; i++) {
+								index = i
+								if(scrollTop > $nav.eq(i).offset().top) {
+									$slideLi.eq(index).addClass('on').siblings().removeClass('on');
+									$blue.show().stop(true).animate({
+										top: $slideLi.eq(index).position().top + 'px',
+									}, 100, function() {
+										$(this).hide();
+									});
+								} else {
+									index = i - 1;
+									if(index < 0) {
+										index = 0;
+										$slideLi.removeClass('on');
+									}
+								}
+							}
+						}
+					}
+
+				)
+
+			})();
+		</script>
+
+	</body>
+
+</html>
