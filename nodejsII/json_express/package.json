@@ -1,0 +1,8 @@
+{
+  "name": "json_express",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "express": "2.5.4"
+  }
+}
