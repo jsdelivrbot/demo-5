@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>自适应布局</title>
+    <meta charset="utf-8">
+    <style type="text/css">
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        #left{
+            width: 200px;
+            height: 600px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-color: #fffc00;
+        }
+        #right{
+            width: 100px;
+            height: 600px;
+            position: absolute;
+            top: 0;
+            right: 0;
+            background-color: orange;
+        }
+        #main{
+            height: 600px;
+            position: absolute;
+            left: 200px;
+            right: 100px;
+            top: 0;
+            background-color: #03c03c;
+        }
+    </style>
+</head>
+<body>
+<div id="left">left 200px</div>
+<div id="right">right 100px</div>
+<div id="main">main 自适应</div>
+</body>
+</html>

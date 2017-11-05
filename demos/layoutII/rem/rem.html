@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>em与rem</title>
+</head>
+<body>
+<div style="font-size: 50px">
+    <div style="width: 20em;height:4em;background: red;border:1px solid green">
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;用em做单位的都是相对于父级字体大小的，因为父级字体的大小是50px，所以这里的宽20em就是1000px,高4em就是200px!
+    </div>
+</div>
+<br/>
+<br/>
+<div style="font-size: 33px">
+    <div style="width: 1000px;height:200px;background: red;border:1px solid green">
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;根字体的大小即1rem，用rem做单位的都是相对于根字体大小的。下面把1rem定义为：(屏幕宽度/设计稿的宽度)*100+"px"。
+        document.documentElement.style.fontSize=<br/>document.documentElement.clientWidth/750*100+"px";
+    </div>
+</div>
+</body>
+</html>

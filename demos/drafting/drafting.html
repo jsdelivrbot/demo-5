@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>简单的拖拽实例</title>
+    <script src="http://lib.sinaapp.com/js/jquery/1.7.2/jquery.min.js"></script>
+    <style>
+        * { margin:0; padding:0; }
+        .demo { position:relative; left:500px; top:200px; width:350px; height:270px; border:1px solid #999999; }
+        .tz { cursor:move; height:30px; background:#e5e5e5; line-height:30px; text-align:center; border-bottom:1px solid #999999; }
+    </style>
+</head>
+<body>
+<div class="demo">
+    <div class="tz">拖拽我</div>
+    <div class=""></div>
+</div>
+
+<script>
+    $(function(){
+        var ww = document.documentElement.clientWidth;
+        var wh = document.documentElement.clientHeight;
+        var myw = $('.demo').outerWidth();
+        var myh = $('.demo').outerHeight();
+        console.log(myw);  console.log(myh);
+        $('.tz').mousedown(function(e){
+            var e = e || window.event;
+            var l = $('.demo').offset().left;
+            var t = $('.demo').offset().top;
+            console.log(l);  console.log(t);
+            var pl = e.pageX - l;
+            var pt = e.pageY - t;
+            var maxl = ww - myw;
+            var maxt = wh - myh;
+            console.log(pl); console.log(pt);
+            $(document).mousemove(function(e){
+                e.preventDefault();
+                var nl = e.pageX - pl;
+                var nt = e.pageY - pt;
+                if(nl <= 0){ nl = 0 }
+                if(nt <= 0){ nt = 0 }
+                if(nl >= maxl){ nl = maxl }
+                if(nt >= maxt){ nt = maxt }
+                $('.demo').css({'left':nl+'px','top':nt+'px'});
+            })
+            $(document).mouseup(function(){
+                $(document).unbind('mousemove');
+            })
+        })
+    })
+</script>
+</body>
+</html>

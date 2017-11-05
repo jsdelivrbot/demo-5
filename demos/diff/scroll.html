@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>scrollTop&scrollLeft</title>
+  <style>
+    #outer {
+      position: relative;
+      width: 360px;
+      height: 300px;
+
+      overflow: scroll;
+      border: 1px solid #666;
+    }
+    #inner {
+      /*inner的宽高都大于outer，所以outer水平垂直滚动条都会出现*/
+      width: 600px;
+      height: 600px;
+
+      padding: 10px;
+      border: 1px solid #ff552e;
+    }
+  </style>
+</head>
+<body>
+<div id="outer">
+  <div id="inner">
+    我是inner
+  </div>
+</div>
+<script>
+  var outer = document.getElementById('outer')
+
+  // 未滚动
+  console.log('未滚动')
+  console.log('scrollTop:' + outer.scrollTop)
+  console.log('scrollLeft:' + outer.scrollLeft)
+
+  // 手动滚动，然后再次输出scrollTop
+  setTimeout(function () {
+    console.log('已滚动')
+    console.log('scrollTop:' + outer.scrollTop)
+    console.log('scrollLeft:' + outer.scrollLeft)
+  }, 2000)
+</script>
+</body>
+</html>

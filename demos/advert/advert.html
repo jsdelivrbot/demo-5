@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+    <head lang="en">
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+        <title></title>
+        <script src="http://code.jquery.com/jquery-1.12.4.js"></script>
+        <style>
+            .suspend-box a{
+                color: #08584D;
+                font-weight: 900;
+                text-decoration: none;
+            }
+            .suspend-box a.suspend-box-text{
+                display: block;
+                padding: 0 10px;
+                height: 60px;
+                line-height: 60px;
+                background-color: #0077e6;
+                color: #ffffff;
+                font-size: 25px;
+                font-weight: 900;
+                text-align: center;
+                letter-spacing: 4px;
+            }
+
+        </style>
+    </head>
+    <body>
+      
+        <!--飘窗-->
+        <div class="suspend-box">
+            <a href="#" onclick="$(this).parent().remove();return false;">关闭</a>
+            <a class="suspend-box-text" target="_blank" href="yiliaoqixie.html">医疗器械上线</a>
+        </div>
+
+        <script type="text/javascript">
+            (function ($) {
+                $.fn.adFly = function (o) {
+                    o = $.extend({step: 1, delay: 30, xPos: 100, yPos: 100}, o || {});
+                    return this.each(function () {
+                        var c = $(this);
+                        var xon = 0, yon = 0;
+
+                        function changePos() {
+                            var winW = $(window).width(), winH = $(window).height(), w = c.width(), h = c.height();
+                            if (yon) {
+                                o.yPos = o.yPos + o.step
+                            } else {
+                                o.yPos = o.yPos - o.step
+                            }
+                            if (o.yPos < 0) {
+                                yon = 1;
+                                yPos = 0
+                            }
+                            if (o.yPos >= (winH - h)) {
+                                yon = 0;
+                                o.yPos = (winH - h)
+                            }
+                            if (xon) {
+                                o.xPos = o.xPos + o.step
+                            } else {
+                                o.xPos = o.xPos - o.step
+                            }
+                            if (o.xPos < 0) {
+                                xon = 1;
+                                o.xPos = 0
+                            }
+                            if (o.xPos >= (winW - w)) {
+                                xon = 0;
+                                o.xPos = (winW - w)
+                            }
+                            c.css({
+                                position: "absolute",
+                                left: o.xPos + $(document).scrollLeft() + "px",
+                                top: o.yPos + $(document).scrollTop() + "px",
+                                "z-index": 1000
+                            })
+                        }
+
+                        var interval;
+                        (function () {
+                            interval = setInterval(function () {
+                                changePos()
+                            }, o.delay)
+                        })();
+                        c.mouseover(function () {
+                            clearInterval(interval)
+                        }).mouseout(function () {
+                            interval = setInterval(function () {
+                                changePos()
+                            }, o.delay)
+                        })
+                    })
+                }
+            })(jQuery);
+        </script>
+        <script type="text/javascript">
+            $(".suspend-box").adFly({
+                xPos:100,
+                yPos:100
+            });
+        </script>
+
+    </body>
+</html>

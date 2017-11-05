@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>自适应布局</title>
+    <meta charset="utf-8">
+    <style type="text/css">
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        #container{
+            width: 100%;
+            display: -webkit-flex;
+            display: -moz-flex;
+            display: -ms-flex;
+            display: -o-flex;
+            display: flex;
+        }
+        #left{
+            width: 200px;
+            height: 600px;
+            background-color: #fffc00;
+        }
+        #main{
+            width: auto;
+            height: 600px;
+            background-color: #03c03c;
+            -webkit-flex: 1;
+            -moz-flex: 1;
+            -ms-flex: 1;
+            -o-flex: 1;
+            flex: 1;
+        }
+        #right{
+            width: 100px;
+            height: 600px;
+            background-color: orange;
+        }
+    </style>
+</head>
+<body>
+<div id="container">
+    <div id="left">left 200px</div>
+    <div id="main">main 自适应</div>
+    <div id="right">right 100px</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>flex布局</title>
+  <style>
+    /*基本样式*/
+    body{
+      display: flex;
+      flex-wrap:wrap;
+    }
+    .boxList{
+      display: flex;
+    }
+    .box {
+        margin: 16px;
+        padding: 4px;
+        background-color: #e7e7e7;
+        width: 104px;
+        height: 104px;
+        /*object-fit: contain;*/
+        box-shadow:
+          inset 0 5px white,
+          inset 0 -5px #bbb,
+          inset 5px 0 #d7d7d7,
+          inset -5px 0 #d7d7d7;
+        border-radius: 10%;
+      }
+      .item {
+        /*display: block;*/
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        margin: 4px;
+        background-color: #333;
+        box-shadow: inset 0 3px #111, inset 0 -3px #555;
+      }
+      /*********************/
+      /*一个点*/
+      .box1 {
+        display:flex;
+        justify-content: center; /*flex-end*/
+        align-items: center; /*flex-end*/
+      }
+      /*两个点*/
+      .box2{
+        display:flex;
+        /*flex-direction:column;*/ /*主轴的方向*/
+        justify-content: space-between;  /*两端对齐*/
+        /*align-items: center; flex-end*/
+      }
+      .box2 .item:nth-child(2){
+        align-self: flex-end; /*单独元素设置可以覆盖align-items*/
+      }
+      /*三个点*/
+      .box3{
+        display:flex;
+      }
+      .box3 .item:nth-child(2){
+        align-self: center;
+      }
+      .box3 .item:nth-child(3){
+        align-self: flex-end;
+      }
+      /*四个点*/
+      .box4{
+        display:flex;
+        flex-wrap:wrap;
+        align-content:space-between; /*多条轴线时的分布*/
+      }
+      .box4 .column{
+        flex-basis: 100%;   /*项目占主轴空间大小*/
+        display:flex;
+        justify-content: space-between;
+      }
+      /*六个点*/
+      .box6{
+        display:flex;
+        flex-wrap: wrap;
+        align-content: space-between;
+        justify-content: space-between;
+      }
+      .box6 .row{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+      /*九个点*/
+      .box9 {
+        display: flex;
+        flex-wrap:wrap;
+      }
+      .box9 .row{
+        display: flex;
+      }
+      /*网格布局*/
+      .grid {
+        display:flex;
+      }
+      .grid-cell{
+        flex:1;
+        border:1px solid #ccc;
+      }
+      .cell3{
+        flex:0 0 30%;
+      }
+      .cell5{
+        flex:0 0 50%;
+      }
+      .cell10{
+        flex:0 0 20%;
+      }
+      /*圣杯布局*/
+      .holyGrail{
+        display:flex;
+        flex-direction:column;
+      }
+      .holyGrail header,footer{
+        width:36em;
+        height: 2em;
+        border:1px solid red;
+        text-align: center;
+      }
+      .holyGrail .holyGrailBody{
+        height:8em;
+        border:1px solid green;
+      }
+      .header,.footer{
+        flex:1;
+      }
+      .holyGrailBody{
+        display: flex;
+        flex:1;
+      }
+      .main {
+        flex: 1;
+        background: yellow;
+      }
+      .nav, .aside {
+        /* 两个边栏的宽度设为12em */
+        flex: 0 0 12em;
+        background: #aaa;
+      }
+      .nav {
+        /* 导航放到最左边 */
+        order: -1;
+      }
+      @media (max-width: 768px) {
+        .holyGrailBody {
+          flex-direction: column;
+          flex: 1;
+        }
+        .nav,
+        .aside,
+        .main {
+          flex: auto;
+        }
+    }
+  </style>
+
+</head>
+<body>
+  <!-- div元素（代表骰子的一个面）是Flex容器，span元素（代表一个点）是Flex项目。如果有多个项目，就要添加多个span元素，以此类推。 -->
+  <!--骰子布局  -->
+  <div class="boxList">
+    <h3>骰子布局</h3>
+    <div class="box box1">
+      <span class="item"></span>
+    </div>
+
+    <div class="box box2">
+      <span class="item"></span>
+      <span class="item"></span>
+    </div>
+
+    <div class="box box3">
+      <span class="item"></span>
+      <span class="item"></span>
+      <span class="item"></span>
+    </div>
+
+    <div class="box box4">
+      <div class="column">
+        <span class="item"></span>
+        <span class="item"></span>
+      </div>
+      <div class="column">
+        <span class="item"></span>
+        <span class="item"></span>
+      </div>
+    </div>
+
+    <div class="box box6">
+      <div class="row">
+        <span class="item"></span>
+        <span class="item"></span>
+        <span class="item"></span>
+      </div>
+      <div class="row">
+        <span class="item"></span>
+        <span class="item"></span>
+        <span class="item"></span>
+      </div>
+    </div>
+
+    <div class="box box9">
+      <div class="row">
+        <span class="item"></span>
+        <span class="item"></span>
+        <span class="item"></span>
+      </div>
+      <div class="row">
+        <span class="item"></span>
+        <span class="item"></span>
+        <span class="item"></span>
+      </div>
+      <div class="row">
+        <span class="item"></span>
+        <span class="item"></span>
+        <span class="item"></span>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <h3>网格布局</h3>
+      <!--网格布局  -->
+    <div class="grid">
+      <div class="grid-cell cell3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur ab est doloremque voluptatem enim, sit temporibus eum cumque debitis deleniti deserunt dicta possimus, hic perferendis quos! Rem totam illum nihil.</div>
+      <div class="grid-cell cell5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur ab est doloremque voluptatem enim, sit temporibus eum cumque debitis deleniti deserunt dicta possimus, hic perferendis quos! Rem totam illum nihil.</div>
+      <div class="grid-cell cell10">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur ab est doloremque voluptatem enim, sit temporibus eum cumque debitis deleniti deserunt dicta possimus, hic perferendis quos! Rem totam illum nihil.</div>
+    </div>
+  </div>
+
+  <div>
+    <h3>圣杯布局</h3>
+      <!-- 圣杯布局 -->
+      <div class="holyGrail">
+        <header class="header">Header</header>
+        <div class="holyGrailBody">
+          <main class="main">Main</main>
+          <nav class="nav">Nav</nav>
+          <aside class="aside">Aside</aside>
+        </div>
+        <footer class="footer">Footer</footer>
+      </div>
+  </div>
+
+</body>
+</html>

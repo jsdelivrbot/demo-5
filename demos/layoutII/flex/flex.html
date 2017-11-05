@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            text-align: center;
+        }
+        #container{
+            /*设置最外层包裹元素为flew弹性布局*/
+            display: flex;
+        }
+        .left{
+            border:1px solid red;
+            width:200px;
+            height:300px;
+        }
+        .cont{
+            border:1px solid red;
+            flex: 1;
+            height:300px;
+        }
+        /*也可以对不同元素进行flex布局 剩下的面积同等分配*/
+        .right{
+            border:1px solid red;
+            width:200px;
+            height:300px;
+        }
+    </style>
+</head>
+<body>
+<div id="container">
+    <div class="left">
+        <h1>1左边内容</h1>
+        <p>我是左边内容我是左边内容我是左边内容我是左边内容我是左边内容我是左边内容我是左边内容</p>
+        <p>我是左边内容我是左边内容我是左边内容我是左边内容我是左边内容我是左边内容我是左边内容</p>
+    </div>
+    <div class="cont">
+        <h1>2中间内容</h1>
+        <p>我是左边内容我是左边内容我是左边内容我是左边内容我是左边内容我是左边内容我是左边内容</p>
+        <p>我是左边内容我是左边内容我是左边内容我是左边内容我是左边内容我是左边内容我是左边内容</p>
+    </div>
+    <div class="right">
+        <h1>3右边内容</h1>
+        <p>我是左边内容我是左边内容我是左边内容我是左边内容我是左边内容我是左边内容我是左边内容</p>
+        <p>我是左边内容我是左边内容我是左边内容我是左边内容我是左边内容我是左边内容我是左边内容</p>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>连续滚动</title>
+    <script src="http://lib.sinaapp.com/js/jquery/1.7.2/jquery.min.js"></script>
+    <style>
+        * { margin:0; padding:0; }
+        .demo { width:1000px; margin:100px auto; overflow:hidden; }
+        ul { list-style:none; }
+        .demo ul { float:left; }
+        .demo li { float:left; width:188px; margin-right:10px; border:1px solid #666666; }
+        .demo li img { display:block; width:188px; height:auto; }
+        .demo li a { text-decoration: none; }
+        .demo li p { color:#333; font-size:14px; line-height:24px; text-align:center; }
+    </style>
+</head>
+<body>
+<div class="demo">
+    <div class="main" style="width:2800px; position:relative; left:0; top:0;">
+        <ul style="width:1400px;" class="marquee1">
+            <li>
+                <a href="javascript:void(0);">
+                    <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1507640019256&di=1a9f5490b0ef42c55eb23489ad3e357d&imgtype=0&src=http%3A%2F%2Fwww.zhlzw.com%2FUploadFiles%2FArticle_UploadFiles%2F201204%2F20120412123914329.jpg" />
+                    <p>滚动实例1</p>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:void(0);">
+                    <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1507640019256&di=1a9f5490b0ef42c55eb23489ad3e357d&imgtype=0&src=http%3A%2F%2Fwww.zhlzw.com%2FUploadFiles%2FArticle_UploadFiles%2F201204%2F20120412123914329.jpg" />
+                    <p>滚动实例2</p>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:void(0);">
+                    <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1507640019256&di=1a9f5490b0ef42c55eb23489ad3e357d&imgtype=0&src=http%3A%2F%2Fwww.zhlzw.com%2FUploadFiles%2FArticle_UploadFiles%2F201204%2F20120412123914329.jpg" />
+                    <p>滚动实例3</p>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:void(0);">
+                    <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1507640019256&di=1a9f5490b0ef42c55eb23489ad3e357d&imgtype=0&src=http%3A%2F%2Fwww.zhlzw.com%2FUploadFiles%2FArticle_UploadFiles%2F201204%2F20120412123914329.jpg" />
+                    <p>滚动实例4</p>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:void(0);">
+                    <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1507640019256&di=1a9f5490b0ef42c55eb23489ad3e357d&imgtype=0&src=http%3A%2F%2Fwww.zhlzw.com%2FUploadFiles%2FArticle_UploadFiles%2F201204%2F20120412123914329.jpg" />
+                    <p>滚动实例5</p>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:void(0);">
+                    <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1507640019256&di=1a9f5490b0ef42c55eb23489ad3e357d&imgtype=0&src=http%3A%2F%2Fwww.zhlzw.com%2FUploadFiles%2FArticle_UploadFiles%2F201204%2F20120412123914329.jpg" />
+                    <p>滚动实例6</p>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:void(0);">
+                    <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1507640019256&di=1a9f5490b0ef42c55eb23489ad3e357d&imgtype=0&src=http%3A%2F%2Fwww.zhlzw.com%2FUploadFiles%2FArticle_UploadFiles%2F201204%2F20120412123914329.jpg" />
+                    <p>滚动实例7</p>
+                </a>
+            </li>
+        </ul>
+        <ul style="width:1400px;" class="marquee2"></ul>
+    </div>
+</div>
+
+<script>
+    $(function(){
+        var left = 0;
+        var speed = 2
+        function margquee(){
+            $('.marquee2').html($('.marquee1').html());
+            t = setInterval(function(){
+                left = left - speed;
+                if(left == -1400){
+                    left = 0;
+                }
+                $('.main').css('left',left);
+            },10)
+        }
+        margquee();
+        $('.demo').mouseover(function(){
+            clearInterval(t)
+        })
+        $('.demo').mouseout(function(){
+            margquee()
+        })
+    })
+</script>
+</body>
+</html>

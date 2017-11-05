@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>垂直水平居中</title>
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		html,body {
+			height: 100%;
+		}
+		
+		body {
+			display: flex;
+		}	
+		.box1 {
+			width: 100px;
+			height: 100px;
+			background: red;
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			margin: -50px 0 0 -50px;
+			z-index: 999;
+		}
+		.box2 {
+			width: 200px;
+			height: 200px;
+			background: green;
+			position: absolute;
+			left: 0;
+			top: 0;
+			right: 0;
+			bottom:0;
+			margin: auto;
+			z-index: 998;
+		}
+		.box3 {
+			width: 300px;
+			height: 300px;
+			background: blue;
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			transform:translate(-50%,-50%);
+			z-index: 997;
+			
+		}
+		
+		.box4 {
+			width: 400px;
+			height: 400px;
+			background: red;
+			margin: auto;
+		}
+		body,html {
+			width: 100%;
+			height: 100%;
+			display: flex;
+			justify-content: center;/*水平居中*/
+			align-items: center;/*垂直居中*/
+		}
+		.box5 {
+			width: 500px;
+			height: 500px;
+			background: red;
+		}
+		
+		
+	</style>
+</head>
+<body>
+	<div class="box1">-margin</div>
+	<div class="box2">auto</div>
+	<div class="box3">translate</div>
+	<!-- <div class="box4">flex</div> --><!--4,5互斥-->
+	<div class="box5">flex</div>
+</body>
+</html>

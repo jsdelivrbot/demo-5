@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>滑动验证demo</title>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+</head>
+<style>
+*{padding: 0; margin:0;}
+.demo { width:300px; height:300px; background:#dddddd; margin:100px auto; }
+.main { position:relative; width:300px; height:260px; background:#ff3344; }
+.end, .start { position:absolute; width:40px; height:40px; }
+.end { left:200px; top:100px; background:#111111; }
+.start { left:0; top:100px; background:#666666; }
+.move { position:relative; left:0; top:0; width:40px; height:40px; background:#333333; cursor:pointer; }
+</style>
+
+<body>
+<div class="demo">
+    <div class="main">
+        <div class="end"></div>
+        <div class="start"></div>
+    </div>
+    <div class="move"></div>
+</div>
+
+<script>
+    $(function(){
+        var movedrag=function(){
+            var oleft=$('.move').offset().left;
+            var mleft=0;
+            $('.move').mousedown(function(e){
+                var dis=e.pageX-oleft;
+                $('html').mousemove(function(e){
+                    e.preventDefault();
+                    mleft=e.pageX-oleft-dis;
+                    if(mleft>0 && mleft<260){
+                        $('.move').css('left',mleft);
+                        $('.start').css('left',mleft);
+                    }else if(mleft>260){
+                        $('.move').css('left','260px');
+                        $('.start').css('left','260px');
+                    }else{
+                        $('.move').css('left',0);
+                        $('.start').css('left',0);
+                    }
+                })
+                $('html').mouseup(function(){
+                    $('html').unbind();
+                    $('.move').unbind();
+                    var oo=parseInt($('.start').css('left'))-200; //设置结合点差距
+                    if(oo<2 && oo>-2){
+                        alert('重合');
+                    }else{
+                        alert('错误');
+                        $('.move').css('left',0);
+                        $('.start').css('left',0);
+                        movedrag();
+                    }
+                    
+                })
+            })
+        }
+        movedrag();
+    })
+</script>
+</body>
+</html>

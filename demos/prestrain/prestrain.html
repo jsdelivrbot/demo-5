@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no">
+    <title>图片预加载</title>
+    <style type="text/css">
+        *{padding: 0;margin: 0}
+        img{width: 100%;display: block;}
+    </style>
+</head>
+<body>
+    <div class="lazy-img">
+        <img class="jsLoadImg" src="https://h5.quanchepin.com/templates/images/loadImg.png" data-src="https://a-ssl.duitang.com/uploads/item/201210/24/20121024113044_vkmru.jpeg">
+        <img class="jsLoadImg" src="https://h5.quanchepin.com/templates/images/loadImg.png" data-src="http://img01.sogoucdn.com/app/a/100540002/422283.jpg">
+        <img class="jsLoadImg" src="https://h5.quanchepin.com/templates/images/loadImg.png" data-src="http://dl.bizhi.sogou.com/images/2013/08/09/357253.jpg">
+        <img class="jsLoadImg" src="https://h5.quanchepin.com/templates/images/loadImg.png" data-src="http://img01.sogoucdn.com/app/a/100540002/422289.jpg">
+        <img class="jsLoadImg" src="https://h5.quanchepin.com/templates/images/loadImg.png" data-src="http://dl.bizhi.sogou.com/images/2015/05/29/1184364.jpg">
+        <img class="jsLoadImg" src="https://h5.quanchepin.com/templates/images/loadImg.png" data-src="http://dl.bizhi.sogou.com/images/2015/01/27/1063571.jpg">
+        <img class="jsLoadImg" src="https://h5.quanchepin.com/templates/images/loadImg.png" data-src="http://dl.bizhi.sogou.com/images/2014/07/16/733793.jpg">
+        <img class="jsLoadImg" src="https://h5.quanchepin.com/templates/images/loadImg.png" data-src="http://dl.bizhi.sogou.com/images/2014/11/11/957398.jpg">
+        <img class="jsLoadImg" src="https://h5.quanchepin.com/templates/images/loadImg.png" data-src="http://img.bizhi.sogou.com/images/2013/09/22/387997.jpg">
+        <img class="jsLoadImg" src="https://h5.quanchepin.com/templates/images/loadImg.png" data-src="http://img.bizhi.sogou.com/images/2015/04/28/1159147.jpg">
+        <img class="jsLoadImg" src="https://h5.quanchepin.com/templates/images/loadImg.png" data-src="http://dl.bizhi.sogou.com/images/2015/06/01/1186941.jpg">
+        <img class="jsLoadImg" src="https://h5.quanchepin.com/templates/images/loadImg.png" data-src="http://dl.bizhi.sogou.com/images/2013/07/19/348659.jpg">
+        <img class="jsLoadImg" src="https://h5.quanchepin.com/templates/images/loadImg.png" data-src="http://dl.bizhi.sogou.com/images/2013/07/19/348291.jpg">
+    </div>
+<!-- <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script> -->
+<script type="text/javascript">
+    // 图片加载js代码
+    window.Echo=(function(window,document,undefined){
+    	'use strict';
+    	var store=[],offset,throttle,poll;
+    	var _inView=function(el){
+    		var coords=el.getBoundingClientRect();
+    		return((coords.top>=0&&coords.left>=0&&coords.top)<=(window.innerHeight||document.documentElement.clientHeight)+parseInt(offset));
+    	};
+    	var _pollImages=function(){
+    		for(var i=store.length;i--;){
+	    		var self=store[i];
+	    		if(_inView(self)){
+	    			self.src=self.getAttribute('data-src');
+	    			store.splice(i,1);
+	    		}
+    		}
+    	};
+    	var _throttle=function(){
+    		clearTimeout(poll);
+    		poll=setTimeout(_pollImages,throttle);
+    	};
+    	var init=function(obj){
+    		var nodes=document.querySelectorAll('[data-src]');
+    		var opts=obj||{};offset=opts.offset||0;throttle=opts.throttle||250;
+    		for(var i=0;i<nodes.length;i++){
+    			store.push(nodes[i]);
+    		}
+    		_throttle();
+    		if(document.addEventListener){
+    			window.addEventListener('scroll',_throttle,false);
+    		}else{window.attachEvent('onscroll',_throttle);
+    		}
+    	};
+    	return{init:init,render:_throttle
+    	};
+    })(window,document);
+
+    Echo.init({
+        offset: 100,//离可视区域多少像素的图片可以被加载
+        throttle: 0,//图片延时多少毫秒加载
+        els: '.jsLoadImg',
+        elP: '.lazy-img',
+        dataSrc: 'data-src'
+    });
+</script>
+</body>
+</html>

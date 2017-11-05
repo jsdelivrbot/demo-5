@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+        <style type="text/css">
+            *{
+                margin: 0;
+                padding: 0;
+            }
+            a{
+                text-decoration: none;
+                padding: 5px 10px;
+                border: 1px solid #000;
+            }
+            div{
+                width: 500px;
+                margin: 50px auto;
+            }
+            img{
+                width: 100%;
+            }
+            .zhao{
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: #eee;
+                text-align: center;
+                line-height: 100%;
+                padding-top: 200px;
+                font-size: 30px;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <img src="http://img.article.pchome.net/00/44/23/20/pic_lib/wm/2.jpg" id="img"/>
+            <p>
+                <a href="javascript:;" class="btn" data-src="shang">上一页</a> <!-- 上一页按钮 -->
+                <a href="javascript:;" class="btn" data-src="xia">下一页</a> <!-- 下一页按钮 -->
+            </p>
+        </div>
+         
+        <p class="zhao">0%</p>
+         
+         
+        <script src="http://lib.sinaapp.com/js/jquery/1.7.2/jquery.min.js"></script>
+        <script type="text/javascript">　　　　　　　　　　　　　//一些网站的图片路径
+            var imgs=[
+         
+                'http://img.article.pchome.net/00/44/23/20/pic_lib/wm/2.jpg',
+         
+                'http://lcd.yesky.com/imagelist/2009/044/404q4y8g4m0p.jpg',
+         
+                'http://lcd.yesky.com/imagelist/2009/044/cgro54wt2t2x.jpg'
+            ];
+             
+            var index = 0; //当前所显示的图片的下标
+            var len = imgs.length;  //所有图片的长度
+            var count = 0;  //遍历了多少张
+             
+            $.each(imgs,function(i,src) {  //遍历所有的图片路径
+                var imgObj = new Image();  //创建 image 对象
+                imgObj.src=src; //使用图片路径后浏览器就会有图片的缓存
+                $(imgObj).on("load",function(){  //image 对象有一个图片加加载完成事件
+                    $(".zhao").html(Math.round((count+1)/len*100) + "%"); //加载了百分之多少
+                    if(count >= len-1){  //当加载的图片数量等于图片的长度时加载完成了 所有
+                        $(".zhao").hide(); //把加载完成的百分比遮罩 隐藏掉
+                    }
+                    count++; //加载完成一张 ++ 一次
+                });
+                 
+                 
+            });
+             
+             
+            $(".btn").on("click",function(){  //图片上一张和下一张
+                if($(this).attr("data-src")=="shang"){ //判断点击的是上一张还是下一张
+                    index = Math.max(0, --index); //点击的是上一张的时候每次index-- 利用 Math.max  当下标小于0 直接选取出0 这样就不会出现小于0 的情况
+                }else{
+                    index = Math.min(len-1, ++index); //与上边同理  只是 ++ 过后 小于 imgs 长度-1 的时候 使用 ++index 后的数  如果大于 使用 长度-1 后的数 
+                }
+                document.title=(index+1)+"/"+len;  //在头部显示当前页
+                $("#img").attr("src",imgs[index]); //从新赋值 src 改变图片
+                 
+            })
+             
+        </script>
+    </body>
+</html>
