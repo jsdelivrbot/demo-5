@@ -1,0 +1,180 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>点餐练习</title>
+<style>
+*{ margin:0; padding:0}
+body{font-size:14px}
+h1,h2,h3,h4,h5,h6{ font-weight:normal}
+ul{ list-style:none}
+i,strong,em{ font-style:normal; font-weight:normal}
+p,dt,dd{ padding:5px 0}
+button{ padding:5px 10px}
+.wrap{ width:500px; padding:20px}
+li{ padding:10px; margin-bottom:20px; background:#efefef; position:relative}
+hr{ margin:50px 0}
+h2,dt{ font-size:24px; font-weight:bold; padding:10px 0}
+h5{ font-size:16px; font-weight:bold}
+h6{font-size:14px; padding:5px 0}
+.cateList p{ font-size:12px; margin-right:80px}
+.cateList .orderBtn{ position:absolute; top:20px; right:20px}
+.shopping_cart{ position:relative}
+.shopping_cart .price{ position:absolute; top:10px; right:10px; font-size:18px;}
+.shopping_cart em{ font-size:24px}
+.clearBtn{ position:absolute; top:10px; right:0;}
+</style>
+</head>
+
+<body>
+<div class="wrap">
+        <h2>菜单</h2>
+        <ul class="cateList">
+        <li id="cate1" data-name="宫保鸡丁" data-price="22">
+            <h5>宫保鸡丁</h5>
+            <p>是一道闻名中外的特色传统名菜。鲁菜、川菜、贵州菜中都有收录，原料、做法有差别。</p>
+            <h6>价格:<em>22</em></h6>
+            <button type="button" class="orderBtn">点餐</button>
+        </li>
+        <li id="cate2" data-name="鱼香肉丝" data-price="18">
+            <h5>鱼香肉丝</h5>
+            <p>是一道闻名中外的特色传统名菜。鲁菜、川菜、贵州菜中都有收录，原料、做法有差别。</p>
+            <h6>价格:<em>18</em></h6>
+            <button type="button" class="orderBtn">点餐</button>
+        </li>
+        <li id="cate3" data-name="红烧茄子" data-price="15">
+            <h5>红烧茄子</h5>
+            <p>是一道闻名中外的特色传统名菜。鲁菜、川菜、贵州菜中都有收录，原料、做法有差别。</p>
+            <h6>价格:<em>15</em></h6>
+            <button type="button" class="orderBtn">点餐</button>
+        </li>
+    </ul>
+    <hr>
+    
+    <div class="shopping_cart">
+        
+        <dl>
+            <dt>购物车</dt>
+            <dd>总数:<em id="total_count">0</em>元</dd>
+            <dd>总额:<em id="total_price">0</em>元</dd>
+            <dd><button id="clearBtn" type="button" class="clearBtn">清空购物车</button></dd>
+        </dl>
+
+         <ul id="shippingList" class="shippingList">
+
+        </ul>
+        
+           <!--li>
+                <h5>宫保鸡丁</h5>
+                <p>价格:<em>28</em></p>
+                <p><button type="button">-</button> 数量:<em>1</em> <button type="button">+</button></p>
+            </li-->
+            
+    
+    </div>
+
+</div>
+
+</body>
+</html>
+
+
+<script>
+        
+          var  btn=document.getElementsByClassName("orderBtn");
+          var  totleNum=0;
+          var  totlePrice=0;
+          var  total_count=document.getElementById("total_count"); 
+          var  total_price=document.getElementById("total_price");
+          var  clearBtn=document.getElementsByClassName("clearBtn")[0];
+          var  timeNumber=0;
+          var  goods=["宫保鸡丁","鱼香肉丝","红烧茄子"]          //像对购物车中添加购物列表项
+          for(var i=0;i<btn.length;i++){
+                  
+                       btn[i].index=i;
+                     btn[i].onclick=function(){
+                                     timeNumber++;
+                                     this.index += 1  
+                                     this.disabled=true;//点击添加后将按钮致为不可点击;
+                                     if(timeNumber>3){
+                                             this.index-=1;
+                                     }
+                                     var  dataNameId="cate"+this.index   //得到当前的id;
+                                     var  dataName=document.getElementById(dataNameId).getAttribute("data-name");
+                                     var  dataPrice=document.getElementById(dataNameId).getAttribute("data-price");
+
+                                              totlePrice+=parseInt(dataPrice);    //总价格
+                                              totleNum++;                         //总数量
+                                              total_count.innerHTML=totleNum;
+                                              total_price.innerHTML=totlePrice;
+                                     var  lis=document.createElement("li");
+                        var  strs='<h5>'+dataName+'</h5>'+
+                                             '<p>价格:<em>'+dataPrice+'</em></p>'+
+                                             '<p><button class="subBtn" type="button">-</button>数量:<em class="singleNum">1</em> <button class="addBtn" type="button">+</button></p>';
+                                                 lis.innerHTML=strs;
+                                            var  shippingList=document.getElementById("shippingList");
+                                            shippingList.appendChild(lis);
+                     }
+            }
+            
+            //增加减少点餐的数量部分
+            document.onclick = function(ev){
+                         
+                        var $Num=null;
+                        var $li=null;
+                        var $lih5=null;
+                        var $liPrice=null;
+                　　　　var ev = ev || window.event;
+                　　　　var target = ev.target || ev.srcElement;
+                　　　　if(target.className==='subBtn'){
+
+                            $Num=parseInt( target.parentNode.getElementsByClassName("singleNum")[0].innerHTML );     //单个商品的数量
+                            $lih5=target.parentNode.parentNode.getElementsByTagName("h5")[0].innerHTML;               //获取商品的名称
+                            $liPrice=parseInt(target.parentNode.parentNode.getElementsByTagName("em")[0].innerHTML);  //获取当前的商品价格
+                            $Num--;
+                            if($Num==0){
+                                      target.parentNode.parentNode.remove();//删除这个li标签
+                                      
+                                      for(var j=0;j<goods.length;j++){
+                                              
+                                                   if(goods[j]==$lih5){
+                                                           
+                                                             btn[j].disabled=false;  
+                                                   }
+                                      }
+                            }
+                            totleNum--;
+                            totlePrice-=$liPrice;
+                            target.parentNode.getElementsByClassName("singleNum")[0].innerHTML=$Num;
+                            total_count.innerHTML=totleNum;
+                            total_price.innerHTML=totlePrice;
+                              
+                　　　　}else if(target.className=== 'addBtn'){
+                                 
+                                    $Num=parseInt( target.parentNode.getElementsByClassName("singleNum")[0].innerHTML );
+                                    $liPrice=parseInt(target.parentNode.parentNode.getElementsByTagName("em")[0].innerHTML); //获取当前的商品价格
+                                    $Num++;
+                        totleNum++;
+                        totlePrice+=$liPrice;
+                        target.parentNode.getElementsByClassName("singleNum")[0].innerHTML=$Num;         
+                        total_count.innerHTML=totleNum;
+                        total_price.innerHTML=totlePrice;
+                        
+                       }else if(target.className==='clearBtn'){ //清空购物车部分
+                                  
+                                      var  lists=document.getElementById("shippingList");
+                                           lists.innerHTML=" ";
+                                            for(var i=0;i<goods.length;i++){
+
+                                                         btn[i].disabled=false;
+                                            }
+                                             total_count.innerHTML=0;
+                                             total_price.innerHTML=0;
+                               
+                       }
+　　   }
+            
+          
+          
+          
+</script>
